@@ -141,8 +141,8 @@ bin/integration_tests: tests/CMakeFiles/integration_tests.dir/integration/gomoku
 bin/integration_tests: tests/CMakeFiles/integration_tests.dir/integration/multi_game_test.cpp.o
 bin/integration_tests: tests/CMakeFiles/integration_tests.dir/build.make
 bin/integration_tests: lib/libalphazero_lib.a
-bin/integration_tests: /usr/lib/x86_64-linux-gnu/libgtest_main.a
-bin/integration_tests: /usr/lib/x86_64-linux-gnu/libgtest.a
+bin/integration_tests: /home/cosmos/anaconda3/lib/libgtest_main.so.1.11.0
+bin/integration_tests: /home/cosmos/anaconda3/lib/libgtest.so.1.11.0
 bin/integration_tests: tests/CMakeFiles/integration_tests.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable ../bin/integration_tests"
 	cd /home/cosmos/alphazero-multi-game/build/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/integration_tests.dir/link.txt --verbose=$(VERBOSE)

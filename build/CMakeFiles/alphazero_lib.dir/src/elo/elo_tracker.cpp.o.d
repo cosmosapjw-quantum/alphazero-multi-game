@@ -84,30 +84,31 @@ CMakeFiles/alphazero_lib.dir/src/elo/elo_tracker.cpp.o: \
  /usr/include/c++/11/ext/atomicity.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/gthr-default.h \
- /usr/include/pthread.h /usr/include/sched.h \
- /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
- /usr/include/x86_64-linux-gnu/bits/sched.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
- /usr/include/x86_64-linux-gnu/bits/cpu-set.h /usr/include/time.h \
- /usr/include/x86_64-linux-gnu/bits/time.h \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/pthread.h \
+ /usr/include/time.h /usr/include/x86_64-linux-gnu/bits/time.h \
  /usr/include/x86_64-linux-gnu/bits/timex.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
- /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
- /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
- /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
- /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
- /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
- /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
- /usr/include/x86_64-linux-gnu/bits/setjmp.h \
- /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h \
+ /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+ /usr/include/linux/limits.h \
  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
+ /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/uio_lim.h /usr/include/errno.h \
+ /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
+ /usr/include/x86_64-linux-gnu/asm/errno.h \
+ /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
+ /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/sched.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h \
  /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
  /usr/include/c++/11/string_view /usr/include/c++/11/bits/string_view.tcc \
@@ -120,7 +121,14 @@ CMakeFiles/alphazero_lib.dir/src/elo/elo_tracker.cpp.o: \
  /usr/include/x86_64-linux-gnu/sys/select.h \
  /usr/include/x86_64-linux-gnu/bits/select.h \
  /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
- /usr/include/x86_64-linux-gnu/bits/select2.h /usr/include/alloca.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
+ /usr/include/x86_64-linux-gnu/bits/select2.h \
+ /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
+ /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
+ /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
+ /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
+ /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
+ /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
@@ -132,10 +140,6 @@ CMakeFiles/alphazero_lib.dir/src/elo/elo_tracker.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
  /usr/include/x86_64-linux-gnu/bits/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/stdio2.h /usr/include/c++/11/cerrno \
- /usr/include/errno.h /usr/include/x86_64-linux-gnu/bits/errno.h \
- /usr/include/linux/errno.h /usr/include/x86_64-linux-gnu/asm/errno.h \
- /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
- /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
  /usr/include/c++/11/bits/charconv.h \
  /usr/include/c++/11/bits/basic_string.tcc /usr/include/c++/11/map \
  /usr/include/c++/11/bits/stl_tree.h \
@@ -218,10 +222,11 @@ CMakeFiles/alphazero_lib.dir/src/elo/elo_tracker.cpp.o: \
  /usr/include/c++/11/bits/locale_facets_nonio.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
- /usr/include/libintl.h /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/libintl.h \
+ /usr/include/c++/11/bits/locale_facets_nonio.tcc \
  /usr/include/c++/11/bits/locale_conv.h \
  /usr/include/c++/11/bits/quoted_string.h \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/json.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/json.hpp \
  /usr/include/c++/11/algorithm /usr/include/c++/11/bits/stl_algo.h \
  /usr/include/c++/11/bits/algorithmfwd.h \
  /usr/include/c++/11/bits/stl_heap.h \
@@ -232,11 +237,9 @@ CMakeFiles/alphazero_lib.dir/src/elo/elo_tracker.cpp.o: \
  /usr/include/c++/11/bits/hashtable_policy.h \
  /usr/include/c++/11/bits/unordered_map.h /usr/include/c++/11/cstddef \
  /usr/include/c++/11/iterator /usr/include/c++/11/bits/stream_iterator.h \
- /usr/include/c++/11/numeric /usr/include/c++/11/bits/stl_numeric.h \
- /usr/include/c++/11/pstl/glue_numeric_defs.h \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/adl_serializer.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/abi_macros.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/conversions/from_json.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/adl_serializer.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/abi_macros.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/conversions/from_json.hpp \
  /usr/include/c++/11/forward_list /usr/include/c++/11/bits/forward_list.h \
  /usr/include/c++/11/bits/forward_list.tcc /usr/include/c++/11/valarray \
  /usr/include/c++/11/bits/valarray_array.h \
@@ -248,52 +251,55 @@ CMakeFiles/alphazero_lib.dir/src/elo/elo_tracker.cpp.o: \
  /usr/include/c++/11/bits/gslice_array.h \
  /usr/include/c++/11/bits/mask_array.h \
  /usr/include/c++/11/bits/indirect_array.h \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/exceptions.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/value_t.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/macro_scope.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/meta/detected.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/meta/void_t.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/thirdparty/hedley/hedley.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/exceptions.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/value_t.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/macro_scope.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/meta/detected.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/meta/void_t.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/thirdparty/hedley/hedley.hpp \
  /usr/include/c++/11/version /usr/include/c++/11/cassert \
  /usr/include/assert.h \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/string_escape.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/input/position_t.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/meta/cpp_future.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/meta/type_traits.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/iterators/iterator_traits.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/meta/call_std/begin.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/meta/call_std/end.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/json_fwd.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/string_concat.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/string_escape.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/input/position_t.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/meta/cpp_future.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/meta/type_traits.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/iterators/iterator_traits.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/meta/call_std/begin.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/meta/call_std/end.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/json_fwd.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/string_concat.hpp \
  /usr/include/c++/11/cstring /usr/include/string.h /usr/include/strings.h \
  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/meta/identity_tag.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/meta/std_fs.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/meta/identity_tag.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/meta/std_fs.hpp \
  /usr/include/c++/11/filesystem /usr/include/c++/11/bits/fs_fwd.h \
  /usr/include/c++/11/bits/fs_path.h /usr/include/c++/11/codecvt \
  /usr/include/c++/11/bits/fs_dir.h /usr/include/c++/11/bits/fs_ops.h \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/conversions/to_json.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/iterators/iteration_proxy.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/byte_container_with_subtype.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/hash.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/input/binary_reader.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/input/input_adapters.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/input/json_sax.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/input/lexer.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/meta/is_sax.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/input/parser.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/iterators/internal_iterator.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/iterators/primitive_iterator.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/iterators/iter_impl.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/iterators/json_reverse_iterator.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/json_pointer.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/json_ref.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/output/binary_writer.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/output/output_adapters.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/output/serializer.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/conversions/to_chars.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/ordered_map.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/conversions/to_json.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/iterators/iteration_proxy.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/byte_container_with_subtype.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/hash.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/input/binary_reader.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/input/input_adapters.hpp \
+ /usr/include/c++/11/numeric /usr/include/c++/11/bits/stl_numeric.h \
+ /usr/include/c++/11/pstl/glue_numeric_defs.h \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/input/json_sax.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/input/lexer.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/meta/is_sax.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/input/parser.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/iterators/internal_iterator.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/iterators/primitive_iterator.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/iterators/iter_impl.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/iterators/json_reverse_iterator.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/json_custom_base_class.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/json_pointer.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/json_ref.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/output/binary_writer.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/output/output_adapters.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/output/serializer.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/conversions/to_chars.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/ordered_map.hpp \
  /usr/include/c++/11/any \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/detail/macro_unscope.hpp \
- /home/cosmos/alphazero-multi-game/build/_deps/json-src/include/nlohmann/thirdparty/hedley/hedley_undef.hpp
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/detail/macro_unscope.hpp \
+ /mnt/c/Users/cosmo/anaconda3/Library/include/nlohmann/thirdparty/hedley/hedley_undef.hpp

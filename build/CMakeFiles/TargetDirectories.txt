@@ -9,13 +9,6 @@
 /home/cosmos/alphazero-multi-game/build/CMakeFiles/install.dir
 /home/cosmos/alphazero-multi-game/build/CMakeFiles/install/local.dir
 /home/cosmos/alphazero-multi-game/build/CMakeFiles/install/strip.dir
-/home/cosmos/alphazero-multi-game/build/_deps/json-build/CMakeFiles/test.dir
-/home/cosmos/alphazero-multi-game/build/_deps/json-build/CMakeFiles/edit_cache.dir
-/home/cosmos/alphazero-multi-game/build/_deps/json-build/CMakeFiles/rebuild_cache.dir
-/home/cosmos/alphazero-multi-game/build/_deps/json-build/CMakeFiles/list_install_components.dir
-/home/cosmos/alphazero-multi-game/build/_deps/json-build/CMakeFiles/install.dir
-/home/cosmos/alphazero-multi-game/build/_deps/json-build/CMakeFiles/install/local.dir
-/home/cosmos/alphazero-multi-game/build/_deps/json-build/CMakeFiles/install/strip.dir
 /home/cosmos/alphazero-multi-game/build/examples/CMakeFiles/gomoku_example.dir
 /home/cosmos/alphazero-multi-game/build/examples/CMakeFiles/chess_example.dir
 /home/cosmos/alphazero-multi-game/build/examples/CMakeFiles/go_example.dir

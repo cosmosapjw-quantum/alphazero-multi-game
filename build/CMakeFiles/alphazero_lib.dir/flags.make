@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/cosmos/alphazero-multi-game/include -I/home/cosmos/alphazero-multi-game/build/_deps/json-src/include
+CXX_INCLUDES = -I/home/cosmos/alphazero-multi-game/include -isystem /mnt/c/Users/cosmo/anaconda3/Library/include
 
 CXX_FLAGS =  -Wall -Wextra -O3 -DNDEBUG -O3 -std=c++17
 

@@ -141,8 +141,8 @@ bin/nn_tests: tests/CMakeFiles/nn_tests.dir/nn/neural_network_test.cpp.o
 bin/nn_tests: tests/CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.o
 bin/nn_tests: tests/CMakeFiles/nn_tests.dir/build.make
 bin/nn_tests: lib/libalphazero_lib.a
-bin/nn_tests: /usr/lib/x86_64-linux-gnu/libgtest_main.a
-bin/nn_tests: /usr/lib/x86_64-linux-gnu/libgtest.a
+bin/nn_tests: /home/cosmos/anaconda3/lib/libgtest_main.so.1.11.0
+bin/nn_tests: /home/cosmos/anaconda3/lib/libgtest.so.1.11.0
 bin/nn_tests: tests/CMakeFiles/nn_tests.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable ../bin/nn_tests"
 	cd /home/cosmos/alphazero-multi-game/build/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/nn_tests.dir/link.txt --verbose=$(VERBOSE)

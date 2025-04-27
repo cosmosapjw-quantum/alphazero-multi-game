@@ -173,8 +173,8 @@ bin/game_tests: tests/CMakeFiles/game_tests.dir/games/gomoku/gomoku_rules_test.c
 bin/game_tests: tests/CMakeFiles/game_tests.dir/games/gomoku/gomoku_state_test.cpp.o
 bin/game_tests: tests/CMakeFiles/game_tests.dir/build.make
 bin/game_tests: lib/libalphazero_lib.a
-bin/game_tests: /usr/lib/x86_64-linux-gnu/libgtest_main.a
-bin/game_tests: /usr/lib/x86_64-linux-gnu/libgtest.a
+bin/game_tests: /home/cosmos/anaconda3/lib/libgtest_main.so.1.11.0
+bin/game_tests: /home/cosmos/anaconda3/lib/libgtest.so.1.11.0
 bin/game_tests: tests/CMakeFiles/game_tests.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable ../bin/game_tests"
 	cd /home/cosmos/alphazero-multi-game/build/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/game_tests.dir/link.txt --verbose=$(VERBOSE)

@@ -125,8 +125,8 @@ bin/core_tests: tests/CMakeFiles/core_tests.dir/core/igamestate_test.cpp.o
 bin/core_tests: tests/CMakeFiles/core_tests.dir/core/zobrist_test.cpp.o
 bin/core_tests: tests/CMakeFiles/core_tests.dir/build.make
 bin/core_tests: lib/libalphazero_lib.a
-bin/core_tests: /usr/lib/x86_64-linux-gnu/libgtest_main.a
-bin/core_tests: /usr/lib/x86_64-linux-gnu/libgtest.a
+bin/core_tests: /home/cosmos/anaconda3/lib/libgtest_main.so.1.11.0
+bin/core_tests: /home/cosmos/anaconda3/lib/libgtest.so.1.11.0
 bin/core_tests: tests/CMakeFiles/core_tests.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable ../bin/core_tests"
 	cd /home/cosmos/alphazero-multi-game/build/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/core_tests.dir/link.txt --verbose=$(VERBOSE)

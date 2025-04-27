@@ -125,8 +125,8 @@ bin/mcts_tests: tests/CMakeFiles/mcts_tests.dir/mcts/parallel_mcts_test.cpp.o
 bin/mcts_tests: tests/CMakeFiles/mcts_tests.dir/mcts/transposition_table_test.cpp.o
 bin/mcts_tests: tests/CMakeFiles/mcts_tests.dir/build.make
 bin/mcts_tests: lib/libalphazero_lib.a
-bin/mcts_tests: /usr/lib/x86_64-linux-gnu/libgtest_main.a
-bin/mcts_tests: /usr/lib/x86_64-linux-gnu/libgtest.a
+bin/mcts_tests: /home/cosmos/anaconda3/lib/libgtest_main.so.1.11.0
+bin/mcts_tests: /home/cosmos/anaconda3/lib/libgtest.so.1.11.0
 bin/mcts_tests: tests/CMakeFiles/mcts_tests.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable ../bin/mcts_tests"
 	cd /home/cosmos/alphazero-multi-game/build/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/mcts_tests.dir/link.txt --verbose=$(VERBOSE)
