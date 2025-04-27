@@ -1,6 +1,7 @@
 // neural_network.cpp
 #include "alphazero/nn/neural_network.h"
 #include "alphazero/nn/random_policy_network.h"
+#include "alphazero/nn/torch_neural_network.h"
 
 namespace alphazero {
 namespace nn {
@@ -11,10 +12,20 @@ std::unique_ptr<NeuralNetwork> NeuralNetwork::create(
     int boardSize,
     bool useGpu
 ) {
-    // TODO: Implement actual neural network loading
-    
-    // For now, return a dummy random policy network for testing
-    return std::make_unique<RandomPolicyNetwork>(gameType, boardSize);
+    try {
+        // If model path provided, try to load a TorchNeuralNetwork
+        if (!modelPath.empty()) {
+            return std::make_unique<TorchNeuralNetwork>(modelPath, gameType, boardSize, useGpu);
+        }
+        
+        // If no model path, fall back to random policy network
+        return std::make_unique<RandomPolicyNetwork>(gameType, boardSize);
+    } catch (const std::exception& e) {
+        // Log error and fall back to RandomPolicyNetwork
+        std::cerr << "Failed to create TorchNeuralNetwork: " << e.what() << std::endl;
+        std::cerr << "Falling back to RandomPolicyNetwork" << std::endl;
+        return std::make_unique<RandomPolicyNetwork>(gameType, boardSize);
+    }
 }
 
 } // namespace nn

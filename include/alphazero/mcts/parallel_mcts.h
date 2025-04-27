@@ -2,6 +2,9 @@
 #ifndef PARALLEL_MCTS_H
 #define PARALLEL_MCTS_H
 
+// Include our types header first to prevent pthread conflicts
+#include "alphazero/types.h"
+
 #include <vector>
 #include <deque>
 #include <atomic>

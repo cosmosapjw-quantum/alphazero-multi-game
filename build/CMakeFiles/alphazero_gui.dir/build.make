@@ -73,43 +73,43 @@ CMakeFiles/alphazero_gui.dir/src/ui/game_ui.cpp.o: CMakeFiles/alphazero_gui.dir/
 CMakeFiles/alphazero_gui.dir/src/ui/game_ui.cpp.o: ../src/ui/game_ui.cpp
 CMakeFiles/alphazero_gui.dir/src/ui/game_ui.cpp.o: CMakeFiles/alphazero_gui.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/alphazero_gui.dir/src/ui/game_ui.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/alphazero_gui.dir/src/ui/game_ui.cpp.o -MF CMakeFiles/alphazero_gui.dir/src/ui/game_ui.cpp.o.d -o CMakeFiles/alphazero_gui.dir/src/ui/game_ui.cpp.o -c /home/cosmos/alphazero-multi-game/src/ui/game_ui.cpp
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/alphazero_gui.dir/src/ui/game_ui.cpp.o -MF CMakeFiles/alphazero_gui.dir/src/ui/game_ui.cpp.o.d -o CMakeFiles/alphazero_gui.dir/src/ui/game_ui.cpp.o -c /home/cosmos/alphazero-multi-game/src/ui/game_ui.cpp
 
 CMakeFiles/alphazero_gui.dir/src/ui/game_ui.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_gui.dir/src/ui/game_ui.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/ui/game_ui.cpp > CMakeFiles/alphazero_gui.dir/src/ui/game_ui.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/ui/game_ui.cpp > CMakeFiles/alphazero_gui.dir/src/ui/game_ui.cpp.i
 
 CMakeFiles/alphazero_gui.dir/src/ui/game_ui.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_gui.dir/src/ui/game_ui.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/ui/game_ui.cpp -o CMakeFiles/alphazero_gui.dir/src/ui/game_ui.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/ui/game_ui.cpp -o CMakeFiles/alphazero_gui.dir/src/ui/game_ui.cpp.s
 
 CMakeFiles/alphazero_gui.dir/src/ui/renderer.cpp.o: CMakeFiles/alphazero_gui.dir/flags.make
 CMakeFiles/alphazero_gui.dir/src/ui/renderer.cpp.o: ../src/ui/renderer.cpp
 CMakeFiles/alphazero_gui.dir/src/ui/renderer.cpp.o: CMakeFiles/alphazero_gui.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/alphazero_gui.dir/src/ui/renderer.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/alphazero_gui.dir/src/ui/renderer.cpp.o -MF CMakeFiles/alphazero_gui.dir/src/ui/renderer.cpp.o.d -o CMakeFiles/alphazero_gui.dir/src/ui/renderer.cpp.o -c /home/cosmos/alphazero-multi-game/src/ui/renderer.cpp
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/alphazero_gui.dir/src/ui/renderer.cpp.o -MF CMakeFiles/alphazero_gui.dir/src/ui/renderer.cpp.o.d -o CMakeFiles/alphazero_gui.dir/src/ui/renderer.cpp.o -c /home/cosmos/alphazero-multi-game/src/ui/renderer.cpp
 
 CMakeFiles/alphazero_gui.dir/src/ui/renderer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_gui.dir/src/ui/renderer.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/ui/renderer.cpp > CMakeFiles/alphazero_gui.dir/src/ui/renderer.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/ui/renderer.cpp > CMakeFiles/alphazero_gui.dir/src/ui/renderer.cpp.i
 
 CMakeFiles/alphazero_gui.dir/src/ui/renderer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_gui.dir/src/ui/renderer.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/ui/renderer.cpp -o CMakeFiles/alphazero_gui.dir/src/ui/renderer.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/ui/renderer.cpp -o CMakeFiles/alphazero_gui.dir/src/ui/renderer.cpp.s
 
 CMakeFiles/alphazero_gui.dir/src/gui/gui_main.cpp.o: CMakeFiles/alphazero_gui.dir/flags.make
 CMakeFiles/alphazero_gui.dir/src/gui/gui_main.cpp.o: ../src/gui/gui_main.cpp
 CMakeFiles/alphazero_gui.dir/src/gui/gui_main.cpp.o: CMakeFiles/alphazero_gui.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/alphazero_gui.dir/src/gui/gui_main.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/alphazero_gui.dir/src/gui/gui_main.cpp.o -MF CMakeFiles/alphazero_gui.dir/src/gui/gui_main.cpp.o.d -o CMakeFiles/alphazero_gui.dir/src/gui/gui_main.cpp.o -c /home/cosmos/alphazero-multi-game/src/gui/gui_main.cpp
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/alphazero_gui.dir/src/gui/gui_main.cpp.o -MF CMakeFiles/alphazero_gui.dir/src/gui/gui_main.cpp.o.d -o CMakeFiles/alphazero_gui.dir/src/gui/gui_main.cpp.o -c /home/cosmos/alphazero-multi-game/src/gui/gui_main.cpp
 
 CMakeFiles/alphazero_gui.dir/src/gui/gui_main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_gui.dir/src/gui/gui_main.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/gui/gui_main.cpp > CMakeFiles/alphazero_gui.dir/src/gui/gui_main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/gui/gui_main.cpp > CMakeFiles/alphazero_gui.dir/src/gui/gui_main.cpp.i
 
 CMakeFiles/alphazero_gui.dir/src/gui/gui_main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_gui.dir/src/gui/gui_main.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/gui/gui_main.cpp -o CMakeFiles/alphazero_gui.dir/src/gui/gui_main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/gui/gui_main.cpp -o CMakeFiles/alphazero_gui.dir/src/gui/gui_main.cpp.s
 
 # Object files for target alphazero_gui
 alphazero_gui_OBJECTS = \

@@ -1,4 +1,5 @@
 // src/selfplay/game_record.cpp
+#include "alphazero/types.h"
 #include "alphazero/selfplay/game_record.h"
 #include <fstream>
 #include <sstream>

@@ -73,85 +73,85 @@ tests/CMakeFiles/game_tests.dir/games/chess/chess960_test.cpp.o: tests/CMakeFile
 tests/CMakeFiles/game_tests.dir/games/chess/chess960_test.cpp.o: ../tests/games/chess/chess960_test.cpp
 tests/CMakeFiles/game_tests.dir/games/chess/chess960_test.cpp.o: tests/CMakeFiles/game_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object tests/CMakeFiles/game_tests.dir/games/chess/chess960_test.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/game_tests.dir/games/chess/chess960_test.cpp.o -MF CMakeFiles/game_tests.dir/games/chess/chess960_test.cpp.o.d -o CMakeFiles/game_tests.dir/games/chess/chess960_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/games/chess/chess960_test.cpp
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/game_tests.dir/games/chess/chess960_test.cpp.o -MF CMakeFiles/game_tests.dir/games/chess/chess960_test.cpp.o.d -o CMakeFiles/game_tests.dir/games/chess/chess960_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/games/chess/chess960_test.cpp
 
 tests/CMakeFiles/game_tests.dir/games/chess/chess960_test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/game_tests.dir/games/chess/chess960_test.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/games/chess/chess960_test.cpp > CMakeFiles/game_tests.dir/games/chess/chess960_test.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/games/chess/chess960_test.cpp > CMakeFiles/game_tests.dir/games/chess/chess960_test.cpp.i
 
 tests/CMakeFiles/game_tests.dir/games/chess/chess960_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/game_tests.dir/games/chess/chess960_test.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/games/chess/chess960_test.cpp -o CMakeFiles/game_tests.dir/games/chess/chess960_test.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/games/chess/chess960_test.cpp -o CMakeFiles/game_tests.dir/games/chess/chess960_test.cpp.s
 
 tests/CMakeFiles/game_tests.dir/games/chess/chess_state_test.cpp.o: tests/CMakeFiles/game_tests.dir/flags.make
 tests/CMakeFiles/game_tests.dir/games/chess/chess_state_test.cpp.o: ../tests/games/chess/chess_state_test.cpp
 tests/CMakeFiles/game_tests.dir/games/chess/chess_state_test.cpp.o: tests/CMakeFiles/game_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object tests/CMakeFiles/game_tests.dir/games/chess/chess_state_test.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/game_tests.dir/games/chess/chess_state_test.cpp.o -MF CMakeFiles/game_tests.dir/games/chess/chess_state_test.cpp.o.d -o CMakeFiles/game_tests.dir/games/chess/chess_state_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/games/chess/chess_state_test.cpp
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/game_tests.dir/games/chess/chess_state_test.cpp.o -MF CMakeFiles/game_tests.dir/games/chess/chess_state_test.cpp.o.d -o CMakeFiles/game_tests.dir/games/chess/chess_state_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/games/chess/chess_state_test.cpp
 
 tests/CMakeFiles/game_tests.dir/games/chess/chess_state_test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/game_tests.dir/games/chess/chess_state_test.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/games/chess/chess_state_test.cpp > CMakeFiles/game_tests.dir/games/chess/chess_state_test.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/games/chess/chess_state_test.cpp > CMakeFiles/game_tests.dir/games/chess/chess_state_test.cpp.i
 
 tests/CMakeFiles/game_tests.dir/games/chess/chess_state_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/game_tests.dir/games/chess/chess_state_test.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/games/chess/chess_state_test.cpp -o CMakeFiles/game_tests.dir/games/chess/chess_state_test.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/games/chess/chess_state_test.cpp -o CMakeFiles/game_tests.dir/games/chess/chess_state_test.cpp.s
 
 tests/CMakeFiles/game_tests.dir/games/go/go_rules_test.cpp.o: tests/CMakeFiles/game_tests.dir/flags.make
 tests/CMakeFiles/game_tests.dir/games/go/go_rules_test.cpp.o: ../tests/games/go/go_rules_test.cpp
 tests/CMakeFiles/game_tests.dir/games/go/go_rules_test.cpp.o: tests/CMakeFiles/game_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object tests/CMakeFiles/game_tests.dir/games/go/go_rules_test.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/game_tests.dir/games/go/go_rules_test.cpp.o -MF CMakeFiles/game_tests.dir/games/go/go_rules_test.cpp.o.d -o CMakeFiles/game_tests.dir/games/go/go_rules_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/games/go/go_rules_test.cpp
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/game_tests.dir/games/go/go_rules_test.cpp.o -MF CMakeFiles/game_tests.dir/games/go/go_rules_test.cpp.o.d -o CMakeFiles/game_tests.dir/games/go/go_rules_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/games/go/go_rules_test.cpp
 
 tests/CMakeFiles/game_tests.dir/games/go/go_rules_test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/game_tests.dir/games/go/go_rules_test.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/games/go/go_rules_test.cpp > CMakeFiles/game_tests.dir/games/go/go_rules_test.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/games/go/go_rules_test.cpp > CMakeFiles/game_tests.dir/games/go/go_rules_test.cpp.i
 
 tests/CMakeFiles/game_tests.dir/games/go/go_rules_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/game_tests.dir/games/go/go_rules_test.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/games/go/go_rules_test.cpp -o CMakeFiles/game_tests.dir/games/go/go_rules_test.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/games/go/go_rules_test.cpp -o CMakeFiles/game_tests.dir/games/go/go_rules_test.cpp.s
 
 tests/CMakeFiles/game_tests.dir/games/go/go_state_test.cpp.o: tests/CMakeFiles/game_tests.dir/flags.make
 tests/CMakeFiles/game_tests.dir/games/go/go_state_test.cpp.o: ../tests/games/go/go_state_test.cpp
 tests/CMakeFiles/game_tests.dir/games/go/go_state_test.cpp.o: tests/CMakeFiles/game_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object tests/CMakeFiles/game_tests.dir/games/go/go_state_test.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/game_tests.dir/games/go/go_state_test.cpp.o -MF CMakeFiles/game_tests.dir/games/go/go_state_test.cpp.o.d -o CMakeFiles/game_tests.dir/games/go/go_state_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/games/go/go_state_test.cpp
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/game_tests.dir/games/go/go_state_test.cpp.o -MF CMakeFiles/game_tests.dir/games/go/go_state_test.cpp.o.d -o CMakeFiles/game_tests.dir/games/go/go_state_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/games/go/go_state_test.cpp
 
 tests/CMakeFiles/game_tests.dir/games/go/go_state_test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/game_tests.dir/games/go/go_state_test.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/games/go/go_state_test.cpp > CMakeFiles/game_tests.dir/games/go/go_state_test.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/games/go/go_state_test.cpp > CMakeFiles/game_tests.dir/games/go/go_state_test.cpp.i
 
 tests/CMakeFiles/game_tests.dir/games/go/go_state_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/game_tests.dir/games/go/go_state_test.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/games/go/go_state_test.cpp -o CMakeFiles/game_tests.dir/games/go/go_state_test.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/games/go/go_state_test.cpp -o CMakeFiles/game_tests.dir/games/go/go_state_test.cpp.s
 
 tests/CMakeFiles/game_tests.dir/games/gomoku/gomoku_rules_test.cpp.o: tests/CMakeFiles/game_tests.dir/flags.make
 tests/CMakeFiles/game_tests.dir/games/gomoku/gomoku_rules_test.cpp.o: ../tests/games/gomoku/gomoku_rules_test.cpp
 tests/CMakeFiles/game_tests.dir/games/gomoku/gomoku_rules_test.cpp.o: tests/CMakeFiles/game_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object tests/CMakeFiles/game_tests.dir/games/gomoku/gomoku_rules_test.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/game_tests.dir/games/gomoku/gomoku_rules_test.cpp.o -MF CMakeFiles/game_tests.dir/games/gomoku/gomoku_rules_test.cpp.o.d -o CMakeFiles/game_tests.dir/games/gomoku/gomoku_rules_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/games/gomoku/gomoku_rules_test.cpp
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/game_tests.dir/games/gomoku/gomoku_rules_test.cpp.o -MF CMakeFiles/game_tests.dir/games/gomoku/gomoku_rules_test.cpp.o.d -o CMakeFiles/game_tests.dir/games/gomoku/gomoku_rules_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/games/gomoku/gomoku_rules_test.cpp
 
 tests/CMakeFiles/game_tests.dir/games/gomoku/gomoku_rules_test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/game_tests.dir/games/gomoku/gomoku_rules_test.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/games/gomoku/gomoku_rules_test.cpp > CMakeFiles/game_tests.dir/games/gomoku/gomoku_rules_test.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/games/gomoku/gomoku_rules_test.cpp > CMakeFiles/game_tests.dir/games/gomoku/gomoku_rules_test.cpp.i
 
 tests/CMakeFiles/game_tests.dir/games/gomoku/gomoku_rules_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/game_tests.dir/games/gomoku/gomoku_rules_test.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/games/gomoku/gomoku_rules_test.cpp -o CMakeFiles/game_tests.dir/games/gomoku/gomoku_rules_test.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/games/gomoku/gomoku_rules_test.cpp -o CMakeFiles/game_tests.dir/games/gomoku/gomoku_rules_test.cpp.s
 
 tests/CMakeFiles/game_tests.dir/games/gomoku/gomoku_state_test.cpp.o: tests/CMakeFiles/game_tests.dir/flags.make
 tests/CMakeFiles/game_tests.dir/games/gomoku/gomoku_state_test.cpp.o: ../tests/games/gomoku/gomoku_state_test.cpp
 tests/CMakeFiles/game_tests.dir/games/gomoku/gomoku_state_test.cpp.o: tests/CMakeFiles/game_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object tests/CMakeFiles/game_tests.dir/games/gomoku/gomoku_state_test.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/game_tests.dir/games/gomoku/gomoku_state_test.cpp.o -MF CMakeFiles/game_tests.dir/games/gomoku/gomoku_state_test.cpp.o.d -o CMakeFiles/game_tests.dir/games/gomoku/gomoku_state_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/games/gomoku/gomoku_state_test.cpp
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/game_tests.dir/games/gomoku/gomoku_state_test.cpp.o -MF CMakeFiles/game_tests.dir/games/gomoku/gomoku_state_test.cpp.o.d -o CMakeFiles/game_tests.dir/games/gomoku/gomoku_state_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/games/gomoku/gomoku_state_test.cpp
 
 tests/CMakeFiles/game_tests.dir/games/gomoku/gomoku_state_test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/game_tests.dir/games/gomoku/gomoku_state_test.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/games/gomoku/gomoku_state_test.cpp > CMakeFiles/game_tests.dir/games/gomoku/gomoku_state_test.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/games/gomoku/gomoku_state_test.cpp > CMakeFiles/game_tests.dir/games/gomoku/gomoku_state_test.cpp.i
 
 tests/CMakeFiles/game_tests.dir/games/gomoku/gomoku_state_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/game_tests.dir/games/gomoku/gomoku_state_test.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/games/gomoku/gomoku_state_test.cpp -o CMakeFiles/game_tests.dir/games/gomoku/gomoku_state_test.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/games/gomoku/gomoku_state_test.cpp -o CMakeFiles/game_tests.dir/games/gomoku/gomoku_state_test.cpp.s
 
 # Object files for target game_tests
 game_tests_OBJECTS = \
@@ -173,8 +173,8 @@ bin/game_tests: tests/CMakeFiles/game_tests.dir/games/gomoku/gomoku_rules_test.c
 bin/game_tests: tests/CMakeFiles/game_tests.dir/games/gomoku/gomoku_state_test.cpp.o
 bin/game_tests: tests/CMakeFiles/game_tests.dir/build.make
 bin/game_tests: lib/libalphazero_lib.a
-bin/game_tests: /home/cosmos/anaconda3/lib/libgtest_main.so.1.11.0
-bin/game_tests: /home/cosmos/anaconda3/lib/libgtest.so.1.11.0
+bin/game_tests: /usr/lib/x86_64-linux-gnu/libgtest_main.a
+bin/game_tests: /usr/lib/x86_64-linux-gnu/libgtest.a
 bin/game_tests: tests/CMakeFiles/game_tests.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable ../bin/game_tests"
 	cd /home/cosmos/alphazero-multi-game/build/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/game_tests.dir/link.txt --verbose=$(VERBOSE)

@@ -1,4 +1,5 @@
-// parallel_mcts.cpp
+// src/mcts/parallel_mcts.cpp
+#include "alphazero/types.h"
 #include "alphazero/mcts/parallel_mcts.h"
 #include "alphazero/nn/neural_network.h"
 #include <iostream>

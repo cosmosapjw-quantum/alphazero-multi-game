@@ -1,1 +1,1 @@
-/usr/bin/g++  -Wall -Wextra -O3 -DNDEBUG -O3 CMakeFiles/alphazero_cli.dir/src/cli/cli_interface.cpp.o CMakeFiles/alphazero_cli.dir/src/cli/cli_main.cpp.o CMakeFiles/alphazero_cli.dir/src/cli/command_parser.cpp.o -o bin/alphazero_cli  lib/libalphazero_lib.a 
+/usr/bin/c++  -Wall -Wextra -O3 -DNDEBUG -O3 CMakeFiles/alphazero_cli.dir/src/cli/cli_interface.cpp.o CMakeFiles/alphazero_cli.dir/src/cli/cli_main.cpp.o CMakeFiles/alphazero_cli.dir/src/cli/command_parser.cpp.o -o bin/alphazero_cli  lib/libalphazero_lib.a 

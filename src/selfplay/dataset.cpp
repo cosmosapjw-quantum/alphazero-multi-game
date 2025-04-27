@@ -1,4 +1,5 @@
 // src/selfplay/dataset.cpp
+#include "alphazero/types.h"
 #include "alphazero/selfplay/dataset.h"
 #include <fstream>
 #include <algorithm>

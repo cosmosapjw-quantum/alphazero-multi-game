@@ -67,11 +67,13 @@ all: CMakeFiles/alphazero_lib.dir/all
 all: CMakeFiles/alphazero_cli.dir/all
 all: CMakeFiles/alphazero_server.dir/all
 all: CMakeFiles/alphazero_gui.dir/all
+all: _deps/json-build/all
 all: examples/all
 all: tests/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
+preinstall: _deps/json-build/preinstall
 preinstall: examples/preinstall
 preinstall: tests/preinstall
 .PHONY : preinstall
@@ -81,9 +83,25 @@ clean: CMakeFiles/alphazero_lib.dir/clean
 clean: CMakeFiles/alphazero_cli.dir/clean
 clean: CMakeFiles/alphazero_server.dir/clean
 clean: CMakeFiles/alphazero_gui.dir/clean
+clean: _deps/json-build/clean
 clean: examples/clean
 clean: tests/clean
 .PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory _deps/json-build
+
+# Recursive "all" directory target.
+_deps/json-build/all:
+.PHONY : _deps/json-build/all
+
+# Recursive "preinstall" directory target.
+_deps/json-build/preinstall:
+.PHONY : _deps/json-build/preinstall
+
+# Recursive "clean" directory target.
+_deps/json-build/clean:
+.PHONY : _deps/json-build/clean
 
 #=============================================================================
 # Directory level rules for directory examples

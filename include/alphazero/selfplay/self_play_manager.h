@@ -2,6 +2,9 @@
 #ifndef SELF_PLAY_MANAGER_H
 #define SELF_PLAY_MANAGER_H
 
+// Include our types header first to prevent pthread conflicts
+#include "alphazero/types.h"
+
 #include <vector>
 #include <string>
 #include <memory>

@@ -2,6 +2,9 @@
 #ifndef ELO_TRACKER_H
 #define ELO_TRACKER_H
 
+// Include our types header first to prevent pthread conflicts
+#include "alphazero/types.h"
+
 #include <vector>
 #include <string>
 #include <map>

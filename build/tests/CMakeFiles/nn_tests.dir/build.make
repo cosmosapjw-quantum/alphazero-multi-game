@@ -73,57 +73,57 @@ tests/CMakeFiles/nn_tests.dir/nn/attack_defense_module_test.cpp.o: tests/CMakeFi
 tests/CMakeFiles/nn_tests.dir/nn/attack_defense_module_test.cpp.o: ../tests/nn/attack_defense_module_test.cpp
 tests/CMakeFiles/nn_tests.dir/nn/attack_defense_module_test.cpp.o: tests/CMakeFiles/nn_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object tests/CMakeFiles/nn_tests.dir/nn/attack_defense_module_test.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/nn_tests.dir/nn/attack_defense_module_test.cpp.o -MF CMakeFiles/nn_tests.dir/nn/attack_defense_module_test.cpp.o.d -o CMakeFiles/nn_tests.dir/nn/attack_defense_module_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/nn/attack_defense_module_test.cpp
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/nn_tests.dir/nn/attack_defense_module_test.cpp.o -MF CMakeFiles/nn_tests.dir/nn/attack_defense_module_test.cpp.o.d -o CMakeFiles/nn_tests.dir/nn/attack_defense_module_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/nn/attack_defense_module_test.cpp
 
 tests/CMakeFiles/nn_tests.dir/nn/attack_defense_module_test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/nn_tests.dir/nn/attack_defense_module_test.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/nn/attack_defense_module_test.cpp > CMakeFiles/nn_tests.dir/nn/attack_defense_module_test.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/nn/attack_defense_module_test.cpp > CMakeFiles/nn_tests.dir/nn/attack_defense_module_test.cpp.i
 
 tests/CMakeFiles/nn_tests.dir/nn/attack_defense_module_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/nn_tests.dir/nn/attack_defense_module_test.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/nn/attack_defense_module_test.cpp -o CMakeFiles/nn_tests.dir/nn/attack_defense_module_test.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/nn/attack_defense_module_test.cpp -o CMakeFiles/nn_tests.dir/nn/attack_defense_module_test.cpp.s
 
 tests/CMakeFiles/nn_tests.dir/nn/batch_queue_test.cpp.o: tests/CMakeFiles/nn_tests.dir/flags.make
 tests/CMakeFiles/nn_tests.dir/nn/batch_queue_test.cpp.o: ../tests/nn/batch_queue_test.cpp
 tests/CMakeFiles/nn_tests.dir/nn/batch_queue_test.cpp.o: tests/CMakeFiles/nn_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object tests/CMakeFiles/nn_tests.dir/nn/batch_queue_test.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/nn_tests.dir/nn/batch_queue_test.cpp.o -MF CMakeFiles/nn_tests.dir/nn/batch_queue_test.cpp.o.d -o CMakeFiles/nn_tests.dir/nn/batch_queue_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/nn/batch_queue_test.cpp
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/nn_tests.dir/nn/batch_queue_test.cpp.o -MF CMakeFiles/nn_tests.dir/nn/batch_queue_test.cpp.o.d -o CMakeFiles/nn_tests.dir/nn/batch_queue_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/nn/batch_queue_test.cpp
 
 tests/CMakeFiles/nn_tests.dir/nn/batch_queue_test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/nn_tests.dir/nn/batch_queue_test.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/nn/batch_queue_test.cpp > CMakeFiles/nn_tests.dir/nn/batch_queue_test.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/nn/batch_queue_test.cpp > CMakeFiles/nn_tests.dir/nn/batch_queue_test.cpp.i
 
 tests/CMakeFiles/nn_tests.dir/nn/batch_queue_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/nn_tests.dir/nn/batch_queue_test.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/nn/batch_queue_test.cpp -o CMakeFiles/nn_tests.dir/nn/batch_queue_test.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/nn/batch_queue_test.cpp -o CMakeFiles/nn_tests.dir/nn/batch_queue_test.cpp.s
 
 tests/CMakeFiles/nn_tests.dir/nn/neural_network_test.cpp.o: tests/CMakeFiles/nn_tests.dir/flags.make
 tests/CMakeFiles/nn_tests.dir/nn/neural_network_test.cpp.o: ../tests/nn/neural_network_test.cpp
 tests/CMakeFiles/nn_tests.dir/nn/neural_network_test.cpp.o: tests/CMakeFiles/nn_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object tests/CMakeFiles/nn_tests.dir/nn/neural_network_test.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/nn_tests.dir/nn/neural_network_test.cpp.o -MF CMakeFiles/nn_tests.dir/nn/neural_network_test.cpp.o.d -o CMakeFiles/nn_tests.dir/nn/neural_network_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/nn/neural_network_test.cpp
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/nn_tests.dir/nn/neural_network_test.cpp.o -MF CMakeFiles/nn_tests.dir/nn/neural_network_test.cpp.o.d -o CMakeFiles/nn_tests.dir/nn/neural_network_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/nn/neural_network_test.cpp
 
 tests/CMakeFiles/nn_tests.dir/nn/neural_network_test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/nn_tests.dir/nn/neural_network_test.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/nn/neural_network_test.cpp > CMakeFiles/nn_tests.dir/nn/neural_network_test.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/nn/neural_network_test.cpp > CMakeFiles/nn_tests.dir/nn/neural_network_test.cpp.i
 
 tests/CMakeFiles/nn_tests.dir/nn/neural_network_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/nn_tests.dir/nn/neural_network_test.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/nn/neural_network_test.cpp -o CMakeFiles/nn_tests.dir/nn/neural_network_test.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/nn/neural_network_test.cpp -o CMakeFiles/nn_tests.dir/nn/neural_network_test.cpp.s
 
 tests/CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.o: tests/CMakeFiles/nn_tests.dir/flags.make
 tests/CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.o: ../tests/nn/torch_neural_network_test.cpp
 tests/CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.o: tests/CMakeFiles/nn_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object tests/CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.o -MF CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.o.d -o CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/nn/torch_neural_network_test.cpp
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.o -MF CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.o.d -o CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/nn/torch_neural_network_test.cpp
 
 tests/CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/nn/torch_neural_network_test.cpp > CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/nn/torch_neural_network_test.cpp > CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.i
 
 tests/CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/nn/torch_neural_network_test.cpp -o CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/nn/torch_neural_network_test.cpp -o CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.s
 
 # Object files for target nn_tests
 nn_tests_OBJECTS = \
@@ -141,8 +141,8 @@ bin/nn_tests: tests/CMakeFiles/nn_tests.dir/nn/neural_network_test.cpp.o
 bin/nn_tests: tests/CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.o
 bin/nn_tests: tests/CMakeFiles/nn_tests.dir/build.make
 bin/nn_tests: lib/libalphazero_lib.a
-bin/nn_tests: /home/cosmos/anaconda3/lib/libgtest_main.so.1.11.0
-bin/nn_tests: /home/cosmos/anaconda3/lib/libgtest.so.1.11.0
+bin/nn_tests: /usr/lib/x86_64-linux-gnu/libgtest_main.a
+bin/nn_tests: /usr/lib/x86_64-linux-gnu/libgtest.a
 bin/nn_tests: tests/CMakeFiles/nn_tests.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable ../bin/nn_tests"
 	cd /home/cosmos/alphazero-multi-game/build/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/nn_tests.dir/link.txt --verbose=$(VERBOSE)

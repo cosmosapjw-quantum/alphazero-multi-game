@@ -1,4 +1,5 @@
 // src/elo/elo_tracker.cpp
+#include "alphazero/types.h"
 #include "alphazero/elo/elo_tracker.h"
 #include <fstream>
 #include <cmath>

@@ -1,1 +1,1 @@
-/usr/bin/g++  -Wall -Wextra -O3 -DNDEBUG -O3 CMakeFiles/gomoku_example.dir/gomoku_example.cpp.o -o ../bin/gomoku_example  ../lib/libalphazero_lib.a 
+/usr/bin/c++  -Wall -Wextra -O3 -DNDEBUG -O3 CMakeFiles/gomoku_example.dir/gomoku_example.cpp.o -o ../bin/gomoku_example  ../lib/libalphazero_lib.a 

@@ -1,6 +1,8 @@
 // src/selfplay/self_play_manager.cpp
+#include "alphazero/types.h"
 #include "alphazero/selfplay/self_play_manager.h"
 #include <filesystem>
+#include <iostream>
 #include <chrono>
 #include <sstream>
 #include <iomanip>

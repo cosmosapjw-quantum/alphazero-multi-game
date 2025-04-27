@@ -100,6 +100,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
+  include("/home/cosmos/alphazero-multi-game/build/_deps/json-build/cmake_install.cmake")
   include("/home/cosmos/alphazero-multi-game/build/examples/cmake_install.cmake")
   include("/home/cosmos/alphazero-multi-game/build/tests/cmake_install.cmake")
 
