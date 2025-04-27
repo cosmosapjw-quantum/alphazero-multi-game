@@ -1,3 +1,4 @@
+# Update CMakeLists.txt to include new components
 cmake_minimum_required(VERSION 3.10)
 project(AlphaZero LANGUAGES CXX)
 
@@ -33,6 +34,18 @@ include_directories(
 
 # Find required packages
 find_package(Threads REQUIRED)
+
+# Find nlohmann_json
+find_package(nlohmann_json QUIET)
+if(NOT nlohmann_json_FOUND)
+    include(FetchContent)
+    FetchContent_Declare(
+        json
+        GIT_REPOSITORY https://github.com/nlohmann/json.git
+        GIT_TAG v3.11.2
+    )
+    FetchContent_MakeAvailable(json)
+endif()
 
 # Option to build with PyBind11 (for Python bindings)
 option(BUILD_PYTHON_BINDINGS "Build Python bindings" OFF)
@@ -98,6 +111,10 @@ file(GLOB_RECURSE UI_SOURCES
     "src/ui/*.cpp"
 )
 
+file(GLOB_RECURSE ELO_SOURCES 
+    "src/elo/*.cpp"
+)
+
 # Create main library
 add_library(alphazero_lib STATIC
     ${CORE_SOURCES}
@@ -105,11 +122,13 @@ add_library(alphazero_lib STATIC
     ${MCTS_SOURCES}
     ${NN_SOURCES}
     ${SELFPLAY_SOURCES}
+    ${ELO_SOURCES}
 )
 
 target_link_libraries(alphazero_lib
     PRIVATE
     Threads::Threads
+    nlohmann_json::nlohmann_json
 )
 
 if(NOT LIBTORCH_OFF)

@@ -556,6 +556,30 @@ src/core/zobrist_hash.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/alphazero_lib.dir/build.make CMakeFiles/alphazero_lib.dir/src/core/zobrist_hash.cpp.s
 .PHONY : src/core/zobrist_hash.cpp.s
 
+src/elo/elo_tracker.o: src/elo/elo_tracker.cpp.o
+.PHONY : src/elo/elo_tracker.o
+
+# target to build an object file
+src/elo/elo_tracker.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/alphazero_lib.dir/build.make CMakeFiles/alphazero_lib.dir/src/elo/elo_tracker.cpp.o
+.PHONY : src/elo/elo_tracker.cpp.o
+
+src/elo/elo_tracker.i: src/elo/elo_tracker.cpp.i
+.PHONY : src/elo/elo_tracker.i
+
+# target to preprocess a source file
+src/elo/elo_tracker.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/alphazero_lib.dir/build.make CMakeFiles/alphazero_lib.dir/src/elo/elo_tracker.cpp.i
+.PHONY : src/elo/elo_tracker.cpp.i
+
+src/elo/elo_tracker.s: src/elo/elo_tracker.cpp.s
+.PHONY : src/elo/elo_tracker.s
+
+# target to generate assembly for a file
+src/elo/elo_tracker.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/alphazero_lib.dir/build.make CMakeFiles/alphazero_lib.dir/src/elo/elo_tracker.cpp.s
+.PHONY : src/elo/elo_tracker.cpp.s
+
 src/games/chess/chess960.o: src/games/chess/chess960.cpp.o
 .PHONY : src/games/chess/chess960.o
 
@@ -1113,6 +1137,9 @@ help:
 	@echo "... src/core/zobrist_hash.o"
 	@echo "... src/core/zobrist_hash.i"
 	@echo "... src/core/zobrist_hash.s"
+	@echo "... src/elo/elo_tracker.o"
+	@echo "... src/elo/elo_tracker.i"
+	@echo "... src/elo/elo_tracker.s"
 	@echo "... src/games/chess/chess960.o"
 	@echo "... src/games/chess/chess960.i"
 	@echo "... src/games/chess/chess960.s"

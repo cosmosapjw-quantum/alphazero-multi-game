@@ -73,57 +73,57 @@ tests/CMakeFiles/integration_tests.dir/integration/chess_integration_test.cpp.o:
 tests/CMakeFiles/integration_tests.dir/integration/chess_integration_test.cpp.o: ../tests/integration/chess_integration_test.cpp
 tests/CMakeFiles/integration_tests.dir/integration/chess_integration_test.cpp.o: tests/CMakeFiles/integration_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object tests/CMakeFiles/integration_tests.dir/integration/chess_integration_test.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/integration_tests.dir/integration/chess_integration_test.cpp.o -MF CMakeFiles/integration_tests.dir/integration/chess_integration_test.cpp.o.d -o CMakeFiles/integration_tests.dir/integration/chess_integration_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/integration/chess_integration_test.cpp
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/integration_tests.dir/integration/chess_integration_test.cpp.o -MF CMakeFiles/integration_tests.dir/integration/chess_integration_test.cpp.o.d -o CMakeFiles/integration_tests.dir/integration/chess_integration_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/integration/chess_integration_test.cpp
 
 tests/CMakeFiles/integration_tests.dir/integration/chess_integration_test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/integration_tests.dir/integration/chess_integration_test.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/integration/chess_integration_test.cpp > CMakeFiles/integration_tests.dir/integration/chess_integration_test.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/integration/chess_integration_test.cpp > CMakeFiles/integration_tests.dir/integration/chess_integration_test.cpp.i
 
 tests/CMakeFiles/integration_tests.dir/integration/chess_integration_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/integration_tests.dir/integration/chess_integration_test.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/integration/chess_integration_test.cpp -o CMakeFiles/integration_tests.dir/integration/chess_integration_test.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/integration/chess_integration_test.cpp -o CMakeFiles/integration_tests.dir/integration/chess_integration_test.cpp.s
 
 tests/CMakeFiles/integration_tests.dir/integration/go_integration_test.cpp.o: tests/CMakeFiles/integration_tests.dir/flags.make
 tests/CMakeFiles/integration_tests.dir/integration/go_integration_test.cpp.o: ../tests/integration/go_integration_test.cpp
 tests/CMakeFiles/integration_tests.dir/integration/go_integration_test.cpp.o: tests/CMakeFiles/integration_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object tests/CMakeFiles/integration_tests.dir/integration/go_integration_test.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/integration_tests.dir/integration/go_integration_test.cpp.o -MF CMakeFiles/integration_tests.dir/integration/go_integration_test.cpp.o.d -o CMakeFiles/integration_tests.dir/integration/go_integration_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/integration/go_integration_test.cpp
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/integration_tests.dir/integration/go_integration_test.cpp.o -MF CMakeFiles/integration_tests.dir/integration/go_integration_test.cpp.o.d -o CMakeFiles/integration_tests.dir/integration/go_integration_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/integration/go_integration_test.cpp
 
 tests/CMakeFiles/integration_tests.dir/integration/go_integration_test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/integration_tests.dir/integration/go_integration_test.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/integration/go_integration_test.cpp > CMakeFiles/integration_tests.dir/integration/go_integration_test.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/integration/go_integration_test.cpp > CMakeFiles/integration_tests.dir/integration/go_integration_test.cpp.i
 
 tests/CMakeFiles/integration_tests.dir/integration/go_integration_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/integration_tests.dir/integration/go_integration_test.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/integration/go_integration_test.cpp -o CMakeFiles/integration_tests.dir/integration/go_integration_test.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/integration/go_integration_test.cpp -o CMakeFiles/integration_tests.dir/integration/go_integration_test.cpp.s
 
 tests/CMakeFiles/integration_tests.dir/integration/gomoku_integration_test.cpp.o: tests/CMakeFiles/integration_tests.dir/flags.make
 tests/CMakeFiles/integration_tests.dir/integration/gomoku_integration_test.cpp.o: ../tests/integration/gomoku_integration_test.cpp
 tests/CMakeFiles/integration_tests.dir/integration/gomoku_integration_test.cpp.o: tests/CMakeFiles/integration_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object tests/CMakeFiles/integration_tests.dir/integration/gomoku_integration_test.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/integration_tests.dir/integration/gomoku_integration_test.cpp.o -MF CMakeFiles/integration_tests.dir/integration/gomoku_integration_test.cpp.o.d -o CMakeFiles/integration_tests.dir/integration/gomoku_integration_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/integration/gomoku_integration_test.cpp
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/integration_tests.dir/integration/gomoku_integration_test.cpp.o -MF CMakeFiles/integration_tests.dir/integration/gomoku_integration_test.cpp.o.d -o CMakeFiles/integration_tests.dir/integration/gomoku_integration_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/integration/gomoku_integration_test.cpp
 
 tests/CMakeFiles/integration_tests.dir/integration/gomoku_integration_test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/integration_tests.dir/integration/gomoku_integration_test.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/integration/gomoku_integration_test.cpp > CMakeFiles/integration_tests.dir/integration/gomoku_integration_test.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/integration/gomoku_integration_test.cpp > CMakeFiles/integration_tests.dir/integration/gomoku_integration_test.cpp.i
 
 tests/CMakeFiles/integration_tests.dir/integration/gomoku_integration_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/integration_tests.dir/integration/gomoku_integration_test.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/integration/gomoku_integration_test.cpp -o CMakeFiles/integration_tests.dir/integration/gomoku_integration_test.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/integration/gomoku_integration_test.cpp -o CMakeFiles/integration_tests.dir/integration/gomoku_integration_test.cpp.s
 
 tests/CMakeFiles/integration_tests.dir/integration/multi_game_test.cpp.o: tests/CMakeFiles/integration_tests.dir/flags.make
 tests/CMakeFiles/integration_tests.dir/integration/multi_game_test.cpp.o: ../tests/integration/multi_game_test.cpp
 tests/CMakeFiles/integration_tests.dir/integration/multi_game_test.cpp.o: tests/CMakeFiles/integration_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object tests/CMakeFiles/integration_tests.dir/integration/multi_game_test.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/integration_tests.dir/integration/multi_game_test.cpp.o -MF CMakeFiles/integration_tests.dir/integration/multi_game_test.cpp.o.d -o CMakeFiles/integration_tests.dir/integration/multi_game_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/integration/multi_game_test.cpp
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/integration_tests.dir/integration/multi_game_test.cpp.o -MF CMakeFiles/integration_tests.dir/integration/multi_game_test.cpp.o.d -o CMakeFiles/integration_tests.dir/integration/multi_game_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/integration/multi_game_test.cpp
 
 tests/CMakeFiles/integration_tests.dir/integration/multi_game_test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/integration_tests.dir/integration/multi_game_test.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/integration/multi_game_test.cpp > CMakeFiles/integration_tests.dir/integration/multi_game_test.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/integration/multi_game_test.cpp > CMakeFiles/integration_tests.dir/integration/multi_game_test.cpp.i
 
 tests/CMakeFiles/integration_tests.dir/integration/multi_game_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/integration_tests.dir/integration/multi_game_test.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/integration/multi_game_test.cpp -o CMakeFiles/integration_tests.dir/integration/multi_game_test.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/integration/multi_game_test.cpp -o CMakeFiles/integration_tests.dir/integration/multi_game_test.cpp.s
 
 # Object files for target integration_tests
 integration_tests_OBJECTS = \

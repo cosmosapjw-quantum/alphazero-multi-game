@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/cosmos/alphazero-multi-game/src/core/game_factory.cpp" "CMakeFiles/alphazero_lib.dir/src/core/game_factory.cpp.o" "gcc" "CMakeFiles/alphazero_lib.dir/src/core/game_factory.cpp.o.d"
   "/home/cosmos/alphazero-multi-game/src/core/igamestate.cpp" "CMakeFiles/alphazero_lib.dir/src/core/igamestate.cpp.o" "gcc" "CMakeFiles/alphazero_lib.dir/src/core/igamestate.cpp.o.d"
   "/home/cosmos/alphazero-multi-game/src/core/zobrist_hash.cpp" "CMakeFiles/alphazero_lib.dir/src/core/zobrist_hash.cpp.o" "gcc" "CMakeFiles/alphazero_lib.dir/src/core/zobrist_hash.cpp.o.d"
+  "/home/cosmos/alphazero-multi-game/src/elo/elo_tracker.cpp" "CMakeFiles/alphazero_lib.dir/src/elo/elo_tracker.cpp.o" "gcc" "CMakeFiles/alphazero_lib.dir/src/elo/elo_tracker.cpp.o.d"
   "/home/cosmos/alphazero-multi-game/src/games/chess/chess960.cpp" "CMakeFiles/alphazero_lib.dir/src/games/chess/chess960.cpp.o" "gcc" "CMakeFiles/alphazero_lib.dir/src/games/chess/chess960.cpp.o.d"
   "/home/cosmos/alphazero-multi-game/src/games/chess/chess_state.cpp" "CMakeFiles/alphazero_lib.dir/src/games/chess/chess_state.cpp.o" "gcc" "CMakeFiles/alphazero_lib.dir/src/games/chess/chess_state.cpp.o.d"
   "/home/cosmos/alphazero-multi-game/src/games/go/go_rules.cpp" "CMakeFiles/alphazero_lib.dir/src/games/go/go_rules.cpp.o" "gcc" "CMakeFiles/alphazero_lib.dir/src/games/go/go_rules.cpp.o.d"

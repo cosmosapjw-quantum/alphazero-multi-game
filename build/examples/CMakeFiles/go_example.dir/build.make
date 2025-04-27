@@ -73,15 +73,15 @@ examples/CMakeFiles/go_example.dir/go_example.cpp.o: examples/CMakeFiles/go_exam
 examples/CMakeFiles/go_example.dir/go_example.cpp.o: ../examples/go_example.cpp
 examples/CMakeFiles/go_example.dir/go_example.cpp.o: examples/CMakeFiles/go_example.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object examples/CMakeFiles/go_example.dir/go_example.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/examples && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT examples/CMakeFiles/go_example.dir/go_example.cpp.o -MF CMakeFiles/go_example.dir/go_example.cpp.o.d -o CMakeFiles/go_example.dir/go_example.cpp.o -c /home/cosmos/alphazero-multi-game/examples/go_example.cpp
+	cd /home/cosmos/alphazero-multi-game/build/examples && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT examples/CMakeFiles/go_example.dir/go_example.cpp.o -MF CMakeFiles/go_example.dir/go_example.cpp.o.d -o CMakeFiles/go_example.dir/go_example.cpp.o -c /home/cosmos/alphazero-multi-game/examples/go_example.cpp
 
 examples/CMakeFiles/go_example.dir/go_example.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/go_example.dir/go_example.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/examples && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/examples/go_example.cpp > CMakeFiles/go_example.dir/go_example.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/examples && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/examples/go_example.cpp > CMakeFiles/go_example.dir/go_example.cpp.i
 
 examples/CMakeFiles/go_example.dir/go_example.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/go_example.dir/go_example.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/examples && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/examples/go_example.cpp -o CMakeFiles/go_example.dir/go_example.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/examples && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/examples/go_example.cpp -o CMakeFiles/go_example.dir/go_example.cpp.s
 
 # Object files for target go_example
 go_example_OBJECTS = \

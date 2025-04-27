@@ -73,43 +73,43 @@ CMakeFiles/alphazero_server.dir/src/api/http_server.cpp.o: CMakeFiles/alphazero_
 CMakeFiles/alphazero_server.dir/src/api/http_server.cpp.o: ../src/api/http_server.cpp
 CMakeFiles/alphazero_server.dir/src/api/http_server.cpp.o: CMakeFiles/alphazero_server.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/alphazero_server.dir/src/api/http_server.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/alphazero_server.dir/src/api/http_server.cpp.o -MF CMakeFiles/alphazero_server.dir/src/api/http_server.cpp.o.d -o CMakeFiles/alphazero_server.dir/src/api/http_server.cpp.o -c /home/cosmos/alphazero-multi-game/src/api/http_server.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/alphazero_server.dir/src/api/http_server.cpp.o -MF CMakeFiles/alphazero_server.dir/src/api/http_server.cpp.o.d -o CMakeFiles/alphazero_server.dir/src/api/http_server.cpp.o -c /home/cosmos/alphazero-multi-game/src/api/http_server.cpp
 
 CMakeFiles/alphazero_server.dir/src/api/http_server.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_server.dir/src/api/http_server.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/api/http_server.cpp > CMakeFiles/alphazero_server.dir/src/api/http_server.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/api/http_server.cpp > CMakeFiles/alphazero_server.dir/src/api/http_server.cpp.i
 
 CMakeFiles/alphazero_server.dir/src/api/http_server.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_server.dir/src/api/http_server.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/api/http_server.cpp -o CMakeFiles/alphazero_server.dir/src/api/http_server.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/api/http_server.cpp -o CMakeFiles/alphazero_server.dir/src/api/http_server.cpp.s
 
 CMakeFiles/alphazero_server.dir/src/api/rest_api.cpp.o: CMakeFiles/alphazero_server.dir/flags.make
 CMakeFiles/alphazero_server.dir/src/api/rest_api.cpp.o: ../src/api/rest_api.cpp
 CMakeFiles/alphazero_server.dir/src/api/rest_api.cpp.o: CMakeFiles/alphazero_server.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/alphazero_server.dir/src/api/rest_api.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/alphazero_server.dir/src/api/rest_api.cpp.o -MF CMakeFiles/alphazero_server.dir/src/api/rest_api.cpp.o.d -o CMakeFiles/alphazero_server.dir/src/api/rest_api.cpp.o -c /home/cosmos/alphazero-multi-game/src/api/rest_api.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/alphazero_server.dir/src/api/rest_api.cpp.o -MF CMakeFiles/alphazero_server.dir/src/api/rest_api.cpp.o.d -o CMakeFiles/alphazero_server.dir/src/api/rest_api.cpp.o -c /home/cosmos/alphazero-multi-game/src/api/rest_api.cpp
 
 CMakeFiles/alphazero_server.dir/src/api/rest_api.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_server.dir/src/api/rest_api.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/api/rest_api.cpp > CMakeFiles/alphazero_server.dir/src/api/rest_api.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/api/rest_api.cpp > CMakeFiles/alphazero_server.dir/src/api/rest_api.cpp.i
 
 CMakeFiles/alphazero_server.dir/src/api/rest_api.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_server.dir/src/api/rest_api.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/api/rest_api.cpp -o CMakeFiles/alphazero_server.dir/src/api/rest_api.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/api/rest_api.cpp -o CMakeFiles/alphazero_server.dir/src/api/rest_api.cpp.s
 
 CMakeFiles/alphazero_server.dir/src/api/server_main.cpp.o: CMakeFiles/alphazero_server.dir/flags.make
 CMakeFiles/alphazero_server.dir/src/api/server_main.cpp.o: ../src/api/server_main.cpp
 CMakeFiles/alphazero_server.dir/src/api/server_main.cpp.o: CMakeFiles/alphazero_server.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/alphazero_server.dir/src/api/server_main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/alphazero_server.dir/src/api/server_main.cpp.o -MF CMakeFiles/alphazero_server.dir/src/api/server_main.cpp.o.d -o CMakeFiles/alphazero_server.dir/src/api/server_main.cpp.o -c /home/cosmos/alphazero-multi-game/src/api/server_main.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/alphazero_server.dir/src/api/server_main.cpp.o -MF CMakeFiles/alphazero_server.dir/src/api/server_main.cpp.o.d -o CMakeFiles/alphazero_server.dir/src/api/server_main.cpp.o -c /home/cosmos/alphazero-multi-game/src/api/server_main.cpp
 
 CMakeFiles/alphazero_server.dir/src/api/server_main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_server.dir/src/api/server_main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/api/server_main.cpp > CMakeFiles/alphazero_server.dir/src/api/server_main.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/api/server_main.cpp > CMakeFiles/alphazero_server.dir/src/api/server_main.cpp.i
 
 CMakeFiles/alphazero_server.dir/src/api/server_main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_server.dir/src/api/server_main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/api/server_main.cpp -o CMakeFiles/alphazero_server.dir/src/api/server_main.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/api/server_main.cpp -o CMakeFiles/alphazero_server.dir/src/api/server_main.cpp.s
 
 # Object files for target alphazero_server
 alphazero_server_OBJECTS = \

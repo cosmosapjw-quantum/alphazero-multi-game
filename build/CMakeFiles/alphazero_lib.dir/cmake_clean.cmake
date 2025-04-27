@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/alphazero_lib.dir/src/core/igamestate.cpp.o.d"
   "CMakeFiles/alphazero_lib.dir/src/core/zobrist_hash.cpp.o"
   "CMakeFiles/alphazero_lib.dir/src/core/zobrist_hash.cpp.o.d"
+  "CMakeFiles/alphazero_lib.dir/src/elo/elo_tracker.cpp.o"
+  "CMakeFiles/alphazero_lib.dir/src/elo/elo_tracker.cpp.o.d"
   "CMakeFiles/alphazero_lib.dir/src/games/chess/chess960.cpp.o"
   "CMakeFiles/alphazero_lib.dir/src/games/chess/chess960.cpp.o.d"
   "CMakeFiles/alphazero_lib.dir/src/games/chess/chess_state.cpp.o"

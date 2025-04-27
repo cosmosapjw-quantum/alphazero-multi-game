@@ -1,0 +1,205 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Release-cdc1745865766d3eb8cd.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				},
+				{
+					"build" : "examples",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-examples-Release-1572036201e469be3bc1.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "examples",
+					"targetIndexes" : 
+					[
+						4,
+						7,
+						8
+					]
+				},
+				{
+					"build" : "tests",
+					"jsonFile" : "directory-tests-Release-b01f6abb0ab61427ef3b.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "tests",
+					"targetIndexes" : 
+					[
+						5,
+						6,
+						9,
+						10,
+						11,
+						12
+					]
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2
+					],
+					"name" : "AlphaZero",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "alphazero_cli::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-alphazero_cli-Release-21f06cab4092084d8f7c.json",
+					"name" : "alphazero_cli",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "alphazero_gui::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-alphazero_gui-Release-fe3c0417ce0d9da61423.json",
+					"name" : "alphazero_gui",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "alphazero_lib::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-alphazero_lib-Release-6e01bf8d72aca5ad61b5.json",
+					"name" : "alphazero_lib",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "alphazero_server::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-alphazero_server-Release-9199d32854a2e70fdadd.json",
+					"name" : "alphazero_server",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "chess_example::@714eac15f71a94114fdf",
+					"jsonFile" : "target-chess_example-Release-86eec0a75c6e0fb3fd19.json",
+					"name" : "chess_example",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "core_tests::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-core_tests-Release-4d9435b626d31fbf2cac.json",
+					"name" : "core_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "game_tests::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-game_tests-Release-0e67c372cb4f5bc57853.json",
+					"name" : "game_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "go_example::@714eac15f71a94114fdf",
+					"jsonFile" : "target-go_example-Release-d58a6f43348ce04128ab.json",
+					"name" : "go_example",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "gomoku_example::@714eac15f71a94114fdf",
+					"jsonFile" : "target-gomoku_example-Release-6478673868af2901bd04.json",
+					"name" : "gomoku_example",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "integration_tests::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-integration_tests-Release-32e824457653de8f299b.json",
+					"name" : "integration_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "mcts_tests::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-mcts_tests-Release-f1174fa5696072810b4c.json",
+					"name" : "mcts_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "nn_tests::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-nn_tests-Release-11cd354f64ae84363535.json",
+					"name" : "nn_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "performance_tests::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-performance_tests-Release-006a51bb3d32707156d6.json",
+					"name" : "performance_tests",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/cosmos/alphazero-multi-game/build",
+		"source" : "/home/cosmos/alphazero-multi-game"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
