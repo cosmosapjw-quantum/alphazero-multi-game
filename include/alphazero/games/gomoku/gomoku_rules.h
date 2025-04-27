@@ -8,37 +8,153 @@
 #include <functional>
 #include "alphazero/core/utils/hash_specializations.h"
 
+namespace alphazero {
+namespace gomoku {
+
 class GomokuRules {
 public:
+    /**
+     * @brief Constructor
+     * 
+     * @param board_size Board size
+     */
     GomokuRules(int board_size);
     
-    // Set board accessor function
+    /**
+     * @brief Set board accessor function
+     * 
+     * @param is_bit_set_func Function to check if a position has a stone
+     * @param coords_to_action_func Function to convert coordinates to action
+     * @param action_to_coords_pair_func Function to convert action to coordinates
+     * @param in_bounds_func Function to check if coordinates are in bounds
+     */
     void setBoardAccessor(std::function<bool(int, int)> is_bit_set_func,
                           std::function<int(int, int)> coords_to_action_func,
                           std::function<std::pair<int,int>(int)> action_to_coords_pair_func,
                           std::function<bool(int, int)> in_bounds_func);
     
-    // Line and pattern detection
+    /**
+     * @brief Check if there's a five-in-a-row
+     * 
+     * @param action The action to check, or -1 to check entire board
+     * @param player The player to check for
+     * @return true if player has five-in-a-row, false otherwise
+     */
     bool is_five_in_a_row(int action, int player) const;
+    
+    /**
+     * @brief Check if a line contains five-in-a-row
+     * 
+     * @param cell The cell to check from
+     * @param player The player to check for
+     * @param p_idx Player index (0 for black, 1 for white)
+     * @return true if line contains five-in-a-row, false otherwise
+     */
     bool check_line_for_five(int cell, int player, int p_idx) const;
+    
+    /**
+     * @brief Count stones in a direction
+     * 
+     * @param x0 Starting X coordinate
+     * @param y0 Starting Y coordinate
+     * @param dx X direction
+     * @param dy Y direction
+     * @param p_idx Player index to count
+     * @return Number of consecutive stones in the direction
+     */
     int count_direction(int x0, int y0, int dx, int dy, int p_idx) const;
     
-    // Renju rule checks
+    /**
+     * @brief Check if a move is forbidden for black by Renju rules
+     * 
+     * @param action The action to check
+     * @return true if move is forbidden, false otherwise
+     */
     bool is_black_renju_forbidden(int action);
+    
+    /**
+     * @brief Check if a move would create an overline (more than five in a row)
+     * 
+     * @param action The action to check
+     * @return true if move creates overline, false otherwise
+     */
     bool renju_is_overline(int action) const;
+    
+    /**
+     * @brief Check if a move would create a double four or more
+     * 
+     * @param action The action to check
+     * @return true if move creates double four or more, false otherwise
+     */
     bool renju_double_four_or_more(int action) const;
+    
+    /**
+     * @brief Check if a move would create a double three or more
+     * 
+     * @param action The action to check
+     * @return true if move creates double three or more, false otherwise
+     */
     bool renju_double_three_or_more(int action) const;
+    
+    /**
+     * @brief Count the number of fours on the board
+     * 
+     * @return Number of fours
+     */
     int renju_count_all_fours() const;
+    
+    /**
+     * @brief Count the number of threes that would be created by a move
+     * 
+     * @param action The action to check
+     * @return Number of threes
+     */
     int renju_count_all_threes(int action) const;
     
-    // Omok rule checks
+    /**
+     * @brief Check if a move is forbidden for black by Omok rules
+     * 
+     * @param action The action to check
+     * @return true if move is forbidden, false otherwise
+     */
     bool is_black_omok_forbidden(int action);
+    
+    /**
+     * @brief Check if a move would create an overline in Omok rules
+     * 
+     * @param action The action to check
+     * @return true if move creates overline, false otherwise
+     */
     bool omok_is_overline(int action) const;
+    
+    /**
+     * @brief Check if a move would create a double three in Omok rules
+     * 
+     * @param action The action to check
+     * @return true if move creates double three, false otherwise
+     */
     bool omok_check_double_three_strict(int action) const;
+    
+    /**
+     * @brief Count the number of open threes on the board
+     * 
+     * @return Number of open threes
+     */
     int count_open_threes_globally() const;
     
-    // Pattern recognition (for neural network enhancement)
+    /**
+     * @brief Get the three patterns for a specific action
+     * 
+     * @param action The action to check
+     * @return Vector of three patterns (sets of positions)
+     */
     std::vector<std::set<int>> get_three_patterns_for_action(int action) const;
+    
+    /**
+     * @brief Get all open three patterns on the board
+     * 
+     * @return Vector of three patterns (sets of positions)
+     */
     std::vector<std::set<int>> get_open_three_patterns_globally() const;
     
 private:
@@ -78,5 +194,8 @@ private:
     // Utility methods
     std::vector<std::pair<int, int>> build_entire_line(int x0, int y0, int dx, int dy) const;
 };
+
+} // namespace gomoku
+} // namespace alphazero
 
 #endif // GOMOKU_RULES_H

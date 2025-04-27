@@ -11,25 +11,43 @@
 
 #include "alphazero/core/igamestate.h"
 #include "alphazero/core/utils/hash_specializations.h"
-#include "gomoku_rules.h"
+#include "alphazero/games/gomoku/gomoku_rules.h"
+
+namespace alphazero {
+namespace gomoku {
 
 // Constants
 const int BLACK = 1;
 const int WHITE = 2;
 
-class GomokuState : public IGameState {
+/**
+ * @brief Implementation of Gomoku game state
+ */
+class GomokuState : public core::IGameState {
 public:
-    // Constructor
+    /**
+     * @brief Constructor
+     * 
+     * @param board_size Board size
+     * @param use_renju Whether to use Renju rules
+     * @param use_omok Whether to use Omok rules
+     * @param seed Random seed for initialization
+     * @param use_pro_long_opening Whether to enforce pro-long opening
+     */
     GomokuState(int board_size = 15, 
                 bool use_renju = false, 
                 bool use_omok = false, 
                 int seed = 0, 
                 bool use_pro_long_opening = false);
     
-    // Copy constructor
+    /**
+     * @brief Copy constructor
+     */
     GomokuState(const GomokuState& other);
     
-    // Assignment operator
+    /**
+     * @brief Assignment operator
+     */
     GomokuState& operator=(const GomokuState& other);
     
     // IGameState interface implementation
@@ -38,18 +56,18 @@ public:
     void makeMove(int action) override;
     bool undoMove() override;
     bool isTerminal() const override;
-    GameResult getGameResult() const override;
+    core::GameResult getGameResult() const override;
     int getCurrentPlayer() const override { return current_player; }
     int getBoardSize() const override { return board_size; }
     int getActionSpaceSize() const override { return board_size * board_size; }
     std::vector<std::vector<std::vector<float>>> getTensorRepresentation() const override;
     std::vector<std::vector<std::vector<float>>> getEnhancedTensorRepresentation() const override;
     uint64_t getHash() const override;
-    std::unique_ptr<IGameState> clone() const override;
+    std::unique_ptr<core::IGameState> clone() const override;
     std::string actionToString(int action) const override;
     std::optional<int> stringToAction(const std::string& moveStr) const override;
     std::string toString() const override;
-    bool equals(const IGameState& other) const override;
+    bool equals(const core::IGameState& other) const override;
     std::vector<int> getMoveHistory() const override { return move_history; }
     bool validate() const override;
     
@@ -131,6 +149,17 @@ private:
     // Helper methods
     bool in_bounds(int x, int y) const;
     bool is_pro_long_move_ok(int action, int stone_count) const;
+    
+    // Private implementation aliases for interface methods
+    bool is_terminal() const;
+    int get_winner() const;
+    std::vector<int> get_valid_moves() const;
+    bool is_move_valid(int action) const;
+    void make_move(int action, int player);
+    void undo_move(int action);
 };
+
+} // namespace gomoku
+} // namespace alphazero
 
 #endif // GOMOKU_STATE_H
