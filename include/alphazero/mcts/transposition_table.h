@@ -36,6 +36,33 @@ public:
         
         Entry() : hash(0), gameType(core::GameType::GOMOKU), value(0.0f), 
                  visitCount(0), lastAccessTime(0), isValid(false) {}
+        
+        // Add move constructor and move assignment
+        Entry(Entry&& other) noexcept
+            : hash(other.hash), 
+              gameType(other.gameType),
+              policy(std::move(other.policy)),
+              value(other.value),
+              visitCount(other.visitCount.load()),
+              lastAccessTime(other.lastAccessTime.load()),
+              isValid(other.isValid.load()) {}
+        
+        Entry& operator=(Entry&& other) noexcept {
+            if (this != &other) {
+                hash = other.hash;
+                gameType = other.gameType;
+                policy = std::move(other.policy);
+                value = other.value;
+                visitCount.store(other.visitCount.load());
+                lastAccessTime.store(other.lastAccessTime.load());
+                isValid.store(other.isValid.load());
+            }
+            return *this;
+        }
+        
+        // Delete copy constructor and copy assignment
+        Entry(const Entry&) = delete;
+        Entry& operator=(const Entry&) = delete;
     };
     
     /**
@@ -156,7 +183,7 @@ private:
     
     // Sharding for reduced lock contention
     size_t numShards_;                     // Number of shards
-    mutable std::vector<std::mutex> mutexShards_; // Shard mutexes
+    mutable std::vector<std::unique_ptr<std::mutex>> mutexShards_; // Shard mutexes
     
     // Replacement policy
     uint64_t maxAge_ = 60000;              // Maximum age in milliseconds (1 minute)

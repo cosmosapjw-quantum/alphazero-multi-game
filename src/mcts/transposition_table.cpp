@@ -20,7 +20,12 @@ TranspositionTable::TranspositionTable(size_t size, size_t numShards)
     
     // Initialize table
     table_.resize(size_);
-    mutexShards_.resize(numShards_);
+    
+    // Initialize mutex shards
+    mutexShards_.reserve(numShards_);
+    for (size_t i = 0; i < numShards_; ++i) {
+        mutexShards_.push_back(std::make_unique<std::mutex>());
+    }
     
     // Reset all entries
     clear();
@@ -34,7 +39,7 @@ bool TranspositionTable::lookup(uint64_t hash, core::GameType gameType, Entry& r
     
     // Lock the appropriate shard
     size_t shardIndex = getShardIndex(hash);
-    std::lock_guard<std::mutex> lock(mutexShards_[shardIndex]);
+    std::lock_guard<std::mutex> lock(*mutexShards_[shardIndex]);
     
     // Check if entry is valid and matches
     const Entry& entry = table_[index];
@@ -49,8 +54,9 @@ bool TranspositionTable::lookup(uint64_t hash, core::GameType gameType, Entry& r
         result.isValid.store(true);
         
         // Update access time and visit count in the table
-        entry.lastAccessTime.store(getCurrentTime());
-        entry.visitCount.fetch_add(1, std::memory_order_relaxed);
+        // Const_cast needed because lookup is a const method but we need to update these values
+        const_cast<std::atomic<uint64_t>&>(entry.lastAccessTime).store(getCurrentTime());
+        const_cast<std::atomic<int>&>(entry.visitCount).fetch_add(1, std::memory_order_relaxed);
         
         hits_.fetch_add(1, std::memory_order_relaxed);
         return true;
@@ -65,7 +71,7 @@ void TranspositionTable::store(uint64_t hash, core::GameType gameType, const Ent
     
     // Lock the appropriate shard
     size_t shardIndex = getShardIndex(hash);
-    std::lock_guard<std::mutex> lock(mutexShards_[shardIndex]);
+    std::lock_guard<std::mutex> lock(*mutexShards_[shardIndex]);
     
     // Check if we need to replace an existing entry
     Entry& tableEntry = table_[index];
@@ -112,7 +118,7 @@ void TranspositionTable::store(uint64_t hash, core::GameType gameType,
 void TranspositionTable::clear() {
     // Lock all shards
     for (auto& mutex : mutexShards_) {
-        mutex.lock();
+        mutex->lock();
     }
     
     // Clear all entries
@@ -132,7 +138,7 @@ void TranspositionTable::clear() {
     
     // Unlock all shards
     for (auto& mutex : mutexShards_) {
-        mutex.unlock();
+        mutex->unlock();
     }
 }
 
@@ -146,7 +152,7 @@ size_t TranspositionTable::getEntryCount() const {
     
     // Lock all shards
     for (auto& mutex : mutexShards_) {
-        mutex.lock();
+        mutex->lock();
     }
     
     // Count valid entries
@@ -158,7 +164,7 @@ size_t TranspositionTable::getEntryCount() const {
     
     // Unlock all shards
     for (auto& mutex : mutexShards_) {
-        mutex.unlock();
+        mutex->unlock();
     }
     
     return count;
@@ -167,11 +173,11 @@ size_t TranspositionTable::getEntryCount() const {
 size_t TranspositionTable::getMemoryUsageBytes() const {
     // Calculate base memory usage
     size_t baseUsage = sizeof(TranspositionTable) + 
-                      sizeof(std::mutex) * numShards_;
+                      sizeof(std::unique_ptr<std::mutex>) * numShards_;
     
     // Lock all shards
     for (auto& mutex : mutexShards_) {
-        mutex.lock();
+        mutex->lock();
     }
     
     // Calculate memory for entries
@@ -186,7 +192,7 @@ size_t TranspositionTable::getMemoryUsageBytes() const {
     
     // Unlock all shards
     for (auto& mutex : mutexShards_) {
-        mutex.unlock();
+        mutex->unlock();
     }
     
     return baseUsage + entryMemory + policyMemory;
@@ -205,8 +211,17 @@ void TranspositionTable::resize(size_t newSize) {
     // Copy entries from current table to new table
     for (size_t i = 0; i < size_; ++i) {
         if (table_[i].isValid.load()) {
-            Entry entry = table_[i];
-            newTable.store(entry.hash, entry.gameType, entry);
+            // Instead of copying Entry objects directly, create a new Entry and copy the individual fields
+            Entry newEntry;
+            newEntry.hash = table_[i].hash;
+            newEntry.gameType = table_[i].gameType;
+            newEntry.policy = table_[i].policy;
+            newEntry.value = table_[i].value;
+            newEntry.visitCount.store(table_[i].visitCount.load());
+            newEntry.lastAccessTime.store(table_[i].lastAccessTime.load());
+            newEntry.isValid.store(true);
+            
+            newTable.store(newEntry.hash, newEntry.gameType, newEntry);
         }
     }
     

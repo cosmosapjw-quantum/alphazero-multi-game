@@ -3,13 +3,14 @@
 #include <algorithm>
 #include <cmath>
 
+#ifdef BUILD_PYTHON_BINDINGS
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 #include <pybind11/stl.h>
-
-#include "hash_specializations.h"
-
 namespace py = pybind11;
+#endif
+
+#include "alphazero/core/utils/hash_specializations.h"
 
 AttackDefenseModule::AttackDefenseModule(int board_size) 
     : board_size_(board_size) {
@@ -400,6 +401,7 @@ std::vector<float> AttackDefenseModule::count_open_threats_diagonals(
     return result;
 }
 
+#ifdef BUILD_PYTHON_BINDINGS
 PYBIND11_MODULE(attack_defense, m) {
     m.doc() = "Attack and Defense calculation module for Gomoku/Omok";
     
@@ -466,3 +468,4 @@ PYBIND11_MODULE(attack_defense, m) {
             return py::make_tuple(attack_bonus_np, defense_bonus_np);
         });
 }
+#endif

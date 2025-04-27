@@ -25,7 +25,7 @@ ThreadPool::ThreadPool(size_t numThreads) : stop(false) {
                     
                     // Get task from front
                     task = std::move(this->tasks.front());
-                    this->tasks.pop_back();
+                    this->tasks.pop_front();
                 }
                 
                 // Execute task

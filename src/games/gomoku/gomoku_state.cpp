@@ -1,5 +1,5 @@
 // gomoku_state.cpp
-#include "gomoku_state.h"
+#include "alphazero/games/gomoku/gomoku_state.h"
 #include <algorithm>
 #include <random>
 #include <ctime>
@@ -9,9 +9,12 @@
 #include <string>
 #include <sstream>
 
+namespace alphazero {
+namespace gomoku {
+
 // Constructor with initialization of caching fields
 GomokuState::GomokuState(int board_size, bool use_renju, bool use_omok, int seed, bool use_pro_long_opening) 
-    : IGameState(GameType::GOMOKU),
+    : IGameState(core::GameType::GOMOKU),
       board_size(board_size),
       current_player(BLACK),
       action(-1),
@@ -63,7 +66,7 @@ GomokuState::GomokuState(int board_size, bool use_renju, bool use_omok, int seed
 
 // Copy constructor with cache preservation
 GomokuState::GomokuState(const GomokuState& other) 
-    : IGameState(GameType::GOMOKU),
+    : IGameState(core::GameType::GOMOKU),
       board_size(other.board_size),
       current_player(other.current_player),
       player_bitboards(other.player_bitboards),
@@ -174,17 +177,17 @@ bool GomokuState::isTerminal() const {
     return is_terminal();  // Use existing method
 }
 
-GameResult GomokuState::getGameResult() const {
+core::GameResult GomokuState::getGameResult() const {
     int winner = get_winner();
     if (winner == 0) {
         if (is_stalemate()) {
-            return GameResult::DRAW;
+            return core::GameResult::DRAW;
         }
-        return GameResult::ONGOING;
+        return core::GameResult::ONGOING;
     } else if (winner == 1) {
-        return GameResult::WIN_PLAYER1;
+        return core::GameResult::WIN_PLAYER1;
     } else {
-        return GameResult::WIN_PLAYER2;
+        return core::GameResult::WIN_PLAYER2;
     }
 }
 
@@ -249,7 +252,7 @@ uint64_t GomokuState::getHash() const {
     return compute_hash_signature();  // Use existing method
 }
 
-std::unique_ptr<IGameState> GomokuState::clone() const {
+std::unique_ptr<core::IGameState> GomokuState::clone() const {
     return std::make_unique<GomokuState>(*this);
 }
 
@@ -343,7 +346,7 @@ std::string GomokuState::toString() const {
 }
 
 bool GomokuState::equals(const IGameState& other) const {
-    if (other.getGameType() != GameType::GOMOKU) {
+    if (other.getGameType() != core::GameType::GOMOKU) {
         return false;
     }
     
@@ -883,3 +886,6 @@ bool GomokuState::is_pro_long_move_ok(int action, int stone_count) const {
     
     return true;
 }
+
+} // namespace gomoku
+} // namespace alphazero

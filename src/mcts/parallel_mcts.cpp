@@ -12,11 +12,9 @@
 namespace alphazero {
 namespace mcts {
 
-using nn::NeuralNetwork;
-
 ParallelMCTS::ParallelMCTS(
     const core::IGameState& rootState,
-    NeuralNetwork* nn,
+    nn::NeuralNetwork* nn,
     TranspositionTable* tt,
     int numThreads,
     int numSimulations,
@@ -33,7 +31,8 @@ ParallelMCTS::ParallelMCTS(
     virtualLoss_(virtualLoss),
     deterministicMode_(false),
     selectionStrategy_(MCTSNodeSelection::PUCT),
-    debugMode_(false)
+    debugMode_(false),
+    searchInProgress_(false)
 {
     // Initialize random number generator
     std::random_device rd;
@@ -419,19 +418,29 @@ void ParallelMCTS::expandNode(MCTSNode* node, const core::IGameState& state) {
 }
 
 void ParallelMCTS::backpropagate(MCTSNode* node, float value) {
-    // Convert value to [-1, 1] for minimax
-    float nodeValue = value;
-    
-    // Update statistics up the tree
     MCTSNode* current = node;
     
-    while (current != nullptr) {
-        // Update visit count and value sum
-        current->visitCount.fetch_add(1, std::memory_order_relaxed);
-        current->valueSum.fetch_add(nodeValue, std::memory_order_relaxed);
+    while (current) {
+        // Remove virtual loss first
+        current->removeVirtualLoss(virtualLoss_);
         
-        // Flip value for parent node (minimax)
-        nodeValue = -nodeValue;
+        // Update statistics
+        current->visitCount.fetch_add(1, std::memory_order_relaxed);
+        
+        // For valueSum, use a compare-exchange loop since it's a float atomic
+        float oldValue = current->valueSum.load(std::memory_order_relaxed);
+        float nodeValue = value;
+        float newValue = oldValue + nodeValue;
+        
+        while (!current->valueSum.compare_exchange_weak(oldValue, newValue,
+                                                      std::memory_order_relaxed,
+                                                      std::memory_order_relaxed)) {
+            // If the exchange failed, oldValue has been updated with the current value
+            newValue = oldValue + nodeValue;
+        }
+        
+        // Flip value sign for opponent's perspective
+        value = -value;
         
         // Move to parent
         current = current->parent;
@@ -439,30 +448,42 @@ void ParallelMCTS::backpropagate(MCTSNode* node, float value) {
 }
 
 std::pair<std::vector<float>, float> ParallelMCTS::evaluateState(const core::IGameState& state) {
-    // Check if state is terminal
+    // Handle terminal states
     if (state.isTerminal()) {
-        // Create uniform policy for terminal states
-        std::vector<float> uniformPolicy(state.getActionSpaceSize(), 1.0f / state.getActionSpaceSize());
         float value = convertToValue(state.getGameResult(), state.getCurrentPlayer());
-        return {uniformPolicy, value};
+        
+        // Create a uniform policy for terminal states
+        std::vector<float> policy(state.getActionSpaceSize(), 1.0f / state.getActionSpaceSize());
+        return {policy, value};
     }
     
-    // Use neural network for evaluation
+    // Check transposition table first
+    if (tt_) {
+        TranspositionTable::Entry entry;
+        if (tt_->lookup(state.getHash(), state.getGameType(), entry)) {
+            return {entry.policy, entry.value};
+        }
+    }
+    
+    // Use neural network if available
     if (nn_) {
-        try {
-            return nn_->predict(state);
-        } catch (const std::exception& e) {
-            if (debugMode_) {
-                std::cerr << "Neural network error: " << e.what() << std::endl;
+        return nn_->predict(state);
+    }
+    
+    // Fallback: use uniform random policy
+    std::vector<float> policy(state.getActionSpaceSize(), 0.0f);
+    std::vector<int> legalActions = state.getLegalMoves();
+    
+    if (!legalActions.empty()) {
+        float prob = 1.0f / legalActions.size();
+        for (int action : legalActions) {
+            if (action >= 0 && action < static_cast<int>(policy.size())) {
+                policy[action] = prob;
             }
         }
     }
     
-    // Fallback to random policy if neural network fails
-    std::vector<float> randomPolicy(state.getActionSpaceSize(), 1.0f / state.getActionSpaceSize());
-    float randomValue = 0.0f;  // Neutral value
-    
-    return {randomPolicy, randomValue};
+    return {policy, 0.0f};
 }
 
 float ParallelMCTS::convertToValue(core::GameResult result, int currentPlayer) {
@@ -612,7 +633,7 @@ void ParallelMCTS::setNumThreads(int numThreads) {
     threadPool_ = std::make_unique<ThreadPool>(numThreads);
 }
 
-void ParallelMCTS::setNeuralNetwork(NeuralNetwork* nn) {
+void ParallelMCTS::setNeuralNetwork(nn::NeuralNetwork* nn) {
     nn_ = nn;
 }
 

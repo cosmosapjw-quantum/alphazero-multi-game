@@ -68,13 +68,29 @@ float MCTSNode::getUcbScore(float cPuct, int currentPlayer, float fpuReduction) 
 void MCTSNode::addVirtualLoss(int virtualLoss) {
     // Add negative virtual loss to discourage other threads from exploring this path
     visitCount.fetch_add(virtualLoss, std::memory_order_relaxed);
-    valueSum.fetch_sub(static_cast<float>(virtualLoss), std::memory_order_relaxed);
+    
+    // Since std::atomic<float> doesn't have fetch_sub, use atomic load-modify-store pattern
+    float oldValue = valueSum.load(std::memory_order_relaxed);
+    float newValue = oldValue - static_cast<float>(virtualLoss);
+    while (!valueSum.compare_exchange_weak(oldValue, newValue, 
+                                           std::memory_order_relaxed,
+                                           std::memory_order_relaxed)) {
+        newValue = oldValue - static_cast<float>(virtualLoss);
+    }
 }
 
 void MCTSNode::removeVirtualLoss(int virtualLoss) {
     // Remove the virtual loss
     visitCount.fetch_sub(virtualLoss, std::memory_order_relaxed);
-    valueSum.fetch_add(static_cast<float>(virtualLoss), std::memory_order_relaxed);
+    
+    // Since std::atomic<float> doesn't have fetch_add, use atomic load-modify-store pattern
+    float oldValue = valueSum.load(std::memory_order_relaxed);
+    float newValue = oldValue + static_cast<float>(virtualLoss);
+    while (!valueSum.compare_exchange_weak(oldValue, newValue, 
+                                           std::memory_order_relaxed,
+                                           std::memory_order_relaxed)) {
+        newValue = oldValue + static_cast<float>(virtualLoss);
+    }
 }
 
 MCTSNode* MCTSNode::getChild(int actionIndex) const {

@@ -4,7 +4,7 @@
 #include <utility>
 #include <vector>
 
-#include "hash_specializations.h"
+#include "alphazero/core/utils/hash_specializations.h"
 
 class AttackDefenseModule {
 public:

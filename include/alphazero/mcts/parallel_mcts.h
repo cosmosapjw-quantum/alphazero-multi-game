@@ -3,6 +3,7 @@
 #define PARALLEL_MCTS_H
 
 #include <vector>
+#include <deque>
 #include <atomic>
 #include <mutex>
 #include <random>
@@ -16,10 +17,13 @@
 #include "alphazero/mcts/transposition_table.h"
 
 namespace alphazero {
-namespace mcts {
 
-// Forward declaration
-class NeuralNetwork;
+// Forward declarations
+namespace nn {
+    class NeuralNetwork;
+}
+
+namespace mcts {
 
 /**
  * @brief Node selection strategies for MCTS
@@ -51,7 +55,7 @@ private:
     std::vector<std::thread> workers;
     
     // Task queue
-    std::vector<std::function<void()>> tasks;
+    std::deque<std::function<void()>> tasks;
     
     // Synchronization
     std::mutex queueMutex;
@@ -81,7 +85,7 @@ public:
      */
     ParallelMCTS(
         const core::IGameState& rootState,
-        NeuralNetwork* nn = nullptr,
+        alphazero::nn::NeuralNetwork* nn = nullptr,
         TranspositionTable* tt = nullptr,
         int numThreads = 1,
         int numSimulations = 800,
@@ -185,7 +189,7 @@ public:
      * 
      * @param nn Neural network pointer
      */
-    void setNeuralNetwork(NeuralNetwork* nn);
+    void setNeuralNetwork(alphazero::nn::NeuralNetwork* nn);
     
     /**
      * @brief Set transposition table
@@ -259,7 +263,7 @@ private:
     // Member variables
     std::unique_ptr<core::IGameState> rootState_;   // Current root state
     std::unique_ptr<MCTSNode> rootNode_;            // Root of the search tree
-    NeuralNetwork* nn_;                            // Neural network for evaluation
+    alphazero::nn::NeuralNetwork* nn_;              // Neural network for evaluation
     TranspositionTable* tt_;                       // Optional transposition table
     std::unique_ptr<ThreadPool> threadPool_;       // Thread pool for parallel search
     std::atomic<int> pendingSimulations_{0};       // Counter for remaining simulations
@@ -276,33 +280,23 @@ private:
     std::mt19937 rng_;
     std::uniform_real_distribution<float> uniformDist_{0.0f, 1.0f};
     
-    // Debugging
+    // Search control
+    std::atomic<bool> searchInProgress_{false};
+    std::condition_variable searchCondVar_;
+    std::function<void(int, int)> progressCallback_;
     bool debugMode_{false};
     
-    // Progress tracking
-    std::function<void(int, int)> progressCallback_;
-    
-    // Synchronization
-    std::mutex searchMutex_;
-    std::condition_variable searchCondVar_;
-    std::atomic<bool> searchInProgress_{false};
-    
-    // MCTS algorithm steps
+    // Helper methods
     void runSingleSimulation();
     MCTSNode* selectLeaf(core::IGameState& state);
     void expandNode(MCTSNode* node, const core::IGameState& state);
     void backpropagate(MCTSNode* node, float value);
-    
-    // Helper methods
     std::pair<std::vector<float>, float> evaluateState(const core::IGameState& state);
     float getTemperatureVisitWeight(int visitCount, float temperature) const;
-    
-    // Node selection using different formulas
     MCTSNode* selectChildUcb(MCTSNode* node, const core::IGameState& state);
     MCTSNode* selectChildPuct(MCTSNode* node, const core::IGameState& state);
     MCTSNode* selectChildProgressiveBias(MCTSNode* node, const core::IGameState& state);
-    
-    // Game-specific Dirichlet noise parameters
+    float convertToValue(core::GameResult result, int currentPlayer);
     float getDirichletAlpha() const;
     
     // Memory management helpers
@@ -329,7 +323,7 @@ auto ThreadPool::enqueue(F&& f, Args&&... args)
         }
         
         // Add task to queue
-        tasks.emplace_back([task](){ (*task)(); });
+        tasks.push_back([task](){ (*task)(); });
     }
     
     // Wake up one worker thread

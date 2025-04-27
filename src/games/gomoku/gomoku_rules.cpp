@@ -1,8 +1,17 @@
 // gomoku_rules.cpp
-#include "gomoku_rules.h"
+#include "alphazero/games/gomoku/gomoku_rules.h"
 #include <algorithm>
 #include <cmath>
 #include <iostream>
+#include <vector>
+#include <set>
+#include <map>
+#include <tuple>
+#include <random>
+#include <functional>
+
+namespace alphazero {
+namespace gomoku {
 
 GomokuRules::GomokuRules(int board_size)
     : board_size(board_size) {
@@ -1188,3 +1197,6 @@ std::vector<std::pair<int, int>> GomokuRules::build_entire_line(int x0, int y0, 
     result.insert(result.end(), forward_positions.begin(), forward_positions.end());
     return result;
 }
+
+} // namespace gomoku
+} // namespace alphazero

@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Wextra -O3 -DNDEBUG -O3 CMakeFiles/go_example.dir/go_example.cpp.o -o ../bin/go_example  ../lib/libalphazero_lib.a 
