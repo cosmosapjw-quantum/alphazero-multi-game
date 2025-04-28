@@ -3,7 +3,12 @@
 #define TORCH_NEURAL_NETWORK_H
 
 #include "alphazero/nn/neural_network.h"
+
+// Only include torch headers if LibTorch is enabled
+#ifndef LIBTORCH_OFF
 #include <torch/torch.h>
+#endif
+
 #include <mutex>
 #include <queue>
 #include <condition_variable>
@@ -66,9 +71,12 @@ private:
     int inputChannels_;
     int actionSpaceSize_;
     
+#ifndef LIBTORCH_OFF
     // PyTorch model
     torch::jit::script::Module model_;
     torch::Device device_;
+#endif
+
     bool isGpu_;
     bool debugMode_;
     
@@ -78,15 +86,21 @@ private:
     int batchSize_;
     
     // Batch processing
+#ifndef LIBTORCH_OFF
     std::queue<std::pair<torch::Tensor, std::promise<std::pair<std::vector<float>, float>>>> batchQueue_;
+#else
+    std::queue<std::pair<int, std::promise<std::pair<std::vector<float>, float>>>> batchQueue_;
+#endif
     std::mutex batchMutex_;
     std::condition_variable batchCondVar_;
     std::thread batchThread_;
     bool stopBatchThread_;
     
+#ifndef LIBTORCH_OFF
     // Helper methods
     torch::Tensor stateTensor(const core::IGameState& state) const;
     std::pair<std::vector<float>, float> processOutput(const torch::jit::IValue& output, int actionSize) const;
+#endif
     void batchProcessingLoop();
     void createModel();
 };

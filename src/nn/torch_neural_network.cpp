@@ -1,12 +1,13 @@
 // src/nn/torch_neural_network.cpp
 #include "alphazero/nn/torch_neural_network.h"
+#include <iostream>  // Add this for std::cout/cerr
 #include <chrono>
 #include <algorithm>
 #include <stdexcept>
 #include <sstream>
 #include <fstream>
-#include <iostream>
 #include <cmath>
+#include <torch/script.h>  // Add this for torch::jit namespace
 
 namespace alphazero {
 namespace nn {
@@ -21,11 +22,20 @@ TorchNeuralNetwork::TorchNeuralNetwork(
     debugMode_(false),
     avgInferenceTimeMs_(0.0f),
     batchSize_(16),
+#ifndef LIBTORCH_OFF
+    device_(torch::kCPU), // Initialize with CPU first, update later
+#endif
     stopBatchThread_(false) {
     
+#ifndef LIBTORCH_OFF
     // Set device
     isGpu_ = useGpu && torch::cuda::is_available();
-    device_ = isGpu_ ? torch::Device(torch::kCUDA, 0) : torch::Device(torch::kCPU);
+    if (isGpu_) {
+        device_ = torch::Device(torch::kCUDA, 0);
+    }
+#else
+    isGpu_ = false;
+#endif
     
     // Set default board size if not specified
     if (boardSize_ <= 0) {
@@ -63,17 +73,40 @@ TorchNeuralNetwork::TorchNeuralNetwork(
             throw std::runtime_error("Unsupported game type");
     }
     
+#ifndef LIBTORCH_OFF
     // Load model if path is provided, otherwise create a new one
     if (!modelPath.empty()) {
         try {
             // Load model from file
-            model_ = torch::jit::load(modelPath);
+            try {
+                // Use torch::jit::load
+                model_ = torch::jit::load(modelPath, device_);
+                
+                if (debugMode_) {
+                    std::cout << "Loaded model from: " << modelPath << " using torch::jit::load" << std::endl;
+                }
+            } catch (const std::exception& e) {
+                // Fallback to trying a different approach if the first method fails
+                try {
+                    std::ifstream model_file(modelPath, std::ios::binary);
+                    if (!model_file.is_open()) {
+                        throw std::runtime_error("Could not open model file: " + modelPath);
+                    }
+                    
+                    // Load the model using a different method
+                    model_ = torch::jit::load(model_file, device_);
+                    
+                    if (debugMode_) {
+                        std::cout << "Loaded model from: " << modelPath << " using file stream approach" << std::endl;
+                    }
+                } catch (const std::exception& nested_e) {
+                    throw std::runtime_error("Failed to load model: " + std::string(nested_e.what()) + 
+                                           ". Your LibTorch version may not support the saved model format.");
+                }
+            }
+            
             model_.to(device_);
             model_.eval();
-            
-            if (debugMode_) {
-                std::cout << "Loaded model from: " << modelPath << std::endl;
-            }
         } catch (const c10::Error& e) {
             throw std::runtime_error("Error loading model: " + std::string(e.what()));
         }
@@ -84,6 +117,11 @@ TorchNeuralNetwork::TorchNeuralNetwork(
     
     // Start batch processing thread
     batchThread_ = std::thread(&TorchNeuralNetwork::batchProcessingLoop, this);
+#else
+    if (!modelPath.empty()) {
+        throw std::runtime_error("Cannot load model: LibTorch is disabled");
+    }
+#endif
 }
 
 TorchNeuralNetwork::~TorchNeuralNetwork() {
@@ -94,12 +132,15 @@ TorchNeuralNetwork::~TorchNeuralNetwork() {
         batchCondVar_.notify_all();
     }
     
+#ifndef LIBTORCH_OFF
     if (batchThread_.joinable()) {
         batchThread_.join();
     }
+#endif
 }
 
 std::pair<std::vector<float>, float> TorchNeuralNetwork::predict(const core::IGameState& state) {
+#ifndef LIBTORCH_OFF
     // Convert state to tensor
     torch::Tensor input = stateTensor(state);
     
@@ -126,6 +167,26 @@ std::pair<std::vector<float>, float> TorchNeuralNetwork::predict(const core::IGa
     
     // Process output
     return processOutput(output, state.getActionSpaceSize());
+#else
+    // LibTorch disabled - return random policy
+    std::vector<float> policy(state.getActionSpaceSize(), 0.0f);
+    
+    // Get legal moves
+    auto legalMoves = state.getLegalMoves();
+    float value = 0.0f;
+    
+    // Set uniform probabilities for legal moves
+    if (!legalMoves.empty()) {
+        float prob = 1.0f / legalMoves.size();
+        for (int move : legalMoves) {
+            if (move >= 0 && move < static_cast<int>(policy.size())) {
+                policy[move] = prob;
+            }
+        }
+    }
+    
+    return {policy, value};
+#endif
 }
 
 void TorchNeuralNetwork::predictBatch(
@@ -139,6 +200,7 @@ void TorchNeuralNetwork::predictBatch(
         return;
     }
     
+#ifndef LIBTORCH_OFF
     // Prepare input tensors
     std::vector<torch::Tensor> inputTensors;
     inputTensors.reserve(states.size());
@@ -208,6 +270,17 @@ void TorchNeuralNetwork::predictBatch(
         // Convert value to float
         values[i] = valueTensor.item<float>();
     }
+#else
+    // LibTorch disabled - process each state individually
+    policies.resize(states.size());
+    values.resize(states.size());
+    
+    for (size_t i = 0; i < states.size(); ++i) {
+        auto result = predict(states[i]);
+        policies[i] = result.first;
+        values[i] = result.second;
+    }
+#endif
 }
 
 std::future<std::pair<std::vector<float>, float>> TorchNeuralNetwork::predictAsync(
@@ -217,6 +290,7 @@ std::future<std::pair<std::vector<float>, float>> TorchNeuralNetwork::predictAsy
     std::promise<std::pair<std::vector<float>, float>> promise;
     std::future<std::pair<std::vector<float>, float>> future = promise.get_future();
     
+#ifndef LIBTORCH_OFF
     // Convert state to tensor
     torch::Tensor input = stateTensor(state);
     
@@ -226,22 +300,48 @@ std::future<std::pair<std::vector<float>, float>> TorchNeuralNetwork::predictAsy
         batchQueue_.push({input, std::move(promise)});
         batchCondVar_.notify_one();
     }
+#else
+    // Process immediately for non-LibTorch version
+    auto result = predict(state);
+    promise.set_value(result);
+#endif
     
     return future;
 }
 
 bool TorchNeuralNetwork::isGpuAvailable() const {
+#ifndef LIBTORCH_OFF
     return isGpu_;
+#else
+    return false;
+#endif
 }
 
 std::string TorchNeuralNetwork::getDeviceInfo() const {
     std::ostringstream oss;
     
+#ifndef LIBTORCH_OFF
     if (isGpu_) {
-        oss << "GPU: " << torch::cuda::get_device_name(device_.index());
+        // Replace get_device_name with a simpler check since it might not be available
+        oss << "GPU: CUDA Device " << device_.index();
+        // Try to get device properties if available
+        try {
+            int deviceIndex = device_.index();
+            oss << " (";
+            if (deviceIndex >= 0) {
+                // Add additional device properties if needed
+                oss << "Index: " << deviceIndex;
+            }
+            oss << ")";
+        } catch (const std::exception& e) {
+            // Ignore errors
+        }
     } else {
         oss << "CPU";
     }
+#else
+    oss << "CPU (LibTorch disabled)";
+#endif
     
     return oss.str();
 }
@@ -278,10 +378,15 @@ std::string TorchNeuralNetwork::getModelInfo() const {
     oss << ", Input channels: " << inputChannels_;
     oss << ", Action space: " << actionSpaceSize_;
     
+#ifdef LIBTORCH_OFF
+    oss << " (LibTorch disabled)";
+#endif
+    
     return oss.str();
 }
 
 size_t TorchNeuralNetwork::getModelSizeBytes() const {
+#ifndef LIBTORCH_OFF
     // This is an approximation of model size
     size_t size = 0;
     
@@ -291,6 +396,9 @@ size_t TorchNeuralNetwork::getModelSizeBytes() const {
     }
     
     return size;
+#else
+    return 0;
+#endif
 }
 
 void TorchNeuralNetwork::benchmark(int numIterations, int batchSize) {
@@ -373,8 +481,13 @@ void TorchNeuralNetwork::printModelSummary() const {
     
     // Print inference time
     std::cout << "Average inference time: " << getInferenceTimeMs() << " ms" << std::endl;
+    
+#ifdef LIBTORCH_OFF
+    std::cout << "LibTorch is disabled - using random policy" << std::endl;
+#endif
 }
 
+#ifndef LIBTORCH_OFF
 torch::Tensor TorchNeuralNetwork::stateTensor(const core::IGameState& state) const {
     // Get tensor representation from state
     auto tensorRep = state.getEnhancedTensorRepresentation();
@@ -436,8 +549,10 @@ std::pair<std::vector<float>, float> TorchNeuralNetwork::processOutput(
     
     return {policy, value};
 }
+#endif
 
 void TorchNeuralNetwork::batchProcessingLoop() {
+#ifndef LIBTORCH_OFF
     while (true) {
         std::vector<torch::Tensor> batch;
         std::vector<std::promise<std::pair<std::vector<float>, float>>> promises;
@@ -503,10 +618,12 @@ void TorchNeuralNetwork::batchProcessingLoop() {
             promises[i].set_value({policy, value});
         }
     }
+#endif
 }
 
 // Create a simple model (This would normally be done in Python and loaded via TorchScript)
 void TorchNeuralNetwork::createModel() {
+#ifndef LIBTORCH_OFF
     if (debugMode_) {
         std::cout << "Creating a simple ResNet model for testing..." << std::endl;
     }
@@ -514,6 +631,9 @@ void TorchNeuralNetwork::createModel() {
     // We should actually use TorchScript to export our model from Python
     // For now, we'll just throw an error
     throw std::runtime_error("Creating models directly in C++ is not supported. Please provide a pre-trained model.");
+#else
+    throw std::runtime_error("Creating models directly in C++ is not supported when LibTorch is disabled.");
+#endif
 }
 
 } // namespace nn

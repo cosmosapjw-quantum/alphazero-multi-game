@@ -1,1 +1,0 @@
-/usr/bin/c++  -Wall -Wextra -O3 -DNDEBUG -O3 CMakeFiles/alphazero_server.dir/src/api/http_server.cpp.o CMakeFiles/alphazero_server.dir/src/api/rest_api.cpp.o CMakeFiles/alphazero_server.dir/src/api/server_main.cpp.o -o bin/alphazero_server  lib/libalphazero_lib.a 

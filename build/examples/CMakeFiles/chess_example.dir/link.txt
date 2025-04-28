@@ -1,1 +1,0 @@
-/usr/bin/c++  -Wall -Wextra -O3 -DNDEBUG -O3 CMakeFiles/chess_example.dir/chess_example.cpp.o -o ../bin/chess_example  ../lib/libalphazero_lib.a 
