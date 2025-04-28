@@ -14,16 +14,16 @@
 # EXTERNAL cache entries
 ########################
 
-//Build examples
+//Build small CLI examples
 ALPHAZERO_BUILD_EXAMPLES:BOOL=ON
 
-//Build tests
+//Build GoogleTest targets
 ALPHAZERO_BUILD_TESTS:BOOL=ON
 
-//Enable GPU support
+//Enable CUDA kernels
 ALPHAZERO_ENABLE_GPU:BOOL=ON
 
-//Enable Python bindings
+//Build pybind11 module
 ALPHAZERO_ENABLE_PYTHON:BOOL=ON
 
 //Path to a program.
@@ -32,9 +32,8 @@ CMAKE_ADDR2LINE:FILEPATH=/usr/bin/addr2line
 //Path to a program.
 CMAKE_AR:FILEPATH=/usr/bin/ar
 
-//Choose the type of build, options are: None Debug Release RelWithDebInfo
-// MinSizeRel ...
-CMAKE_BUILD_TYPE:STRING=Release
+//No help, variable specified on the command line.
+CMAKE_BUILD_TYPE:STRING=Debug
 
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
@@ -60,8 +59,8 @@ CMAKE_CUDA_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
 //Flags used by the CUDA compiler during RELWITHDEBINFO builds.
 CMAKE_CUDA_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 
-//CXX compiler
-CMAKE_CXX_COMPILER:STRING=/usr/bin/g++
+//No help, variable specified on the command line.
+CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -339,7 +338,7 @@ CUDA_cuFile_rdma_static_LIBRARY:FILEPATH=CUDA_cuFile_rdma_static_LIBRARY-NOTFOUN
 //Path to a library.
 CUDA_cuFile_static_LIBRARY:FILEPATH=CUDA_cuFile_static_LIBRARY-NOTFOUND
 
-//Path to a library.
+//"cublasLt" library
 CUDA_cublasLt_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libcublasLt.so
 
 //Path to a library.

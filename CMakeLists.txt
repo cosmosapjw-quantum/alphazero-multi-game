@@ -1,193 +1,226 @@
 cmake_minimum_required(VERSION 3.18)
 project(alphazero VERSION 1.0.0 LANGUAGES CXX CUDA)
 
-# Set C++ standard
+# ──────────────────────────────────────────────────────────────────────────────
+# 1. Global build flags
+# ──────────────────────────────────────────────────────────────────────────────
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# Options
-option(ALPHAZERO_BUILD_TESTS "Build tests" ON)
-option(ALPHAZERO_ENABLE_GPU "Enable GPU support" ON)
-option(ALPHAZERO_ENABLE_PYTHON "Enable Python bindings" ON)
-option(ALPHAZERO_BUILD_EXAMPLES "Build examples" ON)
+# All object files must be position-independent so they can be linked into
+# shared libraries (e.g. the Python extension).
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-# Find dependencies
+# ──────────────────────────────────────────────────────────────────────────────
+# 2. Build-time options
+# ──────────────────────────────────────────────────────────────────────────────
+option(ALPHAZERO_BUILD_TESTS    "Build GoogleTest targets"          ON)
+option(ALPHAZERO_ENABLE_GPU     "Enable CUDA kernels"               ON)
+option(ALPHAZERO_ENABLE_PYTHON  "Build pybind11 module"             ON)
+option(ALPHAZERO_BUILD_EXAMPLES "Build small CLI examples"          ON)
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 3. Dependencies
+# ──────────────────────────────────────────────────────────────────────────────
 find_package(Threads REQUIRED)
 
-# Find CUDA
-find_package(CUDA 11.0 REQUIRED)
-find_package(CUDAToolkit REQUIRED)
-
-# Check for cuDNN
+# --- CUDA --------------------------------------------------------------------
 if(ALPHAZERO_ENABLE_GPU)
-    find_library(CUDNN_LIBRARY cudnn HINTS ${CUDA_TOOLKIT_ROOT_DIR} PATH_SUFFIXES lib lib64)
-    if(NOT CUDNN_LIBRARY)
-        message(WARNING "cuDNN library not found. NN performance may be reduced.")
-    else()
+    # We rely on the built-in CUDA language support; FindCUDA is deprecated.
+    enable_language(CUDA)
+    find_package(CUDAToolkit REQUIRED)
+    add_compile_definitions(WITH_CUDA)
+else()
+    add_compile_definitions(LIBTORCH_OFF)
+endif()
+
+# Optional cuDNN: warn if missing but keep going.
+if(ALPHAZERO_ENABLE_GPU)
+    find_library(CUDNN_LIBRARY cudnn
+                 HINTS ${CUDAToolkit_LIBRARY_DIR}
+                 PATH_SUFFIXES lib lib64)
+    if(CUDNN_LIBRARY)
         message(STATUS "Found cuDNN: ${CUDNN_LIBRARY}")
-        add_definitions(-DWITH_CUDNN)
+        add_compile_definitions(WITH_CUDNN)
+    else()
+        message(WARNING "cuDNN library not found – GPU inference will be slower.")
     endif()
 endif()
 
-# Find Torch
-set(TORCH_DIR "" CACHE PATH "Path to libtorch")
+# --- LibTorch ----------------------------------------------------------------
+set(TORCH_DIR "" CACHE PATH "Path to a pre-downloaded libtorch distribution")
 if(TORCH_DIR)
-    set(CMAKE_PREFIX_PATH ${TORCH_DIR})
+    list(PREPEND CMAKE_PREFIX_PATH "${TORCH_DIR}")
 else()
-    message(STATUS "TORCH_DIR not set, using system-wide installation")
+    message(STATUS "TORCH_DIR not set – trying system-wide Torch install.")
 endif()
+find_package(Torch REQUIRED)        # provides imported target Torch::Torch
+message(STATUS "Torch include root: ${Torch_INCLUDE_DIRS}")
 
-find_package(Torch REQUIRED)
-message(STATUS "Found Torch: ${Torch_DIR}")
-
-# Setup CUDA flags
-if(ALPHAZERO_ENABLE_GPU)
-    message(STATUS "GPU support enabled")
-    set(CUDA_FLAGS "--use_fast_math")
-    set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS} ${CUDA_FLAGS})
-    add_definitions(-DWITH_CUDA)
-else()
-    message(STATUS "GPU support disabled")
-    add_definitions(-DLIBTORCH_OFF)
-endif()
-
-# Find or fetch nlohmann_json
+# --- Header-only nlohmann_json ----------------------------------------------
 include(FetchContent)
 FetchContent_Declare(
     nlohmann_json
     GIT_REPOSITORY https://github.com/nlohmann/json.git
-    GIT_TAG v3.11.2
+    GIT_TAG        v3.11.2
 )
-FetchContent_MakeAvailable(nlohmann_json)
+FetchContent_MakeAvailable(nlohmann_json)   # target nlohmann_json::nlohmann_json
 
-# Find or fetch GoogleTest if tests are enabled
+# --- GoogleTest (optional) ---------------------------------------------------
 if(ALPHAZERO_BUILD_TESTS)
     FetchContent_Declare(
         googletest
         GIT_REPOSITORY https://github.com/google/googletest.git
-        GIT_TAG v1.14.0
+        GIT_TAG        v1.14.0
     )
-    # For Windows: Prevent overriding the parent project's compiler/linker settings
+    # On MSVC avoid /MDd vs /MD clashes
     set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
     FetchContent_MakeAvailable(googletest)
     enable_testing()
     include(GoogleTest)
 endif()
 
-# Find or fetch pybind11 if Python bindings are enabled
+# --- pybind11 (optional) -----------------------------------------------------
 if(ALPHAZERO_ENABLE_PYTHON)
     find_package(Python COMPONENTS Interpreter Development REQUIRED)
     FetchContent_Declare(
         pybind11
-        GIT_REPOSITORY https://github.com/pybind/pybind11.git
-        GIT_TAG v2.10.4
+        GIT_REPOSITORY https://github.com/pybind11/pybind11.git
+        GIT_TAG        v2.10.4
     )
-    FetchContent_MakeAvailable(pybind11)
+    FetchContent_MakeAvailable(pybind11)    # target pybind11::pybind11
 endif()
 
-# Collect source files
-file(GLOB_RECURSE ALPHAZERO_SOURCES 
-    "src/core/*.cpp"
-    "src/mcts/*.cpp"
-    "src/nn/*.cpp"
-    "src/games/*.cpp"
-    "src/selfplay/*.cpp"
-    "src/elo/*.cpp"
-    "src/api/*.cpp"
-)
+# ──────────────────────────────────────────────────────────────────────────────
+# 4. Source files
+# ──────────────────────────────────────────────────────────────────────────────
+file(GLOB_RECURSE ALPHAZERO_CPP_SOURCES
+     src/core/*.cpp
+     src/mcts/*.cpp
+     src/nn/*.cpp
+     src/games/*.cpp
+     src/selfplay/*.cpp
+     src/elo/*.cpp
+     src/api/*.cpp)
 
-# Add CUDA sources if GPU is enabled
 if(ALPHAZERO_ENABLE_GPU)
-    file(GLOB_RECURSE ALPHAZERO_CUDA_SOURCES 
-        "src/nn/*.cu"
-    )
-    list(APPEND ALPHAZERO_SOURCES ${ALPHAZERO_CUDA_SOURCES})
+    file(GLOB_RECURSE ALPHAZERO_CUDA_SOURCES src/nn/*.cu)
 endif()
 
-# Create main library
-add_library(alphazero_lib ${ALPHAZERO_SOURCES})
-target_include_directories(alphazero_lib PUBLIC 
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
-)
-target_link_libraries(alphazero_lib PUBLIC 
-    ${TORCH_LIBRARIES}
+# ──────────────────────────────────────────────────────────────────────────────
+# 5. Core library
+# ──────────────────────────────────────────────────────────────────────────────
+add_library(alphazero_lib
+            ${ALPHAZERO_CPP_SOURCES}
+            ${ALPHAZERO_CUDA_SOURCES})
+
+target_include_directories(alphazero_lib PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>)
+
+target_link_libraries(alphazero_lib PUBLIC
+    Torch::Torch
     nlohmann_json::nlohmann_json
-    Threads::Threads
-)
-if(CUDNN_LIBRARY)
+    Threads::Threads)
+
+if(ALPHAZERO_ENABLE_GPU AND CUDNN_LIBRARY)
     target_link_libraries(alphazero_lib PUBLIC ${CUDNN_LIBRARY})
 endif()
 
-# Set C++ standard for the library
 target_compile_features(alphazero_lib PUBLIC cxx_std_20)
 
-# Create CLI executable
-add_executable(alphazero_cli src/cli/cli_main.cpp)
-target_link_libraries(alphazero_cli PRIVATE alphazero_lib)
-
-# Create server executable
-add_executable(alphazero_server src/api/server_main.cpp)
+# ──────────────────────────────────────────────────────────────────────────────
+# 6. Executables
+# ──────────────────────────────────────────────────────────────────────────────
+add_executable(alphazero_cli     src/cli/cli_main.cpp)
+add_executable(alphazero_server  src/api/server_main.cpp)
+target_link_libraries(alphazero_cli    PRIVATE alphazero_lib)
 target_link_libraries(alphazero_server PRIVATE alphazero_lib)
 
-# Create GUI executable if available
+# Optional GUI (if the file exists)
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/src/gui/gui_main.cpp")
     add_executable(alphazero_gui src/gui/gui_main.cpp)
     target_link_libraries(alphazero_gui PRIVATE alphazero_lib)
 endif()
 
-# Python bindings
+# ──────────────────────────────────────────────────────────────────────────────
+# 7. Python bindings (pybind11)
+# ──────────────────────────────────────────────────────────────────────────────
+# ── pybind11 (optional) ─────────────────────────────────────────────────────
 if(ALPHAZERO_ENABLE_PYTHON)
-    pybind11_add_module(pyalphazero src/pybind/python_bindings.cpp)
-    target_link_libraries(pyalphazero PRIVATE alphazero_lib)
+    # Try to use the wheel we pre-installed in the deps layer
+    find_package(pybind11 CONFIG QUIET)
+
+    if(NOT pybind11_FOUND)
+        # Fallback: clone with FetchContent (only when the wheel is absent)
+        message(STATUS "pybind11 wheel not found – fetching from GitHub")
+        find_package(Python COMPONENTS Interpreter Development REQUIRED)
+
+        include(FetchContent)
+        FetchContent_Declare(
+            pybind11
+            GIT_REPOSITORY https://github.com/pybind11/pybind11.git
+            GIT_TAG        v2.10.4
+        )
+        FetchContent_MakeAvailable(pybind11)
+    endif()
 endif()
 
-# Build tests
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 8. Tests & examples
+# ──────────────────────────────────────────────────────────────────────────────
 if(ALPHAZERO_BUILD_TESTS)
     add_subdirectory(tests)
 endif()
 
-# Build examples
 if(ALPHAZERO_BUILD_EXAMPLES)
     add_subdirectory(examples)
 endif()
 
-# Installation rules
+# ──────────────────────────────────────────────────────────────────────────────
+# 9. Installation
+# ──────────────────────────────────────────────────────────────────────────────
+include(GNUInstallDirs)
+
 install(TARGETS alphazero_lib
-    RUNTIME DESTINATION bin
-    LIBRARY DESTINATION lib
-    ARCHIVE DESTINATION lib
-)
+        EXPORT  alphazeroTargets
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 install(TARGETS alphazero_cli alphazero_server
-    RUNTIME DESTINATION bin
-)
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 if(TARGET alphazero_gui)
     install(TARGETS alphazero_gui
-        RUNTIME DESTINATION bin
-    )
+            RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 endif()
 
 install(DIRECTORY include/alphazero
-    DESTINATION include
-)
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
-# Install Python module if built
 if(ALPHAZERO_ENABLE_PYTHON)
     install(TARGETS pyalphazero
-        LIBRARY DESTINATION lib/python
-    )
+            LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/python)
 endif()
 
-# Generate package config files
+# ──────────────────────────────────────────────────────────────────────────────
+# 10. Package-config files for find_package(alphazero)
+# ──────────────────────────────────────────────────────────────────────────────
 include(CMakePackageConfigHelpers)
+
 configure_package_config_file(
-    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/alphazero-config.cmake.in
+    cmake/alphazero-config.cmake.in
     ${CMAKE_CURRENT_BINARY_DIR}/alphazero-config.cmake
-    INSTALL_DESTINATION lib/cmake/alphazero
+    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/alphazero
 )
 
+install(EXPORT alphazeroTargets
+        FILE    alphazeroTargets.cmake
+        NAMESPACE alphazero::
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/alphazero)
+
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/alphazero-config.cmake
-    DESTINATION lib/cmake/alphazero
-)
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/alphazero)
