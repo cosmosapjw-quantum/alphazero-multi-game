@@ -2,222 +2,209 @@
 """
 AlphaZero Self-Play Data Generation Script
 
-This script runs the C++ AlphaZero implementation to generate self-play game data
-for training the neural network.
+This script generates self-play games for training the AlphaZero neural network.
+It uses the C++ AlphaZero implementation for game simulation and MCTS.
 """
 
 import os
-import subprocess
-import argparse
+import sys
 import time
 import json
-import random
-import shutil
+import argparse
+import subprocess
+import multiprocessing
 import glob
-from pathlib import Path
-from concurrent.futures import ProcessPoolExecutor
 from datetime import datetime
-from typing import List, Dict, Tuple, Optional, Any
+from tqdm import tqdm
 
-def run_self_play_game(args: Dict[str, Any], game_id: int) -> str:
-    """Run a single self-play game using the C++ executable"""
-    # Create output path for this game
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_path = os.path.join(args["output_dir"], f"game_{game_id:05d}_{timestamp}.json")
+def run_self_play_process(args):
+    """Run a single self-play process using the C++ executable"""
+    process_id, executable, output_dir, game, board_size, simulations, threads, model, use_gpu, use_renju = args
     
-    # Build command
+    # Create process-specific output directory
+    process_dir = os.path.join(output_dir, f"process_{process_id}")
+    os.makedirs(process_dir, exist_ok=True)
+    
+    # Construct command
     cmd = [
-        args["executable_path"],
-        "--game", "gomoku",
-        "--board-size", str(args["board_size"]),
-        "--simulations", str(args["simulations"]),
-        "--threads", str(args["threads"]),
+        executable,
+        "--game", game,
+        "--board-size", str(board_size),
+        "--simulations", str(simulations),
+        "--threads", str(threads),
         "--selfplay",
-        "--output", output_path
+        "--output", os.path.join(process_dir, f"game_{{ }}.json"),
+        "--temperature-init", "1.0",
+        "--temperature-final", "0.25",
+        "--temperature-threshold", "30"
     ]
     
-    if args["model_path"]:
-        cmd.extend(["--model", args["model_path"]])
+    # Add model if provided
+    if model:
+        cmd.extend(["--model", model])
     
-    if args["use_gpu"]:
+    # Add GPU option if requested
+    if use_gpu:
         cmd.append("--use-gpu")
     
-    if args["use_renju"]:
+    # Add Renju rules option if requested
+    if use_renju:
         cmd.append("--use-renju")
-    
-    # Set temperature parameters
-    cmd.extend([
-        "--temperature-init", str(args["temp_init"]),
-        "--temperature-final", str(args["temp_final"]),
-        "--temperature-threshold", str(args["temp_threshold"])
-    ])
     
     # Run the command
     try:
-        start_time = time.time()
-        print(f"Starting game {game_id}...")
+        process = subprocess.Popen(
+            cmd,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            universal_newlines=True
+        )
         
-        # Run subprocess with output capture
-        result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+        # Wait for completion with timeout
+        stdout, stderr = process.communicate(timeout=3600)  # 1 hour timeout
         
-        end_time = time.time()
-        duration = end_time - start_time
+        if process.returncode != 0:
+            print(f"Process {process_id} failed with code {process.returncode}")
+            print(f"stderr: {stderr}")
+            return False
         
-        # Check if output file was created
-        if os.path.exists(output_path):
-            print(f"Game {game_id} completed in {duration:.1f}s")
-            return output_path
-        else:
-            print(f"Game {game_id} failed: Output file not created")
-            print(f"  Command: {' '.join(cmd)}")
-            print(f"  Stdout: {result.stdout}")
-            print(f"  Stderr: {result.stderr}")
-            return ""
-        
-    except subprocess.CalledProcessError as e:
-        print(f"Game {game_id} failed with error code {e.returncode}")
-        print(f"  Command: {' '.join(cmd)}")
-        print(f"  Stdout: {e.stdout}")
-        print(f"  Stderr: {e.stderr}")
-        return ""
+        return True
+    except subprocess.TimeoutExpired:
+        print(f"Process {process_id} timed out and will be killed")
+        process.kill()
+        process.wait()
+        return False
+    except Exception as e:
+        print(f"Process {process_id} failed with exception: {e}")
+        return False
 
-def collect_game_stats(output_paths: List[str]) -> Dict[str, Any]:
-    """Collect statistics from game records"""
-    stats = {
-        "total_games": len(output_paths),
-        "valid_games": 0,
-        "total_moves": 0,
-        "min_moves": float('inf'),
-        "max_moves": 0,
-        "avg_moves": 0,
-        "player1_wins": 0,
-        "player2_wins": 0,
-        "draws": 0
-    }
+def collect_games(output_dir, final_dir):
+    """Collect all generated games into a single directory"""
+    os.makedirs(final_dir, exist_ok=True)
     
-    for path in output_paths:
-        if not path:
-            continue
-        
-        try:
-            with open(path, 'r') as f:
-                game_data = json.load(f)
-            
-            stats["valid_games"] += 1
-            moves = len(game_data["moves"])
-            stats["total_moves"] += moves
-            stats["min_moves"] = min(stats["min_moves"], moves)
-            stats["max_moves"] = max(stats["max_moves"], moves)
-            
-            if game_data["result"] == 1:
-                stats["player1_wins"] += 1
-            elif game_data["result"] == 2:
-                stats["player2_wins"] += 1
-            else:
-                stats["draws"] += 1
-        
-        except Exception as e:
-            print(f"Error reading game file {path}: {e}")
+    # Find all process directories
+    process_dirs = glob.glob(os.path.join(output_dir, "process_*"))
     
-    if stats["valid_games"] > 0:
-        stats["avg_moves"] = stats["total_moves"] / stats["valid_games"]
+    # Collect and rename games
+    total_games = 0
+    for process_dir in process_dirs:
+        games = glob.glob(os.path.join(process_dir, "*.json"))
+        for game_file in games:
+            # Extract timestamp from the JSON file
+            try:
+                with open(game_file, 'r') as f:
+                    game_data = json.load(f)
+                    timestamp = game_data.get('timestamp', datetime.now().strftime("%Y%m%dT%H%M%SZ"))
+                    game_id = total_games
+                    
+                    # Create a new filename
+                    new_filename = f"game_{game_id:04d}_{timestamp}.json"
+                    new_filepath = os.path.join(final_dir, new_filename)
+                    
+                    # Copy the file
+                    with open(new_filepath, 'w') as out_f:
+                        json.dump(game_data, out_f)
+                    
+                    total_games += 1
+            except Exception as e:
+                print(f"Error processing {game_file}: {e}")
     
-    return stats
+    print(f"Collected {total_games} games in {final_dir}")
+    return total_games
 
 def main():
-    parser = argparse.ArgumentParser(description="AlphaZero Self-Play Data Generation Script")
-    parser.add_argument("--executable", type=str, default="../build/bin/alphazero_cli",
-                       help="Path to AlphaZero executable")
-    parser.add_argument("--output-dir", type=str, default="self_play_games",
-                       help="Output directory for game records")
-    parser.add_argument("--games", type=int, default=100,
-                       help="Number of games to generate")
-    parser.add_argument("--workers", type=int, default=4,
-                       help="Number of parallel workers")
-    parser.add_argument("--model", type=str, default="",
-                       help="Path to neural network model")
-    parser.add_argument("--use-gpu", action="store_true",
-                       help="Use GPU for neural network inference")
-    parser.add_argument("--board-size", type=int, default=15,
-                       help="Board size")
-    parser.add_argument("--simulations", type=int, default=800,
-                       help="Number of MCTS simulations per move")
-    parser.add_argument("--threads", type=int, default=2,
-                       help="Number of threads per game")
-    parser.add_argument("--use-renju", action="store_true",
-                       help="Use Renju rules")
-    parser.add_argument("--temp-init", type=float, default=1.0,
-                       help="Initial temperature")
-    parser.add_argument("--temp-final", type=float, default=0.1,
-                       help="Final temperature")
-    parser.add_argument("--temp-threshold", type=int, default=30,
-                       help="Move threshold for temperature change")
-    
+    # Parse arguments
+    parser = argparse.ArgumentParser(description="AlphaZero Self-Play Data Generation")
+    parser.add_argument("--executable", required=True, help="Path to AlphaZero CLI executable")
+    parser.add_argument("--output-dir", required=True, help="Directory to save generated games")
+    parser.add_argument("--games", type=int, default=100, help="Number of games to generate")
+    parser.add_argument("--workers", type=int, default=4, help="Number of parallel workers")
+    parser.add_argument("--game", default="gomoku", choices=["gomoku", "chess", "go"], help="Game type")
+    parser.add_argument("--board-size", type=int, default=15, help="Board size")
+    parser.add_argument("--simulations", type=int, default=800, help="MCTS simulations per move")
+    parser.add_argument("--threads", type=int, default=2, help="Threads per game")
+    parser.add_argument("--model", help="Path to neural network model")
+    parser.add_argument("--use-gpu", action="store_true", help="Use GPU for neural network")
+    parser.add_argument("--use-renju", action="store_true", help="Use Renju rules for Gomoku")
     args = parser.parse_args()
     
-    # Create output directory
-    os.makedirs(args.output_dir, exist_ok=True)
-    
     # Check if executable exists
-    if not os.path.exists(args.executable):
+    if not os.path.isfile(args.executable):
         print(f"Error: Executable not found at {args.executable}")
-        return
+        return 1
     
-    # Prepare arguments for self-play games
-    run_args = {
-        "executable_path": args.executable,
-        "output_dir": args.output_dir,
+    # Create temp output directory
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    temp_dir = os.path.join(args.output_dir, f"temp_{timestamp}")
+    os.makedirs(temp_dir, exist_ok=True)
+    
+    # Create final output directory
+    final_dir = os.path.join(args.output_dir, f"games_{args.game}_{timestamp}")
+    os.makedirs(final_dir, exist_ok=True)
+    
+    # Determine number of games per worker
+    num_workers = min(args.workers, args.games)
+    games_per_worker = [args.games // num_workers] * num_workers
+    # Distribute remaining games
+    for i in range(args.games % num_workers):
+        games_per_worker[i] += 1
+    
+    print(f"Generating {args.games} {args.game} games with {num_workers} workers")
+    print(f"Game distribution: {games_per_worker}")
+    
+    # Create process pool
+    with multiprocessing.Pool(num_workers) as pool:
+        # Prepare arguments for each worker
+        worker_args = []
+        for i in range(num_workers):
+            worker_args.append((
+                i,
+                args.executable,
+                temp_dir,
+                args.game,
+                args.board_size,
+                args.simulations,
+                args.threads,
+                args.model,
+                args.use_gpu,
+                args.use_renju
+            ))
+        
+        # Run workers
+        results = list(tqdm(
+            pool.imap_unordered(run_self_play_process, worker_args),
+            total=num_workers,
+            desc="Self-play workers"
+        ))
+    
+    # Collect games into final directory
+    print("Collecting games...")
+    num_collected = collect_games(temp_dir, final_dir)
+    
+    # Check if we got the expected number of games
+    if num_collected < args.games:
+        print(f"Warning: Expected {args.games} games, but collected only {num_collected}")
+    
+    # Create summary file
+    summary = {
+        "date": datetime.now().isoformat(),
+        "game": args.game,
         "board_size": args.board_size,
+        "num_games": num_collected,
         "simulations": args.simulations,
         "threads": args.threads,
-        "model_path": args.model,
+        "model": args.model,
         "use_gpu": args.use_gpu,
-        "use_renju": args.use_renju,
-        "temp_init": args.temp_init,
-        "temp_final": args.temp_final,
-        "temp_threshold": args.temp_threshold
+        "use_renju": args.use_renju
     }
     
-    # Run self-play games in parallel
-    output_paths = []
+    with open(os.path.join(final_dir, "summary.json"), 'w') as f:
+        json.dump(summary, f, indent=2)
     
-    print(f"Generating {args.games} self-play games using {args.workers} workers")
-    print(f"  Model: {args.model if args.model else 'Random policy (no model)'}")
-    print(f"  Board size: {args.board_size}")
-    print(f"  Simulations: {args.simulations}")
-    print(f"  Threads per game: {args.threads}")
-    print(f"  Rules: {'Renju' if args.use_renju else 'Standard Gomoku'}")
-    print(f"  Temperature: {args.temp_init} -> {args.temp_final} at move {args.temp_threshold}")
+    print(f"Self-play completed. Generated {num_collected} games.")
+    print(f"Games saved to: {final_dir}")
     
-    start_time = time.time()
-    
-    with ProcessPoolExecutor(max_workers=args.workers) as executor:
-        futures = [executor.submit(run_self_play_game, run_args, i) 
-                  for i in range(args.games)]
-        
-        for future in futures:
-            output_path = future.result()
-            output_paths.append(output_path)
-    
-    end_time = time.time()
-    total_duration = end_time - start_time
-    
-    # Collect statistics
-    stats = collect_game_stats(output_paths)
-    
-    print("\nSelf-play completed")
-    print(f"  Total time: {total_duration:.1f}s")
-    print(f"  Games per second: {stats['valid_games'] / total_duration:.2f}")
-    print(f"  Valid games: {stats['valid_games']} / {stats['total_games']}")
-    print(f"  Results: Black wins: {stats['player1_wins']}, White wins: {stats['player2_wins']}, Draws: {stats['draws']}")
-    print(f"  Moves per game: Min: {stats['min_moves']}, Max: {stats['max_moves']}, Avg: {stats['avg_moves']:.1f}")
-    
-    # Save statistics to a JSON file
-    stats_path = os.path.join(args.output_dir, "self_play_stats.json")
-    with open(stats_path, 'w') as f:
-        json.dump(stats, f, indent=2)
-    
-    print(f"Statistics saved to {stats_path}")
+    return 0
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

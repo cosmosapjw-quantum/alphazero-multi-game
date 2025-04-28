@@ -1,8 +1,3 @@
-# CMakeLists.txt for tests
-
-# Include GoogleTest
-include(GoogleTest)
-
 # Core tests
 file(GLOB_RECURSE CORE_TEST_SOURCES "core/*.cpp")
 if(CORE_TEST_SOURCES)
@@ -10,8 +5,8 @@ if(CORE_TEST_SOURCES)
     target_link_libraries(core_tests
         PRIVATE 
         alphazero_lib
-        GTest::GTest
-        GTest::Main
+        GTest::gtest
+        GTest::gtest_main
         pthread
     )
     gtest_discover_tests(core_tests)
@@ -24,8 +19,8 @@ if(GAME_TEST_SOURCES)
     target_link_libraries(game_tests
         PRIVATE 
         alphazero_lib
-        GTest::GTest
-        GTest::Main
+        GTest::gtest
+        GTest::gtest_main
         pthread
     )
     gtest_discover_tests(game_tests)
@@ -38,8 +33,8 @@ if(MCTS_TEST_SOURCES)
     target_link_libraries(mcts_tests
         PRIVATE 
         alphazero_lib
-        GTest::GTest
-        GTest::Main
+        GTest::gtest
+        GTest::gtest_main
         pthread
     )
     gtest_discover_tests(mcts_tests)
@@ -52,8 +47,8 @@ if(NN_TEST_SOURCES)
     target_link_libraries(nn_tests
         PRIVATE 
         alphazero_lib
-        GTest::GTest
-        GTest::Main
+        GTest::gtest
+        GTest::gtest_main
         pthread
     )
     gtest_discover_tests(nn_tests)
@@ -66,8 +61,8 @@ if(INTEGRATION_TEST_SOURCES)
     target_link_libraries(integration_tests
         PRIVATE 
         alphazero_lib
-        GTest::GTest
-        GTest::Main
+        GTest::gtest
+        GTest::gtest_main
         pthread
     )
     gtest_discover_tests(integration_tests)
@@ -80,8 +75,8 @@ if(PERFORMANCE_TEST_SOURCES)
     target_link_libraries(performance_tests
         PRIVATE 
         alphazero_lib
-        GTest::GTest
-        GTest::Main
+        GTest::gtest
+        GTest::gtest_main
         pthread
     )
     # Performance tests might be slow, so we don't auto-discover them

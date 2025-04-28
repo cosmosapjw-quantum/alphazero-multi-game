@@ -1,5 +1,3 @@
-# CMakeLists.txt for examples
-
 # Gomoku example
 add_executable(gomoku_example
     gomoku_example.cpp
@@ -31,8 +29,17 @@ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/go_example.cpp")
     )
 endif()
 
+# MCTS Neural Network Test
+add_executable(test_mcts_nn
+    test_mcts_nn.cpp
+)
+target_link_libraries(test_mcts_nn
+    PRIVATE
+    alphazero_lib
+)
+
 # Install examples
-install(TARGETS gomoku_example
+install(TARGETS gomoku_example test_mcts_nn
     RUNTIME DESTINATION bin/examples
 )
 
