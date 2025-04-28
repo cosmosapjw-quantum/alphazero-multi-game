@@ -1,8 +1,7 @@
 // igamestate.cpp
 #include "alphazero/core/igamestate.h"
-#include "alphazero/games/gomoku/gomoku_state.h"
+#include "alphazero/core/game_factory.h"
 #include <stdexcept>
-#include <string>
 
 namespace alphazero {
 namespace core {
@@ -11,7 +10,7 @@ std::unique_ptr<IGameState> createGameState(GameType type, int boardSize, bool v
     try {
         switch (type) {
             case GameType::GOMOKU:
-                return std::make_unique<alphazero::gomoku::GomokuState>(
+                return GameFactory::createGomokuState(
                     boardSize > 0 ? boardSize : 15,  // Default 15x15 for Gomoku
                     variantRules,  // Renju rules if true
                     false,         // Omok rules - disabled by default
@@ -20,12 +19,16 @@ std::unique_ptr<IGameState> createGameState(GameType type, int boardSize, bool v
                 );
             
             case GameType::CHESS:
-                // TODO: Implement ChessState
-                throw std::runtime_error("Chess not yet implemented");
+                return GameFactory::createChessState(
+                    variantRules  // Chess960 rules if true
+                );
             
             case GameType::GO:
-                // TODO: Implement GoState
-                throw std::runtime_error("Go not yet implemented");
+                return GameFactory::createGoState(
+                    boardSize > 0 ? boardSize : 19,  // Default 19x19 for Go
+                    7.5f,         // Default komi
+                    true          // Chinese rules by default
+                );
             
             default:
                 throw std::invalid_argument("Unsupported game type");
