@@ -12,6 +12,10 @@ RUN apt-get update && \
         python3-dev python3-pip && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# Configure git to use system SSL certificates
+RUN git config --global http.sslVerify true && \
+    git config --global http.sslCAinfo /etc/ssl/certs/ca-certificates.crt
+
 # Modern CMake
 RUN python3 -m pip install --no-cache-dir --upgrade \
         pip setuptools wheel cmake==3.29.*
@@ -43,6 +47,12 @@ RUN pip install --no-cache-dir \
 ###############################################################################
 FROM deps AS build
 WORKDIR /src
+
+# Clone pybind11 repository directly
+RUN git clone https://github.com/pybind/pybind11.git /opt/pybind11 --depth 1 --branch v2.10.4 || \
+    mkdir -p /opt/pybind11/include && \
+    cp -r /usr/local/lib/python3.10/dist-packages/pybind11/include/* /opt/pybind11/include/
+
 COPY . .
 
 RUN cmake -S . -B build \
@@ -52,7 +62,10 @@ RUN cmake -S . -B build \
       -DALPHAZERO_ENABLE_GPU=ON \
       -DALPHAZERO_ENABLE_PYTHON=ON \
       -DALPHAZERO_BUILD_TESTS=OFF \
-      -DALPHAZERO_BUILD_EXAMPLES=OFF && \
+      -DALPHAZERO_BUILD_EXAMPLES=OFF \
+      -Dpybind11_ROOT=/opt/pybind11 \
+      -DFETCHCONTENT_FULLY_DISCONNECTED=ON \
+      -DFETCHCONTENT_SOURCE_DIR_PYBIND11=/opt/pybind11 && \
     cmake --build build -j$(nproc) && \
     cmake --install build --prefix /opt/alphazero
 

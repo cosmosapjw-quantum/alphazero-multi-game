@@ -1,5 +1,6 @@
 // src/games/chess/chess_state.cpp
 #include "alphazero/games/chess/chess_state.h"
+#include "alphazero/games/chess/chess_rules.h"
 #include <sstream>
 #include <iomanip>
 #include <algorithm>
@@ -18,28 +19,6 @@ const int H8 = 7;
 const int E1 = 60;
 const int E8 = 4;
 
-// Helper constant arrays for knight and king moves
-const std::vector<std::pair<int, int>> KNIGHT_MOVES = {
-    {-2, -1}, {-2, 1}, {-1, -2}, {-1, 2}, {1, -2}, {1, 2}, {2, -1}, {2, 1}
-};
-
-const std::vector<std::pair<int, int>> KING_MOVES = {
-    {-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}
-};
-
-// Sliding piece directions (bishop, rook, queen)
-const std::vector<std::pair<int, int>> BISHOP_DIRECTIONS = {
-    {-1, -1}, {-1, 1}, {1, -1}, {1, 1}
-};
-
-const std::vector<std::pair<int, int>> ROOK_DIRECTIONS = {
-    {-1, 0}, {1, 0}, {0, -1}, {0, 1}
-};
-
-const std::vector<std::pair<int, int>> QUEEN_DIRECTIONS = {
-    {-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}
-};
-
 // Constructor
 ChessState::ChessState(bool chess960, const std::string& fen)
     : IGameState(core::GameType::CHESS),
@@ -55,6 +34,16 @@ ChessState::ChessState(bool chess960, const std::string& fen)
 {
     // Initialize with empty board first
     initializeEmpty();
+    
+    // Initialize rules object
+    rules_ = std::make_shared<ChessRules>(chess960_);
+    
+    // Set up board accessor functions for rules
+    rules_->setBoardAccessor(
+        [this](int square) { return this->getPiece(square); },
+        [this](int square) { return ChessState::isValidSquare(square); },
+        [this](PieceColor color) { return this->getKingSquare(color); }
+    );
     
     if (!fen.empty()) {
         // If FEN is provided, use it
@@ -88,6 +77,15 @@ ChessState::ChessState(const ChessState& other)
       cached_result_(other.cached_result_),
       terminal_check_dirty_(other.terminal_check_dirty_)
 {
+    // Initialize rules object
+    rules_ = std::make_shared<ChessRules>(chess960_);
+    
+    // Set up board accessor functions for rules
+    rules_->setBoardAccessor(
+        [this](int square) { return this->getPiece(square); },
+        [this](int square) { return ChessState::isValidSquare(square); },
+        [this](PieceColor color) { return this->getKingSquare(color); }
+    );
 }
 
 // Assignment operator
@@ -108,6 +106,16 @@ ChessState& ChessState::operator=(const ChessState& other) {
         is_terminal_cached_ = other.is_terminal_cached_;
         cached_result_ = other.cached_result_;
         terminal_check_dirty_ = other.terminal_check_dirty_;
+        
+        // Reinitialize rules object
+        rules_ = std::make_shared<ChessRules>(chess960_);
+        
+        // Set up board accessor functions for rules
+        rules_->setBoardAccessor(
+            [this](int square) { return this->getPiece(square); },
+            [this](int square) { return ChessState::isValidSquare(square); },
+            [this](PieceColor color) { return this->getKingSquare(color); }
+        );
     }
     return *this;
 }
@@ -385,22 +393,11 @@ bool ChessState::setFromFEN(const std::string& fen) {
 std::vector<int> ChessState::getLegalMoves() const {
     std::vector<int> result;
     
-    if (!legal_moves_dirty_) {
-        // Use cached moves
-        result.reserve(cached_legal_moves_.size());
-        for (const auto& move : cached_legal_moves_) {
-            result.push_back(chessMoveToAction(move));
-        }
-        return result;
-    }
-    
-    // Generate legal moves
-    cached_legal_moves_ = generateLegalMoves();
-    legal_moves_dirty_ = false;
+    std::vector<ChessMove> chessMovesLegal = generateLegalMoves();
     
     // Convert to action integers
-    result.reserve(cached_legal_moves_.size());
-    for (const auto& move : cached_legal_moves_) {
+    result.reserve(chessMovesLegal.size());
+    for (const auto& move : chessMovesLegal) {
         result.push_back(chessMoveToAction(move));
     }
     
@@ -430,7 +427,12 @@ bool ChessState::undoMove() {
     
     // Move the piece back
     Piece piece = getPiece(moveInfo.move.to_square);
+    if (moveInfo.move.promotion_piece != PieceType::NONE) {
+        // Restore the pawn
+        piece.type = PieceType::PAWN;
+    }
     setPiece(moveInfo.move.from_square, piece);
+    setPiece(moveInfo.move.to_square, Piece());
     
     // Handle special moves
     if (moveInfo.was_castle) {
@@ -449,9 +451,6 @@ bool ChessState::undoMove() {
         // Restore the captured pawn
         int capturedPawnSquare = getSquare(getRank(moveInfo.move.from_square), getFile(moveInfo.move.to_square));
         setPiece(capturedPawnSquare, {PieceType::PAWN, oppositeColor(piece.color)});
-    } else if (piece.type == PieceType::PAWN && moveInfo.move.promotion_piece != PieceType::NONE) {
-        // Restore the pawn
-        setPiece(moveInfo.move.from_square, {PieceType::PAWN, piece.color});
     }
     
     // Restore game state
@@ -498,7 +497,7 @@ bool ChessState::isTerminal() const {
     }
     
     // Check for draw by insufficient material
-    if (hasInsufficientMaterial()) {
+    if (rules_->hasInsufficientMaterial()) {
         is_terminal_cached_ = true;
         cached_result_ = core::GameResult::DRAW;
         terminal_check_dirty_ = false;
@@ -506,15 +505,34 @@ bool ChessState::isTerminal() const {
     }
     
     // Check for 50-move rule
-    if (halfmove_clock_ >= 100) {  // 50 moves = 100 half-moves
+    if (rules_->isFiftyMoveRule(halfmove_clock_)) {
         is_terminal_cached_ = true;
         cached_result_ = core::GameResult::DRAW;
         terminal_check_dirty_ = false;
         return true;
     }
     
+    // Create a vector of position hashes from move history
+    std::vector<uint64_t> position_history;
+    position_history.push_back(getHash());
+    
+    ChessState tempState(*this);
+    
+    for (int i = static_cast<int>(move_history_.size()) - 1; i >= 0; --i) {
+        // Undo move
+        tempState.undoMove();
+        
+        // Stop at irreversible moves
+        if (tempState.getHalfmoveClock() == 0) {
+            break;
+        }
+        
+        // Add position hash
+        position_history.push_back(tempState.getHash());
+    }
+    
     // Check for threefold repetition
-    if (isThreefoldRepetition()) {
+    if (rules_->isThreefoldRepetition(position_history)) {
         is_terminal_cached_ = true;
         cached_result_ = core::GameResult::DRAW;
         terminal_check_dirty_ = false;
@@ -786,297 +804,28 @@ bool ChessState::validate() const {
 
 // Move generation and validation methods
 std::vector<ChessMove> ChessState::generateLegalMoves() const {
-    std::vector<ChessMove> pseudoLegalMoves = generatePseudoLegalMoves();
-    std::vector<ChessMove> legalMoves;
-    
-    // Filter out moves that leave the king in check
-    for (const ChessMove& move : pseudoLegalMoves) {
-        // Create a temporary copy of the board
-        ChessState tempState(*this);
-        
-        // Make the move
-        tempState.makeMove(move);
-        
-        // If king is not in check after the move, it's legal
-        if (!tempState.isInCheck(current_player_)) {
-            legalMoves.push_back(move);
-        }
+    if (!legal_moves_dirty_) {
+        return cached_legal_moves_;
     }
     
-    return legalMoves;
-}
-
-std::vector<ChessMove> ChessState::generatePseudoLegalMoves() const {
-    std::vector<ChessMove> moves;
+    // Generate legal moves using rules
+    cached_legal_moves_ = rules_->generateLegalMoves(
+        current_player_, castling_rights_, en_passant_square_);
+    legal_moves_dirty_ = false;
     
-    // Generate moves for each piece of the current player
-    for (int square = 0; square < NUM_SQUARES; ++square) {
-        Piece piece = board_[square];
-        
-        if (piece.color == current_player_) {
-            switch (piece.type) {
-                case PieceType::PAWN:
-                    addPawnMoves(moves, square);
-                    break;
-                case PieceType::KNIGHT:
-                    addKnightMoves(moves, square);
-                    break;
-                case PieceType::BISHOP:
-                    addBishopMoves(moves, square);
-                    break;
-                case PieceType::ROOK:
-                    addRookMoves(moves, square);
-                    break;
-                case PieceType::QUEEN:
-                    addQueenMoves(moves, square);
-                    break;
-                case PieceType::KING:
-                    addKingMoves(moves, square);
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-    
-    // Add castling moves
-    addCastlingMoves(moves);
-    
-    return moves;
-}
-
-void ChessState::addPawnMoves(std::vector<ChessMove>& moves, int square) const {
-    int rank = getRank(square);
-    int file = getFile(square);
-    int direction = (current_player_ == PieceColor::WHITE) ? -1 : 1;
-    
-    // Regular move forward
-    int newRank = rank + direction;
-    if (newRank >= 0 && newRank < 8) {
-        int newSquare = getSquare(newRank, file);
-        if (board_[newSquare].is_empty()) {
-            // Check if pawn is on the last rank (promotion)
-            if (newRank == 0 || newRank == 7) {
-                // Add all promotion options
-                moves.push_back({square, newSquare, PieceType::QUEEN});
-                moves.push_back({square, newSquare, PieceType::ROOK});
-                moves.push_back({square, newSquare, PieceType::BISHOP});
-                moves.push_back({square, newSquare, PieceType::KNIGHT});
-            } else {
-                moves.push_back({square, newSquare});
-            }
-            
-            // Initial two-square move
-            if ((current_player_ == PieceColor::WHITE && rank == 6) ||
-                (current_player_ == PieceColor::BLACK && rank == 1)) {
-                int twoSquaresForward = newRank + direction;
-                int twoSquareNewSquare = getSquare(twoSquaresForward, file);
-                if (board_[twoSquareNewSquare].is_empty()) {
-                    moves.push_back({square, twoSquareNewSquare});
-                }
-            }
-        }
-    }
-    
-    // Captures (including en passant)
-    for (int fileOffset : {-1, 1}) {
-        int newFile = file + fileOffset;
-        if (newFile >= 0 && newFile < 8) {
-            int newSquare = getSquare(newRank, newFile);
-            
-            // Regular capture
-            if (isValidSquare(newSquare)) {
-                Piece targetPiece = board_[newSquare];
-                if (!targetPiece.is_empty() && targetPiece.color != current_player_) {
-                    // Check for promotion
-                    if (newRank == 0 || newRank == 7) {
-                        moves.push_back({square, newSquare, PieceType::QUEEN});
-                        moves.push_back({square, newSquare, PieceType::ROOK});
-                        moves.push_back({square, newSquare, PieceType::BISHOP});
-                        moves.push_back({square, newSquare, PieceType::KNIGHT});
-                    } else {
-                        moves.push_back({square, newSquare});
-                    }
-                }
-            }
-            
-            // En passant capture
-            if (en_passant_square_ == newSquare) {
-                moves.push_back({square, newSquare});
-            }
-        }
-    }
-}
-
-void ChessState::addKnightMoves(std::vector<ChessMove>& moves, int square) const {
-    int rank = getRank(square);
-    int file = getFile(square);
-    
-    for (const auto& [rankOffset, fileOffset] : KNIGHT_MOVES) {
-        int newRank = rank + rankOffset;
-        int newFile = file + fileOffset;
-        
-        if (newRank >= 0 && newRank < 8 && newFile >= 0 && newFile < 8) {
-            int newSquare = getSquare(newRank, newFile);
-            Piece targetPiece = board_[newSquare];
-            
-            if (targetPiece.is_empty() || targetPiece.color != current_player_) {
-                moves.push_back({square, newSquare});
-            }
-        }
-    }
-}
-
-void ChessState::addBishopMoves(std::vector<ChessMove>& moves, int square) const {
-    addSlidingMoves(moves, square, BISHOP_DIRECTIONS);
-}
-
-void ChessState::addRookMoves(std::vector<ChessMove>& moves, int square) const {
-    addSlidingMoves(moves, square, ROOK_DIRECTIONS);
-}
-
-void ChessState::addQueenMoves(std::vector<ChessMove>& moves, int square) const {
-    addSlidingMoves(moves, square, QUEEN_DIRECTIONS);
-}
-
-void ChessState::addSlidingMoves(std::vector<ChessMove>& moves, int square, 
-                                const std::vector<std::pair<int, int>>& directions) const {
-    int rank = getRank(square);
-    int file = getFile(square);
-    
-    for (const auto& [rankDir, fileDir] : directions) {
-        for (int step = 1; ; ++step) {
-            int newRank = rank + rankDir * step;
-            int newFile = file + fileDir * step;
-            
-            if (newRank < 0 || newRank >= 8 || newFile < 0 || newFile >= 8) {
-                break;  // Off the board
-            }
-            
-            int newSquare = getSquare(newRank, newFile);
-            Piece targetPiece = board_[newSquare];
-            
-            if (targetPiece.is_empty()) {
-                // Empty square, can move here
-                moves.push_back({square, newSquare});
-            } else if (targetPiece.color != current_player_) {
-                // Capture opponent's piece
-                moves.push_back({square, newSquare});
-                break;  // Can't move beyond this
-            } else {
-                // Own piece, can't move here or beyond
-                break;
-            }
-        }
-    }
-}
-
-void ChessState::addKingMoves(std::vector<ChessMove>& moves, int square) const {
-    int rank = getRank(square);
-    int file = getFile(square);
-    
-    for (const auto& [rankOffset, fileOffset] : KING_MOVES) {
-        int newRank = rank + rankOffset;
-        int newFile = file + fileOffset;
-        
-        if (newRank >= 0 && newRank < 8 && newFile >= 0 && newFile < 8) {
-            int newSquare = getSquare(newRank, newFile);
-            Piece targetPiece = board_[newSquare];
-            
-            if (targetPiece.is_empty() || targetPiece.color != current_player_) {
-                moves.push_back({square, newSquare});
-            }
-        }
-    }
-}
-
-void ChessState::addCastlingMoves(std::vector<ChessMove>& moves) const {
-    // Check if king is in check
-    if (isInCheck(current_player_)) {
-        return;  // Cannot castle when in check
-    }
-    
-    // Find the king
-    int kingSquare = getKingSquare(current_player_);
-    if (kingSquare == -1) {
-        return;  // No king found
-    }
-    
-    int rank = getRank(kingSquare);
-    int file = getFile(kingSquare);
-    
-    // Kingside castling
-    if ((current_player_ == PieceColor::WHITE && castling_rights_.white_kingside) ||
-        (current_player_ == PieceColor::BLACK && castling_rights_.black_kingside)) {
-        
-        bool pathClear = true;
-        for (int f = file + 1; f < 7; ++f) {
-            int square = getSquare(rank, f);
-            if (!board_[square].is_empty()) {
-                pathClear = false;
-                break;
-            }
-        }
-        
-        if (pathClear) {
-            // Check if king passes through or ends up in check
-            bool safeToPass = true;
-            for (int f = file + 1; f <= file + 2; ++f) {
-                int square = getSquare(rank, f);
-                if (isSquareAttacked(square, oppositeColor(current_player_))) {
-                    safeToPass = false;
-                    break;
-                }
-            }
-            
-            if (safeToPass) {
-                int kingTarget = getSquare(rank, file + 2);
-                moves.push_back({kingSquare, kingTarget});
-            }
-        }
-    }
-    
-    // Queenside castling
-    if ((current_player_ == PieceColor::WHITE && castling_rights_.white_queenside) ||
-        (current_player_ == PieceColor::BLACK && castling_rights_.black_queenside)) {
-        
-        bool pathClear = true;
-        for (int f = file - 1; f > 0; --f) {
-            int square = getSquare(rank, f);
-            if (!board_[square].is_empty()) {
-                pathClear = false;
-                break;
-            }
-        }
-        
-        if (pathClear) {
-            // Check if king passes through or ends up in check
-            bool safeToPass = true;
-            for (int f = file - 1; f >= file - 2; --f) {
-                int square = getSquare(rank, f);
-                if (isSquareAttacked(square, oppositeColor(current_player_))) {
-                    safeToPass = false;
-                    break;
-                }
-            }
-            
-            if (safeToPass) {
-                int kingTarget = getSquare(rank, file - 2);
-                moves.push_back({kingSquare, kingTarget});
-            }
-        }
-    }
+    return cached_legal_moves_;
 }
 
 bool ChessState::isLegalMove(const ChessMove& move) const {
-    // Check if the move is in the list of legal moves
-    const std::vector<ChessMove>& legalMoves = generateLegalMoves();
-    
-    return std::find(legalMoves.begin(), legalMoves.end(), move) != legalMoves.end();
+    return rules_->isLegalMove(move, current_player_, castling_rights_, en_passant_square_);
 }
 
 void ChessState::makeMove(const ChessMove& move) {
-    // Store current state for undoing
+    if (!isLegalMove(move)) {
+        throw std::runtime_error("Illegal move attempted");
+    }
+    
+    // Store move info for undoing
     MoveInfo moveInfo;
     moveInfo.move = move;
     moveInfo.captured_piece = getPiece(move.to_square);
@@ -1157,52 +906,8 @@ void ChessState::makeMove(const ChessMove& move) {
     }
     
     // Update castling rights
-    if (piece.type == PieceType::KING) {
-        if (current_player_ == PieceColor::WHITE) {
-            castling_rights_.white_kingside = false;
-            castling_rights_.white_queenside = false;
-        } else {
-            castling_rights_.black_kingside = false;
-            castling_rights_.black_queenside = false;
-        }
-    } else if (piece.type == PieceType::ROOK) {
-        int file = getFile(move.from_square);
-        int rank = getRank(move.from_square);
-        
-        if (current_player_ == PieceColor::WHITE && rank == 7) {
-            if (file == 0) {
-                castling_rights_.white_queenside = false;
-            } else if (file == 7) {
-                castling_rights_.white_kingside = false;
-            }
-        } else if (current_player_ == PieceColor::BLACK && rank == 0) {
-            if (file == 0) {
-                castling_rights_.black_queenside = false;
-            } else if (file == 7) {
-                castling_rights_.black_kingside = false;
-            }
-        }
-    }
-    
-    // Check if a rook is captured (update castling rights)
-    if (!moveInfo.captured_piece.is_empty() && moveInfo.captured_piece.type == PieceType::ROOK) {
-        int file = getFile(move.to_square);
-        int rank = getRank(move.to_square);
-        
-        if (moveInfo.captured_piece.color == PieceColor::WHITE && rank == 7) {
-            if (file == 0) {
-                castling_rights_.white_queenside = false;
-            } else if (file == 7) {
-                castling_rights_.white_kingside = false;
-            }
-        } else if (moveInfo.captured_piece.color == PieceColor::BLACK && rank == 0) {
-            if (file == 0) {
-                castling_rights_.black_queenside = false;
-            } else if (file == 7) {
-                castling_rights_.black_kingside = false;
-            }
-        }
-    }
+    castling_rights_ = rules_->getUpdatedCastlingRights(
+        move, piece, moveInfo.captured_piece, castling_rights_);
     
     // Move the piece
     setPiece(move.from_square, Piece());
@@ -1229,252 +934,11 @@ bool ChessState::isInCheck(PieceColor color) const {
         color = current_player_;
     }
     
-    // Find the king
-    int kingSquare = getKingSquare(color);
-    if (kingSquare == -1) {
-        return false;  // No king found
-    }
-    
-    // Check if the king is attacked
-    return isSquareAttacked(kingSquare, oppositeColor(color));
+    return rules_->isInCheck(color);
 }
 
-bool ChessState::isSquareAttacked(int square, PieceColor byColor) const {
-    int rank = getRank(square);
-    int file = getFile(square);
-    
-    // Check for pawn attacks
-    int pawnDir = (byColor == PieceColor::WHITE) ? -1 : 1;
-    for (int fileOffset : {-1, 1}) {
-        int attackRank = rank + pawnDir;
-        int attackFile = file + fileOffset;
-        
-        if (attackRank >= 0 && attackRank < 8 && attackFile >= 0 && attackFile < 8) {
-            int attackSquare = getSquare(attackRank, attackFile);
-            Piece attacker = getPiece(attackSquare);
-            
-            if (attacker.type == PieceType::PAWN && attacker.color == byColor) {
-                return true;
-            }
-        }
-    }
-    
-    // Check for knight attacks
-    for (const auto& [rankOffset, fileOffset] : KNIGHT_MOVES) {
-        int attackRank = rank + rankOffset;
-        int attackFile = file + fileOffset;
-        
-        if (attackRank >= 0 && attackRank < 8 && attackFile >= 0 && attackFile < 8) {
-            int attackSquare = getSquare(attackRank, attackFile);
-            Piece attacker = getPiece(attackSquare);
-            
-            if (attacker.type == PieceType::KNIGHT && attacker.color == byColor) {
-                return true;
-            }
-        }
-    }
-    
-    // Check for king attacks
-    for (const auto& [rankOffset, fileOffset] : KING_MOVES) {
-        int attackRank = rank + rankOffset;
-        int attackFile = file + fileOffset;
-        
-        if (attackRank >= 0 && attackRank < 8 && attackFile >= 0 && attackFile < 8) {
-            int attackSquare = getSquare(attackRank, attackFile);
-            Piece attacker = getPiece(attackSquare);
-            
-            if (attacker.type == PieceType::KING && attacker.color == byColor) {
-                return true;
-            }
-        }
-    }
-    
-    // Check for sliding piece attacks (bishop, rook, queen)
-    
-    // Bishop/Queen: diagonal directions
-    for (const auto& [rankDir, fileDir] : BISHOP_DIRECTIONS) {
-        for (int step = 1; ; ++step) {
-            int attackRank = rank + rankDir * step;
-            int attackFile = file + fileDir * step;
-            
-            if (attackRank < 0 || attackRank >= 8 || attackFile < 0 || attackFile >= 8) {
-                break;  // Off the board
-            }
-            
-            int attackSquare = getSquare(attackRank, attackFile);
-            Piece attacker = getPiece(attackSquare);
-            
-            if (!attacker.is_empty()) {
-                if (attacker.color == byColor && 
-                    (attacker.type == PieceType::BISHOP || attacker.type == PieceType::QUEEN)) {
-                    return true;
-                }
-                break;  // Piece blocks further attacks in this direction
-            }
-        }
-    }
-    
-    // Rook/Queen: straight directions
-    for (const auto& [rankDir, fileDir] : ROOK_DIRECTIONS) {
-        for (int step = 1; ; ++step) {
-            int attackRank = rank + rankDir * step;
-            int attackFile = file + fileDir * step;
-            
-            if (attackRank < 0 || attackRank >= 8 || attackFile < 0 || attackFile >= 8) {
-                break;  // Off the board
-            }
-            
-            int attackSquare = getSquare(attackRank, attackFile);
-            Piece attacker = getPiece(attackSquare);
-            
-            if (!attacker.is_empty()) {
-                if (attacker.color == byColor && 
-                    (attacker.type == PieceType::ROOK || attacker.type == PieceType::QUEEN)) {
-                    return true;
-                }
-                break;  // Piece blocks further attacks in this direction
-            }
-        }
-    }
-    
-    return false;
-}
-
-// Draw detection
-bool ChessState::hasInsufficientMaterial() const {
-    // Count material on the board
-    int numWhitePawns = 0;
-    int numBlackPawns = 0;
-    int numWhiteKnights = 0;
-    int numBlackKnights = 0;
-    int numWhiteBishops = 0;
-    int numBlackBishops = 0;
-    int numWhiteRooks = 0;
-    int numBlackRooks = 0;
-    int numWhiteQueens = 0;
-    int numBlackQueens = 0;
-    
-    for (int square = 0; square < NUM_SQUARES; ++square) {
-        Piece piece = board_[square];
-        
-        if (piece.is_empty()) continue;
-        
-        if (piece.color == PieceColor::WHITE) {
-            switch (piece.type) {
-                case PieceType::PAWN:   numWhitePawns++; break;
-                case PieceType::KNIGHT: numWhiteKnights++; break;
-                case PieceType::BISHOP: numWhiteBishops++; break;
-                case PieceType::ROOK:   numWhiteRooks++; break;
-                case PieceType::QUEEN:  numWhiteQueens++; break;
-                default: break;
-            }
-        } else {
-            switch (piece.type) {
-                case PieceType::PAWN:   numBlackPawns++; break;
-                case PieceType::KNIGHT: numBlackKnights++; break;
-                case PieceType::BISHOP: numBlackBishops++; break;
-                case PieceType::ROOK:   numBlackRooks++; break;
-                case PieceType::QUEEN:  numBlackQueens++; break;
-                default: break;
-            }
-        }
-    }
-    
-    // Check for insufficient material scenarios
-    
-    // King vs King
-    if (numWhitePawns == 0 && numBlackPawns == 0 &&
-        numWhiteKnights == 0 && numBlackKnights == 0 &&
-        numWhiteBishops == 0 && numBlackBishops == 0 &&
-        numWhiteRooks == 0 && numBlackRooks == 0 &&
-        numWhiteQueens == 0 && numBlackQueens == 0) {
-        return true;
-    }
-    
-    // King and Knight vs King
-    if ((numWhiteKnights == 1 && numBlackKnights == 0 ||
-         numWhiteKnights == 0 && numBlackKnights == 1) &&
-        numWhitePawns == 0 && numBlackPawns == 0 &&
-        numWhiteBishops == 0 && numBlackBishops == 0 &&
-        numWhiteRooks == 0 && numBlackRooks == 0 &&
-        numWhiteQueens == 0 && numBlackQueens == 0) {
-        return true;
-    }
-    
-    // King and Bishop vs King
-    if ((numWhiteBishops == 1 && numBlackBishops == 0 ||
-         numWhiteBishops == 0 && numBlackBishops == 1) &&
-        numWhitePawns == 0 && numBlackPawns == 0 &&
-        numWhiteKnights == 0 && numBlackKnights == 0 &&
-        numWhiteRooks == 0 && numBlackRooks == 0 &&
-        numWhiteQueens == 0 && numBlackQueens == 0) {
-        return true;
-    }
-    
-    // King and Bishop vs King and Bishop of the same color
-    if (numWhitePawns == 0 && numBlackPawns == 0 &&
-        numWhiteKnights == 0 && numBlackKnights == 0 &&
-        numWhiteBishops == 1 && numBlackBishops == 1 &&
-        numWhiteRooks == 0 && numBlackRooks == 0 &&
-        numWhiteQueens == 0 && numBlackQueens == 0) {
-        
-        // Check if bishops are on the same color
-        bool whiteBishopOnWhite = false;
-        bool blackBishopOnWhite = false;
-        
-        for (int square = 0; square < NUM_SQUARES; ++square) {
-            Piece piece = board_[square];
-            
-            if (piece.type == PieceType::BISHOP) {
-                int rank = getRank(square);
-                int file = getFile(square);
-                bool squareIsWhite = (rank + file) % 2 == 0;
-                
-                if (piece.color == PieceColor::WHITE) {
-                    whiteBishopOnWhite = squareIsWhite;
-                } else {
-                    blackBishopOnWhite = squareIsWhite;
-                }
-            }
-        }
-        
-        if (whiteBishopOnWhite == blackBishopOnWhite) {
-            return true;
-        }
-    }
-    
-    return false;
-}
-
-bool ChessState::isThreefoldRepetition() const {
-    // Count positions in history
-    std::unordered_map<uint64_t, int> positionCount;
-    
-    // Add current position
-    positionCount[getHash()]++;
-    
-    // Iterate through move history
-    ChessState tempState(*this);
-    
-    for (int i = static_cast<int>(move_history_.size()) - 1; i >= 0; --i) {
-        // Undo move
-        tempState.undoMove();
-        
-        // Add position to count
-        positionCount[tempState.getHash()]++;
-        
-        // Check if position has occurred three times
-        if (positionCount[tempState.getHash()] >= 3) {
-            return true;
-        }
-        
-        // Reset halfmove clock if it was reset
-        if (tempState.getHalfmoveClock() == 0) {
-            break;  // Irreversible move found, no earlier repetition possible
-        }
-    }
-    
-    return false;
+bool ChessState::isSquareAttacked(int square, PieceColor by_color) const {
+    return rules_->isSquareAttacked(square, by_color);
 }
 
 // Utility methods
@@ -1682,7 +1146,7 @@ std::string ChessState::toSAN(const ChessMove& move) const {
     }
     
     // Disambiguation
-    auto legalMoves = generateLegalMoves();
+    std::vector<ChessMove> legalMoves = generateLegalMoves();
     std::vector<ChessMove> ambiguousMoves;
     
     for (const auto& m : legalMoves) {

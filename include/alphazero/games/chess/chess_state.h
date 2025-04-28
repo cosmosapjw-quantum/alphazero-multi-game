@@ -6,14 +6,15 @@
 #include <string>
 #include <array>
 #include <optional>
-#include <bitset>
-#include <unordered_set>
-#include <unordered_map>
+#include <memory>
 #include "alphazero/core/igamestate.h"
 #include "alphazero/core/zobrist_hash.h"
 
 namespace alphazero {
 namespace chess {
+
+// Forward declaration
+class ChessRules;
 
 // Piece type definitions
 enum class PieceType {
@@ -285,6 +286,14 @@ public:
      * @return ChessMove object, or nullopt if invalid
      */
     std::optional<ChessMove> fromSAN(const std::string& sanStr) const;
+    
+    /**
+     * @brief Get the king square for a color
+     * 
+     * @param color Color to check
+     * @return Square index of the king, or -1 if not found
+     */
+    int getKingSquare(PieceColor color) const;
 
 private:
     static const int BOARD_SIZE = 8;
@@ -327,32 +336,16 @@ private:
     mutable core::GameResult cached_result_;
     mutable bool terminal_check_dirty_;
     
+    // Rules object
+    std::shared_ptr<ChessRules> rules_;
+    
     // Helper methods
     void initializeStartingPosition();
     void initializeEmpty();
     void invalidateCache();
     
-    // Move generation helpers
-    std::vector<ChessMove> generatePseudoLegalMoves() const;
-    void addPawnMoves(std::vector<ChessMove>& moves, int square) const;
-    void addKnightMoves(std::vector<ChessMove>& moves, int square) const;
-    void addBishopMoves(std::vector<ChessMove>& moves, int square) const;
-    void addRookMoves(std::vector<ChessMove>& moves, int square) const;
-    void addQueenMoves(std::vector<ChessMove>& moves, int square) const;
-    void addKingMoves(std::vector<ChessMove>& moves, int square) const;
-    void addCastlingMoves(std::vector<ChessMove>& moves) const;
-    
-    // Check for insufficient material
-    bool hasInsufficientMaterial() const;
-    
-    // Check for threefold repetition
-    bool isThreefoldRepetition() const;
-    
     // Update zobrist hash
     void updateHash();
-    
-    // Get king square for a color
-    int getKingSquare(PieceColor color) const;
     
     // Utility functions
     static int getRank(int square) { return square / 8; }
@@ -362,10 +355,6 @@ private:
     static PieceColor oppositeColor(PieceColor color) {
         return color == PieceColor::WHITE ? PieceColor::BLACK : PieceColor::WHITE;
     }
-    
-    // Sliding piece movement
-    void addSlidingMoves(std::vector<ChessMove>& moves, int square, 
-                         const std::vector<std::pair<int, int>>& directions) const;
 };
 
 } // namespace chess

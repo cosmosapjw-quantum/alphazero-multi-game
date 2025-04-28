@@ -1,7 +1,6 @@
 // src/games/go/go_state.cpp
 #include "alphazero/games/go/go_state.h"
 #include <algorithm>
-#include <queue>
 #include <sstream>
 #include <iomanip>
 #include <cmath>
@@ -35,6 +34,16 @@ GoState::GoState(int board_size, float komi, bool chinese_rules)
     // Initialize Zobrist hash
     hash_ = 0;
     hash_dirty_ = true;
+    
+    // Initialize rules
+    rules_ = std::make_shared<GoRules>(board_size_, chinese_rules_);
+    
+    // Set up board accessor functions for rules
+    rules_->setBoardAccessor(
+        [this](int pos) { return this->getStone(pos); },
+        [this](int pos) { return this->isInBounds(pos); },
+        [this](int pos) { return this->getAdjacentPositions(pos); }
+    );
 }
 
 // Copy constructor
@@ -54,6 +63,15 @@ GoState::GoState(const GoState& other)
       hash_(other.hash_),
       hash_dirty_(other.hash_dirty_)
 {
+    // Initialize rules
+    rules_ = std::make_shared<GoRules>(board_size_, chinese_rules_);
+    
+    // Set up board accessor functions for rules
+    rules_->setBoardAccessor(
+        [this](int pos) { return this->getStone(pos); },
+        [this](int pos) { return this->isInBounds(pos); },
+        [this](int pos) { return this->getAdjacentPositions(pos); }
+    );
 }
 
 // Assignment operator
@@ -71,6 +89,16 @@ GoState& GoState::operator=(const GoState& other) {
         position_history_ = other.position_history_;
         hash_ = other.hash_;
         hash_dirty_ = other.hash_dirty_;
+        
+        // Reinitialize rules
+        rules_ = std::make_shared<GoRules>(board_size_, chinese_rules_);
+        
+        // Set up board accessor functions for rules
+        rules_->setBoardAccessor(
+            [this](int pos) { return this->getStone(pos); },
+            [this](int pos) { return this->isInBounds(pos); },
+            [this](int pos) { return this->getAdjacentPositions(pos); }
+        );
     }
     return *this;
 }
@@ -109,6 +137,9 @@ void GoState::makeMove(int action) {
     if (action == -1) {
         consecutive_passes_++;
         ko_point_ = -1;  // Clear ko point on pass
+        
+        // Record move
+        move_history_.push_back(action);
     } else {
         // Reset consecutive passes
         consecutive_passes_ = 0;
@@ -120,7 +151,7 @@ void GoState::makeMove(int action) {
         uint64_t currentHash = getHash();
         
         // Check for captures
-        std::vector<StoneGroup> opponentGroups = findGroups(3 - current_player_);
+        std::vector<StoneGroup> opponentGroups = rules_->findGroups(3 - current_player_);
         std::vector<StoneGroup> capturedGroups;
         int capturedStones = 0;
         
@@ -209,10 +240,7 @@ core::GameResult GoState::getGameResult() const {
     }
     
     // Calculate scores
-    auto [blackScore, whiteScore] = calculateScores();
-    
-    // Apply komi for white
-    whiteScore += komi_;
+    auto [blackScore, whiteScore] = rules_->calculateScores(captured_stones_, komi_);
     
     if (blackScore > whiteScore) {
         return core::GameResult::WIN_PLAYER1;  // Black wins
@@ -278,8 +306,8 @@ std::vector<std::vector<std::vector<float>>> GoState::getEnhancedTensorRepresent
     std::vector<std::vector<float>> whiteLiberties(board_size_, std::vector<float>(board_size_, 0.0f));
     
     // Calculate liberties for each group
-    auto blackGroups = findGroups(1);
-    auto whiteGroups = findGroups(2);
+    auto blackGroups = rules_->findGroups(1);
+    auto whiteGroups = rules_->findGroups(2);
     
     for (const auto& group : blackGroups) {
         float libertyCount = static_cast<float>(group.liberties.size());
@@ -454,8 +482,7 @@ std::string GoState::toString() const {
     ss << "Rules: " << (chinese_rules_ ? "Chinese" : "Japanese") << std::endl;
     
     if (isTerminal()) {
-        auto [blackScore, whiteScore] = calculateScores();
-        whiteScore += komi_;
+        auto [blackScore, whiteScore] = rules_->calculateScores(captured_stones_, komi_);
         
         ss << "Game over!" << std::endl;
         ss << "Final score - Black: " << blackScore << ", White: " << whiteScore 
@@ -513,8 +540,6 @@ bool GoState::validate() const {
     if (ko_point_ >= board_size_ * board_size_) {
         return false;
     }
-    
-    // Other validation could be added here
     
     return true;
 }
@@ -584,189 +609,23 @@ int GoState::coordToAction(int x, int y) const {
     return y * board_size_ + x;
 }
 
-bool GoState::isSuicidalMove(int action) const {
-    if (action < 0 || action >= board_size_ * board_size_) {
-        return true;  // Out of bounds is considered suicidal
-    }
-    
-    // If the intersection is not empty, it's not a valid move
-    if (getStone(action) != 0) {
-        return true;
-    }
-    
-    // Check if this is a ko point
-    if (action == ko_point_) {
-        return true;
-    }
-    
-    // Create a temporary copy of the board
-    GoState tempState(*this);
-    
-    // Place the stone
-    tempState.setStone(action, current_player_);
-    
-    // Check for captures
-    std::vector<StoneGroup> opponentGroups = tempState.findGroups(3 - current_player_);
-    bool capturesOpponent = false;
-    
-    for (const auto& group : opponentGroups) {
-        if (group.liberties.empty()) {
-            capturesOpponent = true;
-            break;
-        }
-    }
-    
-    // If capturing opponent groups, the move is not suicidal
-    if (capturesOpponent) {
-        return false;
-    }
-    
-    // Check if the placed stone has liberties
-    std::vector<StoneGroup> ownGroups = tempState.findGroups(current_player_);
-    
-    for (const auto& group : ownGroups) {
-        if (group.stones.find(action) != group.stones.end()) {
-            // This is the group containing our stone
-            return group.liberties.empty();  // Suicidal if no liberties
-        }
-    }
-    
-    // Should not reach here
-    return true;
-}
-
-bool GoState::isKoViolation(int action) const {
-    return action == ko_point_;
-}
-
-std::pair<float, float> GoState::calculateScores() const {
-    float blackScore = 0.0f;
-    float whiteScore = 0.0f;
-    
-    // Count stones for Chinese rules
-    if (chinese_rules_) {
-        for (int pos = 0; pos < board_size_ * board_size_; ++pos) {
-            int stone = getStone(pos);
-            if (stone == 1) {
-                blackScore += 1.0f;
-            } else if (stone == 2) {
-                whiteScore += 1.0f;
-            }
-        }
-    }
-    
-    // Count territory
-    std::vector<int> territory = getTerritoryOwnership();
-    
-    for (int pos = 0; pos < board_size_ * board_size_; ++pos) {
-        int owner = territory[pos];
-        if (owner == 1) {
-            blackScore += 1.0f;
-        } else if (owner == 2) {
-            whiteScore += 1.0f;
-        }
-    }
-    
-    // Add captures for Japanese rules
-    if (!chinese_rules_) {
-        blackScore += static_cast<float>(captured_stones_[1]);
-        whiteScore += static_cast<float>(captured_stones_[2]);
-    }
-    
-    return {blackScore, whiteScore};
-}
-
 int GoState::getKoPoint() const {
     return ko_point_;
 }
 
 std::vector<int> GoState::getTerritoryOwnership() const {
-    std::vector<int> territory(board_size_ * board_size_, 0);
-    
-    // Mark existing stones as territory
-    for (int pos = 0; pos < board_size_ * board_size_; ++pos) {
-        int stone = getStone(pos);
-        if (stone != 0) {
-            territory[pos] = stone;  // Owned by the player with a stone here
-        }
-    }
-    
-    // Find empty regions and determine ownership
-    for (int pos = 0; pos < board_size_ * board_size_; ++pos) {
-        if (getStone(pos) == 0 && territory[pos] == 0) {
-            // Unmarked empty intersection, flood fill to find territory
-            int territoryColor = 0;
-            floodFillTerritory(territory, pos, territoryColor);
-        }
-    }
-    
-    return territory;
+    return rules_->getTerritoryOwnership();
 }
 
 bool GoState::isInsideTerritory(int pos, int player) const {
-    if (pos < 0 || pos >= board_size_ * board_size_) {
+    std::vector<int> territory = getTerritoryOwnership();
+    if (pos < 0 || pos >= static_cast<int>(territory.size())) {
         return false;
     }
-    
-    // Get territory ownership
-    std::vector<int> territory = getTerritoryOwnership();
-    
-    // Check if the position is owned by the player
     return territory[pos] == player;
 }
 
 // Helper methods
-void GoState::findLiberties(std::unordered_set<int>& stones, std::unordered_set<int>& liberties) const {
-    liberties.clear();
-    
-    // Check adjacent positions of all stones in the group
-    for (int pos : stones) {
-        for (int adjPos : getAdjacentPositions(pos)) {
-            if (getStone(adjPos) == 0) {
-                liberties.insert(adjPos);
-            }
-        }
-    }
-}
-
-std::vector<StoneGroup> GoState::findGroups(int player) const {
-    std::vector<StoneGroup> groups;
-    std::vector<bool> visited(board_size_ * board_size_, false);
-    
-    for (int pos = 0; pos < board_size_ * board_size_; ++pos) {
-        if (getStone(pos) == player && !visited[pos]) {
-            // Found a new, unvisited stone of the player
-            StoneGroup group;
-            std::queue<int> queue;
-            
-            queue.push(pos);
-            visited[pos] = true;
-            group.stones.insert(pos);
-            
-            // Flood fill to find all connected stones
-            while (!queue.empty()) {
-                int currentPos = queue.front();
-                queue.pop();
-                
-                for (int adjPos : getAdjacentPositions(currentPos)) {
-                    if (getStone(adjPos) == player && !visited[adjPos]) {
-                        queue.push(adjPos);
-                        visited[adjPos] = true;
-                        group.stones.insert(adjPos);
-                    }
-                }
-            }
-            
-            // Find liberties for the group
-            findLiberties(group.stones, group.liberties);
-            
-            groups.push_back(group);
-        }
-    }
-    
-    return groups;
-}
-
 std::vector<int> GoState::getAdjacentPositions(int pos) const {
     std::vector<int> adjacentPositions;
     int x, y;
@@ -804,74 +663,6 @@ void GoState::captureGroup(const StoneGroup& group) {
     }
 }
 
-bool GoState::isLibertyOfOtherGroups(int pos, int stone_color) const {
-    // Check if this empty position is a liberty of any other groups
-    for (int adjPos : getAdjacentPositions(pos)) {
-        if (getStone(adjPos) == stone_color) {
-            return true;
-        }
-    }
-    
-    return false;
-}
-
-void GoState::floodFillTerritory(std::vector<int>& territory, int pos, int& territory_color) const {
-    // Start with neutral territory
-    territory_color = 0;
-    
-    // Use a queue for flood fill
-    std::queue<int> queue;
-    std::unordered_set<int> visited;
-    
-    queue.push(pos);
-    visited.insert(pos);
-    
-    // Keep track of what stones this territory touches
-    bool touchesBlack = false;
-    bool touchesWhite = false;
-    
-    while (!queue.empty()) {
-        int currentPos = queue.front();
-        queue.pop();
-        
-        // Mark as part of this territory
-        territory[currentPos] = territory_color;
-        
-        for (int adjPos : getAdjacentPositions(currentPos)) {
-            int stone = getStone(adjPos);
-            
-            if (stone == 0) {
-                // Empty intersection, add to flood fill if not visited
-                if (visited.find(adjPos) == visited.end()) {
-                    queue.push(adjPos);
-                    visited.insert(adjPos);
-                }
-            } else if (stone == 1) {
-                // Touches black
-                touchesBlack = true;
-            } else if (stone == 2) {
-                // Touches white
-                touchesWhite = true;
-            }
-        }
-    }
-    
-    // Determine territory color based on what stones it touches
-    if (touchesBlack && !touchesWhite) {
-        territory_color = 1;  // Black territory
-    } else if (touchesWhite && !touchesBlack) {
-        territory_color = 2;  // White territory
-    } else {
-        territory_color = 0;  // Neutral or contested
-    }
-    
-    // Update the territory with the determined color
-    for (int visitedPos : visited) {
-        territory[visitedPos] = territory_color;
-    }
-}
-
-// Move validation
 bool GoState::isValidMove(int action) const {
     if (action < 0 || action >= board_size_ * board_size_) {
         return false;
@@ -883,12 +674,12 @@ bool GoState::isValidMove(int action) const {
     }
     
     // Check if this is a ko point
-    if (action == ko_point_) {
+    if (rules_->isKoViolation(action, ko_point_)) {
         return false;
     }
     
-    // Check for suicide rule, unless it would capture opponent stones
-    if (isSuicidalMove(action)) {
+    // Check for suicide rule
+    if (rules_->isSuicidalMove(action, current_player_)) {
         return false;
     }
     

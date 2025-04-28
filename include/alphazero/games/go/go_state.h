@@ -6,19 +6,13 @@
 #include <string>
 #include <unordered_set>
 #include <memory>
+#include <optional>
 #include "alphazero/core/igamestate.h"
 #include "alphazero/core/zobrist_hash.h"
+#include "alphazero/games/go/go_rules.h"
 
 namespace alphazero {
 namespace go {
-
-/**
- * @brief Group of connected stones
- */
-struct StoneGroup {
-    std::unordered_set<int> stones;
-    std::unordered_set<int> liberties;
-};
 
 /**
  * @brief Implementation of Go game state
@@ -28,7 +22,7 @@ public:
     /**
      * @brief Constructor
      * 
-     * @param board_size Board size (9 or 19)
+     * @param board_size Board size (9, 13, or 19)
      * @param komi Komi value
      * @param chinese_rules Whether to use Chinese rules
      */
@@ -140,29 +134,6 @@ public:
     int coordToAction(int x, int y) const;
     
     /**
-     * @brief Check if a move would be suicide
-     * 
-     * @param action Action index
-     * @return true if move would be suicide, false otherwise
-     */
-    bool isSuicidalMove(int action) const;
-    
-    /**
-     * @brief Check if a move would violate the ko rule
-     * 
-     * @param action Action index
-     * @return true if move would violate ko, false otherwise
-     */
-    bool isKoViolation(int action) const;
-    
-    /**
-     * @brief Calculate territory scores
-     * 
-     * @return Pair of (black_score, white_score)
-     */
-    std::pair<float, float> calculateScores() const;
-    
-    /**
      * @brief Get current ko point
      * 
      * @return Ko point index, or -1 if none
@@ -204,20 +175,20 @@ private:
     mutable uint64_t hash_;
     mutable bool hash_dirty_;
     
+    // Rules
+    std::shared_ptr<GoRules> rules_;
+    
     // Helper methods
-    void findLiberties(std::unordered_set<int>& stones, std::unordered_set<int>& liberties) const;
-    std::vector<StoneGroup> findGroups(int player) const;
     std::vector<int> getAdjacentPositions(int pos) const;
     bool isInBounds(int x, int y) const;
     bool isInBounds(int pos) const;
     void invalidateHash();
     void captureGroup(const StoneGroup& group);
-    bool isLibertyOfOtherGroups(int pos, int stone_color) const;
     
-    // Score calculation helpers
-    void floodFillTerritory(std::vector<int>& territory, int pos, int& territory_color) const;
+    // Hash calculation
+    void updateHash() const;
     
-    // Move validation
+    // Check if a move is valid
     bool isValidMove(int action) const;
 };
 
