@@ -529,8 +529,23 @@ int ParallelMCTS::selectAction(bool isTraining, float temperature) {
             return rootNode_->actions[idx];
         }
     } else {
-        // In evaluation mode or temperature=0, pick move with highest visit count
-        return rootNode_->getBestAction();
+        // In evaluation mode or temperature=0
+        // Get all actions with highest visit count
+        std::vector<int> bestActions = rootNode_->getBestActions();
+        
+        if (bestActions.empty()) {
+            return -1;
+        }
+        
+        if (bestActions.size() == 1 || deterministicMode_) {
+            // Only one best action or in deterministic mode, return the first
+            return bestActions[0];
+        } else {
+            // Randomly select one of the best actions
+            std::uniform_int_distribution<size_t> dist(0, bestActions.size() - 1);
+            size_t idx = dist(rng_);
+            return bestActions[idx];
+        }
     }
 }
 

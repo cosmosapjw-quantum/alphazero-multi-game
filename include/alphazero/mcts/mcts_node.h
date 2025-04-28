@@ -148,6 +148,13 @@ public:
     int getBestAction() const;
     
     /**
+     * @brief Get all actions with the highest visit count
+     * 
+     * @return Vector of actions with the highest visit count
+     */
+    std::vector<int> getBestActions() const;
+    
+    /**
      * @brief Get the best child based on visit counts
      * 
      * @return Pointer to best child (nullptr if no children)

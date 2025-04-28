@@ -134,6 +134,29 @@ int MCTSNode::getBestAction() const {
     return actions[bestActionIdx];
 }
 
+std::vector<int> MCTSNode::getBestActions() const {
+    if (children.empty()) {
+        return {};
+    }
+    
+    // Find max visit count
+    int maxVisits = 0;
+    for (const auto& child : children) {
+        int visits = child->visitCount.load();
+        maxVisits = std::max(maxVisits, visits);
+    }
+    
+    // Collect all actions with this visit count
+    std::vector<int> bestActions;
+    for (size_t i = 0; i < children.size(); ++i) {
+        if (children[i]->visitCount.load() == maxVisits) {
+            bestActions.push_back(actions[i]);
+        }
+    }
+    
+    return bestActions;
+}
+
 MCTSNode* MCTSNode::getBestChild() const {
     if (children.empty()) {
         return nullptr;

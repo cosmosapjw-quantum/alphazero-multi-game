@@ -58,6 +58,13 @@ endif()
 find_package(Torch REQUIRED)        # provides imported target Torch::Torch
 message(STATUS "Torch include root: ${Torch_INCLUDE_DIRS}")
 
+# ─── Torch target compatibility ────────────────────────────────────────────────
+# Libtorch ≥ 2.0 no longer exports Torch::Torch; use torch instead.
+# Keep projects that still refer to Torch::Torch working by creating an alias.
+if(NOT TARGET Torch::Torch AND TARGET torch)
+    add_library(Torch::Torch ALIAS torch)
+endif()
+
 # --- Header-only nlohmann_json ----------------------------------------------
 include(FetchContent)
 FetchContent_Declare(
