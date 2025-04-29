@@ -172,5 +172,73 @@ TEST_F(ParallelMCTSTest, SelfPlay) {
     EXPECT_TRUE(state->isTerminal() || moveCount >= maxMoves);
 }
 
+TEST_F(ParallelMCTSTest, SetParameters) {
+    // Test setting various parameters
+    
+    // Set number of threads
+    mcts->setNumThreads(4);
+    
+    // Set number of simulations
+    mcts->setNumSimulations(200);
+    
+    // Set exploration constant
+    mcts->setCPuct(2.0f);
+    
+    // Set FPU reduction
+    mcts->setFpuReduction(0.1f);
+    
+    // Set virtual loss
+    mcts->setVirtualLoss(5);
+    
+    // Set selection strategy
+    mcts->setSelectionStrategy(MCTSNodeSelection::UCB);
+    
+    // These don't have direct getters, so we can only test they don't crash
+    EXPECT_NO_THROW(mcts->search());
+    
+    // Set back to PUCT
+    mcts->setSelectionStrategy(MCTSNodeSelection::PUCT);
+}
+
+TEST_F(ParallelMCTSTest, RootValue) {
+    // Run search
+    mcts->search();
+    
+    // Get root value
+    float value = mcts->getRootValue();
+    
+    // Value should be in range [-1, 1]
+    EXPECT_GE(value, -1.0f);
+    EXPECT_LE(value, 1.0f);
+}
+
+TEST_F(ParallelMCTSTest, SearchInfo) {
+    // Run search
+    mcts->search();
+    
+    // Get search info
+    std::string info = mcts->getSearchInfo();
+    
+    // Should have some content
+    EXPECT_FALSE(info.empty());
+    
+    // Should contain visit count info
+    EXPECT_NE(info.find("visits"), std::string::npos);
+}
+
+TEST_F(ParallelMCTSTest, ReleaseMemory) {
+    // Run search
+    mcts->search();
+    
+    // Get memory usage before
+    size_t memoryBefore = mcts->getMemoryUsage();
+    
+    // Release memory
+    mcts->releaseMemory();
+    
+    // Memory usage should still be non-zero
+    EXPECT_GT(mcts->getMemoryUsage(), 0);
+}
+
 } // namespace mcts
 } // namespace alphazero

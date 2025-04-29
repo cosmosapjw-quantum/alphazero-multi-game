@@ -1,0 +1,90 @@
+FROM nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install all dependencies needed for building AlphaZero
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        build-essential git wget unzip ca-certificates \
+        libopenblas-dev ninja-build pkg-config gdb valgrind \
+        python3-dev python3-pip patch \
+        nlohmann-json3-dev \
+        pybind11-dev \
+        python3-sympy python3-networkx python3-jinja2 \
+        python3-filelock python3-fsspec python3-requests \
+        cmake && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Modern CMake
+RUN python3 -m pip install --no-cache-dir --upgrade \
+        pip setuptools wheel cmake==3.29.*
+
+ENV PIP_DEFAULT_TIMEOUT=120 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+# PyTorch & torchvision for CUDA 12.1
+ARG TORCH_VER=2.1.0
+ARG CUDA_TAG=cu121
+RUN pip install --no-cache-dir --retries 5 \
+        torch==${TORCH_VER}+${CUDA_TAG} \
+        torchvision==0.16.0+${CUDA_TAG} \
+        --extra-index-url https://download.pytorch.org/whl/${CUDA_TAG}
+
+# LibTorch C++ distribution
+RUN mkdir -p /opt && \
+    wget -q https://download.pytorch.org/libtorch/${CUDA_TAG}/libtorch-cxx11-abi-shared-with-deps-${TORCH_VER}%2B${CUDA_TAG}.zip \
+        -O /tmp/libtorch.zip && \
+    unzip -q /tmp/libtorch.zip -d /opt && rm /tmp/libtorch.zip
+ENV TORCH_DIR=/opt/libtorch
+ENV LD_LIBRARY_PATH="/opt/libtorch/lib:${LD_LIBRARY_PATH}"
+
+# Copy project files
+WORKDIR /src
+COPY . .
+
+# Create a direct modification to CMakeLists.txt to bypass installation
+RUN sed -i '/# 9. Installation/,/# 10\. Package-config/c\# 9. Installation (disabled for testing)\n# Installation disabled for test build\n\n# 10. Package-config files (disabled for testing)' CMakeLists.txt
+
+# Configure and build with tests enabled
+RUN cmake -S . -B build \
+      -DCMAKE_BUILD_TYPE=Release \
+      -DTORCH_DIR=${TORCH_DIR} \
+      -DCMAKE_PREFIX_PATH="${TORCH_DIR};/usr/share/cmake" \
+      -DTorch_DIR=${TORCH_DIR}/share/cmake/Torch \
+      -DALPHAZERO_ENABLE_GPU=ON \
+      -DALPHAZERO_ENABLE_PYTHON=OFF \
+      -DALPHAZERO_BUILD_TESTS=ON \
+      -DALPHAZERO_BUILD_EXAMPLES=OFF \
+      -DCMAKE_CUDA_ARCHITECTURES=86 && \
+    cmake --build build -j$(nproc)
+
+# Create test runner script with proper escaping
+RUN echo '#!/bin/bash' > /src/run-tests.sh && \
+    echo 'echo "=== Running AlphaZero Tests ==="' >> /src/run-tests.sh && \
+    echo 'cd /src/build' >> /src/run-tests.sh && \
+    echo '' >> /src/run-tests.sh && \
+    echo '# Run all tests with ctest' >> /src/run-tests.sh && \
+    echo 'echo -e "\n=== Running Tests with CTest ==="' >> /src/run-tests.sh && \
+    echo 'ctest -V' >> /src/run-tests.sh && \
+    echo '' >> /src/run-tests.sh && \
+    echo '# Find and run test executables directly' >> /src/run-tests.sh && \
+    echo 'echo -e "\n=== Test Executables ==="' >> /src/run-tests.sh && \
+    echo 'find_cmd="find . -name \"*_tests\" -type f -executable"' >> /src/run-tests.sh && \
+    echo 'if $find_cmd | grep -q .; then' >> /src/run-tests.sh && \
+    echo '  echo "Found test executables:"' >> /src/run-tests.sh && \
+    echo '  $find_cmd' >> /src/run-tests.sh && \
+    echo '' >> /src/run-tests.sh && \
+    echo '  echo -e "\n=== Running Test Executables Directly ==="' >> /src/run-tests.sh && \
+    echo '  for test in $($find_cmd); do' >> /src/run-tests.sh && \
+    echo '    echo -e "\nRunning: $test"' >> /src/run-tests.sh && \
+    echo '    $test' >> /src/run-tests.sh && \
+    echo '  done' >> /src/run-tests.sh && \
+    echo 'else' >> /src/run-tests.sh && \
+    echo '  echo "No test executables found."' >> /src/run-tests.sh && \
+    echo 'fi' >> /src/run-tests.sh && \
+    echo '' >> /src/run-tests.sh && \
+    echo 'echo -e "\n=== Tests Completed ==="' >> /src/run-tests.sh && \
+    chmod +x /src/run-tests.sh
+
+# Set entrypoint to run the tests
+ENTRYPOINT ["/src/run-tests.sh"] 

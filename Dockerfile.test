@@ -1,12 +1,8 @@
-# syntax=docker/dockerfile:1
-###############################################################################
-# 1. Heavy dependency image (toolchains + Python + CUDA)                      #
-###############################################################################
 FROM nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04 AS deps
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# ── 1-A. Core build tools and Python libs that PyTorch needs
+# Core build tools and Python libs
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         build-essential git wget unzip ca-certificates \
@@ -18,18 +14,18 @@ RUN apt-get update && \
         python3-filelock python3-fsspec python3-requests && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Git over system certificates (useful in CI)
+# Git config
 RUN git config --global http.sslVerify true && \
     git config --global http.sslCAinfo /etc/ssl/certs/ca-certificates.crt
 
-# ── 1-B. Modern CMake and pip robustness flags
+# Modern CMake and pip
 RUN python3 -m pip install --no-cache-dir --upgrade \
         pip setuptools wheel cmake==3.29.*
 
 ENV PIP_DEFAULT_TIMEOUT=120 \
     PIP_DISABLE_PIP_VERSION_CHECK=1
 
-# ── 1-C. PyTorch & torchvision wheels (CUDA 12.1 build)
+# PyTorch & torchvision
 ARG TORCH_VER=2.1.0
 ARG CUDA_TAG=cu121
 RUN pip install --no-cache-dir --retries 5 \
@@ -37,7 +33,7 @@ RUN pip install --no-cache-dir --retries 5 \
         torchvision==0.16.0+${CUDA_TAG} \
         --extra-index-url https://download.pytorch.org/whl/${CUDA_TAG}
 
-# ── 1-D. LibTorch C++ distribution (same version)
+# LibTorch C++ distribution
 RUN mkdir -p /opt && \
     wget -q https://download.pytorch.org/libtorch/${CUDA_TAG}/libtorch-cxx11-abi-shared-with-deps-${TORCH_VER}%2B${CUDA_TAG}.zip \
         -O /tmp/libtorch.zip && \
@@ -45,22 +41,24 @@ RUN mkdir -p /opt && \
 ENV TORCH_DIR=/opt/libtorch
 ENV LD_LIBRARY_PATH="/opt/libtorch/lib:${LD_LIBRARY_PATH}"
 
-# ── 1-E. Extra Python utilities + pybind11 wheel (for headers only)
+# Extra Python utilities
 RUN pip install --no-cache-dir \
         numpy matplotlib tqdm tensorboard \
         pybind11==2.10.4
 
-
-###############################################################################
-# 2. Build stage (compiles the project)                                       #
-###############################################################################
-FROM deps AS build
+# Build stage - copy & build the project with tests
 WORKDIR /src
 
 # Copy project sources
 COPY . .
 
-# ── Patch CMakeLists.txt once: Torch alias, drop all FetchContent, add module
+# Create a patch to fix the install problem in CMakeLists.txt
+COPY fix-cmakefile.patch /tmp/fix-install.patch
+
+# Patch CMakeLists.txt to fix install exports
+RUN patch -p1 < /tmp/fix-install.patch || echo "Warning: patch may have partially failed"
+
+# Patch CMakeLists.txt for system dependencies
 RUN <<'EOF' > /tmp/az_patch.diff
 diff --git a/CMakeLists.txt b/CMakeLists.txt
 --- a/CMakeLists.txt
@@ -115,20 +113,13 @@ diff --git a/CMakeLists.txt b/CMakeLists.txt
 @@
  endif()
 EOF
+
+# Apply patch to CMakeLists.txt
 RUN set -e; \
     patch -p1 < /tmp/az_patch.diff; \
-    echo "Patch command exited with status $?"; \
-    echo "--- Verifying CMakeLists.txt patch ---"; \
-    if grep pybind11 CMakeLists.txt; then \
-        echo "grep found pybind11, exited with status $?"; \
-    else \
-        echo "grep found no pybind11, exited with status $?"; \
-        # Decide if no pybind11 means success or failure. Here it means success. \
-        # If it meant failure, we would add `exit 1` here. \
-    fi; \
-    echo "------------------------------------"
+    echo "Patch command exited with status $?"
 
-# ── Configure, build, install
+# Configure and build with tests enabled, skipping installation
 RUN cmake -S . -B build \
       -DCMAKE_BUILD_TYPE=Release \
       -DTORCH_DIR=${TORCH_DIR} \
@@ -139,63 +130,35 @@ RUN cmake -S . -B build \
       -DALPHAZERO_ENABLE_PYTHON=OFF \
       -DALPHAZERO_BUILD_TESTS=ON \
       -DALPHAZERO_BUILD_EXAMPLES=OFF \
-      -DCMAKE_SKIP_INSTALL_EXPORT=ON \
-      -DCMAKE_CUDA_ARCHITECTURES=86 \
-      -DCMAKE_VERBOSE_MAKEFILE=ON && \
-    cmake --build build -j$(nproc) && \
-    mkdir -p /opt/alphazero/bin /opt/alphazero/lib && \
-    find ./build -name "*.so" -type f -exec cp {} /opt/alphazero/lib/ \; && \
-    find ./build -type f -executable -not -name "*.so" -not -name "*_tests" -exec cp {} /opt/alphazero/bin/ \; || true && \
-    cp -r include /opt/alphazero/ || true
+      -DALPHAZERO_SKIP_INSTALL=ON \
+      -DCMAKE_CUDA_ARCHITECTURES=86 && \
+    cmake --build build -j$(nproc)
 
-
-###############################################################################
-# 3. Minimal runtime image                                                    #
-###############################################################################
-FROM deps AS final
-WORKDIR /app
-
-# Copy binaries and libraries
-COPY --from=build /opt/alphazero .
-# Copy test directory structure
-COPY --from=build /src/build /app/build
-
-# Install ctest for test running
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    cmake && \
-    apt-get clean && rm -rf /var/lib/apt/lists/* && \
-    # Create src directory and symlink for test path compatibility
-    mkdir -p /src && \
-    ln -s /app/build /src/build
-
-# Create test helper script
+# Create script to run tests with more detail
 RUN echo '#!/bin/bash\n\
 echo "=== Running AlphaZero Tests ==="\n\
 echo ""\n\
+cd /src\n\
 \n\
 # Run tests with verbose output\n\
-ctest --test-dir /app/build -V "$@"\n\
+ctest --test-dir /src/build -V "$@"\n\
 \n\
-# If any tests exist in the build directory, run them directly\n\
-if find /app/build -name "*_tests" -type f -executable | grep -q .; then\n\
+# If any tests exist in the build directory, show their output\n\
+if find /src/build -name "*_tests" -type f -executable | grep -q .; then\n\
   echo ""\n\
   echo "=== Test Executables Found ==="\n\
-  find /app/build -name "*_tests" -type f -executable -exec echo {} \\;\n\
+  find /src/build -name "*_tests" -type f -executable -exec echo {} \\;\n\
   \n\
   # Directly run each test with more debug info\n\
   echo ""\n\
   echo "=== Running Individual Test Executables ==="\n\
-  find /app/build -name "*_tests" -type f -executable -exec {} \\;\n\
+  find /src/build -name "*_tests" -type f -executable -exec {} \\;\n\
 fi\n\
 \n\
 echo ""\n\
 echo "=== Tests completed! ==="\n\
-' > /app/run-tests.sh && \
-    chmod +x /app/run-tests.sh
+' > /src/run-tests.sh && \
+    chmod +x /src/run-tests.sh
 
-# Update entrypoint script to handle tests
-COPY scripts/docker-entrypoint.sh /docker-entrypoint.sh
-RUN chmod +x /docker-entrypoint.sh
-
-ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["--help"]
+# Use custom test script as entrypoint
+ENTRYPOINT ["/src/run-tests.sh"] 

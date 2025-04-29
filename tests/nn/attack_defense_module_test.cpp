@@ -151,5 +151,72 @@ TEST_F(AttackDefenseModuleTest, DiagonalThreats) {
     EXPECT_GT(attack[0], 0.0f);
 }
 
+TEST_F(AttackDefenseModuleTest, NoMove) {
+    // Test with a position where the chosen move is not by the current player
+    
+    // Set the chosen move position to be occupied by WHITE
+    board_batch[0][4][4] = 2; // WHITE at center
+    
+    // The chosen move is at (4,4), already occupied by WHITE
+    chosen_moves[0] = 4 * 9 + 4;
+    
+    // BLACK is the current player
+    player_batch[0] = 1;
+    
+    // Compute bonuses
+    auto [attack, defense] = module->compute_bonuses(board_batch, chosen_moves, player_batch);
+    
+    // No bonuses expected for a non-player move
+    EXPECT_FLOAT_EQ(attack[0], 0.0f);
+    EXPECT_FLOAT_EQ(defense[0], 0.0f);
+}
+
+TEST_F(AttackDefenseModuleTest, DifferentPlayers) {
+    // Test with different players making the moves
+    
+    // Create a second board
+    board_batch.push_back(std::vector<std::vector<int>>(9, std::vector<int>(9, 0)));
+    
+    // Create the same attacking position on both boards
+    board_batch[0][4][2] = 1; // BLACK
+    board_batch[0][4][3] = 1; // BLACK
+    
+    board_batch[1][4][2] = 1; // BLACK
+    board_batch[1][4][3] = 1; // BLACK
+    
+    // Same move for both boards
+    chosen_moves = {4 * 9 + 4, 4 * 9 + 4};
+    
+    // Different players
+    player_batch = {1, 2}; // BLACK for first, WHITE for second
+    
+    // Compute bonuses
+    auto [attack, defense] = module->compute_bonuses(board_batch, chosen_moves, player_batch);
+    
+    // BLACK should get attack bonus
+    EXPECT_GT(attack[0], 0.0f);
+    
+    // WHITE should get defense bonus (blocking BLACK's threat)
+    EXPECT_GT(defense[1], 0.0f);
+}
+
+TEST_F(AttackDefenseModuleTest, OpenFourThreat) {
+    // Create a position with an open four threat
+    
+    // Place three BLACK stones in a row
+    board_batch[0][4][1] = 1; // BLACK
+    board_batch[0][4][2] = 1; // BLACK
+    board_batch[0][4][3] = 1; // BLACK
+    
+    // The chosen move is at (4,4) which would create a four-in-a-row (stronger threat)
+    chosen_moves[0] = 4 * 9 + 4;
+    
+    // Compute bonuses
+    auto [attack, defense] = module->compute_bonuses(board_batch, chosen_moves, player_batch);
+    
+    // Open four threat should have higher attack value than previous tests
+    EXPECT_GT(attack[0], 1.0f);
+}
+
 } // namespace nn
 } // namespace alphazero

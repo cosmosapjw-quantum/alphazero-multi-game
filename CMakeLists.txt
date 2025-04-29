@@ -192,7 +192,7 @@ endif()
 include(GNUInstallDirs)
 
 install(TARGETS alphazero_lib
-        EXPORT  alphazeroTargets
+        # EXPORT disabled
         ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
@@ -224,10 +224,6 @@ configure_package_config_file(
     INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/alphazero
 )
 
-install(EXPORT alphazeroTargets
-        FILE    alphazeroTargets.cmake
-        NAMESPACE alphazero::
-        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/alphazero)
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/alphazero-config.cmake
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/alphazero)

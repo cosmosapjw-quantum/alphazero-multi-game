@@ -123,5 +123,125 @@ TEST_F(GomokuStateTest, GetLegalMoves) {
     EXPECT_EQ(it, legalMoves.end());
 }
 
+TEST_F(GomokuStateTest, RenjuRules) {
+    // Create a state with Renju rules
+    std::unique_ptr<GomokuState> renjuState = std::make_unique<GomokuState>(15, true);
+    
+    // In Renju rules, BLACK has restrictions (like no double-three)
+    
+    // Create a double-three position for BLACK
+    // First three-in-a-row pattern
+    renjuState->makeMove(7 * 15 + 7);  // BLACK at center
+    renjuState->makeMove(0);           // WHITE elsewhere
+    renjuState->makeMove(7 * 15 + 6);  // BLACK
+    renjuState->makeMove(1);           // WHITE elsewhere
+    renjuState->makeMove(7 * 15 + 5);  // BLACK - creates a 3-in-a-row horizontally
+    renjuState->makeMove(2);           // WHITE elsewhere
+    
+    // Second three-in-a-row pattern
+    renjuState->makeMove(6 * 15 + 7);  // BLACK
+    renjuState->makeMove(3);           // WHITE elsewhere
+    renjuState->makeMove(5 * 15 + 7);  // BLACK - creates a 3-in-a-row vertically
+    renjuState->makeMove(4);           // WHITE elsewhere
+    
+    // Now placing BLACK at (8,7) would create a double-three which is forbidden in Renju
+    int doubleThreeAction = 8 * 15 + 7;
+    EXPECT_FALSE(renjuState->isLegalMove(doubleThreeAction));
+    
+    // But this should be legal in standard Gomoku rules
+    EXPECT_TRUE(state->isLegalMove(doubleThreeAction));
+}
+
+TEST_F(GomokuStateTest, Clone) {
+    // Make a few moves
+    state->makeMove(7 * 15 + 7);  // Center
+    state->makeMove(8 * 15 + 8);  // Adjacent
+    
+    // Clone the state
+    auto clonedState = state->clone();
+    auto* castClone = dynamic_cast<GomokuState*>(clonedState.get());
+    
+    // Check clone is not null and is the right type
+    EXPECT_NE(castClone, nullptr);
+    
+    // Check equal board state
+    EXPECT_TRUE(state->board_equal(*castClone));
+    
+    // Check same player turn
+    EXPECT_EQ(state->getCurrentPlayer(), castClone->getCurrentPlayer());
+    
+    // Make different moves on original and clone
+    state->makeMove(9 * 15 + 9);
+    castClone->makeMove(6 * 15 + 6);
+    
+    // Now they should be different
+    EXPECT_FALSE(state->board_equal(*castClone));
+}
+
+TEST_F(GomokuStateTest, TestHash) {
+    // Two identical boards should have the same hash
+    auto state2 = std::make_unique<GomokuState>(15, false);
+    EXPECT_EQ(state->getHash(), state2->getHash());
+    
+    // After making the same moves, hashes should still match
+    state->makeMove(7 * 15 + 7);
+    state2->makeMove(7 * 15 + 7);
+    EXPECT_EQ(state->getHash(), state2->getHash());
+    
+    // Different moves should yield different hashes
+    state->makeMove(8 * 15 + 8);
+    state2->makeMove(8 * 15 + 7);
+    EXPECT_NE(state->getHash(), state2->getHash());
+}
+
+TEST_F(GomokuStateTest, ActionStringConversion) {
+    // Test converting actions to strings and back
+    int action = 7 * 15 + 7;  // Center
+    std::string actionStr = state->actionToString(action);
+    
+    // Should be in the format like "H8" (column, row)
+    EXPECT_FALSE(actionStr.empty());
+    
+    // Convert back to action
+    auto parsedAction = state->stringToAction(actionStr);
+    EXPECT_TRUE(parsedAction.has_value());
+    EXPECT_EQ(parsedAction.value(), action);
+    
+    // Test invalid conversions
+    EXPECT_FALSE(state->stringToAction("Z99").has_value());
+    EXPECT_EQ(state->actionToString(-1), "invalid");
+}
+
+TEST_F(GomokuStateTest, Equals) {
+    auto state2 = std::make_unique<GomokuState>(15, false);
+    
+    // Initial states should be equal
+    EXPECT_TRUE(state->equals(*state2));
+    
+    // After same moves, still equal
+    state->makeMove(7 * 15 + 7);
+    state2->makeMove(7 * 15 + 7);
+    EXPECT_TRUE(state->equals(*state2));
+    
+    // Different moves -> not equal
+    state->makeMove(8 * 15 + 8);
+    state2->makeMove(8 * 15 + 7);
+    EXPECT_FALSE(state->equals(*state2));
+}
+
+TEST_F(GomokuStateTest, CustomBoardSize) {
+    // Create a smaller board
+    auto smallState = std::make_unique<GomokuState>(9, false);
+    
+    // Check correct size
+    EXPECT_EQ(smallState->getBoardSize(), 9);
+    EXPECT_EQ(smallState->getActionSpaceSize(), 9 * 9);
+    
+    // Make sure center is calculated correctly
+    int centerAction = 4 * 9 + 4;
+    smallState->makeMove(centerAction);
+    EXPECT_TRUE(smallState->is_occupied(centerAction));
+}
+
 } // namespace gomoku
 } // namespace alphazero

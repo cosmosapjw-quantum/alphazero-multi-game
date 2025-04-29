@@ -102,5 +102,72 @@ TEST_F(NeuralNetworkTest, PredictAsync) {
     EXPECT_LE(value, 1.0f);
 }
 
+TEST_F(NeuralNetworkTest, DeviceInfo) {
+    // Get device info
+    std::string deviceInfo = network->getDeviceInfo();
+    
+    // Should be non-empty
+    EXPECT_FALSE(deviceInfo.empty());
+    
+    // Should be using CPU for random policy network
+    EXPECT_NE(deviceInfo.find("CPU"), std::string::npos);
+}
+
+TEST_F(NeuralNetworkTest, ModelInfo) {
+    // Get model info
+    std::string modelInfo = network->getModelInfo();
+    
+    // Should be non-empty
+    EXPECT_FALSE(modelInfo.empty());
+    
+    // Should be a random policy model
+    EXPECT_NE(modelInfo.find("Random"), std::string::npos);
+}
+
+TEST_F(NeuralNetworkTest, PerformanceMetrics) {
+    // Check inference time
+    float inferenceTime = network->getInferenceTimeMs();
+    
+    // Should be non-negative
+    EXPECT_GE(inferenceTime, 0.0f);
+    
+    // Batch size should be positive
+    EXPECT_GT(network->getBatchSize(), 0);
+    
+    // Random policy network should report minimal model size
+    EXPECT_GE(network->getModelSizeBytes(), 0);
+}
+
+TEST_F(NeuralNetworkTest, DebugMode) {
+    // Enable debug mode shouldn't crash
+    EXPECT_NO_THROW(network->enableDebugMode(true));
+    
+    // Run a prediction
+    auto [policy, value] = network->predict(*state);
+    
+    // Still should return valid output
+    EXPECT_EQ(policy.size(), state->getActionSpaceSize());
+    EXPECT_GE(value, -1.0f);
+    EXPECT_LE(value, 1.0f);
+    
+    // Disable debug mode
+    EXPECT_NO_THROW(network->enableDebugMode(false));
+}
+
+TEST_F(NeuralNetworkTest, Benchmark) {
+    // Run benchmark with small numbers for testing
+    EXPECT_NO_THROW(network->benchmark(10, 2));
+}
+
+TEST_F(NeuralNetworkTest, PrintModelSummary) {
+    // Should not crash
+    EXPECT_NO_THROW(network->printModelSummary());
+}
+
+TEST_F(NeuralNetworkTest, IsGpuAvailable) {
+    // Random policy network should report no GPU
+    EXPECT_FALSE(network->isGpuAvailable());
+}
+
 } // namespace nn
 } // namespace alphazero
