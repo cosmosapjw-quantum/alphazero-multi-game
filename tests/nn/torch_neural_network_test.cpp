@@ -27,8 +27,10 @@ protected:
                 false);  // Use CPU for testing
         } catch (const std::exception& e) {
             // If creation failed, mark as not having torch
+            // Don't skip the entire fixture, allow individual tests to check hasTorch
             hasTorch = false;
-            GTEST_SKIP() << "LibTorch not available or error loading model: " << e.what();
+            std::cerr << "[Warning] LibTorch not available or error loading model: " << e.what() << std::endl;
+            std::cerr << "[Warning] TorchNeuralNetwork tests requiring a model will be skipped." << std::endl;
         }
     }
     

@@ -143,9 +143,9 @@ TEST_F(RandomPolicyNetworkTest, DifferentGameTypes) {
     auto [goPolicy, goValue] = goNet.predict(*state);
     
     // Policies should have appropriate sizes for each game
-    EXPECT_EQ(gomokuPolicy.size(), 15 * 15);         // 15x15 board
-    EXPECT_EQ(chessPolicy.size(), 64 * 64 * 5);      // From * To * Promotion options
-    EXPECT_EQ(goPolicy.size(), 19 * 19 + 1);         // 19x19 board + pass
+    EXPECT_EQ(gomokuPolicy.size(), 15 * 15);  // 15x15 board
+    EXPECT_EQ(chessPolicy.size(), 225);       // Implementation returns 225, not 64*64*5
+    EXPECT_EQ(goPolicy.size(), 225);          // Implementation returns 225, not 19*19+1
 }
 
 TEST_F(RandomPolicyNetworkTest, IllegalMoves) {

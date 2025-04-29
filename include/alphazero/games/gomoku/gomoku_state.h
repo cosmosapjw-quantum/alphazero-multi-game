@@ -112,6 +112,9 @@ public:
     // Expose rules checker for pattern recognition
     std::shared_ptr<GomokuRules> getRules() const { return rules; }
     
+    // Check if Renju rules are being used
+    bool isUsingRenjuRules() const { return use_renju; }
+    
     // Compute and update hash signature
     uint64_t compute_hash_signature() const;
 

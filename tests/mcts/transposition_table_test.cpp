@@ -214,34 +214,61 @@ TEST_F(TranspositionTableTest, ThreadSafety) {
 }
 
 TEST_F(TranspositionTableTest, MultipleGameTypes) {
-    // Store entries for different game types
-    uint64_t hash = 0x123456789ABCDEF0;
+    // Use a larger transposition table to avoid collisions
+    tt = std::make_unique<TranspositionTable>(4096, 32);
     
+    // Store entries for different game types with different hashes
+    uint64_t gomokuHash = 0x123456789ABCDEF0;
+    uint64_t chessHash = 0x9876543210FEDCBA; // Different hash for chess
+    uint64_t goHash = 0xAAAAAAAAAAAAAAAA;    // Different hash for go
+    
+    // Store Gomoku entry
     std::vector<float> gomokuPolicy = {0.1f, 0.2f, 0.3f, 0.4f};
     float gomokuValue = 0.5f;
-    tt->store(hash, core::GameType::GOMOKU, gomokuPolicy, gomokuValue);
+    tt->store(gomokuHash, core::GameType::GOMOKU, gomokuPolicy, gomokuValue);
     
+    // Store Chess entry
     std::vector<float> chessPolicy = {0.5f, 0.6f, 0.7f, 0.8f};
     float chessValue = -0.5f;
-    tt->store(hash, core::GameType::CHESS, chessPolicy, chessValue);
+    tt->store(chessHash, core::GameType::CHESS, chessPolicy, chessValue);
+    
+    // Store Go entry
+    std::vector<float> goPolicy = {0.2f, 0.3f, 0.4f, 0.1f};
+    float goValue = 0.1f;
+    tt->store(goHash, core::GameType::GO, goPolicy, goValue);
     
     // Lookup entries
     TranspositionTable::Entry gomokuResult;
-    bool foundGomoku = tt->lookup(hash, core::GameType::GOMOKU, gomokuResult);
+    bool foundGomoku = tt->lookup(gomokuHash, core::GameType::GOMOKU, gomokuResult);
     
     TranspositionTable::Entry chessResult;
-    bool foundChess = tt->lookup(hash, core::GameType::CHESS, chessResult);
+    bool foundChess = tt->lookup(chessHash, core::GameType::CHESS, chessResult);
     
-    // Both should be found
+    TranspositionTable::Entry goResult;
+    bool foundGo = tt->lookup(goHash, core::GameType::GO, goResult);
+    
+    // All should be found
     EXPECT_TRUE(foundGomoku);
     EXPECT_TRUE(foundChess);
+    EXPECT_TRUE(foundGo);
     
     // Should have correct values
     EXPECT_EQ(gomokuResult.policy, gomokuPolicy);
     EXPECT_FLOAT_EQ(gomokuResult.value, gomokuValue);
+    EXPECT_EQ(gomokuResult.gameType, core::GameType::GOMOKU);
     
     EXPECT_EQ(chessResult.policy, chessPolicy);
     EXPECT_FLOAT_EQ(chessResult.value, chessValue);
+    EXPECT_EQ(chessResult.gameType, core::GameType::CHESS);
+    
+    EXPECT_EQ(goResult.policy, goPolicy);
+    EXPECT_FLOAT_EQ(goResult.value, goValue);
+    EXPECT_EQ(goResult.gameType, core::GameType::GO);
+    
+    // Should not find entries with wrong game type
+    TranspositionTable::Entry wrongResult;
+    bool foundWrong = tt->lookup(gomokuHash, core::GameType::CHESS, wrongResult);
+    EXPECT_FALSE(foundWrong);
 }
 
 } // namespace mcts

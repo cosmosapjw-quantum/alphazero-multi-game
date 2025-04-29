@@ -509,7 +509,21 @@ int ParallelMCTS::selectAction(bool isTraining, float temperature) {
     
     // Handle edge cases
     if (rootNode_->isTerminal || !rootNode_->hasChildren()) {
-        return -1;
+        // Find a random legal move from the root state rather than returning -1
+        std::vector<int> legalMoves = rootState_->getLegalMoves();
+        if (legalMoves.empty()) {
+            return -1;  // Still return -1 if no legal moves exist
+        }
+        
+        if (deterministicMode_) {
+            // In deterministic mode, return the first legal move
+            return legalMoves[0];
+        } else {
+            // Random selection in non-deterministic mode
+            std::uniform_int_distribution<size_t> dist(0, legalMoves.size() - 1);
+            size_t idx = dist(rng_);
+            return legalMoves[idx];
+        }
     }
     
     // In training mode with temperature > 0, use stochastic selection

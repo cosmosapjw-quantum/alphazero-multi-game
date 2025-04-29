@@ -55,6 +55,11 @@ uint64_t ZobristHash::getFeatureHash(int featureIndex, int value) const {
     }
     
     // Ensure value is within bounds (use modulo for safety)
+    // Check if the feature vector has any elements before using modulo
+    if (featureHashes_[featureIndex].empty()) {
+        throw std::out_of_range("Feature vector is empty");
+    }
+    
     int safeValue = value % featureHashes_[featureIndex].size();
     return featureHashes_[featureIndex][safeValue];
 }
@@ -66,6 +71,12 @@ uint64_t ZobristHash::generateRandomHash(std::mt19937_64& rng) {
 void ZobristHash::initializeGameSpecificFeatures(std::mt19937_64& rng) {
     // Initialize with default size of features
     featureHashes_.resize(numFeatures_);
+    
+    // Initialize all feature vectors with at least one element by default
+    for (auto& feature : featureHashes_) {
+        feature.resize(1);
+        feature[0] = generateRandomHash(rng);
+    }
     
     // Different games have different special features that need hashing
     switch (gameType_) {
@@ -88,9 +99,9 @@ void ZobristHash::initializeGameSpecificFeatures(std::mt19937_64& rng) {
             featureHashes_[2].resize(100);
             
             // Initialize all values
-            for (auto& feature : featureHashes_) {
-                for (size_t i = 0; i < feature.size(); ++i) {
-                    feature[i] = generateRandomHash(rng);
+            for (int i = 0; i < 3; ++i) {
+                for (size_t j = 0; j < featureHashes_[i].size(); ++j) {
+                    featureHashes_[i][j] = generateRandomHash(rng);
                 }
             }
             break;
@@ -102,20 +113,16 @@ void ZobristHash::initializeGameSpecificFeatures(std::mt19937_64& rng) {
             // Komi and rules variations
             featureHashes_[1].resize(20);  // Different komi values
             
-            // Initialize all values
-            for (auto& feature : featureHashes_) {
-                for (size_t i = 0; i < feature.size(); ++i) {
-                    feature[i] = generateRandomHash(rng);
+            // Initialize values for specific features
+            for (int i = 0; i < 2; ++i) {
+                for (size_t j = 0; j < featureHashes_[i].size(); ++j) {
+                    featureHashes_[i][j] = generateRandomHash(rng);
                 }
             }
             break;
             
         default:
-            // Default initialization for unknown game types
-            for (auto& feature : featureHashes_) {
-                feature.resize(1);
-                feature[0] = generateRandomHash(rng);
-            }
+            // Default initialization already done above
             break;
     }
 }
