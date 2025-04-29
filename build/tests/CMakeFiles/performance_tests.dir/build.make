@@ -73,43 +73,43 @@ tests/CMakeFiles/performance_tests.dir/performance/chess_performance_test.cpp.o:
 tests/CMakeFiles/performance_tests.dir/performance/chess_performance_test.cpp.o: ../tests/performance/chess_performance_test.cpp
 tests/CMakeFiles/performance_tests.dir/performance/chess_performance_test.cpp.o: tests/CMakeFiles/performance_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object tests/CMakeFiles/performance_tests.dir/performance/chess_performance_test.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/performance_tests.dir/performance/chess_performance_test.cpp.o -MF CMakeFiles/performance_tests.dir/performance/chess_performance_test.cpp.o.d -o CMakeFiles/performance_tests.dir/performance/chess_performance_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/performance/chess_performance_test.cpp
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/performance_tests.dir/performance/chess_performance_test.cpp.o -MF CMakeFiles/performance_tests.dir/performance/chess_performance_test.cpp.o.d -o CMakeFiles/performance_tests.dir/performance/chess_performance_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/performance/chess_performance_test.cpp
 
 tests/CMakeFiles/performance_tests.dir/performance/chess_performance_test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/performance_tests.dir/performance/chess_performance_test.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/performance/chess_performance_test.cpp > CMakeFiles/performance_tests.dir/performance/chess_performance_test.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/performance/chess_performance_test.cpp > CMakeFiles/performance_tests.dir/performance/chess_performance_test.cpp.i
 
 tests/CMakeFiles/performance_tests.dir/performance/chess_performance_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/performance_tests.dir/performance/chess_performance_test.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/performance/chess_performance_test.cpp -o CMakeFiles/performance_tests.dir/performance/chess_performance_test.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/performance/chess_performance_test.cpp -o CMakeFiles/performance_tests.dir/performance/chess_performance_test.cpp.s
 
 tests/CMakeFiles/performance_tests.dir/performance/go_performance_test.cpp.o: tests/CMakeFiles/performance_tests.dir/flags.make
 tests/CMakeFiles/performance_tests.dir/performance/go_performance_test.cpp.o: ../tests/performance/go_performance_test.cpp
 tests/CMakeFiles/performance_tests.dir/performance/go_performance_test.cpp.o: tests/CMakeFiles/performance_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object tests/CMakeFiles/performance_tests.dir/performance/go_performance_test.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/performance_tests.dir/performance/go_performance_test.cpp.o -MF CMakeFiles/performance_tests.dir/performance/go_performance_test.cpp.o.d -o CMakeFiles/performance_tests.dir/performance/go_performance_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/performance/go_performance_test.cpp
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/performance_tests.dir/performance/go_performance_test.cpp.o -MF CMakeFiles/performance_tests.dir/performance/go_performance_test.cpp.o.d -o CMakeFiles/performance_tests.dir/performance/go_performance_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/performance/go_performance_test.cpp
 
 tests/CMakeFiles/performance_tests.dir/performance/go_performance_test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/performance_tests.dir/performance/go_performance_test.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/performance/go_performance_test.cpp > CMakeFiles/performance_tests.dir/performance/go_performance_test.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/performance/go_performance_test.cpp > CMakeFiles/performance_tests.dir/performance/go_performance_test.cpp.i
 
 tests/CMakeFiles/performance_tests.dir/performance/go_performance_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/performance_tests.dir/performance/go_performance_test.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/performance/go_performance_test.cpp -o CMakeFiles/performance_tests.dir/performance/go_performance_test.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/performance/go_performance_test.cpp -o CMakeFiles/performance_tests.dir/performance/go_performance_test.cpp.s
 
 tests/CMakeFiles/performance_tests.dir/performance/gomoku_performance_test.cpp.o: tests/CMakeFiles/performance_tests.dir/flags.make
 tests/CMakeFiles/performance_tests.dir/performance/gomoku_performance_test.cpp.o: ../tests/performance/gomoku_performance_test.cpp
 tests/CMakeFiles/performance_tests.dir/performance/gomoku_performance_test.cpp.o: tests/CMakeFiles/performance_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object tests/CMakeFiles/performance_tests.dir/performance/gomoku_performance_test.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/performance_tests.dir/performance/gomoku_performance_test.cpp.o -MF CMakeFiles/performance_tests.dir/performance/gomoku_performance_test.cpp.o.d -o CMakeFiles/performance_tests.dir/performance/gomoku_performance_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/performance/gomoku_performance_test.cpp
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/performance_tests.dir/performance/gomoku_performance_test.cpp.o -MF CMakeFiles/performance_tests.dir/performance/gomoku_performance_test.cpp.o.d -o CMakeFiles/performance_tests.dir/performance/gomoku_performance_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/performance/gomoku_performance_test.cpp
 
 tests/CMakeFiles/performance_tests.dir/performance/gomoku_performance_test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/performance_tests.dir/performance/gomoku_performance_test.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/performance/gomoku_performance_test.cpp > CMakeFiles/performance_tests.dir/performance/gomoku_performance_test.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/performance/gomoku_performance_test.cpp > CMakeFiles/performance_tests.dir/performance/gomoku_performance_test.cpp.i
 
 tests/CMakeFiles/performance_tests.dir/performance/gomoku_performance_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/performance_tests.dir/performance/gomoku_performance_test.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/performance/gomoku_performance_test.cpp -o CMakeFiles/performance_tests.dir/performance/gomoku_performance_test.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/performance/gomoku_performance_test.cpp -o CMakeFiles/performance_tests.dir/performance/gomoku_performance_test.cpp.s
 
 # Object files for target performance_tests
 performance_tests_OBJECTS = \

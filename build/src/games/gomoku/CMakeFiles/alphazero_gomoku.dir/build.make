@@ -73,29 +73,29 @@ src/games/gomoku/CMakeFiles/alphazero_gomoku.dir/gomoku_state.cpp.o: src/games/g
 src/games/gomoku/CMakeFiles/alphazero_gomoku.dir/gomoku_state.cpp.o: ../src/games/gomoku/gomoku_state.cpp
 src/games/gomoku/CMakeFiles/alphazero_gomoku.dir/gomoku_state.cpp.o: src/games/gomoku/CMakeFiles/alphazero_gomoku.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/games/gomoku/CMakeFiles/alphazero_gomoku.dir/gomoku_state.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src/games/gomoku && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/games/gomoku/CMakeFiles/alphazero_gomoku.dir/gomoku_state.cpp.o -MF CMakeFiles/alphazero_gomoku.dir/gomoku_state.cpp.o.d -o CMakeFiles/alphazero_gomoku.dir/gomoku_state.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_state.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src/games/gomoku && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/games/gomoku/CMakeFiles/alphazero_gomoku.dir/gomoku_state.cpp.o -MF CMakeFiles/alphazero_gomoku.dir/gomoku_state.cpp.o.d -o CMakeFiles/alphazero_gomoku.dir/gomoku_state.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_state.cpp
 
 src/games/gomoku/CMakeFiles/alphazero_gomoku.dir/gomoku_state.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_gomoku.dir/gomoku_state.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src/games/gomoku && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_state.cpp > CMakeFiles/alphazero_gomoku.dir/gomoku_state.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src/games/gomoku && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_state.cpp > CMakeFiles/alphazero_gomoku.dir/gomoku_state.cpp.i
 
 src/games/gomoku/CMakeFiles/alphazero_gomoku.dir/gomoku_state.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_gomoku.dir/gomoku_state.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src/games/gomoku && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_state.cpp -o CMakeFiles/alphazero_gomoku.dir/gomoku_state.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src/games/gomoku && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_state.cpp -o CMakeFiles/alphazero_gomoku.dir/gomoku_state.cpp.s
 
 src/games/gomoku/CMakeFiles/alphazero_gomoku.dir/gomoku_rules.cpp.o: src/games/gomoku/CMakeFiles/alphazero_gomoku.dir/flags.make
 src/games/gomoku/CMakeFiles/alphazero_gomoku.dir/gomoku_rules.cpp.o: ../src/games/gomoku/gomoku_rules.cpp
 src/games/gomoku/CMakeFiles/alphazero_gomoku.dir/gomoku_rules.cpp.o: src/games/gomoku/CMakeFiles/alphazero_gomoku.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/games/gomoku/CMakeFiles/alphazero_gomoku.dir/gomoku_rules.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src/games/gomoku && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/games/gomoku/CMakeFiles/alphazero_gomoku.dir/gomoku_rules.cpp.o -MF CMakeFiles/alphazero_gomoku.dir/gomoku_rules.cpp.o.d -o CMakeFiles/alphazero_gomoku.dir/gomoku_rules.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_rules.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src/games/gomoku && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/games/gomoku/CMakeFiles/alphazero_gomoku.dir/gomoku_rules.cpp.o -MF CMakeFiles/alphazero_gomoku.dir/gomoku_rules.cpp.o.d -o CMakeFiles/alphazero_gomoku.dir/gomoku_rules.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_rules.cpp
 
 src/games/gomoku/CMakeFiles/alphazero_gomoku.dir/gomoku_rules.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_gomoku.dir/gomoku_rules.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src/games/gomoku && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_rules.cpp > CMakeFiles/alphazero_gomoku.dir/gomoku_rules.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src/games/gomoku && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_rules.cpp > CMakeFiles/alphazero_gomoku.dir/gomoku_rules.cpp.i
 
 src/games/gomoku/CMakeFiles/alphazero_gomoku.dir/gomoku_rules.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_gomoku.dir/gomoku_rules.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src/games/gomoku && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_rules.cpp -o CMakeFiles/alphazero_gomoku.dir/gomoku_rules.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src/games/gomoku && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_rules.cpp -o CMakeFiles/alphazero_gomoku.dir/gomoku_rules.cpp.s
 
 # Object files for target alphazero_gomoku
 alphazero_gomoku_OBJECTS = \

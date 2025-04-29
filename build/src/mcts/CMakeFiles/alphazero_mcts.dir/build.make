@@ -73,57 +73,57 @@ src/mcts/CMakeFiles/alphazero_mcts.dir/mcts_node.cpp.o: src/mcts/CMakeFiles/alph
 src/mcts/CMakeFiles/alphazero_mcts.dir/mcts_node.cpp.o: ../src/mcts/mcts_node.cpp
 src/mcts/CMakeFiles/alphazero_mcts.dir/mcts_node.cpp.o: src/mcts/CMakeFiles/alphazero_mcts.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/mcts/CMakeFiles/alphazero_mcts.dir/mcts_node.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src/mcts && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/mcts/CMakeFiles/alphazero_mcts.dir/mcts_node.cpp.o -MF CMakeFiles/alphazero_mcts.dir/mcts_node.cpp.o.d -o CMakeFiles/alphazero_mcts.dir/mcts_node.cpp.o -c /home/cosmos/alphazero-multi-game/src/mcts/mcts_node.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src/mcts && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/mcts/CMakeFiles/alphazero_mcts.dir/mcts_node.cpp.o -MF CMakeFiles/alphazero_mcts.dir/mcts_node.cpp.o.d -o CMakeFiles/alphazero_mcts.dir/mcts_node.cpp.o -c /home/cosmos/alphazero-multi-game/src/mcts/mcts_node.cpp
 
 src/mcts/CMakeFiles/alphazero_mcts.dir/mcts_node.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_mcts.dir/mcts_node.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src/mcts && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/mcts/mcts_node.cpp > CMakeFiles/alphazero_mcts.dir/mcts_node.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src/mcts && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/mcts/mcts_node.cpp > CMakeFiles/alphazero_mcts.dir/mcts_node.cpp.i
 
 src/mcts/CMakeFiles/alphazero_mcts.dir/mcts_node.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_mcts.dir/mcts_node.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src/mcts && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/mcts/mcts_node.cpp -o CMakeFiles/alphazero_mcts.dir/mcts_node.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src/mcts && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/mcts/mcts_node.cpp -o CMakeFiles/alphazero_mcts.dir/mcts_node.cpp.s
 
 src/mcts/CMakeFiles/alphazero_mcts.dir/parallel_mcts.cpp.o: src/mcts/CMakeFiles/alphazero_mcts.dir/flags.make
 src/mcts/CMakeFiles/alphazero_mcts.dir/parallel_mcts.cpp.o: ../src/mcts/parallel_mcts.cpp
 src/mcts/CMakeFiles/alphazero_mcts.dir/parallel_mcts.cpp.o: src/mcts/CMakeFiles/alphazero_mcts.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/mcts/CMakeFiles/alphazero_mcts.dir/parallel_mcts.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src/mcts && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/mcts/CMakeFiles/alphazero_mcts.dir/parallel_mcts.cpp.o -MF CMakeFiles/alphazero_mcts.dir/parallel_mcts.cpp.o.d -o CMakeFiles/alphazero_mcts.dir/parallel_mcts.cpp.o -c /home/cosmos/alphazero-multi-game/src/mcts/parallel_mcts.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src/mcts && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/mcts/CMakeFiles/alphazero_mcts.dir/parallel_mcts.cpp.o -MF CMakeFiles/alphazero_mcts.dir/parallel_mcts.cpp.o.d -o CMakeFiles/alphazero_mcts.dir/parallel_mcts.cpp.o -c /home/cosmos/alphazero-multi-game/src/mcts/parallel_mcts.cpp
 
 src/mcts/CMakeFiles/alphazero_mcts.dir/parallel_mcts.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_mcts.dir/parallel_mcts.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src/mcts && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/mcts/parallel_mcts.cpp > CMakeFiles/alphazero_mcts.dir/parallel_mcts.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src/mcts && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/mcts/parallel_mcts.cpp > CMakeFiles/alphazero_mcts.dir/parallel_mcts.cpp.i
 
 src/mcts/CMakeFiles/alphazero_mcts.dir/parallel_mcts.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_mcts.dir/parallel_mcts.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src/mcts && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/mcts/parallel_mcts.cpp -o CMakeFiles/alphazero_mcts.dir/parallel_mcts.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src/mcts && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/mcts/parallel_mcts.cpp -o CMakeFiles/alphazero_mcts.dir/parallel_mcts.cpp.s
 
 src/mcts/CMakeFiles/alphazero_mcts.dir/thread_pool.cpp.o: src/mcts/CMakeFiles/alphazero_mcts.dir/flags.make
 src/mcts/CMakeFiles/alphazero_mcts.dir/thread_pool.cpp.o: ../src/mcts/thread_pool.cpp
 src/mcts/CMakeFiles/alphazero_mcts.dir/thread_pool.cpp.o: src/mcts/CMakeFiles/alphazero_mcts.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/mcts/CMakeFiles/alphazero_mcts.dir/thread_pool.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src/mcts && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/mcts/CMakeFiles/alphazero_mcts.dir/thread_pool.cpp.o -MF CMakeFiles/alphazero_mcts.dir/thread_pool.cpp.o.d -o CMakeFiles/alphazero_mcts.dir/thread_pool.cpp.o -c /home/cosmos/alphazero-multi-game/src/mcts/thread_pool.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src/mcts && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/mcts/CMakeFiles/alphazero_mcts.dir/thread_pool.cpp.o -MF CMakeFiles/alphazero_mcts.dir/thread_pool.cpp.o.d -o CMakeFiles/alphazero_mcts.dir/thread_pool.cpp.o -c /home/cosmos/alphazero-multi-game/src/mcts/thread_pool.cpp
 
 src/mcts/CMakeFiles/alphazero_mcts.dir/thread_pool.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_mcts.dir/thread_pool.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src/mcts && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/mcts/thread_pool.cpp > CMakeFiles/alphazero_mcts.dir/thread_pool.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src/mcts && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/mcts/thread_pool.cpp > CMakeFiles/alphazero_mcts.dir/thread_pool.cpp.i
 
 src/mcts/CMakeFiles/alphazero_mcts.dir/thread_pool.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_mcts.dir/thread_pool.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src/mcts && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/mcts/thread_pool.cpp -o CMakeFiles/alphazero_mcts.dir/thread_pool.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src/mcts && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/mcts/thread_pool.cpp -o CMakeFiles/alphazero_mcts.dir/thread_pool.cpp.s
 
 src/mcts/CMakeFiles/alphazero_mcts.dir/transposition_table.cpp.o: src/mcts/CMakeFiles/alphazero_mcts.dir/flags.make
 src/mcts/CMakeFiles/alphazero_mcts.dir/transposition_table.cpp.o: ../src/mcts/transposition_table.cpp
 src/mcts/CMakeFiles/alphazero_mcts.dir/transposition_table.cpp.o: src/mcts/CMakeFiles/alphazero_mcts.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/mcts/CMakeFiles/alphazero_mcts.dir/transposition_table.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src/mcts && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/mcts/CMakeFiles/alphazero_mcts.dir/transposition_table.cpp.o -MF CMakeFiles/alphazero_mcts.dir/transposition_table.cpp.o.d -o CMakeFiles/alphazero_mcts.dir/transposition_table.cpp.o -c /home/cosmos/alphazero-multi-game/src/mcts/transposition_table.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src/mcts && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/mcts/CMakeFiles/alphazero_mcts.dir/transposition_table.cpp.o -MF CMakeFiles/alphazero_mcts.dir/transposition_table.cpp.o.d -o CMakeFiles/alphazero_mcts.dir/transposition_table.cpp.o -c /home/cosmos/alphazero-multi-game/src/mcts/transposition_table.cpp
 
 src/mcts/CMakeFiles/alphazero_mcts.dir/transposition_table.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_mcts.dir/transposition_table.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src/mcts && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/mcts/transposition_table.cpp > CMakeFiles/alphazero_mcts.dir/transposition_table.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src/mcts && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/mcts/transposition_table.cpp > CMakeFiles/alphazero_mcts.dir/transposition_table.cpp.i
 
 src/mcts/CMakeFiles/alphazero_mcts.dir/transposition_table.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_mcts.dir/transposition_table.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src/mcts && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/mcts/transposition_table.cpp -o CMakeFiles/alphazero_mcts.dir/transposition_table.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src/mcts && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/mcts/transposition_table.cpp -o CMakeFiles/alphazero_mcts.dir/transposition_table.cpp.s
 
 # Object files for target alphazero_mcts
 alphazero_mcts_OBJECTS = \

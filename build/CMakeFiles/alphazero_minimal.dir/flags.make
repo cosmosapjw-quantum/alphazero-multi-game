@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include
 
-CXX_FLAGS = -O3 -DNDEBUG -fPIE -std=c++17
+CXX_FLAGS = -fPIE -std=c++17
 

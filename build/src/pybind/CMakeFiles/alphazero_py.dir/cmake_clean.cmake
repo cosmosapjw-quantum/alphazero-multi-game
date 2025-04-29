@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/alphazero_py.dir/python_bindings.cpp.o"
   "CMakeFiles/alphazero_py.dir/python_bindings.cpp.o.d"
-  "alphazero.cpython-310-x86_64-linux-gnu.so"
+  "alphazero.cpython-312-x86_64-linux-gnu.so"
   "alphazero.pdb"
 )
 

@@ -65,6 +65,16 @@ CMAKE_BINARY_DIR = /home/cosmos/alphazero-multi-game/build
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+.PHONY : test/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -162,41 +172,335 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named alphazero_minimal
+# Target rules for targets named cuda_test_app
 
 # Build rule for target.
-alphazero_minimal: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 alphazero_minimal
-.PHONY : alphazero_minimal
+cuda_test_app: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 cuda_test_app
+.PHONY : cuda_test_app
 
 # fast build rule for target.
-alphazero_minimal/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/alphazero_minimal.dir/build.make CMakeFiles/alphazero_minimal.dir/build
-.PHONY : alphazero_minimal/fast
+cuda_test_app/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cuda_test_app.dir/build.make CMakeFiles/cuda_test_app.dir/build
+.PHONY : cuda_test_app/fast
 
-minimal_torch.o: minimal_torch.cpp.o
-.PHONY : minimal_torch.o
+# Manual pre-install relink rule for target.
+cuda_test_app/preinstall:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cuda_test_app.dir/build.make CMakeFiles/cuda_test_app.dir/preinstall
+.PHONY : cuda_test_app/preinstall
+
+#=============================================================================
+# Target rules for targets named standalone_cuda_test
+
+# Build rule for target.
+standalone_cuda_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 standalone_cuda_test
+.PHONY : standalone_cuda_test
+
+# fast build rule for target.
+standalone_cuda_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/standalone_cuda_test.dir/build.make CMakeFiles/standalone_cuda_test.dir/build
+.PHONY : standalone_cuda_test/fast
+
+# Manual pre-install relink rule for target.
+standalone_cuda_test/preinstall:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/standalone_cuda_test.dir/build.make CMakeFiles/standalone_cuda_test.dir/preinstall
+.PHONY : standalone_cuda_test/preinstall
+
+#=============================================================================
+# Target rules for targets named alphazero_lib
+
+# Build rule for target.
+alphazero_lib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 alphazero_lib
+.PHONY : alphazero_lib
+
+# fast build rule for target.
+alphazero_lib/fast:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/alphazero_lib.dir/build.make src/CMakeFiles/alphazero_lib.dir/build
+.PHONY : alphazero_lib/fast
+
+#=============================================================================
+# Target rules for targets named alphazero_core
+
+# Build rule for target.
+alphazero_core: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 alphazero_core
+.PHONY : alphazero_core
+
+# fast build rule for target.
+alphazero_core/fast:
+	$(MAKE) $(MAKESILENT) -f src/core/CMakeFiles/alphazero_core.dir/build.make src/core/CMakeFiles/alphazero_core.dir/build
+.PHONY : alphazero_core/fast
+
+#=============================================================================
+# Target rules for targets named alphazero_mcts
+
+# Build rule for target.
+alphazero_mcts: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 alphazero_mcts
+.PHONY : alphazero_mcts
+
+# fast build rule for target.
+alphazero_mcts/fast:
+	$(MAKE) $(MAKESILENT) -f src/mcts/CMakeFiles/alphazero_mcts.dir/build.make src/mcts/CMakeFiles/alphazero_mcts.dir/build
+.PHONY : alphazero_mcts/fast
+
+#=============================================================================
+# Target rules for targets named alphazero_nn
+
+# Build rule for target.
+alphazero_nn: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 alphazero_nn
+.PHONY : alphazero_nn
+
+# fast build rule for target.
+alphazero_nn/fast:
+	$(MAKE) $(MAKESILENT) -f src/nn/CMakeFiles/alphazero_nn.dir/build.make src/nn/CMakeFiles/alphazero_nn.dir/build
+.PHONY : alphazero_nn/fast
+
+#=============================================================================
+# Target rules for targets named alphazero_chess
+
+# Build rule for target.
+alphazero_chess: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 alphazero_chess
+.PHONY : alphazero_chess
+
+# fast build rule for target.
+alphazero_chess/fast:
+	$(MAKE) $(MAKESILENT) -f src/games/chess/CMakeFiles/alphazero_chess.dir/build.make src/games/chess/CMakeFiles/alphazero_chess.dir/build
+.PHONY : alphazero_chess/fast
+
+#=============================================================================
+# Target rules for targets named alphazero_go
+
+# Build rule for target.
+alphazero_go: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 alphazero_go
+.PHONY : alphazero_go
+
+# fast build rule for target.
+alphazero_go/fast:
+	$(MAKE) $(MAKESILENT) -f src/games/go/CMakeFiles/alphazero_go.dir/build.make src/games/go/CMakeFiles/alphazero_go.dir/build
+.PHONY : alphazero_go/fast
+
+#=============================================================================
+# Target rules for targets named alphazero_gomoku
+
+# Build rule for target.
+alphazero_gomoku: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 alphazero_gomoku
+.PHONY : alphazero_gomoku
+
+# fast build rule for target.
+alphazero_gomoku/fast:
+	$(MAKE) $(MAKESILENT) -f src/games/gomoku/CMakeFiles/alphazero_gomoku.dir/build.make src/games/gomoku/CMakeFiles/alphazero_gomoku.dir/build
+.PHONY : alphazero_gomoku/fast
+
+#=============================================================================
+# Target rules for targets named alphazero_selfplay
+
+# Build rule for target.
+alphazero_selfplay: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 alphazero_selfplay
+.PHONY : alphazero_selfplay
+
+# fast build rule for target.
+alphazero_selfplay/fast:
+	$(MAKE) $(MAKESILENT) -f src/selfplay/CMakeFiles/alphazero_selfplay.dir/build.make src/selfplay/CMakeFiles/alphazero_selfplay.dir/build
+.PHONY : alphazero_selfplay/fast
+
+#=============================================================================
+# Target rules for targets named alphazero_elo
+
+# Build rule for target.
+alphazero_elo: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 alphazero_elo
+.PHONY : alphazero_elo
+
+# fast build rule for target.
+alphazero_elo/fast:
+	$(MAKE) $(MAKESILENT) -f src/elo/CMakeFiles/alphazero_elo.dir/build.make src/elo/CMakeFiles/alphazero_elo.dir/build
+.PHONY : alphazero_elo/fast
+
+#=============================================================================
+# Target rules for targets named alphazero_ui
+
+# Build rule for target.
+alphazero_ui: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 alphazero_ui
+.PHONY : alphazero_ui
+
+# fast build rule for target.
+alphazero_ui/fast:
+	$(MAKE) $(MAKESILENT) -f src/ui/CMakeFiles/alphazero_ui.dir/build.make src/ui/CMakeFiles/alphazero_ui.dir/build
+.PHONY : alphazero_ui/fast
+
+#=============================================================================
+# Target rules for targets named alphazero_py
+
+# Build rule for target.
+alphazero_py: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 alphazero_py
+.PHONY : alphazero_py
+
+# fast build rule for target.
+alphazero_py/fast:
+	$(MAKE) $(MAKESILENT) -f src/pybind/CMakeFiles/alphazero_py.dir/build.make src/pybind/CMakeFiles/alphazero_py.dir/build
+.PHONY : alphazero_py/fast
+
+#=============================================================================
+# Target rules for targets named alphazero_api
+
+# Build rule for target.
+alphazero_api: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 alphazero_api
+.PHONY : alphazero_api
+
+# fast build rule for target.
+alphazero_api/fast:
+	$(MAKE) $(MAKESILENT) -f src/api/CMakeFiles/alphazero_api.dir/build.make src/api/CMakeFiles/alphazero_api.dir/build
+.PHONY : alphazero_api/fast
+
+#=============================================================================
+# Target rules for targets named alphazero_cli
+
+# Build rule for target.
+alphazero_cli: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 alphazero_cli
+.PHONY : alphazero_cli
+
+# fast build rule for target.
+alphazero_cli/fast:
+	$(MAKE) $(MAKESILENT) -f src/cli/CMakeFiles/alphazero_cli.dir/build.make src/cli/CMakeFiles/alphazero_cli.dir/build
+.PHONY : alphazero_cli/fast
+
+#=============================================================================
+# Target rules for targets named core_tests
+
+# Build rule for target.
+core_tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 core_tests
+.PHONY : core_tests
+
+# fast build rule for target.
+core_tests/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/core_tests.dir/build.make tests/CMakeFiles/core_tests.dir/build
+.PHONY : core_tests/fast
+
+#=============================================================================
+# Target rules for targets named game_tests
+
+# Build rule for target.
+game_tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 game_tests
+.PHONY : game_tests
+
+# fast build rule for target.
+game_tests/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/game_tests.dir/build.make tests/CMakeFiles/game_tests.dir/build
+.PHONY : game_tests/fast
+
+#=============================================================================
+# Target rules for targets named mcts_tests
+
+# Build rule for target.
+mcts_tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mcts_tests
+.PHONY : mcts_tests
+
+# fast build rule for target.
+mcts_tests/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/mcts_tests.dir/build.make tests/CMakeFiles/mcts_tests.dir/build
+.PHONY : mcts_tests/fast
+
+#=============================================================================
+# Target rules for targets named nn_tests
+
+# Build rule for target.
+nn_tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 nn_tests
+.PHONY : nn_tests
+
+# fast build rule for target.
+nn_tests/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/nn_tests.dir/build.make tests/CMakeFiles/nn_tests.dir/build
+.PHONY : nn_tests/fast
+
+#=============================================================================
+# Target rules for targets named integration_tests
+
+# Build rule for target.
+integration_tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 integration_tests
+.PHONY : integration_tests
+
+# fast build rule for target.
+integration_tests/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/integration_tests.dir/build.make tests/CMakeFiles/integration_tests.dir/build
+.PHONY : integration_tests/fast
+
+#=============================================================================
+# Target rules for targets named performance_tests
+
+# Build rule for target.
+performance_tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 performance_tests
+.PHONY : performance_tests
+
+# fast build rule for target.
+performance_tests/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/performance_tests.dir/build.make tests/CMakeFiles/performance_tests.dir/build
+.PHONY : performance_tests/fast
+
+cuda_test.o: cuda_test.cpp.o
+.PHONY : cuda_test.o
 
 # target to build an object file
-minimal_torch.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/alphazero_minimal.dir/build.make CMakeFiles/alphazero_minimal.dir/minimal_torch.cpp.o
-.PHONY : minimal_torch.cpp.o
+cuda_test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cuda_test_app.dir/build.make CMakeFiles/cuda_test_app.dir/cuda_test.cpp.o
+.PHONY : cuda_test.cpp.o
 
-minimal_torch.i: minimal_torch.cpp.i
-.PHONY : minimal_torch.i
+cuda_test.i: cuda_test.cpp.i
+.PHONY : cuda_test.i
 
 # target to preprocess a source file
-minimal_torch.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/alphazero_minimal.dir/build.make CMakeFiles/alphazero_minimal.dir/minimal_torch.cpp.i
-.PHONY : minimal_torch.cpp.i
+cuda_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cuda_test_app.dir/build.make CMakeFiles/cuda_test_app.dir/cuda_test.cpp.i
+.PHONY : cuda_test.cpp.i
 
-minimal_torch.s: minimal_torch.cpp.s
-.PHONY : minimal_torch.s
+cuda_test.s: cuda_test.cpp.s
+.PHONY : cuda_test.s
 
 # target to generate assembly for a file
-minimal_torch.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/alphazero_minimal.dir/build.make CMakeFiles/alphazero_minimal.dir/minimal_torch.cpp.s
-.PHONY : minimal_torch.cpp.s
+cuda_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cuda_test_app.dir/build.make CMakeFiles/cuda_test_app.dir/cuda_test.cpp.s
+.PHONY : cuda_test.cpp.s
+
+standalone_cuda_test.o: standalone_cuda_test.cpp.o
+.PHONY : standalone_cuda_test.o
+
+# target to build an object file
+standalone_cuda_test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/standalone_cuda_test.dir/build.make CMakeFiles/standalone_cuda_test.dir/standalone_cuda_test.cpp.o
+.PHONY : standalone_cuda_test.cpp.o
+
+standalone_cuda_test.i: standalone_cuda_test.cpp.i
+.PHONY : standalone_cuda_test.i
+
+# target to preprocess a source file
+standalone_cuda_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/standalone_cuda_test.dir/build.make CMakeFiles/standalone_cuda_test.dir/standalone_cuda_test.cpp.i
+.PHONY : standalone_cuda_test.cpp.i
+
+standalone_cuda_test.s: standalone_cuda_test.cpp.s
+.PHONY : standalone_cuda_test.s
+
+# target to generate assembly for a file
+standalone_cuda_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/standalone_cuda_test.dir/build.make CMakeFiles/standalone_cuda_test.dir/standalone_cuda_test.cpp.s
+.PHONY : standalone_cuda_test.cpp.s
 
 # Help Target
 help:
@@ -210,10 +514,34 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... alphazero_minimal"
-	@echo "... minimal_torch.o"
-	@echo "... minimal_torch.i"
-	@echo "... minimal_torch.s"
+	@echo "... test"
+	@echo "... alphazero_api"
+	@echo "... alphazero_chess"
+	@echo "... alphazero_cli"
+	@echo "... alphazero_core"
+	@echo "... alphazero_elo"
+	@echo "... alphazero_go"
+	@echo "... alphazero_gomoku"
+	@echo "... alphazero_lib"
+	@echo "... alphazero_mcts"
+	@echo "... alphazero_nn"
+	@echo "... alphazero_py"
+	@echo "... alphazero_selfplay"
+	@echo "... alphazero_ui"
+	@echo "... core_tests"
+	@echo "... cuda_test_app"
+	@echo "... game_tests"
+	@echo "... integration_tests"
+	@echo "... mcts_tests"
+	@echo "... nn_tests"
+	@echo "... performance_tests"
+	@echo "... standalone_cuda_test"
+	@echo "... cuda_test.o"
+	@echo "... cuda_test.i"
+	@echo "... cuda_test.s"
+	@echo "... standalone_cuda_test.o"
+	@echo "... standalone_cuda_test.i"
+	@echo "... standalone_cuda_test.s"
 .PHONY : help
 
 

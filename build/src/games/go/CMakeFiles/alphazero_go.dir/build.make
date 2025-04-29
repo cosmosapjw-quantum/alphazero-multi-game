@@ -73,29 +73,29 @@ src/games/go/CMakeFiles/alphazero_go.dir/go_state.cpp.o: src/games/go/CMakeFiles
 src/games/go/CMakeFiles/alphazero_go.dir/go_state.cpp.o: ../src/games/go/go_state.cpp
 src/games/go/CMakeFiles/alphazero_go.dir/go_state.cpp.o: src/games/go/CMakeFiles/alphazero_go.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/games/go/CMakeFiles/alphazero_go.dir/go_state.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src/games/go && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/games/go/CMakeFiles/alphazero_go.dir/go_state.cpp.o -MF CMakeFiles/alphazero_go.dir/go_state.cpp.o.d -o CMakeFiles/alphazero_go.dir/go_state.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/go/go_state.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src/games/go && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/games/go/CMakeFiles/alphazero_go.dir/go_state.cpp.o -MF CMakeFiles/alphazero_go.dir/go_state.cpp.o.d -o CMakeFiles/alphazero_go.dir/go_state.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/go/go_state.cpp
 
 src/games/go/CMakeFiles/alphazero_go.dir/go_state.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_go.dir/go_state.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src/games/go && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/games/go/go_state.cpp > CMakeFiles/alphazero_go.dir/go_state.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src/games/go && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/games/go/go_state.cpp > CMakeFiles/alphazero_go.dir/go_state.cpp.i
 
 src/games/go/CMakeFiles/alphazero_go.dir/go_state.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_go.dir/go_state.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src/games/go && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/games/go/go_state.cpp -o CMakeFiles/alphazero_go.dir/go_state.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src/games/go && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/games/go/go_state.cpp -o CMakeFiles/alphazero_go.dir/go_state.cpp.s
 
 src/games/go/CMakeFiles/alphazero_go.dir/go_rules.cpp.o: src/games/go/CMakeFiles/alphazero_go.dir/flags.make
 src/games/go/CMakeFiles/alphazero_go.dir/go_rules.cpp.o: ../src/games/go/go_rules.cpp
 src/games/go/CMakeFiles/alphazero_go.dir/go_rules.cpp.o: src/games/go/CMakeFiles/alphazero_go.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/games/go/CMakeFiles/alphazero_go.dir/go_rules.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src/games/go && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/games/go/CMakeFiles/alphazero_go.dir/go_rules.cpp.o -MF CMakeFiles/alphazero_go.dir/go_rules.cpp.o.d -o CMakeFiles/alphazero_go.dir/go_rules.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/go/go_rules.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src/games/go && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/games/go/CMakeFiles/alphazero_go.dir/go_rules.cpp.o -MF CMakeFiles/alphazero_go.dir/go_rules.cpp.o.d -o CMakeFiles/alphazero_go.dir/go_rules.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/go/go_rules.cpp
 
 src/games/go/CMakeFiles/alphazero_go.dir/go_rules.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_go.dir/go_rules.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src/games/go && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/games/go/go_rules.cpp > CMakeFiles/alphazero_go.dir/go_rules.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src/games/go && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/games/go/go_rules.cpp > CMakeFiles/alphazero_go.dir/go_rules.cpp.i
 
 src/games/go/CMakeFiles/alphazero_go.dir/go_rules.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_go.dir/go_rules.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src/games/go && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/games/go/go_rules.cpp -o CMakeFiles/alphazero_go.dir/go_rules.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src/games/go && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/games/go/go_rules.cpp -o CMakeFiles/alphazero_go.dir/go_rules.cpp.s
 
 # Object files for target alphazero_go
 alphazero_go_OBJECTS = \

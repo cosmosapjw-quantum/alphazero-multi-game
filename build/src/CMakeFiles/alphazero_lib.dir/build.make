@@ -73,323 +73,323 @@ src/CMakeFiles/alphazero_lib.dir/core/AlphaZero.cpp.o: src/CMakeFiles/alphazero_
 src/CMakeFiles/alphazero_lib.dir/core/AlphaZero.cpp.o: ../src/core/AlphaZero.cpp
 src/CMakeFiles/alphazero_lib.dir/core/AlphaZero.cpp.o: src/CMakeFiles/alphazero_lib.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/alphazero_lib.dir/core/AlphaZero.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/core/AlphaZero.cpp.o -MF CMakeFiles/alphazero_lib.dir/core/AlphaZero.cpp.o.d -o CMakeFiles/alphazero_lib.dir/core/AlphaZero.cpp.o -c /home/cosmos/alphazero-multi-game/src/core/AlphaZero.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/core/AlphaZero.cpp.o -MF CMakeFiles/alphazero_lib.dir/core/AlphaZero.cpp.o.d -o CMakeFiles/alphazero_lib.dir/core/AlphaZero.cpp.o -c /home/cosmos/alphazero-multi-game/src/core/AlphaZero.cpp
 
 src/CMakeFiles/alphazero_lib.dir/core/AlphaZero.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_lib.dir/core/AlphaZero.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/core/AlphaZero.cpp > CMakeFiles/alphazero_lib.dir/core/AlphaZero.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/core/AlphaZero.cpp > CMakeFiles/alphazero_lib.dir/core/AlphaZero.cpp.i
 
 src/CMakeFiles/alphazero_lib.dir/core/AlphaZero.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_lib.dir/core/AlphaZero.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/core/AlphaZero.cpp -o CMakeFiles/alphazero_lib.dir/core/AlphaZero.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/core/AlphaZero.cpp -o CMakeFiles/alphazero_lib.dir/core/AlphaZero.cpp.s
 
 src/CMakeFiles/alphazero_lib.dir/core/game_factory.cpp.o: src/CMakeFiles/alphazero_lib.dir/flags.make
 src/CMakeFiles/alphazero_lib.dir/core/game_factory.cpp.o: ../src/core/game_factory.cpp
 src/CMakeFiles/alphazero_lib.dir/core/game_factory.cpp.o: src/CMakeFiles/alphazero_lib.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/CMakeFiles/alphazero_lib.dir/core/game_factory.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/core/game_factory.cpp.o -MF CMakeFiles/alphazero_lib.dir/core/game_factory.cpp.o.d -o CMakeFiles/alphazero_lib.dir/core/game_factory.cpp.o -c /home/cosmos/alphazero-multi-game/src/core/game_factory.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/core/game_factory.cpp.o -MF CMakeFiles/alphazero_lib.dir/core/game_factory.cpp.o.d -o CMakeFiles/alphazero_lib.dir/core/game_factory.cpp.o -c /home/cosmos/alphazero-multi-game/src/core/game_factory.cpp
 
 src/CMakeFiles/alphazero_lib.dir/core/game_factory.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_lib.dir/core/game_factory.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/core/game_factory.cpp > CMakeFiles/alphazero_lib.dir/core/game_factory.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/core/game_factory.cpp > CMakeFiles/alphazero_lib.dir/core/game_factory.cpp.i
 
 src/CMakeFiles/alphazero_lib.dir/core/game_factory.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_lib.dir/core/game_factory.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/core/game_factory.cpp -o CMakeFiles/alphazero_lib.dir/core/game_factory.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/core/game_factory.cpp -o CMakeFiles/alphazero_lib.dir/core/game_factory.cpp.s
 
 src/CMakeFiles/alphazero_lib.dir/core/igamestate.cpp.o: src/CMakeFiles/alphazero_lib.dir/flags.make
 src/CMakeFiles/alphazero_lib.dir/core/igamestate.cpp.o: ../src/core/igamestate.cpp
 src/CMakeFiles/alphazero_lib.dir/core/igamestate.cpp.o: src/CMakeFiles/alphazero_lib.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/CMakeFiles/alphazero_lib.dir/core/igamestate.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/core/igamestate.cpp.o -MF CMakeFiles/alphazero_lib.dir/core/igamestate.cpp.o.d -o CMakeFiles/alphazero_lib.dir/core/igamestate.cpp.o -c /home/cosmos/alphazero-multi-game/src/core/igamestate.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/core/igamestate.cpp.o -MF CMakeFiles/alphazero_lib.dir/core/igamestate.cpp.o.d -o CMakeFiles/alphazero_lib.dir/core/igamestate.cpp.o -c /home/cosmos/alphazero-multi-game/src/core/igamestate.cpp
 
 src/CMakeFiles/alphazero_lib.dir/core/igamestate.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_lib.dir/core/igamestate.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/core/igamestate.cpp > CMakeFiles/alphazero_lib.dir/core/igamestate.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/core/igamestate.cpp > CMakeFiles/alphazero_lib.dir/core/igamestate.cpp.i
 
 src/CMakeFiles/alphazero_lib.dir/core/igamestate.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_lib.dir/core/igamestate.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/core/igamestate.cpp -o CMakeFiles/alphazero_lib.dir/core/igamestate.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/core/igamestate.cpp -o CMakeFiles/alphazero_lib.dir/core/igamestate.cpp.s
 
 src/CMakeFiles/alphazero_lib.dir/core/zobrist_hash.cpp.o: src/CMakeFiles/alphazero_lib.dir/flags.make
 src/CMakeFiles/alphazero_lib.dir/core/zobrist_hash.cpp.o: ../src/core/zobrist_hash.cpp
 src/CMakeFiles/alphazero_lib.dir/core/zobrist_hash.cpp.o: src/CMakeFiles/alphazero_lib.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/CMakeFiles/alphazero_lib.dir/core/zobrist_hash.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/core/zobrist_hash.cpp.o -MF CMakeFiles/alphazero_lib.dir/core/zobrist_hash.cpp.o.d -o CMakeFiles/alphazero_lib.dir/core/zobrist_hash.cpp.o -c /home/cosmos/alphazero-multi-game/src/core/zobrist_hash.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/core/zobrist_hash.cpp.o -MF CMakeFiles/alphazero_lib.dir/core/zobrist_hash.cpp.o.d -o CMakeFiles/alphazero_lib.dir/core/zobrist_hash.cpp.o -c /home/cosmos/alphazero-multi-game/src/core/zobrist_hash.cpp
 
 src/CMakeFiles/alphazero_lib.dir/core/zobrist_hash.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_lib.dir/core/zobrist_hash.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/core/zobrist_hash.cpp > CMakeFiles/alphazero_lib.dir/core/zobrist_hash.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/core/zobrist_hash.cpp > CMakeFiles/alphazero_lib.dir/core/zobrist_hash.cpp.i
 
 src/CMakeFiles/alphazero_lib.dir/core/zobrist_hash.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_lib.dir/core/zobrist_hash.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/core/zobrist_hash.cpp -o CMakeFiles/alphazero_lib.dir/core/zobrist_hash.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/core/zobrist_hash.cpp -o CMakeFiles/alphazero_lib.dir/core/zobrist_hash.cpp.s
 
 src/CMakeFiles/alphazero_lib.dir/mcts/mcts_node.cpp.o: src/CMakeFiles/alphazero_lib.dir/flags.make
 src/CMakeFiles/alphazero_lib.dir/mcts/mcts_node.cpp.o: ../src/mcts/mcts_node.cpp
 src/CMakeFiles/alphazero_lib.dir/mcts/mcts_node.cpp.o: src/CMakeFiles/alphazero_lib.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/CMakeFiles/alphazero_lib.dir/mcts/mcts_node.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/mcts/mcts_node.cpp.o -MF CMakeFiles/alphazero_lib.dir/mcts/mcts_node.cpp.o.d -o CMakeFiles/alphazero_lib.dir/mcts/mcts_node.cpp.o -c /home/cosmos/alphazero-multi-game/src/mcts/mcts_node.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/mcts/mcts_node.cpp.o -MF CMakeFiles/alphazero_lib.dir/mcts/mcts_node.cpp.o.d -o CMakeFiles/alphazero_lib.dir/mcts/mcts_node.cpp.o -c /home/cosmos/alphazero-multi-game/src/mcts/mcts_node.cpp
 
 src/CMakeFiles/alphazero_lib.dir/mcts/mcts_node.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_lib.dir/mcts/mcts_node.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/mcts/mcts_node.cpp > CMakeFiles/alphazero_lib.dir/mcts/mcts_node.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/mcts/mcts_node.cpp > CMakeFiles/alphazero_lib.dir/mcts/mcts_node.cpp.i
 
 src/CMakeFiles/alphazero_lib.dir/mcts/mcts_node.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_lib.dir/mcts/mcts_node.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/mcts/mcts_node.cpp -o CMakeFiles/alphazero_lib.dir/mcts/mcts_node.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/mcts/mcts_node.cpp -o CMakeFiles/alphazero_lib.dir/mcts/mcts_node.cpp.s
 
 src/CMakeFiles/alphazero_lib.dir/mcts/parallel_mcts.cpp.o: src/CMakeFiles/alphazero_lib.dir/flags.make
 src/CMakeFiles/alphazero_lib.dir/mcts/parallel_mcts.cpp.o: ../src/mcts/parallel_mcts.cpp
 src/CMakeFiles/alphazero_lib.dir/mcts/parallel_mcts.cpp.o: src/CMakeFiles/alphazero_lib.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/CMakeFiles/alphazero_lib.dir/mcts/parallel_mcts.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/mcts/parallel_mcts.cpp.o -MF CMakeFiles/alphazero_lib.dir/mcts/parallel_mcts.cpp.o.d -o CMakeFiles/alphazero_lib.dir/mcts/parallel_mcts.cpp.o -c /home/cosmos/alphazero-multi-game/src/mcts/parallel_mcts.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/mcts/parallel_mcts.cpp.o -MF CMakeFiles/alphazero_lib.dir/mcts/parallel_mcts.cpp.o.d -o CMakeFiles/alphazero_lib.dir/mcts/parallel_mcts.cpp.o -c /home/cosmos/alphazero-multi-game/src/mcts/parallel_mcts.cpp
 
 src/CMakeFiles/alphazero_lib.dir/mcts/parallel_mcts.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_lib.dir/mcts/parallel_mcts.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/mcts/parallel_mcts.cpp > CMakeFiles/alphazero_lib.dir/mcts/parallel_mcts.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/mcts/parallel_mcts.cpp > CMakeFiles/alphazero_lib.dir/mcts/parallel_mcts.cpp.i
 
 src/CMakeFiles/alphazero_lib.dir/mcts/parallel_mcts.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_lib.dir/mcts/parallel_mcts.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/mcts/parallel_mcts.cpp -o CMakeFiles/alphazero_lib.dir/mcts/parallel_mcts.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/mcts/parallel_mcts.cpp -o CMakeFiles/alphazero_lib.dir/mcts/parallel_mcts.cpp.s
 
 src/CMakeFiles/alphazero_lib.dir/mcts/thread_pool.cpp.o: src/CMakeFiles/alphazero_lib.dir/flags.make
 src/CMakeFiles/alphazero_lib.dir/mcts/thread_pool.cpp.o: ../src/mcts/thread_pool.cpp
 src/CMakeFiles/alphazero_lib.dir/mcts/thread_pool.cpp.o: src/CMakeFiles/alphazero_lib.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/CMakeFiles/alphazero_lib.dir/mcts/thread_pool.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/mcts/thread_pool.cpp.o -MF CMakeFiles/alphazero_lib.dir/mcts/thread_pool.cpp.o.d -o CMakeFiles/alphazero_lib.dir/mcts/thread_pool.cpp.o -c /home/cosmos/alphazero-multi-game/src/mcts/thread_pool.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/mcts/thread_pool.cpp.o -MF CMakeFiles/alphazero_lib.dir/mcts/thread_pool.cpp.o.d -o CMakeFiles/alphazero_lib.dir/mcts/thread_pool.cpp.o -c /home/cosmos/alphazero-multi-game/src/mcts/thread_pool.cpp
 
 src/CMakeFiles/alphazero_lib.dir/mcts/thread_pool.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_lib.dir/mcts/thread_pool.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/mcts/thread_pool.cpp > CMakeFiles/alphazero_lib.dir/mcts/thread_pool.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/mcts/thread_pool.cpp > CMakeFiles/alphazero_lib.dir/mcts/thread_pool.cpp.i
 
 src/CMakeFiles/alphazero_lib.dir/mcts/thread_pool.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_lib.dir/mcts/thread_pool.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/mcts/thread_pool.cpp -o CMakeFiles/alphazero_lib.dir/mcts/thread_pool.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/mcts/thread_pool.cpp -o CMakeFiles/alphazero_lib.dir/mcts/thread_pool.cpp.s
 
 src/CMakeFiles/alphazero_lib.dir/mcts/transposition_table.cpp.o: src/CMakeFiles/alphazero_lib.dir/flags.make
 src/CMakeFiles/alphazero_lib.dir/mcts/transposition_table.cpp.o: ../src/mcts/transposition_table.cpp
 src/CMakeFiles/alphazero_lib.dir/mcts/transposition_table.cpp.o: src/CMakeFiles/alphazero_lib.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object src/CMakeFiles/alphazero_lib.dir/mcts/transposition_table.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/mcts/transposition_table.cpp.o -MF CMakeFiles/alphazero_lib.dir/mcts/transposition_table.cpp.o.d -o CMakeFiles/alphazero_lib.dir/mcts/transposition_table.cpp.o -c /home/cosmos/alphazero-multi-game/src/mcts/transposition_table.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/mcts/transposition_table.cpp.o -MF CMakeFiles/alphazero_lib.dir/mcts/transposition_table.cpp.o.d -o CMakeFiles/alphazero_lib.dir/mcts/transposition_table.cpp.o -c /home/cosmos/alphazero-multi-game/src/mcts/transposition_table.cpp
 
 src/CMakeFiles/alphazero_lib.dir/mcts/transposition_table.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_lib.dir/mcts/transposition_table.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/mcts/transposition_table.cpp > CMakeFiles/alphazero_lib.dir/mcts/transposition_table.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/mcts/transposition_table.cpp > CMakeFiles/alphazero_lib.dir/mcts/transposition_table.cpp.i
 
 src/CMakeFiles/alphazero_lib.dir/mcts/transposition_table.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_lib.dir/mcts/transposition_table.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/mcts/transposition_table.cpp -o CMakeFiles/alphazero_lib.dir/mcts/transposition_table.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/mcts/transposition_table.cpp -o CMakeFiles/alphazero_lib.dir/mcts/transposition_table.cpp.s
 
 src/CMakeFiles/alphazero_lib.dir/nn/attack_defense_module.cpp.o: src/CMakeFiles/alphazero_lib.dir/flags.make
 src/CMakeFiles/alphazero_lib.dir/nn/attack_defense_module.cpp.o: ../src/nn/attack_defense_module.cpp
 src/CMakeFiles/alphazero_lib.dir/nn/attack_defense_module.cpp.o: src/CMakeFiles/alphazero_lib.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object src/CMakeFiles/alphazero_lib.dir/nn/attack_defense_module.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/nn/attack_defense_module.cpp.o -MF CMakeFiles/alphazero_lib.dir/nn/attack_defense_module.cpp.o.d -o CMakeFiles/alphazero_lib.dir/nn/attack_defense_module.cpp.o -c /home/cosmos/alphazero-multi-game/src/nn/attack_defense_module.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/nn/attack_defense_module.cpp.o -MF CMakeFiles/alphazero_lib.dir/nn/attack_defense_module.cpp.o.d -o CMakeFiles/alphazero_lib.dir/nn/attack_defense_module.cpp.o -c /home/cosmos/alphazero-multi-game/src/nn/attack_defense_module.cpp
 
 src/CMakeFiles/alphazero_lib.dir/nn/attack_defense_module.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_lib.dir/nn/attack_defense_module.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/nn/attack_defense_module.cpp > CMakeFiles/alphazero_lib.dir/nn/attack_defense_module.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/nn/attack_defense_module.cpp > CMakeFiles/alphazero_lib.dir/nn/attack_defense_module.cpp.i
 
 src/CMakeFiles/alphazero_lib.dir/nn/attack_defense_module.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_lib.dir/nn/attack_defense_module.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/nn/attack_defense_module.cpp -o CMakeFiles/alphazero_lib.dir/nn/attack_defense_module.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/nn/attack_defense_module.cpp -o CMakeFiles/alphazero_lib.dir/nn/attack_defense_module.cpp.s
 
 src/CMakeFiles/alphazero_lib.dir/nn/batch_queue.cpp.o: src/CMakeFiles/alphazero_lib.dir/flags.make
 src/CMakeFiles/alphazero_lib.dir/nn/batch_queue.cpp.o: ../src/nn/batch_queue.cpp
 src/CMakeFiles/alphazero_lib.dir/nn/batch_queue.cpp.o: src/CMakeFiles/alphazero_lib.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object src/CMakeFiles/alphazero_lib.dir/nn/batch_queue.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/nn/batch_queue.cpp.o -MF CMakeFiles/alphazero_lib.dir/nn/batch_queue.cpp.o.d -o CMakeFiles/alphazero_lib.dir/nn/batch_queue.cpp.o -c /home/cosmos/alphazero-multi-game/src/nn/batch_queue.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/nn/batch_queue.cpp.o -MF CMakeFiles/alphazero_lib.dir/nn/batch_queue.cpp.o.d -o CMakeFiles/alphazero_lib.dir/nn/batch_queue.cpp.o -c /home/cosmos/alphazero-multi-game/src/nn/batch_queue.cpp
 
 src/CMakeFiles/alphazero_lib.dir/nn/batch_queue.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_lib.dir/nn/batch_queue.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/nn/batch_queue.cpp > CMakeFiles/alphazero_lib.dir/nn/batch_queue.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/nn/batch_queue.cpp > CMakeFiles/alphazero_lib.dir/nn/batch_queue.cpp.i
 
 src/CMakeFiles/alphazero_lib.dir/nn/batch_queue.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_lib.dir/nn/batch_queue.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/nn/batch_queue.cpp -o CMakeFiles/alphazero_lib.dir/nn/batch_queue.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/nn/batch_queue.cpp -o CMakeFiles/alphazero_lib.dir/nn/batch_queue.cpp.s
 
 src/CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.o: src/CMakeFiles/alphazero_lib.dir/flags.make
 src/CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.o: ../src/nn/neural_network.cpp
 src/CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.o: src/CMakeFiles/alphazero_lib.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object src/CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.o -MF CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.o.d -o CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.o -c /home/cosmos/alphazero-multi-game/src/nn/neural_network.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.o -MF CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.o.d -o CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.o -c /home/cosmos/alphazero-multi-game/src/nn/neural_network.cpp
 
 src/CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/nn/neural_network.cpp > CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/nn/neural_network.cpp > CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.i
 
 src/CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/nn/neural_network.cpp -o CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/nn/neural_network.cpp -o CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.s
 
 src/CMakeFiles/alphazero_lib.dir/nn/random_policy_network.cpp.o: src/CMakeFiles/alphazero_lib.dir/flags.make
 src/CMakeFiles/alphazero_lib.dir/nn/random_policy_network.cpp.o: ../src/nn/random_policy_network.cpp
 src/CMakeFiles/alphazero_lib.dir/nn/random_policy_network.cpp.o: src/CMakeFiles/alphazero_lib.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object src/CMakeFiles/alphazero_lib.dir/nn/random_policy_network.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/nn/random_policy_network.cpp.o -MF CMakeFiles/alphazero_lib.dir/nn/random_policy_network.cpp.o.d -o CMakeFiles/alphazero_lib.dir/nn/random_policy_network.cpp.o -c /home/cosmos/alphazero-multi-game/src/nn/random_policy_network.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/nn/random_policy_network.cpp.o -MF CMakeFiles/alphazero_lib.dir/nn/random_policy_network.cpp.o.d -o CMakeFiles/alphazero_lib.dir/nn/random_policy_network.cpp.o -c /home/cosmos/alphazero-multi-game/src/nn/random_policy_network.cpp
 
 src/CMakeFiles/alphazero_lib.dir/nn/random_policy_network.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_lib.dir/nn/random_policy_network.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/nn/random_policy_network.cpp > CMakeFiles/alphazero_lib.dir/nn/random_policy_network.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/nn/random_policy_network.cpp > CMakeFiles/alphazero_lib.dir/nn/random_policy_network.cpp.i
 
 src/CMakeFiles/alphazero_lib.dir/nn/random_policy_network.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_lib.dir/nn/random_policy_network.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/nn/random_policy_network.cpp -o CMakeFiles/alphazero_lib.dir/nn/random_policy_network.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/nn/random_policy_network.cpp -o CMakeFiles/alphazero_lib.dir/nn/random_policy_network.cpp.s
 
 src/CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.o: src/CMakeFiles/alphazero_lib.dir/flags.make
 src/CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.o: ../src/nn/torch_neural_network.cpp
 src/CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.o: src/CMakeFiles/alphazero_lib.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object src/CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.o -MF CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.o.d -o CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.o -c /home/cosmos/alphazero-multi-game/src/nn/torch_neural_network.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.o -MF CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.o.d -o CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.o -c /home/cosmos/alphazero-multi-game/src/nn/torch_neural_network.cpp
 
 src/CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/nn/torch_neural_network.cpp > CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/nn/torch_neural_network.cpp > CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.i
 
 src/CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/nn/torch_neural_network.cpp -o CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/nn/torch_neural_network.cpp -o CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.s
 
 src/CMakeFiles/alphazero_lib.dir/selfplay/dataset.cpp.o: src/CMakeFiles/alphazero_lib.dir/flags.make
 src/CMakeFiles/alphazero_lib.dir/selfplay/dataset.cpp.o: ../src/selfplay/dataset.cpp
 src/CMakeFiles/alphazero_lib.dir/selfplay/dataset.cpp.o: src/CMakeFiles/alphazero_lib.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object src/CMakeFiles/alphazero_lib.dir/selfplay/dataset.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/selfplay/dataset.cpp.o -MF CMakeFiles/alphazero_lib.dir/selfplay/dataset.cpp.o.d -o CMakeFiles/alphazero_lib.dir/selfplay/dataset.cpp.o -c /home/cosmos/alphazero-multi-game/src/selfplay/dataset.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/selfplay/dataset.cpp.o -MF CMakeFiles/alphazero_lib.dir/selfplay/dataset.cpp.o.d -o CMakeFiles/alphazero_lib.dir/selfplay/dataset.cpp.o -c /home/cosmos/alphazero-multi-game/src/selfplay/dataset.cpp
 
 src/CMakeFiles/alphazero_lib.dir/selfplay/dataset.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_lib.dir/selfplay/dataset.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/selfplay/dataset.cpp > CMakeFiles/alphazero_lib.dir/selfplay/dataset.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/selfplay/dataset.cpp > CMakeFiles/alphazero_lib.dir/selfplay/dataset.cpp.i
 
 src/CMakeFiles/alphazero_lib.dir/selfplay/dataset.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_lib.dir/selfplay/dataset.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/selfplay/dataset.cpp -o CMakeFiles/alphazero_lib.dir/selfplay/dataset.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/selfplay/dataset.cpp -o CMakeFiles/alphazero_lib.dir/selfplay/dataset.cpp.s
 
 src/CMakeFiles/alphazero_lib.dir/selfplay/game_record.cpp.o: src/CMakeFiles/alphazero_lib.dir/flags.make
 src/CMakeFiles/alphazero_lib.dir/selfplay/game_record.cpp.o: ../src/selfplay/game_record.cpp
 src/CMakeFiles/alphazero_lib.dir/selfplay/game_record.cpp.o: src/CMakeFiles/alphazero_lib.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object src/CMakeFiles/alphazero_lib.dir/selfplay/game_record.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/selfplay/game_record.cpp.o -MF CMakeFiles/alphazero_lib.dir/selfplay/game_record.cpp.o.d -o CMakeFiles/alphazero_lib.dir/selfplay/game_record.cpp.o -c /home/cosmos/alphazero-multi-game/src/selfplay/game_record.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/selfplay/game_record.cpp.o -MF CMakeFiles/alphazero_lib.dir/selfplay/game_record.cpp.o.d -o CMakeFiles/alphazero_lib.dir/selfplay/game_record.cpp.o -c /home/cosmos/alphazero-multi-game/src/selfplay/game_record.cpp
 
 src/CMakeFiles/alphazero_lib.dir/selfplay/game_record.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_lib.dir/selfplay/game_record.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/selfplay/game_record.cpp > CMakeFiles/alphazero_lib.dir/selfplay/game_record.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/selfplay/game_record.cpp > CMakeFiles/alphazero_lib.dir/selfplay/game_record.cpp.i
 
 src/CMakeFiles/alphazero_lib.dir/selfplay/game_record.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_lib.dir/selfplay/game_record.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/selfplay/game_record.cpp -o CMakeFiles/alphazero_lib.dir/selfplay/game_record.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/selfplay/game_record.cpp -o CMakeFiles/alphazero_lib.dir/selfplay/game_record.cpp.s
 
 src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: src/CMakeFiles/alphazero_lib.dir/flags.make
 src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfplay/self_play_manager.cpp
 src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: src/CMakeFiles/alphazero_lib.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o -MF CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o.d -o CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o -c /home/cosmos/alphazero-multi-game/src/selfplay/self_play_manager.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o -MF CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o.d -o CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o -c /home/cosmos/alphazero-multi-game/src/selfplay/self_play_manager.cpp
 
 src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/selfplay/self_play_manager.cpp > CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/selfplay/self_play_manager.cpp > CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.i
 
 src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/selfplay/self_play_manager.cpp -o CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/selfplay/self_play_manager.cpp -o CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.s
 
 src/CMakeFiles/alphazero_lib.dir/games/chess/chess_state.cpp.o: src/CMakeFiles/alphazero_lib.dir/flags.make
 src/CMakeFiles/alphazero_lib.dir/games/chess/chess_state.cpp.o: ../src/games/chess/chess_state.cpp
 src/CMakeFiles/alphazero_lib.dir/games/chess/chess_state.cpp.o: src/CMakeFiles/alphazero_lib.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object src/CMakeFiles/alphazero_lib.dir/games/chess/chess_state.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/games/chess/chess_state.cpp.o -MF CMakeFiles/alphazero_lib.dir/games/chess/chess_state.cpp.o.d -o CMakeFiles/alphazero_lib.dir/games/chess/chess_state.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/chess/chess_state.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/games/chess/chess_state.cpp.o -MF CMakeFiles/alphazero_lib.dir/games/chess/chess_state.cpp.o.d -o CMakeFiles/alphazero_lib.dir/games/chess/chess_state.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/chess/chess_state.cpp
 
 src/CMakeFiles/alphazero_lib.dir/games/chess/chess_state.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_lib.dir/games/chess/chess_state.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/games/chess/chess_state.cpp > CMakeFiles/alphazero_lib.dir/games/chess/chess_state.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/games/chess/chess_state.cpp > CMakeFiles/alphazero_lib.dir/games/chess/chess_state.cpp.i
 
 src/CMakeFiles/alphazero_lib.dir/games/chess/chess_state.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_lib.dir/games/chess/chess_state.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/games/chess/chess_state.cpp -o CMakeFiles/alphazero_lib.dir/games/chess/chess_state.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/games/chess/chess_state.cpp -o CMakeFiles/alphazero_lib.dir/games/chess/chess_state.cpp.s
 
 src/CMakeFiles/alphazero_lib.dir/games/chess/chess_rules.cpp.o: src/CMakeFiles/alphazero_lib.dir/flags.make
 src/CMakeFiles/alphazero_lib.dir/games/chess/chess_rules.cpp.o: ../src/games/chess/chess_rules.cpp
 src/CMakeFiles/alphazero_lib.dir/games/chess/chess_rules.cpp.o: src/CMakeFiles/alphazero_lib.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object src/CMakeFiles/alphazero_lib.dir/games/chess/chess_rules.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/games/chess/chess_rules.cpp.o -MF CMakeFiles/alphazero_lib.dir/games/chess/chess_rules.cpp.o.d -o CMakeFiles/alphazero_lib.dir/games/chess/chess_rules.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/chess/chess_rules.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/games/chess/chess_rules.cpp.o -MF CMakeFiles/alphazero_lib.dir/games/chess/chess_rules.cpp.o.d -o CMakeFiles/alphazero_lib.dir/games/chess/chess_rules.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/chess/chess_rules.cpp
 
 src/CMakeFiles/alphazero_lib.dir/games/chess/chess_rules.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_lib.dir/games/chess/chess_rules.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/games/chess/chess_rules.cpp > CMakeFiles/alphazero_lib.dir/games/chess/chess_rules.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/games/chess/chess_rules.cpp > CMakeFiles/alphazero_lib.dir/games/chess/chess_rules.cpp.i
 
 src/CMakeFiles/alphazero_lib.dir/games/chess/chess_rules.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_lib.dir/games/chess/chess_rules.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/games/chess/chess_rules.cpp -o CMakeFiles/alphazero_lib.dir/games/chess/chess_rules.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/games/chess/chess_rules.cpp -o CMakeFiles/alphazero_lib.dir/games/chess/chess_rules.cpp.s
 
 src/CMakeFiles/alphazero_lib.dir/games/chess/chess960.cpp.o: src/CMakeFiles/alphazero_lib.dir/flags.make
 src/CMakeFiles/alphazero_lib.dir/games/chess/chess960.cpp.o: ../src/games/chess/chess960.cpp
 src/CMakeFiles/alphazero_lib.dir/games/chess/chess960.cpp.o: src/CMakeFiles/alphazero_lib.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object src/CMakeFiles/alphazero_lib.dir/games/chess/chess960.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/games/chess/chess960.cpp.o -MF CMakeFiles/alphazero_lib.dir/games/chess/chess960.cpp.o.d -o CMakeFiles/alphazero_lib.dir/games/chess/chess960.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/chess/chess960.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/games/chess/chess960.cpp.o -MF CMakeFiles/alphazero_lib.dir/games/chess/chess960.cpp.o.d -o CMakeFiles/alphazero_lib.dir/games/chess/chess960.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/chess/chess960.cpp
 
 src/CMakeFiles/alphazero_lib.dir/games/chess/chess960.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_lib.dir/games/chess/chess960.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/games/chess/chess960.cpp > CMakeFiles/alphazero_lib.dir/games/chess/chess960.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/games/chess/chess960.cpp > CMakeFiles/alphazero_lib.dir/games/chess/chess960.cpp.i
 
 src/CMakeFiles/alphazero_lib.dir/games/chess/chess960.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_lib.dir/games/chess/chess960.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/games/chess/chess960.cpp -o CMakeFiles/alphazero_lib.dir/games/chess/chess960.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/games/chess/chess960.cpp -o CMakeFiles/alphazero_lib.dir/games/chess/chess960.cpp.s
 
 src/CMakeFiles/alphazero_lib.dir/games/go/go_state.cpp.o: src/CMakeFiles/alphazero_lib.dir/flags.make
 src/CMakeFiles/alphazero_lib.dir/games/go/go_state.cpp.o: ../src/games/go/go_state.cpp
 src/CMakeFiles/alphazero_lib.dir/games/go/go_state.cpp.o: src/CMakeFiles/alphazero_lib.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object src/CMakeFiles/alphazero_lib.dir/games/go/go_state.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/games/go/go_state.cpp.o -MF CMakeFiles/alphazero_lib.dir/games/go/go_state.cpp.o.d -o CMakeFiles/alphazero_lib.dir/games/go/go_state.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/go/go_state.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/games/go/go_state.cpp.o -MF CMakeFiles/alphazero_lib.dir/games/go/go_state.cpp.o.d -o CMakeFiles/alphazero_lib.dir/games/go/go_state.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/go/go_state.cpp
 
 src/CMakeFiles/alphazero_lib.dir/games/go/go_state.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_lib.dir/games/go/go_state.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/games/go/go_state.cpp > CMakeFiles/alphazero_lib.dir/games/go/go_state.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/games/go/go_state.cpp > CMakeFiles/alphazero_lib.dir/games/go/go_state.cpp.i
 
 src/CMakeFiles/alphazero_lib.dir/games/go/go_state.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_lib.dir/games/go/go_state.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/games/go/go_state.cpp -o CMakeFiles/alphazero_lib.dir/games/go/go_state.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/games/go/go_state.cpp -o CMakeFiles/alphazero_lib.dir/games/go/go_state.cpp.s
 
 src/CMakeFiles/alphazero_lib.dir/games/go/go_rules.cpp.o: src/CMakeFiles/alphazero_lib.dir/flags.make
 src/CMakeFiles/alphazero_lib.dir/games/go/go_rules.cpp.o: ../src/games/go/go_rules.cpp
 src/CMakeFiles/alphazero_lib.dir/games/go/go_rules.cpp.o: src/CMakeFiles/alphazero_lib.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object src/CMakeFiles/alphazero_lib.dir/games/go/go_rules.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/games/go/go_rules.cpp.o -MF CMakeFiles/alphazero_lib.dir/games/go/go_rules.cpp.o.d -o CMakeFiles/alphazero_lib.dir/games/go/go_rules.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/go/go_rules.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/games/go/go_rules.cpp.o -MF CMakeFiles/alphazero_lib.dir/games/go/go_rules.cpp.o.d -o CMakeFiles/alphazero_lib.dir/games/go/go_rules.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/go/go_rules.cpp
 
 src/CMakeFiles/alphazero_lib.dir/games/go/go_rules.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_lib.dir/games/go/go_rules.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/games/go/go_rules.cpp > CMakeFiles/alphazero_lib.dir/games/go/go_rules.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/games/go/go_rules.cpp > CMakeFiles/alphazero_lib.dir/games/go/go_rules.cpp.i
 
 src/CMakeFiles/alphazero_lib.dir/games/go/go_rules.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_lib.dir/games/go/go_rules.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/games/go/go_rules.cpp -o CMakeFiles/alphazero_lib.dir/games/go/go_rules.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/games/go/go_rules.cpp -o CMakeFiles/alphazero_lib.dir/games/go/go_rules.cpp.s
 
 src/CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_state.cpp.o: src/CMakeFiles/alphazero_lib.dir/flags.make
 src/CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_state.cpp.o: ../src/games/gomoku/gomoku_state.cpp
 src/CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_state.cpp.o: src/CMakeFiles/alphazero_lib.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object src/CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_state.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_state.cpp.o -MF CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_state.cpp.o.d -o CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_state.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_state.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_state.cpp.o -MF CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_state.cpp.o.d -o CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_state.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_state.cpp
 
 src/CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_state.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_state.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_state.cpp > CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_state.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_state.cpp > CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_state.cpp.i
 
 src/CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_state.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_state.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_state.cpp -o CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_state.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_state.cpp -o CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_state.cpp.s
 
 src/CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_rules.cpp.o: src/CMakeFiles/alphazero_lib.dir/flags.make
 src/CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_rules.cpp.o: ../src/games/gomoku/gomoku_rules.cpp
 src/CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_rules.cpp.o: src/CMakeFiles/alphazero_lib.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object src/CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_rules.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_rules.cpp.o -MF CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_rules.cpp.o.d -o CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_rules.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_rules.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_rules.cpp.o -MF CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_rules.cpp.o.d -o CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_rules.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_rules.cpp
 
 src/CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_rules.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_rules.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_rules.cpp > CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_rules.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_rules.cpp > CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_rules.cpp.i
 
 src/CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_rules.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_rules.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_rules.cpp -o CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_rules.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_rules.cpp -o CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_rules.cpp.s
 
 # Object files for target alphazero_lib
 alphazero_lib_OBJECTS = \

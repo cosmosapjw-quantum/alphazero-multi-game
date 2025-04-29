@@ -1,10 +1,10 @@
-Start testing: Apr 29 22:54 KST
+Start testing: Apr 30 00:29 KST
 ----------------------------------------------------------
 1/140 Testing: GameFactoryTest.CreateGomokuState
 1/140 Test: GameFactoryTest.CreateGomokuState
 Command: "/home/cosmos/alphazero-multi-game/build/tests/core_tests" "--gtest_filter=GameFactoryTest.CreateGomokuState" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GameFactoryTest.CreateGomokuState" start time: Apr 29 22:54 KST
+"GameFactoryTest.CreateGomokuState" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -20,18 +20,18 @@ Note: Google Test filter = GameFactoryTest.CreateGomokuState
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   2.15 sec
+Test time =   0.41 sec
 ----------------------------------------------------------
 Test Passed.
-"GameFactoryTest.CreateGomokuState" end time: Apr 29 22:54 KST
-"GameFactoryTest.CreateGomokuState" time elapsed: 00:00:02
+"GameFactoryTest.CreateGomokuState" end time: Apr 30 00:29 KST
+"GameFactoryTest.CreateGomokuState" time elapsed: 00:00:00
 ----------------------------------------------------------
 
 2/140 Testing: GameFactoryTest.CreateChessState
 2/140 Test: GameFactoryTest.CreateChessState
 Command: "/home/cosmos/alphazero-multi-game/build/tests/core_tests" "--gtest_filter=GameFactoryTest.CreateChessState" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GameFactoryTest.CreateChessState" start time: Apr 29 22:54 KST
+"GameFactoryTest.CreateChessState" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -47,10 +47,10 @@ Note: Google Test filter = GameFactoryTest.CreateChessState
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.35 sec
+Test time =   0.48 sec
 ----------------------------------------------------------
 Test Passed.
-"GameFactoryTest.CreateChessState" end time: Apr 29 22:54 KST
+"GameFactoryTest.CreateChessState" end time: Apr 30 00:29 KST
 "GameFactoryTest.CreateChessState" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -58,7 +58,7 @@ Test Passed.
 3/140 Test: GameFactoryTest.CreateGoState
 Command: "/home/cosmos/alphazero-multi-game/build/tests/core_tests" "--gtest_filter=GameFactoryTest.CreateGoState" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GameFactoryTest.CreateGoState" start time: Apr 29 22:54 KST
+"GameFactoryTest.CreateGoState" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -74,10 +74,10 @@ Note: Google Test filter = GameFactoryTest.CreateGoState
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.31 sec
+Test time =   0.36 sec
 ----------------------------------------------------------
 Test Passed.
-"GameFactoryTest.CreateGoState" end time: Apr 29 22:54 KST
+"GameFactoryTest.CreateGoState" end time: Apr 30 00:29 KST
 "GameFactoryTest.CreateGoState" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -85,7 +85,7 @@ Test Passed.
 4/140 Test: GameFactoryTest.CreateGameState
 Command: "/home/cosmos/alphazero-multi-game/build/tests/core_tests" "--gtest_filter=GameFactoryTest.CreateGameState" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GameFactoryTest.CreateGameState" start time: Apr 29 22:54 KST
+"GameFactoryTest.CreateGameState" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -101,10 +101,10 @@ Note: Google Test filter = GameFactoryTest.CreateGameState
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.32 sec
+Test time =   0.38 sec
 ----------------------------------------------------------
 Test Passed.
-"GameFactoryTest.CreateGameState" end time: Apr 29 22:54 KST
+"GameFactoryTest.CreateGameState" end time: Apr 30 00:29 KST
 "GameFactoryTest.CreateGameState" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -112,7 +112,7 @@ Test Passed.
 5/140 Test: GameFactoryTest.IsGameSupported
 Command: "/home/cosmos/alphazero-multi-game/build/tests/core_tests" "--gtest_filter=GameFactoryTest.IsGameSupported" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GameFactoryTest.IsGameSupported" start time: Apr 29 22:54 KST
+"GameFactoryTest.IsGameSupported" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -128,10 +128,10 @@ Note: Google Test filter = GameFactoryTest.IsGameSupported
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.40 sec
+Test time =   0.43 sec
 ----------------------------------------------------------
 Test Passed.
-"GameFactoryTest.IsGameSupported" end time: Apr 29 22:54 KST
+"GameFactoryTest.IsGameSupported" end time: Apr 30 00:29 KST
 "GameFactoryTest.IsGameSupported" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -139,7 +139,7 @@ Test Passed.
 6/140 Test: GameFactoryTest.GetDefaultBoardSize
 Command: "/home/cosmos/alphazero-multi-game/build/tests/core_tests" "--gtest_filter=GameFactoryTest.GetDefaultBoardSize" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GameFactoryTest.GetDefaultBoardSize" start time: Apr 29 22:54 KST
+"GameFactoryTest.GetDefaultBoardSize" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -155,10 +155,10 @@ Note: Google Test filter = GameFactoryTest.GetDefaultBoardSize
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.32 sec
+Test time =   0.43 sec
 ----------------------------------------------------------
 Test Passed.
-"GameFactoryTest.GetDefaultBoardSize" end time: Apr 29 22:54 KST
+"GameFactoryTest.GetDefaultBoardSize" end time: Apr 30 00:29 KST
 "GameFactoryTest.GetDefaultBoardSize" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -166,7 +166,7 @@ Test Passed.
 7/140 Test: IGameStateTest.CreateGameState
 Command: "/home/cosmos/alphazero-multi-game/build/tests/core_tests" "--gtest_filter=IGameStateTest.CreateGameState" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"IGameStateTest.CreateGameState" start time: Apr 29 22:54 KST
+"IGameStateTest.CreateGameState" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -182,10 +182,10 @@ Note: Google Test filter = IGameStateTest.CreateGameState
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.38 sec
+Test time =   0.39 sec
 ----------------------------------------------------------
 Test Passed.
-"IGameStateTest.CreateGameState" end time: Apr 29 22:54 KST
+"IGameStateTest.CreateGameState" end time: Apr 30 00:29 KST
 "IGameStateTest.CreateGameState" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -193,7 +193,7 @@ Test Passed.
 8/140 Test: IGameStateTest.InitialState
 Command: "/home/cosmos/alphazero-multi-game/build/tests/core_tests" "--gtest_filter=IGameStateTest.InitialState" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"IGameStateTest.InitialState" start time: Apr 29 22:54 KST
+"IGameStateTest.InitialState" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -209,10 +209,10 @@ Note: Google Test filter = IGameStateTest.InitialState
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.31 sec
+Test time =   0.35 sec
 ----------------------------------------------------------
 Test Passed.
-"IGameStateTest.InitialState" end time: Apr 29 22:54 KST
+"IGameStateTest.InitialState" end time: Apr 30 00:29 KST
 "IGameStateTest.InitialState" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -220,7 +220,7 @@ Test Passed.
 9/140 Test: IGameStateTest.GetLegalMoves
 Command: "/home/cosmos/alphazero-multi-game/build/tests/core_tests" "--gtest_filter=IGameStateTest.GetLegalMoves" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"IGameStateTest.GetLegalMoves" start time: Apr 29 22:54 KST
+"IGameStateTest.GetLegalMoves" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -229,17 +229,17 @@ Note: Google Test filter = IGameStateTest.GetLegalMoves
 [----------] Global test environment set-up.
 [----------] 1 test from IGameStateTest
 [ RUN      ] IGameStateTest.GetLegalMoves
-[       OK ] IGameStateTest.GetLegalMoves (0 ms)
-[----------] 1 test from IGameStateTest (0 ms total)
+[       OK ] IGameStateTest.GetLegalMoves (6 ms)
+[----------] 1 test from IGameStateTest (6 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (0 ms total)
+[==========] 1 test from 1 test suite ran. (6 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.31 sec
+Test time =   0.36 sec
 ----------------------------------------------------------
 Test Passed.
-"IGameStateTest.GetLegalMoves" end time: Apr 29 22:54 KST
+"IGameStateTest.GetLegalMoves" end time: Apr 30 00:29 KST
 "IGameStateTest.GetLegalMoves" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -247,7 +247,7 @@ Test Passed.
 10/140 Test: IGameStateTest.MakeMove
 Command: "/home/cosmos/alphazero-multi-game/build/tests/core_tests" "--gtest_filter=IGameStateTest.MakeMove" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"IGameStateTest.MakeMove" start time: Apr 29 22:54 KST
+"IGameStateTest.MakeMove" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -256,17 +256,17 @@ Note: Google Test filter = IGameStateTest.MakeMove
 [----------] Global test environment set-up.
 [----------] 1 test from IGameStateTest
 [ RUN      ] IGameStateTest.MakeMove
-[       OK ] IGameStateTest.MakeMove (0 ms)
-[----------] 1 test from IGameStateTest (0 ms total)
+[       OK ] IGameStateTest.MakeMove (8 ms)
+[----------] 1 test from IGameStateTest (8 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (0 ms total)
+[==========] 1 test from 1 test suite ran. (8 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.32 sec
+Test time =   0.36 sec
 ----------------------------------------------------------
 Test Passed.
-"IGameStateTest.MakeMove" end time: Apr 29 22:54 KST
+"IGameStateTest.MakeMove" end time: Apr 30 00:29 KST
 "IGameStateTest.MakeMove" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -274,7 +274,7 @@ Test Passed.
 11/140 Test: IGameStateTest.UndoMove
 Command: "/home/cosmos/alphazero-multi-game/build/tests/core_tests" "--gtest_filter=IGameStateTest.UndoMove" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"IGameStateTest.UndoMove" start time: Apr 29 22:54 KST
+"IGameStateTest.UndoMove" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -283,17 +283,17 @@ Note: Google Test filter = IGameStateTest.UndoMove
 [----------] Global test environment set-up.
 [----------] 1 test from IGameStateTest
 [ RUN      ] IGameStateTest.UndoMove
-[       OK ] IGameStateTest.UndoMove (0 ms)
-[----------] 1 test from IGameStateTest (0 ms total)
+[       OK ] IGameStateTest.UndoMove (8 ms)
+[----------] 1 test from IGameStateTest (8 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (0 ms total)
+[==========] 1 test from 1 test suite ran. (8 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.36 sec
+Test time =   0.43 sec
 ----------------------------------------------------------
 Test Passed.
-"IGameStateTest.UndoMove" end time: Apr 29 22:54 KST
+"IGameStateTest.UndoMove" end time: Apr 30 00:29 KST
 "IGameStateTest.UndoMove" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -301,7 +301,7 @@ Test Passed.
 12/140 Test: IGameStateTest.CloneState
 Command: "/home/cosmos/alphazero-multi-game/build/tests/core_tests" "--gtest_filter=IGameStateTest.CloneState" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"IGameStateTest.CloneState" start time: Apr 29 22:54 KST
+"IGameStateTest.CloneState" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -310,17 +310,17 @@ Note: Google Test filter = IGameStateTest.CloneState
 [----------] Global test environment set-up.
 [----------] 1 test from IGameStateTest
 [ RUN      ] IGameStateTest.CloneState
-[       OK ] IGameStateTest.CloneState (0 ms)
-[----------] 1 test from IGameStateTest (0 ms total)
+[       OK ] IGameStateTest.CloneState (7 ms)
+[----------] 1 test from IGameStateTest (7 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (0 ms total)
+[==========] 1 test from 1 test suite ran. (7 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.44 sec
 ----------------------------------------------------------
 Test Passed.
-"IGameStateTest.CloneState" end time: Apr 29 22:54 KST
+"IGameStateTest.CloneState" end time: Apr 30 00:29 KST
 "IGameStateTest.CloneState" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -328,7 +328,7 @@ Test Passed.
 13/140 Test: IGameStateTest.TensorRepresentation
 Command: "/home/cosmos/alphazero-multi-game/build/tests/core_tests" "--gtest_filter=IGameStateTest.TensorRepresentation" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"IGameStateTest.TensorRepresentation" start time: Apr 29 22:54 KST
+"IGameStateTest.TensorRepresentation" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -344,10 +344,10 @@ Note: Google Test filter = IGameStateTest.TensorRepresentation
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.32 sec
+Test time =   0.36 sec
 ----------------------------------------------------------
 Test Passed.
-"IGameStateTest.TensorRepresentation" end time: Apr 29 22:54 KST
+"IGameStateTest.TensorRepresentation" end time: Apr 30 00:29 KST
 "IGameStateTest.TensorRepresentation" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -355,7 +355,7 @@ Test Passed.
 14/140 Test: ZobristHashTest.Initialization
 Command: "/home/cosmos/alphazero-multi-game/build/tests/core_tests" "--gtest_filter=ZobristHashTest.Initialization" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ZobristHashTest.Initialization" start time: Apr 29 22:54 KST
+"ZobristHashTest.Initialization" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -371,10 +371,10 @@ Note: Google Test filter = ZobristHashTest.Initialization
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.34 sec
+Test time =   0.41 sec
 ----------------------------------------------------------
 Test Passed.
-"ZobristHashTest.Initialization" end time: Apr 29 22:54 KST
+"ZobristHashTest.Initialization" end time: Apr 30 00:29 KST
 "ZobristHashTest.Initialization" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -382,7 +382,7 @@ Test Passed.
 15/140 Test: ZobristHashTest.PieceHashing
 Command: "/home/cosmos/alphazero-multi-game/build/tests/core_tests" "--gtest_filter=ZobristHashTest.PieceHashing" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ZobristHashTest.PieceHashing" start time: Apr 29 22:54 KST
+"ZobristHashTest.PieceHashing" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -398,10 +398,10 @@ Note: Google Test filter = ZobristHashTest.PieceHashing
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.39 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Passed.
-"ZobristHashTest.PieceHashing" end time: Apr 29 22:54 KST
+"ZobristHashTest.PieceHashing" end time: Apr 30 00:29 KST
 "ZobristHashTest.PieceHashing" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -409,7 +409,7 @@ Test Passed.
 16/140 Test: ZobristHashTest.PlayerHashing
 Command: "/home/cosmos/alphazero-multi-game/build/tests/core_tests" "--gtest_filter=ZobristHashTest.PlayerHashing" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ZobristHashTest.PlayerHashing" start time: Apr 29 22:54 KST
+"ZobristHashTest.PlayerHashing" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -425,10 +425,10 @@ Note: Google Test filter = ZobristHashTest.PlayerHashing
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.34 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Passed.
-"ZobristHashTest.PlayerHashing" end time: Apr 29 22:54 KST
+"ZobristHashTest.PlayerHashing" end time: Apr 30 00:29 KST
 "ZobristHashTest.PlayerHashing" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -436,7 +436,7 @@ Test Passed.
 17/140 Test: ZobristHashTest.FeatureHashing
 Command: "/home/cosmos/alphazero-multi-game/build/tests/core_tests" "--gtest_filter=ZobristHashTest.FeatureHashing" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ZobristHashTest.FeatureHashing" start time: Apr 29 22:54 KST
+"ZobristHashTest.FeatureHashing" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -452,10 +452,10 @@ Note: Google Test filter = ZobristHashTest.FeatureHashing
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.38 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Passed.
-"ZobristHashTest.FeatureHashing" end time: Apr 29 22:54 KST
+"ZobristHashTest.FeatureHashing" end time: Apr 30 00:29 KST
 "ZobristHashTest.FeatureHashing" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -463,7 +463,7 @@ Test Passed.
 18/140 Test: ZobristHashTest.HashDistribution
 Command: "/home/cosmos/alphazero-multi-game/build/tests/core_tests" "--gtest_filter=ZobristHashTest.HashDistribution" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ZobristHashTest.HashDistribution" start time: Apr 29 22:54 KST
+"ZobristHashTest.HashDistribution" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -479,10 +479,10 @@ Note: Google Test filter = ZobristHashTest.HashDistribution
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.41 sec
+Test time =   0.38 sec
 ----------------------------------------------------------
 Test Passed.
-"ZobristHashTest.HashDistribution" end time: Apr 29 22:54 KST
+"ZobristHashTest.HashDistribution" end time: Apr 30 00:29 KST
 "ZobristHashTest.HashDistribution" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -490,7 +490,7 @@ Test Passed.
 19/140 Test: ZobristHashTest.ErrorHandling
 Command: "/home/cosmos/alphazero-multi-game/build/tests/core_tests" "--gtest_filter=ZobristHashTest.ErrorHandling" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ZobristHashTest.ErrorHandling" start time: Apr 29 22:54 KST
+"ZobristHashTest.ErrorHandling" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -506,10 +506,10 @@ Note: Google Test filter = ZobristHashTest.ErrorHandling
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.34 sec
+Test time =   0.36 sec
 ----------------------------------------------------------
 Test Passed.
-"ZobristHashTest.ErrorHandling" end time: Apr 29 22:54 KST
+"ZobristHashTest.ErrorHandling" end time: Apr 30 00:29 KST
 "ZobristHashTest.ErrorHandling" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -517,7 +517,7 @@ Test Passed.
 20/140 Test: ZobristHashTest.DeterministicHashing
 Command: "/home/cosmos/alphazero-multi-game/build/tests/core_tests" "--gtest_filter=ZobristHashTest.DeterministicHashing" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ZobristHashTest.DeterministicHashing" start time: Apr 29 22:54 KST
+"ZobristHashTest.DeterministicHashing" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -533,10 +533,10 @@ Note: Google Test filter = ZobristHashTest.DeterministicHashing
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.32 sec
+Test time =   0.36 sec
 ----------------------------------------------------------
 Test Passed.
-"ZobristHashTest.DeterministicHashing" end time: Apr 29 22:54 KST
+"ZobristHashTest.DeterministicHashing" end time: Apr 30 00:29 KST
 "ZobristHashTest.DeterministicHashing" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -544,7 +544,7 @@ Test Passed.
 21/140 Test: ChessStateTest.InitialState
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=ChessStateTest.InitialState" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ChessStateTest.InitialState" start time: Apr 29 22:54 KST
+"ChessStateTest.InitialState" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -560,10 +560,10 @@ Note: Google Test filter = ChessStateTest.InitialState
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.39 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Passed.
-"ChessStateTest.InitialState" end time: Apr 29 22:54 KST
+"ChessStateTest.InitialState" end time: Apr 30 00:29 KST
 "ChessStateTest.InitialState" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -571,7 +571,7 @@ Test Passed.
 22/140 Test: ChessStateTest.MakeMove
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=ChessStateTest.MakeMove" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ChessStateTest.MakeMove" start time: Apr 29 22:54 KST
+"ChessStateTest.MakeMove" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -587,10 +587,10 @@ Note: Google Test filter = ChessStateTest.MakeMove
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Passed.
-"ChessStateTest.MakeMove" end time: Apr 29 22:54 KST
+"ChessStateTest.MakeMove" end time: Apr 30 00:29 KST
 "ChessStateTest.MakeMove" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -598,7 +598,7 @@ Test Passed.
 23/140 Test: ChessStateTest.CastlingMoves
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=ChessStateTest.CastlingMoves" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ChessStateTest.CastlingMoves" start time: Apr 29 22:54 KST
+"ChessStateTest.CastlingMoves" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -611,13 +611,13 @@ Note: Google Test filter = ChessStateTest.CastlingMoves
 [----------] 1 test from ChessStateTest (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (0 ms total)
+[==========] 1 test from 1 test suite ran. (1 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.35 sec
+Test time =   0.39 sec
 ----------------------------------------------------------
 Test Passed.
-"ChessStateTest.CastlingMoves" end time: Apr 29 22:54 KST
+"ChessStateTest.CastlingMoves" end time: Apr 30 00:29 KST
 "ChessStateTest.CastlingMoves" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -625,7 +625,7 @@ Test Passed.
 24/140 Test: ChessStateTest.EnPassantCapture
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=ChessStateTest.EnPassantCapture" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ChessStateTest.EnPassantCapture" start time: Apr 29 22:54 KST
+"ChessStateTest.EnPassantCapture" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -641,10 +641,10 @@ Note: Google Test filter = ChessStateTest.EnPassantCapture
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.31 sec
+Test time =   0.36 sec
 ----------------------------------------------------------
 Test Passed.
-"ChessStateTest.EnPassantCapture" end time: Apr 29 22:54 KST
+"ChessStateTest.EnPassantCapture" end time: Apr 30 00:29 KST
 "ChessStateTest.EnPassantCapture" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -652,7 +652,7 @@ Test Passed.
 25/140 Test: ChessStateTest.PawnPromotion
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=ChessStateTest.PawnPromotion" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ChessStateTest.PawnPromotion" start time: Apr 29 22:54 KST
+"ChessStateTest.PawnPromotion" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -668,10 +668,10 @@ Note: Google Test filter = ChessStateTest.PawnPromotion
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.40 sec
+Test time =   0.38 sec
 ----------------------------------------------------------
 Test Passed.
-"ChessStateTest.PawnPromotion" end time: Apr 29 22:54 KST
+"ChessStateTest.PawnPromotion" end time: Apr 30 00:29 KST
 "ChessStateTest.PawnPromotion" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -679,7 +679,7 @@ Test Passed.
 26/140 Test: ChessStateTest.CheckAndCheckmate
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=ChessStateTest.CheckAndCheckmate" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ChessStateTest.CheckAndCheckmate" start time: Apr 29 22:54 KST
+"ChessStateTest.CheckAndCheckmate" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -695,10 +695,10 @@ Note: Google Test filter = ChessStateTest.CheckAndCheckmate
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.40 sec
+Test time =   0.35 sec
 ----------------------------------------------------------
 Test Passed.
-"ChessStateTest.CheckAndCheckmate" end time: Apr 29 22:54 KST
+"ChessStateTest.CheckAndCheckmate" end time: Apr 30 00:29 KST
 "ChessStateTest.CheckAndCheckmate" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -706,7 +706,7 @@ Test Passed.
 27/140 Test: ChessStateTest.DrawConditions
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=ChessStateTest.DrawConditions" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ChessStateTest.DrawConditions" start time: Apr 29 22:54 KST
+"ChessStateTest.DrawConditions" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -722,10 +722,10 @@ Note: Google Test filter = ChessStateTest.DrawConditions
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.32 sec
+Test time =   0.35 sec
 ----------------------------------------------------------
 Test Passed.
-"ChessStateTest.DrawConditions" end time: Apr 29 22:54 KST
+"ChessStateTest.DrawConditions" end time: Apr 30 00:29 KST
 "ChessStateTest.DrawConditions" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -733,7 +733,7 @@ Test Passed.
 28/140 Test: ChessStateTest.FENConversion
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=ChessStateTest.FENConversion" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ChessStateTest.FENConversion" start time: Apr 29 22:54 KST
+"ChessStateTest.FENConversion" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -749,10 +749,10 @@ Note: Google Test filter = ChessStateTest.FENConversion
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.35 sec
 ----------------------------------------------------------
 Test Passed.
-"ChessStateTest.FENConversion" end time: Apr 29 22:54 KST
+"ChessStateTest.FENConversion" end time: Apr 30 00:29 KST
 "ChessStateTest.FENConversion" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -760,7 +760,7 @@ Test Passed.
 29/140 Test: ChessStateTest.MoveStringConversion
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=ChessStateTest.MoveStringConversion" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ChessStateTest.MoveStringConversion" start time: Apr 29 22:54 KST
+"ChessStateTest.MoveStringConversion" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -776,10 +776,10 @@ Note: Google Test filter = ChessStateTest.MoveStringConversion
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.34 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Passed.
-"ChessStateTest.MoveStringConversion" end time: Apr 29 22:54 KST
+"ChessStateTest.MoveStringConversion" end time: Apr 30 00:29 KST
 "ChessStateTest.MoveStringConversion" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -787,7 +787,7 @@ Test Passed.
 30/140 Test: ChessStateTest.Chess960Mode
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=ChessStateTest.Chess960Mode" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ChessStateTest.Chess960Mode" start time: Apr 29 22:54 KST
+"ChessStateTest.Chess960Mode" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -803,10 +803,10 @@ Note: Google Test filter = ChessStateTest.Chess960Mode
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.32 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Passed.
-"ChessStateTest.Chess960Mode" end time: Apr 29 22:54 KST
+"ChessStateTest.Chess960Mode" end time: Apr 30 00:29 KST
 "ChessStateTest.Chess960Mode" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -814,7 +814,7 @@ Test Passed.
 31/140 Test: ChessStateTest.UndoMove
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=ChessStateTest.UndoMove" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ChessStateTest.UndoMove" start time: Apr 29 22:54 KST
+"ChessStateTest.UndoMove" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -830,10 +830,10 @@ Note: Google Test filter = ChessStateTest.UndoMove
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.38 sec
+Test time =   0.39 sec
 ----------------------------------------------------------
 Test Passed.
-"ChessStateTest.UndoMove" end time: Apr 29 22:54 KST
+"ChessStateTest.UndoMove" end time: Apr 30 00:29 KST
 "ChessStateTest.UndoMove" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -841,7 +841,7 @@ Test Passed.
 32/140 Test: ChessStateTest.CloneAndEquals
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=ChessStateTest.CloneAndEquals" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ChessStateTest.CloneAndEquals" start time: Apr 29 22:54 KST
+"ChessStateTest.CloneAndEquals" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -857,10 +857,10 @@ Note: Google Test filter = ChessStateTest.CloneAndEquals
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.37 sec
+Test time =   0.35 sec
 ----------------------------------------------------------
 Test Passed.
-"ChessStateTest.CloneAndEquals" end time: Apr 29 22:54 KST
+"ChessStateTest.CloneAndEquals" end time: Apr 30 00:29 KST
 "ChessStateTest.CloneAndEquals" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -868,7 +868,7 @@ Test Passed.
 33/140 Test: GoStateTest.InitialState
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=GoStateTest.InitialState" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GoStateTest.InitialState" start time: Apr 29 22:54 KST
+"GoStateTest.InitialState" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -884,10 +884,10 @@ Note: Google Test filter = GoStateTest.InitialState
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.43 sec
 ----------------------------------------------------------
 Test Passed.
-"GoStateTest.InitialState" end time: Apr 29 22:54 KST
+"GoStateTest.InitialState" end time: Apr 30 00:29 KST
 "GoStateTest.InitialState" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -895,7 +895,7 @@ Test Passed.
 34/140 Test: GoStateTest.MakeMove
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=GoStateTest.MakeMove" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GoStateTest.MakeMove" start time: Apr 29 22:54 KST
+"GoStateTest.MakeMove" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -911,10 +911,10 @@ Note: Google Test filter = GoStateTest.MakeMove
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.36 sec
 ----------------------------------------------------------
 Test Passed.
-"GoStateTest.MakeMove" end time: Apr 29 22:54 KST
+"GoStateTest.MakeMove" end time: Apr 30 00:29 KST
 "GoStateTest.MakeMove" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -922,7 +922,7 @@ Test Passed.
 35/140 Test: GoStateTest.PassMove
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=GoStateTest.PassMove" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GoStateTest.PassMove" start time: Apr 29 22:54 KST
+"GoStateTest.PassMove" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -938,10 +938,10 @@ Note: Google Test filter = GoStateTest.PassMove
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.40 sec
+Test time =   0.41 sec
 ----------------------------------------------------------
 Test Passed.
-"GoStateTest.PassMove" end time: Apr 29 22:54 KST
+"GoStateTest.PassMove" end time: Apr 30 00:29 KST
 "GoStateTest.PassMove" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -949,7 +949,7 @@ Test Passed.
 36/140 Test: GoStateTest.CaptureStones
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=GoStateTest.CaptureStones" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GoStateTest.CaptureStones" start time: Apr 29 22:54 KST
+"GoStateTest.CaptureStones" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -965,10 +965,10 @@ Note: Google Test filter = GoStateTest.CaptureStones
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.39 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Passed.
-"GoStateTest.CaptureStones" end time: Apr 29 22:54 KST
+"GoStateTest.CaptureStones" end time: Apr 30 00:29 KST
 "GoStateTest.CaptureStones" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -976,7 +976,7 @@ Test Passed.
 37/140 Test: GoStateTest.IllegalMoves
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=GoStateTest.IllegalMoves" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GoStateTest.IllegalMoves" start time: Apr 29 22:54 KST
+"GoStateTest.IllegalMoves" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -992,10 +992,10 @@ Note: Google Test filter = GoStateTest.IllegalMoves
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.35 sec
+Test time =   0.36 sec
 ----------------------------------------------------------
 Test Passed.
-"GoStateTest.IllegalMoves" end time: Apr 29 22:54 KST
+"GoStateTest.IllegalMoves" end time: Apr 30 00:29 KST
 "GoStateTest.IllegalMoves" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1003,7 +1003,7 @@ Test Passed.
 38/140 Test: GoStateTest.KoRule
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=GoStateTest.KoRule" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GoStateTest.KoRule" start time: Apr 29 22:54 KST
+"GoStateTest.KoRule" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1019,10 +1019,10 @@ Note: Google Test filter = GoStateTest.KoRule
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.48 sec
 ----------------------------------------------------------
 Test Passed.
-"GoStateTest.KoRule" end time: Apr 29 22:54 KST
+"GoStateTest.KoRule" end time: Apr 30 00:29 KST
 "GoStateTest.KoRule" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1030,7 +1030,7 @@ Test Passed.
 39/140 Test: GoStateTest.Scoring
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=GoStateTest.Scoring" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GoStateTest.Scoring" start time: Apr 29 22:54 KST
+"GoStateTest.Scoring" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1039,17 +1039,17 @@ Note: Google Test filter = GoStateTest.Scoring
 [----------] Global test environment set-up.
 [----------] 1 test from GoStateTest
 [ RUN      ] GoStateTest.Scoring
-[       OK ] GoStateTest.Scoring (0 ms)
-[----------] 1 test from GoStateTest (0 ms total)
+[       OK ] GoStateTest.Scoring (8 ms)
+[----------] 1 test from GoStateTest (8 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (0 ms total)
+[==========] 1 test from 1 test suite ran. (8 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Passed.
-"GoStateTest.Scoring" end time: Apr 29 22:54 KST
+"GoStateTest.Scoring" end time: Apr 30 00:29 KST
 "GoStateTest.Scoring" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1057,7 +1057,7 @@ Test Passed.
 40/140 Test: GoStateTest.UndoMove
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=GoStateTest.UndoMove" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GoStateTest.UndoMove" start time: Apr 29 22:54 KST
+"GoStateTest.UndoMove" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1073,10 +1073,10 @@ Note: Google Test filter = GoStateTest.UndoMove
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.36 sec
+Test time =   0.38 sec
 ----------------------------------------------------------
 Test Passed.
-"GoStateTest.UndoMove" end time: Apr 29 22:54 KST
+"GoStateTest.UndoMove" end time: Apr 30 00:29 KST
 "GoStateTest.UndoMove" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1084,7 +1084,7 @@ Test Passed.
 41/140 Test: GoStateTest.StringRepresentation
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=GoStateTest.StringRepresentation" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GoStateTest.StringRepresentation" start time: Apr 29 22:54 KST
+"GoStateTest.StringRepresentation" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1100,10 +1100,10 @@ Note: Google Test filter = GoStateTest.StringRepresentation
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.38 sec
 ----------------------------------------------------------
 Test Passed.
-"GoStateTest.StringRepresentation" end time: Apr 29 22:54 KST
+"GoStateTest.StringRepresentation" end time: Apr 30 00:29 KST
 "GoStateTest.StringRepresentation" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1111,7 +1111,7 @@ Test Passed.
 42/140 Test: GoStateTest.ActionStringConversion
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=GoStateTest.ActionStringConversion" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GoStateTest.ActionStringConversion" start time: Apr 29 22:54 KST
+"GoStateTest.ActionStringConversion" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1127,10 +1127,10 @@ Note: Google Test filter = GoStateTest.ActionStringConversion
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Passed.
-"GoStateTest.ActionStringConversion" end time: Apr 29 22:54 KST
+"GoStateTest.ActionStringConversion" end time: Apr 30 00:29 KST
 "GoStateTest.ActionStringConversion" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1138,7 +1138,7 @@ Test Passed.
 43/140 Test: GoStateTest.Clone
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=GoStateTest.Clone" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GoStateTest.Clone" start time: Apr 29 22:54 KST
+"GoStateTest.Clone" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1154,10 +1154,10 @@ Note: Google Test filter = GoStateTest.Clone
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.38 sec
 ----------------------------------------------------------
 Test Passed.
-"GoStateTest.Clone" end time: Apr 29 22:54 KST
+"GoStateTest.Clone" end time: Apr 30 00:29 KST
 "GoStateTest.Clone" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1165,7 +1165,7 @@ Test Passed.
 44/140 Test: GomokuStateTest.InitialState
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=GomokuStateTest.InitialState" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GomokuStateTest.InitialState" start time: Apr 29 22:54 KST
+"GomokuStateTest.InitialState" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1181,10 +1181,10 @@ Note: Google Test filter = GomokuStateTest.InitialState
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.34 sec
+Test time =   0.38 sec
 ----------------------------------------------------------
 Test Passed.
-"GomokuStateTest.InitialState" end time: Apr 29 22:54 KST
+"GomokuStateTest.InitialState" end time: Apr 30 00:29 KST
 "GomokuStateTest.InitialState" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1192,7 +1192,7 @@ Test Passed.
 45/140 Test: GomokuStateTest.MakeMove
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=GomokuStateTest.MakeMove" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GomokuStateTest.MakeMove" start time: Apr 29 22:54 KST
+"GomokuStateTest.MakeMove" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1208,10 +1208,10 @@ Note: Google Test filter = GomokuStateTest.MakeMove
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.34 sec
+Test time =   0.36 sec
 ----------------------------------------------------------
 Test Passed.
-"GomokuStateTest.MakeMove" end time: Apr 29 22:54 KST
+"GomokuStateTest.MakeMove" end time: Apr 30 00:29 KST
 "GomokuStateTest.MakeMove" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1219,7 +1219,7 @@ Test Passed.
 46/140 Test: GomokuStateTest.UndoMove
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=GomokuStateTest.UndoMove" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GomokuStateTest.UndoMove" start time: Apr 29 22:54 KST
+"GomokuStateTest.UndoMove" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1235,10 +1235,10 @@ Note: Google Test filter = GomokuStateTest.UndoMove
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.34 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Passed.
-"GomokuStateTest.UndoMove" end time: Apr 29 22:54 KST
+"GomokuStateTest.UndoMove" end time: Apr 30 00:29 KST
 "GomokuStateTest.UndoMove" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1246,7 +1246,7 @@ Test Passed.
 47/140 Test: GomokuStateTest.CheckWin
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=GomokuStateTest.CheckWin" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GomokuStateTest.CheckWin" start time: Apr 29 22:54 KST
+"GomokuStateTest.CheckWin" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1262,10 +1262,10 @@ Note: Google Test filter = GomokuStateTest.CheckWin
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.35 sec
 ----------------------------------------------------------
 Test Passed.
-"GomokuStateTest.CheckWin" end time: Apr 29 22:55 KST
+"GomokuStateTest.CheckWin" end time: Apr 30 00:29 KST
 "GomokuStateTest.CheckWin" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1273,7 +1273,7 @@ Test Passed.
 48/140 Test: GomokuStateTest.IllegalMoves
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=GomokuStateTest.IllegalMoves" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GomokuStateTest.IllegalMoves" start time: Apr 29 22:55 KST
+"GomokuStateTest.IllegalMoves" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1289,10 +1289,10 @@ Note: Google Test filter = GomokuStateTest.IllegalMoves
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.34 sec
+Test time =   0.35 sec
 ----------------------------------------------------------
 Test Passed.
-"GomokuStateTest.IllegalMoves" end time: Apr 29 22:55 KST
+"GomokuStateTest.IllegalMoves" end time: Apr 30 00:29 KST
 "GomokuStateTest.IllegalMoves" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1300,7 +1300,7 @@ Test Passed.
 49/140 Test: GomokuStateTest.GetLegalMoves
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=GomokuStateTest.GetLegalMoves" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GomokuStateTest.GetLegalMoves" start time: Apr 29 22:55 KST
+"GomokuStateTest.GetLegalMoves" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1316,10 +1316,10 @@ Note: Google Test filter = GomokuStateTest.GetLegalMoves
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.38 sec
+Test time =   0.36 sec
 ----------------------------------------------------------
 Test Passed.
-"GomokuStateTest.GetLegalMoves" end time: Apr 29 22:55 KST
+"GomokuStateTest.GetLegalMoves" end time: Apr 30 00:29 KST
 "GomokuStateTest.GetLegalMoves" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1327,7 +1327,7 @@ Test Passed.
 50/140 Test: GomokuStateTest.RenjuRules
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=GomokuStateTest.RenjuRules" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GomokuStateTest.RenjuRules" start time: Apr 29 22:55 KST
+"GomokuStateTest.RenjuRules" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1336,17 +1336,17 @@ Note: Google Test filter = GomokuStateTest.RenjuRules
 [----------] Global test environment set-up.
 [----------] 1 test from GomokuStateTest
 [ RUN      ] GomokuStateTest.RenjuRules
-[       OK ] GomokuStateTest.RenjuRules (0 ms)
-[----------] 1 test from GomokuStateTest (0 ms total)
+[       OK ] GomokuStateTest.RenjuRules (2 ms)
+[----------] 1 test from GomokuStateTest (2 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (0 ms total)
+[==========] 1 test from 1 test suite ran. (2 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.34 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Passed.
-"GomokuStateTest.RenjuRules" end time: Apr 29 22:55 KST
+"GomokuStateTest.RenjuRules" end time: Apr 30 00:29 KST
 "GomokuStateTest.RenjuRules" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1354,7 +1354,7 @@ Test Passed.
 51/140 Test: GomokuStateTest.Clone
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=GomokuStateTest.Clone" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GomokuStateTest.Clone" start time: Apr 29 22:55 KST
+"GomokuStateTest.Clone" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1370,10 +1370,10 @@ Note: Google Test filter = GomokuStateTest.Clone
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.38 sec
+Test time =   0.36 sec
 ----------------------------------------------------------
 Test Passed.
-"GomokuStateTest.Clone" end time: Apr 29 22:55 KST
+"GomokuStateTest.Clone" end time: Apr 30 00:29 KST
 "GomokuStateTest.Clone" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1381,7 +1381,7 @@ Test Passed.
 52/140 Test: GomokuStateTest.TestHash
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=GomokuStateTest.TestHash" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GomokuStateTest.TestHash" start time: Apr 29 22:55 KST
+"GomokuStateTest.TestHash" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1397,10 +1397,10 @@ Note: Google Test filter = GomokuStateTest.TestHash
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.34 sec
+Test time =   0.38 sec
 ----------------------------------------------------------
 Test Passed.
-"GomokuStateTest.TestHash" end time: Apr 29 22:55 KST
+"GomokuStateTest.TestHash" end time: Apr 30 00:29 KST
 "GomokuStateTest.TestHash" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1408,7 +1408,7 @@ Test Passed.
 53/140 Test: GomokuStateTest.ActionStringConversion
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=GomokuStateTest.ActionStringConversion" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GomokuStateTest.ActionStringConversion" start time: Apr 29 22:55 KST
+"GomokuStateTest.ActionStringConversion" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1424,10 +1424,10 @@ Note: Google Test filter = GomokuStateTest.ActionStringConversion
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.35 sec
 ----------------------------------------------------------
 Test Passed.
-"GomokuStateTest.ActionStringConversion" end time: Apr 29 22:55 KST
+"GomokuStateTest.ActionStringConversion" end time: Apr 30 00:29 KST
 "GomokuStateTest.ActionStringConversion" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1435,7 +1435,7 @@ Test Passed.
 54/140 Test: GomokuStateTest.Equals
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=GomokuStateTest.Equals" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GomokuStateTest.Equals" start time: Apr 29 22:55 KST
+"GomokuStateTest.Equals" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1451,10 +1451,10 @@ Note: Google Test filter = GomokuStateTest.Equals
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.35 sec
 ----------------------------------------------------------
 Test Passed.
-"GomokuStateTest.Equals" end time: Apr 29 22:55 KST
+"GomokuStateTest.Equals" end time: Apr 30 00:29 KST
 "GomokuStateTest.Equals" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1462,7 +1462,7 @@ Test Passed.
 55/140 Test: GomokuStateTest.CustomBoardSize
 Command: "/home/cosmos/alphazero-multi-game/build/tests/game_tests" "--gtest_filter=GomokuStateTest.CustomBoardSize" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GomokuStateTest.CustomBoardSize" start time: Apr 29 22:55 KST
+"GomokuStateTest.CustomBoardSize" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1478,10 +1478,10 @@ Note: Google Test filter = GomokuStateTest.CustomBoardSize
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.36 sec
 ----------------------------------------------------------
 Test Passed.
-"GomokuStateTest.CustomBoardSize" end time: Apr 29 22:55 KST
+"GomokuStateTest.CustomBoardSize" end time: Apr 30 00:29 KST
 "GomokuStateTest.CustomBoardSize" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1489,7 +1489,7 @@ Test Passed.
 56/140 Test: MCTSNodeTest.InitialState
 Command: "/home/cosmos/alphazero-multi-game/build/tests/mcts_tests" "--gtest_filter=MCTSNodeTest.InitialState" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"MCTSNodeTest.InitialState" start time: Apr 29 22:55 KST
+"MCTSNodeTest.InitialState" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1505,10 +1505,10 @@ Note: Google Test filter = MCTSNodeTest.InitialState
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.37 sec
+Test time =   0.36 sec
 ----------------------------------------------------------
 Test Passed.
-"MCTSNodeTest.InitialState" end time: Apr 29 22:55 KST
+"MCTSNodeTest.InitialState" end time: Apr 30 00:29 KST
 "MCTSNodeTest.InitialState" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1516,7 +1516,7 @@ Test Passed.
 57/140 Test: MCTSNodeTest.AddChild
 Command: "/home/cosmos/alphazero-multi-game/build/tests/mcts_tests" "--gtest_filter=MCTSNodeTest.AddChild" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"MCTSNodeTest.AddChild" start time: Apr 29 22:55 KST
+"MCTSNodeTest.AddChild" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1532,10 +1532,10 @@ Note: Google Test filter = MCTSNodeTest.AddChild
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.38 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Passed.
-"MCTSNodeTest.AddChild" end time: Apr 29 22:55 KST
+"MCTSNodeTest.AddChild" end time: Apr 30 00:29 KST
 "MCTSNodeTest.AddChild" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1543,7 +1543,7 @@ Test Passed.
 58/140 Test: MCTSNodeTest.BackPropagation
 Command: "/home/cosmos/alphazero-multi-game/build/tests/mcts_tests" "--gtest_filter=MCTSNodeTest.BackPropagation" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"MCTSNodeTest.BackPropagation" start time: Apr 29 22:55 KST
+"MCTSNodeTest.BackPropagation" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1559,10 +1559,10 @@ Note: Google Test filter = MCTSNodeTest.BackPropagation
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Passed.
-"MCTSNodeTest.BackPropagation" end time: Apr 29 22:55 KST
+"MCTSNodeTest.BackPropagation" end time: Apr 30 00:29 KST
 "MCTSNodeTest.BackPropagation" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1570,7 +1570,7 @@ Test Passed.
 59/140 Test: MCTSNodeTest.GetUcbScore
 Command: "/home/cosmos/alphazero-multi-game/build/tests/mcts_tests" "--gtest_filter=MCTSNodeTest.GetUcbScore" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"MCTSNodeTest.GetUcbScore" start time: Apr 29 22:55 KST
+"MCTSNodeTest.GetUcbScore" start time: Apr 30 00:29 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1586,10 +1586,10 @@ Note: Google Test filter = MCTSNodeTest.GetUcbScore
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.35 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Passed.
-"MCTSNodeTest.GetUcbScore" end time: Apr 29 22:55 KST
+"MCTSNodeTest.GetUcbScore" end time: Apr 30 00:30 KST
 "MCTSNodeTest.GetUcbScore" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1597,7 +1597,7 @@ Test Passed.
 60/140 Test: MCTSNodeTest.VirtualLoss
 Command: "/home/cosmos/alphazero-multi-game/build/tests/mcts_tests" "--gtest_filter=MCTSNodeTest.VirtualLoss" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"MCTSNodeTest.VirtualLoss" start time: Apr 29 22:55 KST
+"MCTSNodeTest.VirtualLoss" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1613,10 +1613,10 @@ Note: Google Test filter = MCTSNodeTest.VirtualLoss
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.34 sec
+Test time =   0.38 sec
 ----------------------------------------------------------
 Test Passed.
-"MCTSNodeTest.VirtualLoss" end time: Apr 29 22:55 KST
+"MCTSNodeTest.VirtualLoss" end time: Apr 30 00:30 KST
 "MCTSNodeTest.VirtualLoss" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1624,7 +1624,7 @@ Test Passed.
 61/140 Test: MCTSNodeTest.GetBestAction
 Command: "/home/cosmos/alphazero-multi-game/build/tests/mcts_tests" "--gtest_filter=MCTSNodeTest.GetBestAction" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"MCTSNodeTest.GetBestAction" start time: Apr 29 22:55 KST
+"MCTSNodeTest.GetBestAction" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1640,10 +1640,10 @@ Note: Google Test filter = MCTSNodeTest.GetBestAction
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.35 sec
+Test time =   0.36 sec
 ----------------------------------------------------------
 Test Passed.
-"MCTSNodeTest.GetBestAction" end time: Apr 29 22:55 KST
+"MCTSNodeTest.GetBestAction" end time: Apr 30 00:30 KST
 "MCTSNodeTest.GetBestAction" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1651,7 +1651,7 @@ Test Passed.
 62/140 Test: MCTSNodeTest.GetVisitCountDistribution
 Command: "/home/cosmos/alphazero-multi-game/build/tests/mcts_tests" "--gtest_filter=MCTSNodeTest.GetVisitCountDistribution" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"MCTSNodeTest.GetVisitCountDistribution" start time: Apr 29 22:55 KST
+"MCTSNodeTest.GetVisitCountDistribution" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1667,10 +1667,10 @@ Note: Google Test filter = MCTSNodeTest.GetVisitCountDistribution
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.34 sec
+Test time =   0.36 sec
 ----------------------------------------------------------
 Test Passed.
-"MCTSNodeTest.GetVisitCountDistribution" end time: Apr 29 22:55 KST
+"MCTSNodeTest.GetVisitCountDistribution" end time: Apr 30 00:30 KST
 "MCTSNodeTest.GetVisitCountDistribution" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1678,7 +1678,7 @@ Test Passed.
 63/140 Test: MCTSNodeTest.GetActionIndex
 Command: "/home/cosmos/alphazero-multi-game/build/tests/mcts_tests" "--gtest_filter=MCTSNodeTest.GetActionIndex" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"MCTSNodeTest.GetActionIndex" start time: Apr 29 22:55 KST
+"MCTSNodeTest.GetActionIndex" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1694,10 +1694,10 @@ Note: Google Test filter = MCTSNodeTest.GetActionIndex
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.35 sec
+Test time =   0.38 sec
 ----------------------------------------------------------
 Test Passed.
-"MCTSNodeTest.GetActionIndex" end time: Apr 29 22:55 KST
+"MCTSNodeTest.GetActionIndex" end time: Apr 30 00:30 KST
 "MCTSNodeTest.GetActionIndex" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1705,7 +1705,7 @@ Test Passed.
 64/140 Test: MCTSNodeTest.GetChild
 Command: "/home/cosmos/alphazero-multi-game/build/tests/mcts_tests" "--gtest_filter=MCTSNodeTest.GetChild" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"MCTSNodeTest.GetChild" start time: Apr 29 22:55 KST
+"MCTSNodeTest.GetChild" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1721,10 +1721,10 @@ Note: Google Test filter = MCTSNodeTest.GetChild
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.34 sec
+Test time =   0.41 sec
 ----------------------------------------------------------
 Test Passed.
-"MCTSNodeTest.GetChild" end time: Apr 29 22:55 KST
+"MCTSNodeTest.GetChild" end time: Apr 30 00:30 KST
 "MCTSNodeTest.GetChild" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1732,7 +1732,7 @@ Test Passed.
 65/140 Test: MCTSNodeTest.GetBestActions
 Command: "/home/cosmos/alphazero-multi-game/build/tests/mcts_tests" "--gtest_filter=MCTSNodeTest.GetBestActions" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"MCTSNodeTest.GetBestActions" start time: Apr 29 22:55 KST
+"MCTSNodeTest.GetBestActions" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1748,10 +1748,10 @@ Note: Google Test filter = MCTSNodeTest.GetBestActions
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.39 sec
+Test time =   0.35 sec
 ----------------------------------------------------------
 Test Passed.
-"MCTSNodeTest.GetBestActions" end time: Apr 29 22:55 KST
+"MCTSNodeTest.GetBestActions" end time: Apr 30 00:30 KST
 "MCTSNodeTest.GetBestActions" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1759,7 +1759,7 @@ Test Passed.
 66/140 Test: ParallelMCTSTest.Search
 Command: "/home/cosmos/alphazero-multi-game/build/tests/mcts_tests" "--gtest_filter=ParallelMCTSTest.Search" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ParallelMCTSTest.Search" start time: Apr 29 22:55 KST
+"ParallelMCTSTest.Search" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1768,25 +1768,25 @@ Note: Google Test filter = ParallelMCTSTest.Search
 [----------] Global test environment set-up.
 [----------] 1 test from ParallelMCTSTest
 [ RUN      ] ParallelMCTSTest.Search
-[       OK ] ParallelMCTSTest.Search (233 ms)
-[----------] 1 test from ParallelMCTSTest (233 ms total)
+[       OK ] ParallelMCTSTest.Search (965 ms)
+[----------] 1 test from ParallelMCTSTest (965 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (233 ms total)
+[==========] 1 test from 1 test suite ran. (965 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.58 sec
+Test time =   1.32 sec
 ----------------------------------------------------------
 Test Passed.
-"ParallelMCTSTest.Search" end time: Apr 29 22:55 KST
-"ParallelMCTSTest.Search" time elapsed: 00:00:00
+"ParallelMCTSTest.Search" end time: Apr 30 00:30 KST
+"ParallelMCTSTest.Search" time elapsed: 00:00:01
 ----------------------------------------------------------
 
 67/140 Testing: ParallelMCTSTest.ActionProbabilities
 67/140 Test: ParallelMCTSTest.ActionProbabilities
 Command: "/home/cosmos/alphazero-multi-game/build/tests/mcts_tests" "--gtest_filter=ParallelMCTSTest.ActionProbabilities" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ParallelMCTSTest.ActionProbabilities" start time: Apr 29 22:55 KST
+"ParallelMCTSTest.ActionProbabilities" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1795,25 +1795,25 @@ Note: Google Test filter = ParallelMCTSTest.ActionProbabilities
 [----------] Global test environment set-up.
 [----------] 1 test from ParallelMCTSTest
 [ RUN      ] ParallelMCTSTest.ActionProbabilities
-[       OK ] ParallelMCTSTest.ActionProbabilities (245 ms)
-[----------] 1 test from ParallelMCTSTest (245 ms total)
+[       OK ] ParallelMCTSTest.ActionProbabilities (983 ms)
+[----------] 1 test from ParallelMCTSTest (984 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (246 ms total)
+[==========] 1 test from 1 test suite ran. (984 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.60 sec
+Test time =   1.35 sec
 ----------------------------------------------------------
 Test Passed.
-"ParallelMCTSTest.ActionProbabilities" end time: Apr 29 22:55 KST
-"ParallelMCTSTest.ActionProbabilities" time elapsed: 00:00:00
+"ParallelMCTSTest.ActionProbabilities" end time: Apr 30 00:30 KST
+"ParallelMCTSTest.ActionProbabilities" time elapsed: 00:00:01
 ----------------------------------------------------------
 
 68/140 Testing: ParallelMCTSTest.DirichletNoise
 68/140 Test: ParallelMCTSTest.DirichletNoise
 Command: "/home/cosmos/alphazero-multi-game/build/tests/mcts_tests" "--gtest_filter=ParallelMCTSTest.DirichletNoise" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ParallelMCTSTest.DirichletNoise" start time: Apr 29 22:55 KST
+"ParallelMCTSTest.DirichletNoise" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1822,17 +1822,17 @@ Note: Google Test filter = ParallelMCTSTest.DirichletNoise
 [----------] Global test environment set-up.
 [----------] 1 test from ParallelMCTSTest
 [ RUN      ] ParallelMCTSTest.DirichletNoise
-[       OK ] ParallelMCTSTest.DirichletNoise (70 ms)
-[----------] 1 test from ParallelMCTSTest (70 ms total)
+[       OK ] ParallelMCTSTest.DirichletNoise (100 ms)
+[----------] 1 test from ParallelMCTSTest (100 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (70 ms total)
+[==========] 1 test from 1 test suite ran. (100 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.40 sec
+Test time =   0.46 sec
 ----------------------------------------------------------
 Test Passed.
-"ParallelMCTSTest.DirichletNoise" end time: Apr 29 22:55 KST
+"ParallelMCTSTest.DirichletNoise" end time: Apr 30 00:30 KST
 "ParallelMCTSTest.DirichletNoise" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -1840,7 +1840,7 @@ Test Passed.
 69/140 Test: ParallelMCTSTest.SelectActionTrainingVsEvaluation
 Command: "/home/cosmos/alphazero-multi-game/build/tests/mcts_tests" "--gtest_filter=ParallelMCTSTest.SelectActionTrainingVsEvaluation" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ParallelMCTSTest.SelectActionTrainingVsEvaluation" start time: Apr 29 22:55 KST
+"ParallelMCTSTest.SelectActionTrainingVsEvaluation" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1849,25 +1849,25 @@ Note: Google Test filter = ParallelMCTSTest.SelectActionTrainingVsEvaluation
 [----------] Global test environment set-up.
 [----------] 1 test from ParallelMCTSTest
 [ RUN      ] ParallelMCTSTest.SelectActionTrainingVsEvaluation
-[       OK ] ParallelMCTSTest.SelectActionTrainingVsEvaluation (214 ms)
-[----------] 1 test from ParallelMCTSTest (214 ms total)
+[       OK ] ParallelMCTSTest.SelectActionTrainingVsEvaluation (969 ms)
+[----------] 1 test from ParallelMCTSTest (969 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (214 ms total)
+[==========] 1 test from 1 test suite ran. (969 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.56 sec
+Test time =   1.36 sec
 ----------------------------------------------------------
 Test Passed.
-"ParallelMCTSTest.SelectActionTrainingVsEvaluation" end time: Apr 29 22:55 KST
-"ParallelMCTSTest.SelectActionTrainingVsEvaluation" time elapsed: 00:00:00
+"ParallelMCTSTest.SelectActionTrainingVsEvaluation" end time: Apr 30 00:30 KST
+"ParallelMCTSTest.SelectActionTrainingVsEvaluation" time elapsed: 00:00:01
 ----------------------------------------------------------
 
 70/140 Testing: ParallelMCTSTest.SelfPlay
 70/140 Test: ParallelMCTSTest.SelfPlay
 Command: "/home/cosmos/alphazero-multi-game/build/tests/mcts_tests" "--gtest_filter=ParallelMCTSTest.SelfPlay" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ParallelMCTSTest.SelfPlay" start time: Apr 29 22:55 KST
+"ParallelMCTSTest.SelfPlay" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1876,25 +1876,25 @@ Note: Google Test filter = ParallelMCTSTest.SelfPlay
 [----------] Global test environment set-up.
 [----------] 1 test from ParallelMCTSTest
 [ RUN      ] ParallelMCTSTest.SelfPlay
-[       OK ] ParallelMCTSTest.SelfPlay (1051 ms)
-[----------] 1 test from ParallelMCTSTest (1051 ms total)
+[       OK ] ParallelMCTSTest.SelfPlay (3185 ms)
+[----------] 1 test from ParallelMCTSTest (3185 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (1051 ms total)
+[==========] 1 test from 1 test suite ran. (3185 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   1.39 sec
+Test time =   3.56 sec
 ----------------------------------------------------------
 Test Passed.
-"ParallelMCTSTest.SelfPlay" end time: Apr 29 22:55 KST
-"ParallelMCTSTest.SelfPlay" time elapsed: 00:00:01
+"ParallelMCTSTest.SelfPlay" end time: Apr 30 00:30 KST
+"ParallelMCTSTest.SelfPlay" time elapsed: 00:00:03
 ----------------------------------------------------------
 
 71/140 Testing: ParallelMCTSTest.SetParameters
 71/140 Test: ParallelMCTSTest.SetParameters
 Command: "/home/cosmos/alphazero-multi-game/build/tests/mcts_tests" "--gtest_filter=ParallelMCTSTest.SetParameters" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ParallelMCTSTest.SetParameters" start time: Apr 29 22:55 KST
+"ParallelMCTSTest.SetParameters" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1903,25 +1903,25 @@ Note: Google Test filter = ParallelMCTSTest.SetParameters
 [----------] Global test environment set-up.
 [----------] 1 test from ParallelMCTSTest
 [ RUN      ] ParallelMCTSTest.SetParameters
-[       OK ] ParallelMCTSTest.SetParameters (260 ms)
-[----------] 1 test from ParallelMCTSTest (260 ms total)
+[       OK ] ParallelMCTSTest.SetParameters (962 ms)
+[----------] 1 test from ParallelMCTSTest (962 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (261 ms total)
+[==========] 1 test from 1 test suite ran. (963 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.62 sec
+Test time =   1.33 sec
 ----------------------------------------------------------
 Test Passed.
-"ParallelMCTSTest.SetParameters" end time: Apr 29 22:55 KST
-"ParallelMCTSTest.SetParameters" time elapsed: 00:00:00
+"ParallelMCTSTest.SetParameters" end time: Apr 30 00:30 KST
+"ParallelMCTSTest.SetParameters" time elapsed: 00:00:01
 ----------------------------------------------------------
 
 72/140 Testing: ParallelMCTSTest.RootValue
 72/140 Test: ParallelMCTSTest.RootValue
 Command: "/home/cosmos/alphazero-multi-game/build/tests/mcts_tests" "--gtest_filter=ParallelMCTSTest.RootValue" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ParallelMCTSTest.RootValue" start time: Apr 29 22:55 KST
+"ParallelMCTSTest.RootValue" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1930,25 +1930,25 @@ Note: Google Test filter = ParallelMCTSTest.RootValue
 [----------] Global test environment set-up.
 [----------] 1 test from ParallelMCTSTest
 [ RUN      ] ParallelMCTSTest.RootValue
-[       OK ] ParallelMCTSTest.RootValue (215 ms)
-[----------] 1 test from ParallelMCTSTest (215 ms total)
+[       OK ] ParallelMCTSTest.RootValue (969 ms)
+[----------] 1 test from ParallelMCTSTest (969 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (215 ms total)
+[==========] 1 test from 1 test suite ran. (969 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.54 sec
+Test time =   1.34 sec
 ----------------------------------------------------------
 Test Passed.
-"ParallelMCTSTest.RootValue" end time: Apr 29 22:55 KST
-"ParallelMCTSTest.RootValue" time elapsed: 00:00:00
+"ParallelMCTSTest.RootValue" end time: Apr 30 00:30 KST
+"ParallelMCTSTest.RootValue" time elapsed: 00:00:01
 ----------------------------------------------------------
 
 73/140 Testing: ParallelMCTSTest.SearchInfo
 73/140 Test: ParallelMCTSTest.SearchInfo
 Command: "/home/cosmos/alphazero-multi-game/build/tests/mcts_tests" "--gtest_filter=ParallelMCTSTest.SearchInfo" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ParallelMCTSTest.SearchInfo" start time: Apr 29 22:55 KST
+"ParallelMCTSTest.SearchInfo" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1957,25 +1957,25 @@ Note: Google Test filter = ParallelMCTSTest.SearchInfo
 [----------] Global test environment set-up.
 [----------] 1 test from ParallelMCTSTest
 [ RUN      ] ParallelMCTSTest.SearchInfo
-[       OK ] ParallelMCTSTest.SearchInfo (214 ms)
-[----------] 1 test from ParallelMCTSTest (214 ms total)
+[       OK ] ParallelMCTSTest.SearchInfo (971 ms)
+[----------] 1 test from ParallelMCTSTest (971 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (214 ms total)
+[==========] 1 test from 1 test suite ran. (971 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.57 sec
+Test time =   1.35 sec
 ----------------------------------------------------------
 Test Passed.
-"ParallelMCTSTest.SearchInfo" end time: Apr 29 22:55 KST
-"ParallelMCTSTest.SearchInfo" time elapsed: 00:00:00
+"ParallelMCTSTest.SearchInfo" end time: Apr 30 00:30 KST
+"ParallelMCTSTest.SearchInfo" time elapsed: 00:00:01
 ----------------------------------------------------------
 
 74/140 Testing: ParallelMCTSTest.ReleaseMemory
 74/140 Test: ParallelMCTSTest.ReleaseMemory
 Command: "/home/cosmos/alphazero-multi-game/build/tests/mcts_tests" "--gtest_filter=ParallelMCTSTest.ReleaseMemory" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ParallelMCTSTest.ReleaseMemory" start time: Apr 29 22:55 KST
+"ParallelMCTSTest.ReleaseMemory" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -1984,25 +1984,25 @@ Note: Google Test filter = ParallelMCTSTest.ReleaseMemory
 [----------] Global test environment set-up.
 [----------] 1 test from ParallelMCTSTest
 [ RUN      ] ParallelMCTSTest.ReleaseMemory
-[       OK ] ParallelMCTSTest.ReleaseMemory (222 ms)
-[----------] 1 test from ParallelMCTSTest (222 ms total)
+[       OK ] ParallelMCTSTest.ReleaseMemory (989 ms)
+[----------] 1 test from ParallelMCTSTest (989 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (222 ms total)
+[==========] 1 test from 1 test suite ran. (989 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.56 sec
+Test time =   1.37 sec
 ----------------------------------------------------------
 Test Passed.
-"ParallelMCTSTest.ReleaseMemory" end time: Apr 29 22:55 KST
-"ParallelMCTSTest.ReleaseMemory" time elapsed: 00:00:00
+"ParallelMCTSTest.ReleaseMemory" end time: Apr 30 00:30 KST
+"ParallelMCTSTest.ReleaseMemory" time elapsed: 00:00:01
 ----------------------------------------------------------
 
 75/140 Testing: TranspositionTableTest.StoreAndLookup
 75/140 Test: TranspositionTableTest.StoreAndLookup
 Command: "/home/cosmos/alphazero-multi-game/build/tests/mcts_tests" "--gtest_filter=TranspositionTableTest.StoreAndLookup" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"TranspositionTableTest.StoreAndLookup" start time: Apr 29 22:55 KST
+"TranspositionTableTest.StoreAndLookup" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2018,10 +2018,10 @@ Note: Google Test filter = TranspositionTableTest.StoreAndLookup
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.34 sec
+Test time =   0.40 sec
 ----------------------------------------------------------
 Test Passed.
-"TranspositionTableTest.StoreAndLookup" end time: Apr 29 22:55 KST
+"TranspositionTableTest.StoreAndLookup" end time: Apr 30 00:30 KST
 "TranspositionTableTest.StoreAndLookup" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2029,7 +2029,7 @@ Test Passed.
 76/140 Test: TranspositionTableTest.EntryCount
 Command: "/home/cosmos/alphazero-multi-game/build/tests/mcts_tests" "--gtest_filter=TranspositionTableTest.EntryCount" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"TranspositionTableTest.EntryCount" start time: Apr 29 22:55 KST
+"TranspositionTableTest.EntryCount" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2045,10 +2045,10 @@ Note: Google Test filter = TranspositionTableTest.EntryCount
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.43 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Passed.
-"TranspositionTableTest.EntryCount" end time: Apr 29 22:55 KST
+"TranspositionTableTest.EntryCount" end time: Apr 30 00:30 KST
 "TranspositionTableTest.EntryCount" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2056,7 +2056,7 @@ Test Passed.
 77/140 Test: TranspositionTableTest.HitRate
 Command: "/home/cosmos/alphazero-multi-game/build/tests/mcts_tests" "--gtest_filter=TranspositionTableTest.HitRate" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"TranspositionTableTest.HitRate" start time: Apr 29 22:55 KST
+"TranspositionTableTest.HitRate" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2072,10 +2072,10 @@ Note: Google Test filter = TranspositionTableTest.HitRate
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.34 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Passed.
-"TranspositionTableTest.HitRate" end time: Apr 29 22:55 KST
+"TranspositionTableTest.HitRate" end time: Apr 30 00:30 KST
 "TranspositionTableTest.HitRate" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2083,7 +2083,7 @@ Test Passed.
 78/140 Test: TranspositionTableTest.Clear
 Command: "/home/cosmos/alphazero-multi-game/build/tests/mcts_tests" "--gtest_filter=TranspositionTableTest.Clear" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"TranspositionTableTest.Clear" start time: Apr 29 22:55 KST
+"TranspositionTableTest.Clear" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2099,10 +2099,10 @@ Note: Google Test filter = TranspositionTableTest.Clear
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.36 sec
+Test time =   0.35 sec
 ----------------------------------------------------------
 Test Passed.
-"TranspositionTableTest.Clear" end time: Apr 29 22:55 KST
+"TranspositionTableTest.Clear" end time: Apr 30 00:30 KST
 "TranspositionTableTest.Clear" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2110,7 +2110,7 @@ Test Passed.
 79/140 Test: TranspositionTableTest.Resize
 Command: "/home/cosmos/alphazero-multi-game/build/tests/mcts_tests" "--gtest_filter=TranspositionTableTest.Resize" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"TranspositionTableTest.Resize" start time: Apr 29 22:55 KST
+"TranspositionTableTest.Resize" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2126,10 +2126,10 @@ Note: Google Test filter = TranspositionTableTest.Resize
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Passed.
-"TranspositionTableTest.Resize" end time: Apr 29 22:55 KST
+"TranspositionTableTest.Resize" end time: Apr 30 00:30 KST
 "TranspositionTableTest.Resize" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2137,7 +2137,7 @@ Test Passed.
 80/140 Test: TranspositionTableTest.ReplacementPolicy
 Command: "/home/cosmos/alphazero-multi-game/build/tests/mcts_tests" "--gtest_filter=TranspositionTableTest.ReplacementPolicy" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"TranspositionTableTest.ReplacementPolicy" start time: Apr 29 22:55 KST
+"TranspositionTableTest.ReplacementPolicy" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2153,10 +2153,10 @@ Note: Google Test filter = TranspositionTableTest.ReplacementPolicy
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.36 sec
 ----------------------------------------------------------
 Test Passed.
-"TranspositionTableTest.ReplacementPolicy" end time: Apr 29 22:55 KST
+"TranspositionTableTest.ReplacementPolicy" end time: Apr 30 00:30 KST
 "TranspositionTableTest.ReplacementPolicy" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2164,7 +2164,7 @@ Test Passed.
 81/140 Test: TranspositionTableTest.MemoryUsage
 Command: "/home/cosmos/alphazero-multi-game/build/tests/mcts_tests" "--gtest_filter=TranspositionTableTest.MemoryUsage" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"TranspositionTableTest.MemoryUsage" start time: Apr 29 22:55 KST
+"TranspositionTableTest.MemoryUsage" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2180,10 +2180,10 @@ Note: Google Test filter = TranspositionTableTest.MemoryUsage
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.36 sec
+Test time =   0.41 sec
 ----------------------------------------------------------
 Test Passed.
-"TranspositionTableTest.MemoryUsage" end time: Apr 29 22:55 KST
+"TranspositionTableTest.MemoryUsage" end time: Apr 30 00:30 KST
 "TranspositionTableTest.MemoryUsage" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2191,7 +2191,7 @@ Test Passed.
 82/140 Test: TranspositionTableTest.ThreadSafety
 Command: "/home/cosmos/alphazero-multi-game/build/tests/mcts_tests" "--gtest_filter=TranspositionTableTest.ThreadSafety" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"TranspositionTableTest.ThreadSafety" start time: Apr 29 22:55 KST
+"TranspositionTableTest.ThreadSafety" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2207,10 +2207,10 @@ Note: Google Test filter = TranspositionTableTest.ThreadSafety
 [==========] 1 test from 1 test suite ran. (4 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.36 sec
+Test time =   0.43 sec
 ----------------------------------------------------------
 Test Passed.
-"TranspositionTableTest.ThreadSafety" end time: Apr 29 22:55 KST
+"TranspositionTableTest.ThreadSafety" end time: Apr 30 00:30 KST
 "TranspositionTableTest.ThreadSafety" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2218,7 +2218,7 @@ Test Passed.
 83/140 Test: TranspositionTableTest.MultipleGameTypes
 Command: "/home/cosmos/alphazero-multi-game/build/tests/mcts_tests" "--gtest_filter=TranspositionTableTest.MultipleGameTypes" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"TranspositionTableTest.MultipleGameTypes" start time: Apr 29 22:55 KST
+"TranspositionTableTest.MultipleGameTypes" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2234,10 +2234,10 @@ Note: Google Test filter = TranspositionTableTest.MultipleGameTypes
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.45 sec
 ----------------------------------------------------------
 Test Passed.
-"TranspositionTableTest.MultipleGameTypes" end time: Apr 29 22:55 KST
+"TranspositionTableTest.MultipleGameTypes" end time: Apr 30 00:30 KST
 "TranspositionTableTest.MultipleGameTypes" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2245,7 +2245,7 @@ Test Passed.
 84/140 Test: AttackDefenseModuleTest.EmptyBoard
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=AttackDefenseModuleTest.EmptyBoard" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"AttackDefenseModuleTest.EmptyBoard" start time: Apr 29 22:55 KST
+"AttackDefenseModuleTest.EmptyBoard" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2254,17 +2254,17 @@ Note: Google Test filter = AttackDefenseModuleTest.EmptyBoard
 [----------] Global test environment set-up.
 [----------] 1 test from AttackDefenseModuleTest
 [ RUN      ] AttackDefenseModuleTest.EmptyBoard
-[       OK ] AttackDefenseModuleTest.EmptyBoard (1 ms)
-[----------] 1 test from AttackDefenseModuleTest (1 ms total)
+[       OK ] AttackDefenseModuleTest.EmptyBoard (0 ms)
+[----------] 1 test from AttackDefenseModuleTest (0 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (1 ms total)
+[==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.35 sec
+Test time =   0.38 sec
 ----------------------------------------------------------
 Test Passed.
-"AttackDefenseModuleTest.EmptyBoard" end time: Apr 29 22:55 KST
+"AttackDefenseModuleTest.EmptyBoard" end time: Apr 30 00:30 KST
 "AttackDefenseModuleTest.EmptyBoard" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2272,7 +2272,7 @@ Test Passed.
 85/140 Test: AttackDefenseModuleTest.AttackingMove
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=AttackDefenseModuleTest.AttackingMove" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"AttackDefenseModuleTest.AttackingMove" start time: Apr 29 22:55 KST
+"AttackDefenseModuleTest.AttackingMove" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2288,10 +2288,10 @@ Note: Google Test filter = AttackDefenseModuleTest.AttackingMove
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Passed.
-"AttackDefenseModuleTest.AttackingMove" end time: Apr 29 22:55 KST
+"AttackDefenseModuleTest.AttackingMove" end time: Apr 30 00:30 KST
 "AttackDefenseModuleTest.AttackingMove" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2299,7 +2299,7 @@ Test Passed.
 86/140 Test: AttackDefenseModuleTest.DefensiveMove
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=AttackDefenseModuleTest.DefensiveMove" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"AttackDefenseModuleTest.DefensiveMove" start time: Apr 29 22:55 KST
+"AttackDefenseModuleTest.DefensiveMove" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2315,10 +2315,10 @@ Note: Google Test filter = AttackDefenseModuleTest.DefensiveMove
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.36 sec
+Test time =   0.43 sec
 ----------------------------------------------------------
 Test Passed.
-"AttackDefenseModuleTest.DefensiveMove" end time: Apr 29 22:55 KST
+"AttackDefenseModuleTest.DefensiveMove" end time: Apr 30 00:30 KST
 "AttackDefenseModuleTest.DefensiveMove" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2326,7 +2326,7 @@ Test Passed.
 87/140 Test: AttackDefenseModuleTest.BothAttackAndDefense
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=AttackDefenseModuleTest.BothAttackAndDefense" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"AttackDefenseModuleTest.BothAttackAndDefense" start time: Apr 29 22:55 KST
+"AttackDefenseModuleTest.BothAttackAndDefense" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2342,10 +2342,10 @@ Note: Google Test filter = AttackDefenseModuleTest.BothAttackAndDefense
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.34 sec
+Test time =   0.38 sec
 ----------------------------------------------------------
 Test Passed.
-"AttackDefenseModuleTest.BothAttackAndDefense" end time: Apr 29 22:55 KST
+"AttackDefenseModuleTest.BothAttackAndDefense" end time: Apr 30 00:30 KST
 "AttackDefenseModuleTest.BothAttackAndDefense" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2353,7 +2353,7 @@ Test Passed.
 88/140 Test: AttackDefenseModuleTest.MultipleBatchElements
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=AttackDefenseModuleTest.MultipleBatchElements" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"AttackDefenseModuleTest.MultipleBatchElements" start time: Apr 29 22:55 KST
+"AttackDefenseModuleTest.MultipleBatchElements" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2369,10 +2369,10 @@ Note: Google Test filter = AttackDefenseModuleTest.MultipleBatchElements
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.35 sec
 ----------------------------------------------------------
 Test Passed.
-"AttackDefenseModuleTest.MultipleBatchElements" end time: Apr 29 22:55 KST
+"AttackDefenseModuleTest.MultipleBatchElements" end time: Apr 30 00:30 KST
 "AttackDefenseModuleTest.MultipleBatchElements" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2380,7 +2380,7 @@ Test Passed.
 89/140 Test: AttackDefenseModuleTest.DiagonalThreats
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=AttackDefenseModuleTest.DiagonalThreats" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"AttackDefenseModuleTest.DiagonalThreats" start time: Apr 29 22:55 KST
+"AttackDefenseModuleTest.DiagonalThreats" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2396,10 +2396,10 @@ Note: Google Test filter = AttackDefenseModuleTest.DiagonalThreats
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Passed.
-"AttackDefenseModuleTest.DiagonalThreats" end time: Apr 29 22:55 KST
+"AttackDefenseModuleTest.DiagonalThreats" end time: Apr 30 00:30 KST
 "AttackDefenseModuleTest.DiagonalThreats" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2407,7 +2407,7 @@ Test Passed.
 90/140 Test: AttackDefenseModuleTest.NoMove
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=AttackDefenseModuleTest.NoMove" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"AttackDefenseModuleTest.NoMove" start time: Apr 29 22:55 KST
+"AttackDefenseModuleTest.NoMove" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2423,10 +2423,10 @@ Note: Google Test filter = AttackDefenseModuleTest.NoMove
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.34 sec
+Test time =   0.38 sec
 ----------------------------------------------------------
 Test Passed.
-"AttackDefenseModuleTest.NoMove" end time: Apr 29 22:55 KST
+"AttackDefenseModuleTest.NoMove" end time: Apr 30 00:30 KST
 "AttackDefenseModuleTest.NoMove" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2434,7 +2434,7 @@ Test Passed.
 91/140 Test: AttackDefenseModuleTest.DifferentPlayers
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=AttackDefenseModuleTest.DifferentPlayers" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"AttackDefenseModuleTest.DifferentPlayers" start time: Apr 29 22:55 KST
+"AttackDefenseModuleTest.DifferentPlayers" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2450,10 +2450,10 @@ Note: Google Test filter = AttackDefenseModuleTest.DifferentPlayers
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.32 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Passed.
-"AttackDefenseModuleTest.DifferentPlayers" end time: Apr 29 22:55 KST
+"AttackDefenseModuleTest.DifferentPlayers" end time: Apr 30 00:30 KST
 "AttackDefenseModuleTest.DifferentPlayers" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2461,7 +2461,7 @@ Test Passed.
 92/140 Test: AttackDefenseModuleTest.OpenFourThreat
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=AttackDefenseModuleTest.OpenFourThreat" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"AttackDefenseModuleTest.OpenFourThreat" start time: Apr 29 22:55 KST
+"AttackDefenseModuleTest.OpenFourThreat" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2477,10 +2477,10 @@ Note: Google Test filter = AttackDefenseModuleTest.OpenFourThreat
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.32 sec
+Test time =   0.46 sec
 ----------------------------------------------------------
 Test Passed.
-"AttackDefenseModuleTest.OpenFourThreat" end time: Apr 29 22:55 KST
+"AttackDefenseModuleTest.OpenFourThreat" end time: Apr 30 00:30 KST
 "AttackDefenseModuleTest.OpenFourThreat" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2488,7 +2488,7 @@ Test Passed.
 93/140 Test: BatchQueueTest.EnqueueSingle
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=BatchQueueTest.EnqueueSingle" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"BatchQueueTest.EnqueueSingle" start time: Apr 29 22:55 KST
+"BatchQueueTest.EnqueueSingle" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2504,10 +2504,10 @@ Note: Google Test filter = BatchQueueTest.EnqueueSingle
 [==========] 1 test from 1 test suite ran. (25 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.35 sec
+Test time =   0.49 sec
 ----------------------------------------------------------
 Test Passed.
-"BatchQueueTest.EnqueueSingle" end time: Apr 29 22:55 KST
+"BatchQueueTest.EnqueueSingle" end time: Apr 30 00:30 KST
 "BatchQueueTest.EnqueueSingle" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2515,7 +2515,7 @@ Test Passed.
 94/140 Test: BatchQueueTest.EnqueueMultiple
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=BatchQueueTest.EnqueueMultiple" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"BatchQueueTest.EnqueueMultiple" start time: Apr 29 22:55 KST
+"BatchQueueTest.EnqueueMultiple" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2531,10 +2531,10 @@ Note: Google Test filter = BatchQueueTest.EnqueueMultiple
 [==========] 1 test from 1 test suite ran. (38 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.38 sec
+Test time =   0.48 sec
 ----------------------------------------------------------
 Test Passed.
-"BatchQueueTest.EnqueueMultiple" end time: Apr 29 22:55 KST
+"BatchQueueTest.EnqueueMultiple" end time: Apr 30 00:30 KST
 "BatchQueueTest.EnqueueMultiple" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2542,7 +2542,7 @@ Test Passed.
 95/140 Test: BatchQueueTest.SetBatchSize
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=BatchQueueTest.SetBatchSize" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"BatchQueueTest.SetBatchSize" start time: Apr 29 22:55 KST
+"BatchQueueTest.SetBatchSize" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2558,10 +2558,10 @@ Note: Google Test filter = BatchQueueTest.SetBatchSize
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.42 sec
+Test time =   0.38 sec
 ----------------------------------------------------------
 Test Passed.
-"BatchQueueTest.SetBatchSize" end time: Apr 29 22:55 KST
+"BatchQueueTest.SetBatchSize" end time: Apr 30 00:30 KST
 "BatchQueueTest.SetBatchSize" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2569,7 +2569,7 @@ Test Passed.
 96/140 Test: BatchQueueTest.SetTimeout
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=BatchQueueTest.SetTimeout" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"BatchQueueTest.SetTimeout" start time: Apr 29 22:55 KST
+"BatchQueueTest.SetTimeout" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2585,10 +2585,10 @@ Note: Google Test filter = BatchQueueTest.SetTimeout
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.34 sec
+Test time =   0.46 sec
 ----------------------------------------------------------
 Test Passed.
-"BatchQueueTest.SetTimeout" end time: Apr 29 22:55 KST
+"BatchQueueTest.SetTimeout" end time: Apr 30 00:30 KST
 "BatchQueueTest.SetTimeout" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2596,7 +2596,7 @@ Test Passed.
 97/140 Test: BatchQueueTest.PendingRequests
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=BatchQueueTest.PendingRequests" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"BatchQueueTest.PendingRequests" start time: Apr 29 22:55 KST
+"BatchQueueTest.PendingRequests" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2605,17 +2605,17 @@ Note: Google Test filter = BatchQueueTest.PendingRequests
 [----------] Global test environment set-up.
 [----------] 1 test from BatchQueueTest
 [ RUN      ] BatchQueueTest.PendingRequests
-[       OK ] BatchQueueTest.PendingRequests (86 ms)
-[----------] 1 test from BatchQueueTest (86 ms total)
+[       OK ] BatchQueueTest.PendingRequests (88 ms)
+[----------] 1 test from BatchQueueTest (88 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (86 ms total)
+[==========] 1 test from 1 test suite ran. (88 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.42 sec
+Test time =   0.48 sec
 ----------------------------------------------------------
 Test Passed.
-"BatchQueueTest.PendingRequests" end time: Apr 29 22:55 KST
+"BatchQueueTest.PendingRequests" end time: Apr 30 00:30 KST
 "BatchQueueTest.PendingRequests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2623,7 +2623,7 @@ Test Passed.
 98/140 Test: BatchQueueTest.ProcessedCounts
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=BatchQueueTest.ProcessedCounts" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"BatchQueueTest.ProcessedCounts" start time: Apr 29 22:55 KST
+"BatchQueueTest.ProcessedCounts" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2636,13 +2636,13 @@ Note: Google Test filter = BatchQueueTest.ProcessedCounts
 [----------] 1 test from BatchQueueTest (36 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (36 ms total)
+[==========] 1 test from 1 test suite ran. (37 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.41 sec
+Test time =   0.40 sec
 ----------------------------------------------------------
 Test Passed.
-"BatchQueueTest.ProcessedCounts" end time: Apr 29 22:55 KST
+"BatchQueueTest.ProcessedCounts" end time: Apr 30 00:30 KST
 "BatchQueueTest.ProcessedCounts" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2650,7 +2650,7 @@ Test Passed.
 99/140 Test: BatchQueueTest.DifferentStates
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=BatchQueueTest.DifferentStates" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"BatchQueueTest.DifferentStates" start time: Apr 29 22:55 KST
+"BatchQueueTest.DifferentStates" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2659,17 +2659,17 @@ Note: Google Test filter = BatchQueueTest.DifferentStates
 [----------] Global test environment set-up.
 [----------] 1 test from BatchQueueTest
 [ RUN      ] BatchQueueTest.DifferentStates
-[       OK ] BatchQueueTest.DifferentStates (30 ms)
+[       OK ] BatchQueueTest.DifferentStates (31 ms)
 [----------] 1 test from BatchQueueTest (31 ms total)
 
 [----------] Global test environment tear-down
 [==========] 1 test from 1 test suite ran. (31 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.37 sec
+Test time =   0.51 sec
 ----------------------------------------------------------
 Test Passed.
-"BatchQueueTest.DifferentStates" end time: Apr 29 22:55 KST
+"BatchQueueTest.DifferentStates" end time: Apr 30 00:30 KST
 "BatchQueueTest.DifferentStates" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2677,7 +2677,7 @@ Test Passed.
 100/140 Test: BatchQueueTest.Stress
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=BatchQueueTest.Stress" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"BatchQueueTest.Stress" start time: Apr 29 22:55 KST
+"BatchQueueTest.Stress" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2686,17 +2686,17 @@ Note: Google Test filter = BatchQueueTest.Stress
 [----------] Global test environment set-up.
 [----------] 1 test from BatchQueueTest
 [ RUN      ] BatchQueueTest.Stress
-[       OK ] BatchQueueTest.Stress (134 ms)
-[----------] 1 test from BatchQueueTest (134 ms total)
+[       OK ] BatchQueueTest.Stress (137 ms)
+[----------] 1 test from BatchQueueTest (137 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (134 ms total)
+[==========] 1 test from 1 test suite ran. (137 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.54 sec
+Test time =   0.50 sec
 ----------------------------------------------------------
 Test Passed.
-"BatchQueueTest.Stress" end time: Apr 29 22:55 KST
+"BatchQueueTest.Stress" end time: Apr 30 00:30 KST
 "BatchQueueTest.Stress" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2704,7 +2704,7 @@ Test Passed.
 101/140 Test: NeuralNetworkTest.PredictInitialState
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=NeuralNetworkTest.PredictInitialState" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"NeuralNetworkTest.PredictInitialState" start time: Apr 29 22:55 KST
+"NeuralNetworkTest.PredictInitialState" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2720,10 +2720,10 @@ Note: Google Test filter = NeuralNetworkTest.PredictInitialState
 [==========] 1 test from 1 test suite ran. (1 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.36 sec
+Test time =   0.38 sec
 ----------------------------------------------------------
 Test Passed.
-"NeuralNetworkTest.PredictInitialState" end time: Apr 29 22:55 KST
+"NeuralNetworkTest.PredictInitialState" end time: Apr 30 00:30 KST
 "NeuralNetworkTest.PredictInitialState" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2731,7 +2731,7 @@ Test Passed.
 102/140 Test: NeuralNetworkTest.PredictBatch
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=NeuralNetworkTest.PredictBatch" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"NeuralNetworkTest.PredictBatch" start time: Apr 29 22:55 KST
+"NeuralNetworkTest.PredictBatch" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2747,10 +2747,10 @@ Note: Google Test filter = NeuralNetworkTest.PredictBatch
 [==========] 1 test from 1 test suite ran. (5 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.34 sec
+Test time =   0.39 sec
 ----------------------------------------------------------
 Test Passed.
-"NeuralNetworkTest.PredictBatch" end time: Apr 29 22:55 KST
+"NeuralNetworkTest.PredictBatch" end time: Apr 30 00:30 KST
 "NeuralNetworkTest.PredictBatch" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2758,7 +2758,7 @@ Test Passed.
 103/140 Test: NeuralNetworkTest.PredictAsync
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=NeuralNetworkTest.PredictAsync" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"NeuralNetworkTest.PredictAsync" start time: Apr 29 22:55 KST
+"NeuralNetworkTest.PredictAsync" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2767,17 +2767,17 @@ Note: Google Test filter = NeuralNetworkTest.PredictAsync
 [----------] Global test environment set-up.
 [----------] 1 test from NeuralNetworkTest
 [ RUN      ] NeuralNetworkTest.PredictAsync
-[       OK ] NeuralNetworkTest.PredictAsync (1 ms)
-[----------] 1 test from NeuralNetworkTest (1 ms total)
+[       OK ] NeuralNetworkTest.PredictAsync (3 ms)
+[----------] 1 test from NeuralNetworkTest (3 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (1 ms total)
+[==========] 1 test from 1 test suite ran. (3 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.36 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Passed.
-"NeuralNetworkTest.PredictAsync" end time: Apr 29 22:55 KST
+"NeuralNetworkTest.PredictAsync" end time: Apr 30 00:30 KST
 "NeuralNetworkTest.PredictAsync" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2785,7 +2785,7 @@ Test Passed.
 104/140 Test: NeuralNetworkTest.DeviceInfo
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=NeuralNetworkTest.DeviceInfo" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"NeuralNetworkTest.DeviceInfo" start time: Apr 29 22:55 KST
+"NeuralNetworkTest.DeviceInfo" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2801,10 +2801,10 @@ Note: Google Test filter = NeuralNetworkTest.DeviceInfo
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.40 sec
+Test time =   0.45 sec
 ----------------------------------------------------------
 Test Passed.
-"NeuralNetworkTest.DeviceInfo" end time: Apr 29 22:55 KST
+"NeuralNetworkTest.DeviceInfo" end time: Apr 30 00:30 KST
 "NeuralNetworkTest.DeviceInfo" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2812,7 +2812,7 @@ Test Passed.
 105/140 Test: NeuralNetworkTest.ModelInfo
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=NeuralNetworkTest.ModelInfo" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"NeuralNetworkTest.ModelInfo" start time: Apr 29 22:55 KST
+"NeuralNetworkTest.ModelInfo" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2828,10 +2828,10 @@ Note: Google Test filter = NeuralNetworkTest.ModelInfo
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.46 sec
 ----------------------------------------------------------
 Test Passed.
-"NeuralNetworkTest.ModelInfo" end time: Apr 29 22:55 KST
+"NeuralNetworkTest.ModelInfo" end time: Apr 30 00:30 KST
 "NeuralNetworkTest.ModelInfo" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2839,7 +2839,7 @@ Test Passed.
 106/140 Test: NeuralNetworkTest.PerformanceMetrics
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=NeuralNetworkTest.PerformanceMetrics" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"NeuralNetworkTest.PerformanceMetrics" start time: Apr 29 22:55 KST
+"NeuralNetworkTest.PerformanceMetrics" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2855,10 +2855,10 @@ Note: Google Test filter = NeuralNetworkTest.PerformanceMetrics
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.34 sec
+Test time =   0.38 sec
 ----------------------------------------------------------
 Test Passed.
-"NeuralNetworkTest.PerformanceMetrics" end time: Apr 29 22:55 KST
+"NeuralNetworkTest.PerformanceMetrics" end time: Apr 30 00:30 KST
 "NeuralNetworkTest.PerformanceMetrics" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2866,7 +2866,7 @@ Test Passed.
 107/140 Test: NeuralNetworkTest.DebugMode
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=NeuralNetworkTest.DebugMode" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"NeuralNetworkTest.DebugMode" start time: Apr 29 22:55 KST
+"NeuralNetworkTest.DebugMode" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2882,10 +2882,10 @@ Note: Google Test filter = NeuralNetworkTest.DebugMode
 [==========] 1 test from 1 test suite ran. (1 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.32 sec
+Test time =   0.38 sec
 ----------------------------------------------------------
 Test Passed.
-"NeuralNetworkTest.DebugMode" end time: Apr 29 22:55 KST
+"NeuralNetworkTest.DebugMode" end time: Apr 30 00:30 KST
 "NeuralNetworkTest.DebugMode" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2893,7 +2893,7 @@ Test Passed.
 108/140 Test: NeuralNetworkTest.Benchmark
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=NeuralNetworkTest.Benchmark" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"NeuralNetworkTest.Benchmark" start time: Apr 29 22:55 KST
+"NeuralNetworkTest.Benchmark" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2909,10 +2909,10 @@ Note: Google Test filter = NeuralNetworkTest.Benchmark
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.32 sec
+Test time =   0.42 sec
 ----------------------------------------------------------
 Test Passed.
-"NeuralNetworkTest.Benchmark" end time: Apr 29 22:55 KST
+"NeuralNetworkTest.Benchmark" end time: Apr 30 00:30 KST
 "NeuralNetworkTest.Benchmark" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2920,7 +2920,7 @@ Test Passed.
 109/140 Test: NeuralNetworkTest.PrintModelSummary
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=NeuralNetworkTest.PrintModelSummary" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"NeuralNetworkTest.PrintModelSummary" start time: Apr 29 22:55 KST
+"NeuralNetworkTest.PrintModelSummary" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2936,10 +2936,10 @@ Note: Google Test filter = NeuralNetworkTest.PrintModelSummary
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Passed.
-"NeuralNetworkTest.PrintModelSummary" end time: Apr 29 22:55 KST
+"NeuralNetworkTest.PrintModelSummary" end time: Apr 30 00:30 KST
 "NeuralNetworkTest.PrintModelSummary" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2947,7 +2947,7 @@ Test Passed.
 110/140 Test: NeuralNetworkTest.IsGpuAvailable
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=NeuralNetworkTest.IsGpuAvailable" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"NeuralNetworkTest.IsGpuAvailable" start time: Apr 29 22:55 KST
+"NeuralNetworkTest.IsGpuAvailable" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2963,10 +2963,10 @@ Note: Google Test filter = NeuralNetworkTest.IsGpuAvailable
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.36 sec
 ----------------------------------------------------------
 Test Passed.
-"NeuralNetworkTest.IsGpuAvailable" end time: Apr 29 22:55 KST
+"NeuralNetworkTest.IsGpuAvailable" end time: Apr 30 00:30 KST
 "NeuralNetworkTest.IsGpuAvailable" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -2974,7 +2974,7 @@ Test Passed.
 111/140 Test: RandomPolicyNetworkTest.Predict
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=RandomPolicyNetworkTest.Predict" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"RandomPolicyNetworkTest.Predict" start time: Apr 29 22:55 KST
+"RandomPolicyNetworkTest.Predict" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -2990,10 +2990,10 @@ Note: Google Test filter = RandomPolicyNetworkTest.Predict
 [==========] 1 test from 1 test suite ran. (1 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.42 sec
 ----------------------------------------------------------
 Test Passed.
-"RandomPolicyNetworkTest.Predict" end time: Apr 29 22:55 KST
+"RandomPolicyNetworkTest.Predict" end time: Apr 30 00:30 KST
 "RandomPolicyNetworkTest.Predict" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -3001,7 +3001,7 @@ Test Passed.
 112/140 Test: RandomPolicyNetworkTest.PredictBatch
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=RandomPolicyNetworkTest.PredictBatch" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"RandomPolicyNetworkTest.PredictBatch" start time: Apr 29 22:55 KST
+"RandomPolicyNetworkTest.PredictBatch" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3017,10 +3017,10 @@ Note: Google Test filter = RandomPolicyNetworkTest.PredictBatch
 [==========] 1 test from 1 test suite ran. (5 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.39 sec
 ----------------------------------------------------------
 Test Passed.
-"RandomPolicyNetworkTest.PredictBatch" end time: Apr 29 22:55 KST
+"RandomPolicyNetworkTest.PredictBatch" end time: Apr 30 00:30 KST
 "RandomPolicyNetworkTest.PredictBatch" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -3028,7 +3028,7 @@ Test Passed.
 113/140 Test: RandomPolicyNetworkTest.PredictAsync
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=RandomPolicyNetworkTest.PredictAsync" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"RandomPolicyNetworkTest.PredictAsync" start time: Apr 29 22:55 KST
+"RandomPolicyNetworkTest.PredictAsync" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3037,17 +3037,17 @@ Note: Google Test filter = RandomPolicyNetworkTest.PredictAsync
 [----------] Global test environment set-up.
 [----------] 1 test from RandomPolicyNetworkTest
 [ RUN      ] RandomPolicyNetworkTest.PredictAsync
-[       OK ] RandomPolicyNetworkTest.PredictAsync (3 ms)
-[----------] 1 test from RandomPolicyNetworkTest (3 ms total)
+[       OK ] RandomPolicyNetworkTest.PredictAsync (1 ms)
+[----------] 1 test from RandomPolicyNetworkTest (1 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (3 ms total)
+[==========] 1 test from 1 test suite ran. (1 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.36 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Passed.
-"RandomPolicyNetworkTest.PredictAsync" end time: Apr 29 22:55 KST
+"RandomPolicyNetworkTest.PredictAsync" end time: Apr 30 00:30 KST
 "RandomPolicyNetworkTest.PredictAsync" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -3055,7 +3055,7 @@ Test Passed.
 114/140 Test: RandomPolicyNetworkTest.Determinism
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=RandomPolicyNetworkTest.Determinism" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"RandomPolicyNetworkTest.Determinism" start time: Apr 29 22:55 KST
+"RandomPolicyNetworkTest.Determinism" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3071,10 +3071,10 @@ Note: Google Test filter = RandomPolicyNetworkTest.Determinism
 [==========] 1 test from 1 test suite ran. (3 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.40 sec
 ----------------------------------------------------------
 Test Passed.
-"RandomPolicyNetworkTest.Determinism" end time: Apr 29 22:55 KST
+"RandomPolicyNetworkTest.Determinism" end time: Apr 30 00:30 KST
 "RandomPolicyNetworkTest.Determinism" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -3082,7 +3082,7 @@ Test Passed.
 115/140 Test: RandomPolicyNetworkTest.DifferentGameTypes
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=RandomPolicyNetworkTest.DifferentGameTypes" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"RandomPolicyNetworkTest.DifferentGameTypes" start time: Apr 29 22:55 KST
+"RandomPolicyNetworkTest.DifferentGameTypes" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3098,10 +3098,10 @@ Note: Google Test filter = RandomPolicyNetworkTest.DifferentGameTypes
 [==========] 1 test from 1 test suite ran. (3 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Passed.
-"RandomPolicyNetworkTest.DifferentGameTypes" end time: Apr 29 22:55 KST
+"RandomPolicyNetworkTest.DifferentGameTypes" end time: Apr 30 00:30 KST
 "RandomPolicyNetworkTest.DifferentGameTypes" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -3109,7 +3109,7 @@ Test Passed.
 116/140 Test: RandomPolicyNetworkTest.IllegalMoves
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=RandomPolicyNetworkTest.IllegalMoves" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"RandomPolicyNetworkTest.IllegalMoves" start time: Apr 29 22:55 KST
+"RandomPolicyNetworkTest.IllegalMoves" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3125,10 +3125,10 @@ Note: Google Test filter = RandomPolicyNetworkTest.IllegalMoves
 [==========] 1 test from 1 test suite ran. (1 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.40 sec
+Test time =   0.36 sec
 ----------------------------------------------------------
 Test Passed.
-"RandomPolicyNetworkTest.IllegalMoves" end time: Apr 29 22:55 KST
+"RandomPolicyNetworkTest.IllegalMoves" end time: Apr 30 00:30 KST
 "RandomPolicyNetworkTest.IllegalMoves" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -3136,7 +3136,7 @@ Test Passed.
 117/140 Test: TorchNeuralNetworkTest.Initialization
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=TorchNeuralNetworkTest.Initialization" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"TorchNeuralNetworkTest.Initialization" start time: Apr 29 22:55 KST
+"TorchNeuralNetworkTest.Initialization" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3145,22 +3145,24 @@ Note: Google Test filter = TorchNeuralNetworkTest.Initialization
 [----------] Global test environment set-up.
 [----------] 1 test from TorchNeuralNetworkTest
 [ RUN      ] TorchNeuralNetworkTest.Initialization
-/home/cosmos/alphazero-multi-game/tests/nn/torch_neural_network_test.cpp:31: Skipped
-LibTorch not available or error loading model: Failed to load model: Could not open model file: nonexistent_model_file.pt. Your LibTorch version may not support the saved model format.
-[  SKIPPED ] TorchNeuralNetworkTest.Initialization (24 ms)
-[----------] 1 test from TorchNeuralNetworkTest (24 ms total)
+[Warning] LibTorch not available or error loading model: Failed to load model: Could not open model file: nonexistent_model_file.pt. Your LibTorch version may not support the saved model format.
+[Warning] TorchNeuralNetwork tests requiring a model will be skipped.
+/home/cosmos/alphazero-multi-game/tests/nn/torch_neural_network_test.cpp:43: Skipped
+
+[  SKIPPED ] TorchNeuralNetworkTest.Initialization (21 ms)
+[----------] 1 test from TorchNeuralNetworkTest (21 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (24 ms total)
+[==========] 1 test from 1 test suite ran. (21 ms total)
 [  PASSED  ] 0 tests.
 [  SKIPPED ] 1 test, listed below:
 [  SKIPPED ] TorchNeuralNetworkTest.Initialization
 <end of output>
-Test time =   0.36 sec
+Test time =   0.40 sec
 ----------------------------------------------------------
 Test Pass Reason:
 Skip regular expression found in output. Regex=[\[  SKIPPED \]]
-"TorchNeuralNetworkTest.Initialization" end time: Apr 29 22:55 KST
+"TorchNeuralNetworkTest.Initialization" end time: Apr 30 00:30 KST
 "TorchNeuralNetworkTest.Initialization" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -3168,7 +3170,7 @@ Skip regular expression found in output. Regex=[\[  SKIPPED \]]
 118/140 Test: TorchNeuralNetworkTest.Predict
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=TorchNeuralNetworkTest.Predict" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"TorchNeuralNetworkTest.Predict" start time: Apr 29 22:55 KST
+"TorchNeuralNetworkTest.Predict" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3177,8 +3179,10 @@ Note: Google Test filter = TorchNeuralNetworkTest.Predict
 [----------] Global test environment set-up.
 [----------] 1 test from TorchNeuralNetworkTest
 [ RUN      ] TorchNeuralNetworkTest.Predict
-/home/cosmos/alphazero-multi-game/tests/nn/torch_neural_network_test.cpp:31: Skipped
-LibTorch not available or error loading model: Failed to load model: Could not open model file: nonexistent_model_file.pt. Your LibTorch version may not support the saved model format.
+[Warning] LibTorch not available or error loading model: Failed to load model: Could not open model file: nonexistent_model_file.pt. Your LibTorch version may not support the saved model format.
+[Warning] TorchNeuralNetwork tests requiring a model will be skipped.
+/home/cosmos/alphazero-multi-game/tests/nn/torch_neural_network_test.cpp:50: Skipped
+
 [  SKIPPED ] TorchNeuralNetworkTest.Predict (0 ms)
 [----------] 1 test from TorchNeuralNetworkTest (0 ms total)
 
@@ -3188,11 +3192,11 @@ LibTorch not available or error loading model: Failed to load model: Could not o
 [  SKIPPED ] 1 test, listed below:
 [  SKIPPED ] TorchNeuralNetworkTest.Predict
 <end of output>
-Test time =   0.34 sec
+Test time =   0.36 sec
 ----------------------------------------------------------
 Test Pass Reason:
 Skip regular expression found in output. Regex=[\[  SKIPPED \]]
-"TorchNeuralNetworkTest.Predict" end time: Apr 29 22:55 KST
+"TorchNeuralNetworkTest.Predict" end time: Apr 30 00:30 KST
 "TorchNeuralNetworkTest.Predict" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -3200,7 +3204,7 @@ Skip regular expression found in output. Regex=[\[  SKIPPED \]]
 119/140 Test: TorchNeuralNetworkTest.PredictBatch
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=TorchNeuralNetworkTest.PredictBatch" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"TorchNeuralNetworkTest.PredictBatch" start time: Apr 29 22:55 KST
+"TorchNeuralNetworkTest.PredictBatch" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3209,8 +3213,10 @@ Note: Google Test filter = TorchNeuralNetworkTest.PredictBatch
 [----------] Global test environment set-up.
 [----------] 1 test from TorchNeuralNetworkTest
 [ RUN      ] TorchNeuralNetworkTest.PredictBatch
-/home/cosmos/alphazero-multi-game/tests/nn/torch_neural_network_test.cpp:31: Skipped
-LibTorch not available or error loading model: Failed to load model: Could not open model file: nonexistent_model_file.pt. Your LibTorch version may not support the saved model format.
+[Warning] LibTorch not available or error loading model: Failed to load model: Could not open model file: nonexistent_model_file.pt. Your LibTorch version may not support the saved model format.
+[Warning] TorchNeuralNetwork tests requiring a model will be skipped.
+/home/cosmos/alphazero-multi-game/tests/nn/torch_neural_network_test.cpp:73: Skipped
+
 [  SKIPPED ] TorchNeuralNetworkTest.PredictBatch (0 ms)
 [----------] 1 test from TorchNeuralNetworkTest (0 ms total)
 
@@ -3220,11 +3226,11 @@ LibTorch not available or error loading model: Failed to load model: Could not o
 [  SKIPPED ] 1 test, listed below:
 [  SKIPPED ] TorchNeuralNetworkTest.PredictBatch
 <end of output>
-Test time =   0.34 sec
+Test time =   0.44 sec
 ----------------------------------------------------------
 Test Pass Reason:
 Skip regular expression found in output. Regex=[\[  SKIPPED \]]
-"TorchNeuralNetworkTest.PredictBatch" end time: Apr 29 22:55 KST
+"TorchNeuralNetworkTest.PredictBatch" end time: Apr 30 00:30 KST
 "TorchNeuralNetworkTest.PredictBatch" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -3232,7 +3238,7 @@ Skip regular expression found in output. Regex=[\[  SKIPPED \]]
 120/140 Test: TorchNeuralNetworkTest.PredictAsync
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=TorchNeuralNetworkTest.PredictAsync" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"TorchNeuralNetworkTest.PredictAsync" start time: Apr 29 22:55 KST
+"TorchNeuralNetworkTest.PredictAsync" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3241,8 +3247,10 @@ Note: Google Test filter = TorchNeuralNetworkTest.PredictAsync
 [----------] Global test environment set-up.
 [----------] 1 test from TorchNeuralNetworkTest
 [ RUN      ] TorchNeuralNetworkTest.PredictAsync
-/home/cosmos/alphazero-multi-game/tests/nn/torch_neural_network_test.cpp:31: Skipped
-LibTorch not available or error loading model: Failed to load model: Could not open model file: nonexistent_model_file.pt. Your LibTorch version may not support the saved model format.
+[Warning] LibTorch not available or error loading model: Failed to load model: Could not open model file: nonexistent_model_file.pt. Your LibTorch version may not support the saved model format.
+[Warning] TorchNeuralNetwork tests requiring a model will be skipped.
+/home/cosmos/alphazero-multi-game/tests/nn/torch_neural_network_test.cpp:106: Skipped
+
 [  SKIPPED ] TorchNeuralNetworkTest.PredictAsync (0 ms)
 [----------] 1 test from TorchNeuralNetworkTest (0 ms total)
 
@@ -3252,11 +3260,11 @@ LibTorch not available or error loading model: Failed to load model: Could not o
 [  SKIPPED ] 1 test, listed below:
 [  SKIPPED ] TorchNeuralNetworkTest.PredictAsync
 <end of output>
-Test time =   0.34 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Pass Reason:
 Skip regular expression found in output. Regex=[\[  SKIPPED \]]
-"TorchNeuralNetworkTest.PredictAsync" end time: Apr 29 22:55 KST
+"TorchNeuralNetworkTest.PredictAsync" end time: Apr 30 00:30 KST
 "TorchNeuralNetworkTest.PredictAsync" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -3264,7 +3272,7 @@ Skip regular expression found in output. Regex=[\[  SKIPPED \]]
 121/140 Test: TorchNeuralNetworkTest.DeviceInfo
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=TorchNeuralNetworkTest.DeviceInfo" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"TorchNeuralNetworkTest.DeviceInfo" start time: Apr 29 22:55 KST
+"TorchNeuralNetworkTest.DeviceInfo" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3273,8 +3281,10 @@ Note: Google Test filter = TorchNeuralNetworkTest.DeviceInfo
 [----------] Global test environment set-up.
 [----------] 1 test from TorchNeuralNetworkTest
 [ RUN      ] TorchNeuralNetworkTest.DeviceInfo
-/home/cosmos/alphazero-multi-game/tests/nn/torch_neural_network_test.cpp:31: Skipped
-LibTorch not available or error loading model: Failed to load model: Could not open model file: nonexistent_model_file.pt. Your LibTorch version may not support the saved model format.
+[Warning] LibTorch not available or error loading model: Failed to load model: Could not open model file: nonexistent_model_file.pt. Your LibTorch version may not support the saved model format.
+[Warning] TorchNeuralNetwork tests requiring a model will be skipped.
+/home/cosmos/alphazero-multi-game/tests/nn/torch_neural_network_test.cpp:123: Skipped
+
 [  SKIPPED ] TorchNeuralNetworkTest.DeviceInfo (0 ms)
 [----------] 1 test from TorchNeuralNetworkTest (0 ms total)
 
@@ -3284,11 +3294,11 @@ LibTorch not available or error loading model: Failed to load model: Could not o
 [  SKIPPED ] 1 test, listed below:
 [  SKIPPED ] TorchNeuralNetworkTest.DeviceInfo
 <end of output>
-Test time =   0.33 sec
+Test time =   0.36 sec
 ----------------------------------------------------------
 Test Pass Reason:
 Skip regular expression found in output. Regex=[\[  SKIPPED \]]
-"TorchNeuralNetworkTest.DeviceInfo" end time: Apr 29 22:55 KST
+"TorchNeuralNetworkTest.DeviceInfo" end time: Apr 30 00:30 KST
 "TorchNeuralNetworkTest.DeviceInfo" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -3296,7 +3306,7 @@ Skip regular expression found in output. Regex=[\[  SKIPPED \]]
 122/140 Test: TorchNeuralNetworkTest.ModelInfo
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=TorchNeuralNetworkTest.ModelInfo" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"TorchNeuralNetworkTest.ModelInfo" start time: Apr 29 22:55 KST
+"TorchNeuralNetworkTest.ModelInfo" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3305,8 +3315,10 @@ Note: Google Test filter = TorchNeuralNetworkTest.ModelInfo
 [----------] Global test environment set-up.
 [----------] 1 test from TorchNeuralNetworkTest
 [ RUN      ] TorchNeuralNetworkTest.ModelInfo
-/home/cosmos/alphazero-multi-game/tests/nn/torch_neural_network_test.cpp:31: Skipped
-LibTorch not available or error loading model: Failed to load model: Could not open model file: nonexistent_model_file.pt. Your LibTorch version may not support the saved model format.
+[Warning] LibTorch not available or error loading model: Failed to load model: Could not open model file: nonexistent_model_file.pt. Your LibTorch version may not support the saved model format.
+[Warning] TorchNeuralNetwork tests requiring a model will be skipped.
+/home/cosmos/alphazero-multi-game/tests/nn/torch_neural_network_test.cpp:133: Skipped
+
 [  SKIPPED ] TorchNeuralNetworkTest.ModelInfo (0 ms)
 [----------] 1 test from TorchNeuralNetworkTest (0 ms total)
 
@@ -3316,11 +3328,11 @@ LibTorch not available or error loading model: Failed to load model: Could not o
 [  SKIPPED ] 1 test, listed below:
 [  SKIPPED ] TorchNeuralNetworkTest.ModelInfo
 <end of output>
-Test time =   0.33 sec
+Test time =   0.41 sec
 ----------------------------------------------------------
 Test Pass Reason:
 Skip regular expression found in output. Regex=[\[  SKIPPED \]]
-"TorchNeuralNetworkTest.ModelInfo" end time: Apr 29 22:55 KST
+"TorchNeuralNetworkTest.ModelInfo" end time: Apr 30 00:30 KST
 "TorchNeuralNetworkTest.ModelInfo" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -3328,7 +3340,7 @@ Skip regular expression found in output. Regex=[\[  SKIPPED \]]
 123/140 Test: TorchNeuralNetworkTest.Benchmark
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=TorchNeuralNetworkTest.Benchmark" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"TorchNeuralNetworkTest.Benchmark" start time: Apr 29 22:55 KST
+"TorchNeuralNetworkTest.Benchmark" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3337,8 +3349,10 @@ Note: Google Test filter = TorchNeuralNetworkTest.Benchmark
 [----------] Global test environment set-up.
 [----------] 1 test from TorchNeuralNetworkTest
 [ RUN      ] TorchNeuralNetworkTest.Benchmark
-/home/cosmos/alphazero-multi-game/tests/nn/torch_neural_network_test.cpp:31: Skipped
-LibTorch not available or error loading model: Failed to load model: Could not open model file: nonexistent_model_file.pt. Your LibTorch version may not support the saved model format.
+[Warning] LibTorch not available or error loading model: Failed to load model: Could not open model file: nonexistent_model_file.pt. Your LibTorch version may not support the saved model format.
+[Warning] TorchNeuralNetwork tests requiring a model will be skipped.
+/home/cosmos/alphazero-multi-game/tests/nn/torch_neural_network_test.cpp:143: Skipped
+
 [  SKIPPED ] TorchNeuralNetworkTest.Benchmark (0 ms)
 [----------] 1 test from TorchNeuralNetworkTest (0 ms total)
 
@@ -3348,11 +3362,11 @@ LibTorch not available or error loading model: Failed to load model: Could not o
 [  SKIPPED ] 1 test, listed below:
 [  SKIPPED ] TorchNeuralNetworkTest.Benchmark
 <end of output>
-Test time =   0.40 sec
+Test time =   0.36 sec
 ----------------------------------------------------------
 Test Pass Reason:
 Skip regular expression found in output. Regex=[\[  SKIPPED \]]
-"TorchNeuralNetworkTest.Benchmark" end time: Apr 29 22:55 KST
+"TorchNeuralNetworkTest.Benchmark" end time: Apr 30 00:30 KST
 "TorchNeuralNetworkTest.Benchmark" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -3360,7 +3374,7 @@ Skip regular expression found in output. Regex=[\[  SKIPPED \]]
 124/140 Test: TorchNeuralNetworkTest.MultipleInferences
 Command: "/home/cosmos/alphazero-multi-game/build/tests/nn_tests" "--gtest_filter=TorchNeuralNetworkTest.MultipleInferences" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"TorchNeuralNetworkTest.MultipleInferences" start time: Apr 29 22:55 KST
+"TorchNeuralNetworkTest.MultipleInferences" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3369,8 +3383,10 @@ Note: Google Test filter = TorchNeuralNetworkTest.MultipleInferences
 [----------] Global test environment set-up.
 [----------] 1 test from TorchNeuralNetworkTest
 [ RUN      ] TorchNeuralNetworkTest.MultipleInferences
-/home/cosmos/alphazero-multi-game/tests/nn/torch_neural_network_test.cpp:31: Skipped
-LibTorch not available or error loading model: Failed to load model: Could not open model file: nonexistent_model_file.pt. Your LibTorch version may not support the saved model format.
+[Warning] LibTorch not available or error loading model: Failed to load model: Could not open model file: nonexistent_model_file.pt. Your LibTorch version may not support the saved model format.
+[Warning] TorchNeuralNetwork tests requiring a model will be skipped.
+/home/cosmos/alphazero-multi-game/tests/nn/torch_neural_network_test.cpp:150: Skipped
+
 [  SKIPPED ] TorchNeuralNetworkTest.MultipleInferences (0 ms)
 [----------] 1 test from TorchNeuralNetworkTest (0 ms total)
 
@@ -3380,11 +3396,11 @@ LibTorch not available or error loading model: Failed to load model: Could not o
 [  SKIPPED ] 1 test, listed below:
 [  SKIPPED ] TorchNeuralNetworkTest.MultipleInferences
 <end of output>
-Test time =   0.35 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Pass Reason:
 Skip regular expression found in output. Regex=[\[  SKIPPED \]]
-"TorchNeuralNetworkTest.MultipleInferences" end time: Apr 29 22:55 KST
+"TorchNeuralNetworkTest.MultipleInferences" end time: Apr 30 00:30 KST
 "TorchNeuralNetworkTest.MultipleInferences" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -3392,7 +3408,7 @@ Skip regular expression found in output. Regex=[\[  SKIPPED \]]
 125/140 Test: ChessIntegrationTest.OpeningMoves
 Command: "/home/cosmos/alphazero-multi-game/build/tests/integration_tests" "--gtest_filter=ChessIntegrationTest.OpeningMoves" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ChessIntegrationTest.OpeningMoves" start time: Apr 29 22:55 KST
+"ChessIntegrationTest.OpeningMoves" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3401,17 +3417,17 @@ Note: Google Test filter = ChessIntegrationTest.OpeningMoves
 [----------] Global test environment set-up.
 [----------] 1 test from ChessIntegrationTest
 [ RUN      ] ChessIntegrationTest.OpeningMoves
-[       OK ] ChessIntegrationTest.OpeningMoves (60 ms)
-[----------] 1 test from ChessIntegrationTest (60 ms total)
+[       OK ] ChessIntegrationTest.OpeningMoves (260 ms)
+[----------] 1 test from ChessIntegrationTest (260 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (60 ms total)
+[==========] 1 test from 1 test suite ran. (260 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.41 sec
+Test time =   0.62 sec
 ----------------------------------------------------------
 Test Passed.
-"ChessIntegrationTest.OpeningMoves" end time: Apr 29 22:55 KST
+"ChessIntegrationTest.OpeningMoves" end time: Apr 30 00:30 KST
 "ChessIntegrationTest.OpeningMoves" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -3419,7 +3435,7 @@ Test Passed.
 126/140 Test: ChessIntegrationTest.Check
 Command: "/home/cosmos/alphazero-multi-game/build/tests/integration_tests" "--gtest_filter=ChessIntegrationTest.Check" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ChessIntegrationTest.Check" start time: Apr 29 22:55 KST
+"ChessIntegrationTest.Check" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3428,17 +3444,17 @@ Note: Google Test filter = ChessIntegrationTest.Check
 [----------] Global test environment set-up.
 [----------] 1 test from ChessIntegrationTest
 [ RUN      ] ChessIntegrationTest.Check
-[       OK ] ChessIntegrationTest.Check (0 ms)
-[----------] 1 test from ChessIntegrationTest (0 ms total)
+[       OK ] ChessIntegrationTest.Check (1 ms)
+[----------] 1 test from ChessIntegrationTest (1 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (0 ms total)
+[==========] 1 test from 1 test suite ran. (1 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.34 sec
+Test time =   0.38 sec
 ----------------------------------------------------------
 Test Passed.
-"ChessIntegrationTest.Check" end time: Apr 29 22:55 KST
+"ChessIntegrationTest.Check" end time: Apr 30 00:30 KST
 "ChessIntegrationTest.Check" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -3446,7 +3462,7 @@ Test Passed.
 127/140 Test: ChessIntegrationTest.Checkmate
 Command: "/home/cosmos/alphazero-multi-game/build/tests/integration_tests" "--gtest_filter=ChessIntegrationTest.Checkmate" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ChessIntegrationTest.Checkmate" start time: Apr 29 22:55 KST
+"ChessIntegrationTest.Checkmate" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3455,17 +3471,17 @@ Note: Google Test filter = ChessIntegrationTest.Checkmate
 [----------] Global test environment set-up.
 [----------] 1 test from ChessIntegrationTest
 [ RUN      ] ChessIntegrationTest.Checkmate
-[       OK ] ChessIntegrationTest.Checkmate (0 ms)
-[----------] 1 test from ChessIntegrationTest (0 ms total)
+[       OK ] ChessIntegrationTest.Checkmate (1 ms)
+[----------] 1 test from ChessIntegrationTest (1 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (0 ms total)
+[==========] 1 test from 1 test suite ran. (1 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.33 sec
+Test time =   0.39 sec
 ----------------------------------------------------------
 Test Passed.
-"ChessIntegrationTest.Checkmate" end time: Apr 29 22:55 KST
+"ChessIntegrationTest.Checkmate" end time: Apr 30 00:30 KST
 "ChessIntegrationTest.Checkmate" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -3473,7 +3489,7 @@ Test Passed.
 128/140 Test: ChessIntegrationTest.Chess960
 Command: "/home/cosmos/alphazero-multi-game/build/tests/integration_tests" "--gtest_filter=ChessIntegrationTest.Chess960" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ChessIntegrationTest.Chess960" start time: Apr 29 22:55 KST
+"ChessIntegrationTest.Chess960" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3500,18 +3516,18 @@ Halfmove clock: 0
 Fullmove number: 1
 FEN: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
 
-Selected move: b2b4
-[       OK ] ChessIntegrationTest.Chess960 (51 ms)
-[----------] 1 test from ChessIntegrationTest (51 ms total)
+Selected move: d2d3
+[       OK ] ChessIntegrationTest.Chess960 (313 ms)
+[----------] 1 test from ChessIntegrationTest (313 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (51 ms total)
+[==========] 1 test from 1 test suite ran. (313 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.38 sec
+Test time =   0.71 sec
 ----------------------------------------------------------
 Test Passed.
-"ChessIntegrationTest.Chess960" end time: Apr 29 22:55 KST
+"ChessIntegrationTest.Chess960" end time: Apr 30 00:30 KST
 "ChessIntegrationTest.Chess960" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -3519,7 +3535,7 @@ Test Passed.
 129/140 Test: ChessIntegrationTest.CastlingMoves
 Command: "/home/cosmos/alphazero-multi-game/build/tests/integration_tests" "--gtest_filter=ChessIntegrationTest.CastlingMoves" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ChessIntegrationTest.CastlingMoves" start time: Apr 29 22:55 KST
+"ChessIntegrationTest.CastlingMoves" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3528,17 +3544,17 @@ Note: Google Test filter = ChessIntegrationTest.CastlingMoves
 [----------] Global test environment set-up.
 [----------] 1 test from ChessIntegrationTest
 [ RUN      ] ChessIntegrationTest.CastlingMoves
-[       OK ] ChessIntegrationTest.CastlingMoves (1 ms)
-[----------] 1 test from ChessIntegrationTest (1 ms total)
+[       OK ] ChessIntegrationTest.CastlingMoves (3 ms)
+[----------] 1 test from ChessIntegrationTest (3 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (1 ms total)
+[==========] 1 test from 1 test suite ran. (3 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.34 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Passed.
-"ChessIntegrationTest.CastlingMoves" end time: Apr 29 22:55 KST
+"ChessIntegrationTest.CastlingMoves" end time: Apr 30 00:30 KST
 "ChessIntegrationTest.CastlingMoves" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -3546,7 +3562,7 @@ Test Passed.
 130/140 Test: ChessIntegrationTest.PawnPromotion
 Command: "/home/cosmos/alphazero-multi-game/build/tests/integration_tests" "--gtest_filter=ChessIntegrationTest.PawnPromotion" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"ChessIntegrationTest.PawnPromotion" start time: Apr 29 22:55 KST
+"ChessIntegrationTest.PawnPromotion" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3555,17 +3571,17 @@ Note: Google Test filter = ChessIntegrationTest.PawnPromotion
 [----------] Global test environment set-up.
 [----------] 1 test from ChessIntegrationTest
 [ RUN      ] ChessIntegrationTest.PawnPromotion
-[       OK ] ChessIntegrationTest.PawnPromotion (7 ms)
-[----------] 1 test from ChessIntegrationTest (7 ms total)
+[       OK ] ChessIntegrationTest.PawnPromotion (14 ms)
+[----------] 1 test from ChessIntegrationTest (14 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (7 ms total)
+[==========] 1 test from 1 test suite ran. (14 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.38 sec
+Test time =   0.41 sec
 ----------------------------------------------------------
 Test Passed.
-"ChessIntegrationTest.PawnPromotion" end time: Apr 29 22:55 KST
+"ChessIntegrationTest.PawnPromotion" end time: Apr 30 00:30 KST
 "ChessIntegrationTest.PawnPromotion" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -3573,7 +3589,7 @@ Test Passed.
 131/140 Test: GoIntegrationTest.SelfPlayAndGameRecord
 Command: "/home/cosmos/alphazero-multi-game/build/tests/integration_tests" "--gtest_filter=GoIntegrationTest.SelfPlayAndGameRecord" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GoIntegrationTest.SelfPlayAndGameRecord" start time: Apr 29 22:55 KST
+"GoIntegrationTest.SelfPlayAndGameRecord" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3582,17 +3598,17 @@ Note: Google Test filter = GoIntegrationTest.SelfPlayAndGameRecord
 [----------] Global test environment set-up.
 [----------] 1 test from GoIntegrationTest
 [ RUN      ] GoIntegrationTest.SelfPlayAndGameRecord
-[       OK ] GoIntegrationTest.SelfPlayAndGameRecord (177 ms)
-[----------] 1 test from GoIntegrationTest (177 ms total)
+[       OK ] GoIntegrationTest.SelfPlayAndGameRecord (583 ms)
+[----------] 1 test from GoIntegrationTest (583 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (177 ms total)
+[==========] 1 test from 1 test suite ran. (583 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.57 sec
+Test time =   0.96 sec
 ----------------------------------------------------------
 Test Passed.
-"GoIntegrationTest.SelfPlayAndGameRecord" end time: Apr 29 22:55 KST
+"GoIntegrationTest.SelfPlayAndGameRecord" end time: Apr 30 00:30 KST
 "GoIntegrationTest.SelfPlayAndGameRecord" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -3600,7 +3616,7 @@ Test Passed.
 132/140 Test: GoIntegrationTest.PlayAgainstSelf
 Command: "/home/cosmos/alphazero-multi-game/build/tests/integration_tests" "--gtest_filter=GoIntegrationTest.PlayAgainstSelf" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GoIntegrationTest.PlayAgainstSelf" start time: Apr 29 22:55 KST
+"GoIntegrationTest.PlayAgainstSelf" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3609,25 +3625,25 @@ Note: Google Test filter = GoIntegrationTest.PlayAgainstSelf
 [----------] Global test environment set-up.
 [----------] 1 test from GoIntegrationTest
 [ RUN      ] GoIntegrationTest.PlayAgainstSelf
-[       OK ] GoIntegrationTest.PlayAgainstSelf (747 ms)
-[----------] 1 test from GoIntegrationTest (747 ms total)
+[       OK ] GoIntegrationTest.PlayAgainstSelf (2661 ms)
+[----------] 1 test from GoIntegrationTest (2661 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (747 ms total)
+[==========] 1 test from 1 test suite ran. (2661 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   1.09 sec
+Test time =   3.10 sec
 ----------------------------------------------------------
 Test Passed.
-"GoIntegrationTest.PlayAgainstSelf" end time: Apr 29 22:55 KST
-"GoIntegrationTest.PlayAgainstSelf" time elapsed: 00:00:01
+"GoIntegrationTest.PlayAgainstSelf" end time: Apr 30 00:30 KST
+"GoIntegrationTest.PlayAgainstSelf" time elapsed: 00:00:03
 ----------------------------------------------------------
 
 133/140 Testing: GoIntegrationTest.TensorRepresentations
 133/140 Test: GoIntegrationTest.TensorRepresentations
 Command: "/home/cosmos/alphazero-multi-game/build/tests/integration_tests" "--gtest_filter=GoIntegrationTest.TensorRepresentations" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GoIntegrationTest.TensorRepresentations" start time: Apr 29 22:55 KST
+"GoIntegrationTest.TensorRepresentations" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3636,17 +3652,17 @@ Note: Google Test filter = GoIntegrationTest.TensorRepresentations
 [----------] Global test environment set-up.
 [----------] 1 test from GoIntegrationTest
 [ RUN      ] GoIntegrationTest.TensorRepresentations
-[       OK ] GoIntegrationTest.TensorRepresentations (1 ms)
-[----------] 1 test from GoIntegrationTest (1 ms total)
+[       OK ] GoIntegrationTest.TensorRepresentations (3 ms)
+[----------] 1 test from GoIntegrationTest (3 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (1 ms total)
+[==========] 1 test from 1 test suite ran. (3 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.39 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Passed.
-"GoIntegrationTest.TensorRepresentations" end time: Apr 29 22:55 KST
+"GoIntegrationTest.TensorRepresentations" end time: Apr 30 00:30 KST
 "GoIntegrationTest.TensorRepresentations" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -3654,7 +3670,7 @@ Test Passed.
 134/140 Test: GoIntegrationTest.CaptureVerification
 Command: "/home/cosmos/alphazero-multi-game/build/tests/integration_tests" "--gtest_filter=GoIntegrationTest.CaptureVerification" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GoIntegrationTest.CaptureVerification" start time: Apr 29 22:55 KST
+"GoIntegrationTest.CaptureVerification" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3663,17 +3679,17 @@ Note: Google Test filter = GoIntegrationTest.CaptureVerification
 [----------] Global test environment set-up.
 [----------] 1 test from GoIntegrationTest
 [ RUN      ] GoIntegrationTest.CaptureVerification
-[       OK ] GoIntegrationTest.CaptureVerification (75 ms)
-[----------] 1 test from GoIntegrationTest (75 ms total)
+[       OK ] GoIntegrationTest.CaptureVerification (253 ms)
+[----------] 1 test from GoIntegrationTest (253 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (75 ms total)
+[==========] 1 test from 1 test suite ran. (253 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.41 sec
+Test time =   0.61 sec
 ----------------------------------------------------------
 Test Passed.
-"GoIntegrationTest.CaptureVerification" end time: Apr 29 22:55 KST
+"GoIntegrationTest.CaptureVerification" end time: Apr 30 00:30 KST
 "GoIntegrationTest.CaptureVerification" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -3681,7 +3697,7 @@ Test Passed.
 135/140 Test: GoIntegrationTest.KoRuleEnforcement
 Command: "/home/cosmos/alphazero-multi-game/build/tests/integration_tests" "--gtest_filter=GoIntegrationTest.KoRuleEnforcement" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GoIntegrationTest.KoRuleEnforcement" start time: Apr 29 22:55 KST
+"GoIntegrationTest.KoRuleEnforcement" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3690,17 +3706,17 @@ Note: Google Test filter = GoIntegrationTest.KoRuleEnforcement
 [----------] Global test environment set-up.
 [----------] 1 test from GoIntegrationTest
 [ RUN      ] GoIntegrationTest.KoRuleEnforcement
-[       OK ] GoIntegrationTest.KoRuleEnforcement (2 ms)
-[----------] 1 test from GoIntegrationTest (2 ms total)
+[       OK ] GoIntegrationTest.KoRuleEnforcement (1 ms)
+[----------] 1 test from GoIntegrationTest (1 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (2 ms total)
+[==========] 1 test from 1 test suite ran. (1 ms total)
 [  PASSED  ] 1 test.
 <end of output>
 Test time =   0.35 sec
 ----------------------------------------------------------
 Test Passed.
-"GoIntegrationTest.KoRuleEnforcement" end time: Apr 29 22:55 KST
+"GoIntegrationTest.KoRuleEnforcement" end time: Apr 30 00:30 KST
 "GoIntegrationTest.KoRuleEnforcement" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -3708,7 +3724,7 @@ Test Passed.
 136/140 Test: GoIntegrationTest.Territory
 Command: "/home/cosmos/alphazero-multi-game/build/tests/integration_tests" "--gtest_filter=GoIntegrationTest.Territory" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GoIntegrationTest.Territory" start time: Apr 29 22:55 KST
+"GoIntegrationTest.Territory" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3717,17 +3733,17 @@ Note: Google Test filter = GoIntegrationTest.Territory
 [----------] Global test environment set-up.
 [----------] 1 test from GoIntegrationTest
 [ RUN      ] GoIntegrationTest.Territory
-[       OK ] GoIntegrationTest.Territory (1 ms)
-[----------] 1 test from GoIntegrationTest (1 ms total)
+[       OK ] GoIntegrationTest.Territory (11 ms)
+[----------] 1 test from GoIntegrationTest (11 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (1 ms total)
+[==========] 1 test from 1 test suite ran. (11 ms total)
 [  PASSED  ] 1 test.
 <end of output>
 Test time =   0.36 sec
 ----------------------------------------------------------
 Test Passed.
-"GoIntegrationTest.Territory" end time: Apr 29 22:55 KST
+"GoIntegrationTest.Territory" end time: Apr 30 00:30 KST
 "GoIntegrationTest.Territory" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -3735,7 +3751,7 @@ Test Passed.
 137/140 Test: GomokuIntegrationTest.SelfPlayAndGameRecord
 Command: "/home/cosmos/alphazero-multi-game/build/tests/integration_tests" "--gtest_filter=GomokuIntegrationTest.SelfPlayAndGameRecord" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GomokuIntegrationTest.SelfPlayAndGameRecord" start time: Apr 29 22:55 KST
+"GomokuIntegrationTest.SelfPlayAndGameRecord" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3744,17 +3760,17 @@ Note: Google Test filter = GomokuIntegrationTest.SelfPlayAndGameRecord
 [----------] Global test environment set-up.
 [----------] 1 test from GomokuIntegrationTest
 [ RUN      ] GomokuIntegrationTest.SelfPlayAndGameRecord
-[       OK ] GomokuIntegrationTest.SelfPlayAndGameRecord (182 ms)
-[----------] 1 test from GomokuIntegrationTest (182 ms total)
+[       OK ] GomokuIntegrationTest.SelfPlayAndGameRecord (496 ms)
+[----------] 1 test from GomokuIntegrationTest (496 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (182 ms total)
+[==========] 1 test from 1 test suite ran. (496 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.53 sec
+Test time =   0.86 sec
 ----------------------------------------------------------
 Test Passed.
-"GomokuIntegrationTest.SelfPlayAndGameRecord" end time: Apr 29 22:55 KST
+"GomokuIntegrationTest.SelfPlayAndGameRecord" end time: Apr 30 00:30 KST
 "GomokuIntegrationTest.SelfPlayAndGameRecord" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -3762,7 +3778,7 @@ Test Passed.
 138/140 Test: GomokuIntegrationTest.PlayAgainstSelf
 Command: "/home/cosmos/alphazero-multi-game/build/tests/integration_tests" "--gtest_filter=GomokuIntegrationTest.PlayAgainstSelf" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GomokuIntegrationTest.PlayAgainstSelf" start time: Apr 29 22:55 KST
+"GomokuIntegrationTest.PlayAgainstSelf" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3771,25 +3787,25 @@ Note: Google Test filter = GomokuIntegrationTest.PlayAgainstSelf
 [----------] Global test environment set-up.
 [----------] 1 test from GomokuIntegrationTest
 [ RUN      ] GomokuIntegrationTest.PlayAgainstSelf
-[       OK ] GomokuIntegrationTest.PlayAgainstSelf (735 ms)
-[----------] 1 test from GomokuIntegrationTest (735 ms total)
+[       OK ] GomokuIntegrationTest.PlayAgainstSelf (2062 ms)
+[----------] 1 test from GomokuIntegrationTest (2062 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (735 ms total)
+[==========] 1 test from 1 test suite ran. (2063 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   1.08 sec
+Test time =   2.43 sec
 ----------------------------------------------------------
 Test Passed.
-"GomokuIntegrationTest.PlayAgainstSelf" end time: Apr 29 22:55 KST
-"GomokuIntegrationTest.PlayAgainstSelf" time elapsed: 00:00:01
+"GomokuIntegrationTest.PlayAgainstSelf" end time: Apr 30 00:30 KST
+"GomokuIntegrationTest.PlayAgainstSelf" time elapsed: 00:00:02
 ----------------------------------------------------------
 
 139/140 Testing: GomokuIntegrationTest.TensorRepresentations
 139/140 Test: GomokuIntegrationTest.TensorRepresentations
 Command: "/home/cosmos/alphazero-multi-game/build/tests/integration_tests" "--gtest_filter=GomokuIntegrationTest.TensorRepresentations" "--gtest_also_run_disabled_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"GomokuIntegrationTest.TensorRepresentations" start time: Apr 29 22:55 KST
+"GomokuIntegrationTest.TensorRepresentations" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3798,17 +3814,17 @@ Note: Google Test filter = GomokuIntegrationTest.TensorRepresentations
 [----------] Global test environment set-up.
 [----------] 1 test from GomokuIntegrationTest
 [ RUN      ] GomokuIntegrationTest.TensorRepresentations
-[       OK ] GomokuIntegrationTest.TensorRepresentations (3 ms)
-[----------] 1 test from GomokuIntegrationTest (3 ms total)
+[       OK ] GomokuIntegrationTest.TensorRepresentations (1 ms)
+[----------] 1 test from GomokuIntegrationTest (1 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (3 ms total)
+[==========] 1 test from 1 test suite ran. (1 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.41 sec
+Test time =   0.37 sec
 ----------------------------------------------------------
 Test Passed.
-"GomokuIntegrationTest.TensorRepresentations" end time: Apr 29 22:55 KST
+"GomokuIntegrationTest.TensorRepresentations" end time: Apr 30 00:30 KST
 "GomokuIntegrationTest.TensorRepresentations" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -3816,7 +3832,7 @@ Test Passed.
 140/140 Test: performance_tests
 Command: "/home/cosmos/alphazero-multi-game/build/tests/performance_tests"
 Directory: /home/cosmos/alphazero-multi-game/build/tests
-"performance_tests" start time: Apr 29 22:55 KST
+"performance_tests" start time: Apr 30 00:30 KST
 Output:
 ----------------------------------------------------------
 Running main() from ./googletest/src/gtest_main.cc
@@ -3824,11 +3840,11 @@ Running main() from ./googletest/src/gtest_main.cc
 [==========] 0 tests from 0 test suites ran. (0 ms total)
 [  PASSED  ] 0 tests.
 <end of output>
-Test time =   0.34 sec
+Test time =   0.44 sec
 ----------------------------------------------------------
 Test Passed.
-"performance_tests" end time: Apr 29 22:55 KST
+"performance_tests" end time: Apr 30 00:30 KST
 "performance_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Apr 29 22:55 KST
+End testing: Apr 30 00:30 KST
