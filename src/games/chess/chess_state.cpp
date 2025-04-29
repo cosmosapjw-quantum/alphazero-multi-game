@@ -11,13 +11,7 @@
 namespace alphazero {
 namespace chess {
 
-// Constants for board representation
-const int A1 = 56;
-const int H1 = 63;
-const int A8 = 0;
-const int H8 = 7;
-const int E1 = 60;
-const int E8 = 4;
+// Board representation is defined in chess_rules.h
 
 // Constructor
 ChessState::ChessState(bool chess960, const std::string& fen)

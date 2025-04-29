@@ -1,0 +1,2 @@
+/usr/bin/ar qc libalphazero_go.a CMakeFiles/alphazero_go.dir/go_state.cpp.o CMakeFiles/alphazero_go.dir/go_rules.cpp.o
+/usr/bin/ranlib libalphazero_go.a

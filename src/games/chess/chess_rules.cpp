@@ -29,13 +29,7 @@ const std::vector<std::pair<int, int>> QUEEN_DIRECTIONS = {
     {-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}
 };
 
-// Constants for board representation
-const int A1 = 56;
-const int H1 = 63;
-const int A8 = 0;
-const int H8 = 7;
-const int E1 = 60;
-const int E8 = 4;
+// Board representation constants are defined in chess_rules.h
 
 ChessRules::ChessRules(bool chess960) 
     : chess960_(chess960) {

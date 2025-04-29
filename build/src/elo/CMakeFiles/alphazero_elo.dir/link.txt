@@ -1,0 +1,2 @@
+/usr/bin/ar qc libalphazero_elo.a CMakeFiles/alphazero_elo.dir/elo_tracker.cpp.o
+/usr/bin/ranlib libalphazero_elo.a

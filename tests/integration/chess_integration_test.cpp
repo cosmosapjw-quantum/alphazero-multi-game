@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "alphazero/games/chess/chess_state.h"
+#include "alphazero/games/chess/chess_rules.h"
 #include "alphazero/games/chess/chess960.h"
 #include "alphazero/mcts/parallel_mcts.h"
 #include "alphazero/nn/neural_network.h"
@@ -168,8 +169,8 @@ TEST_F(ChessIntegrationTest, CastlingMoves) {
     // Get action probabilities
     auto probs = mcts->getActionProbabilities();
     
-    // Find castling move (E1 to G1)
-    chess::ChessMove castlingMove{chess::E1, chess::G1};
+    // Find castling move
+    chess::ChessMove castlingMove{60, 62}; // E1 to G1
     int castlingAction = chessState->chessMoveToAction(castlingMove);
     
     // Castling should have non-zero probability
@@ -194,8 +195,8 @@ TEST_F(ChessIntegrationTest, PawnPromotion) {
     chess::ChessMove move = chessState->actionToChessMove(action);
     chessState->makeMove(move);
     
-    // Check if promoted piece is at A8
-    chess::Piece piece = chessState->getPiece(chess::A8);
+    // Check if promoted piece is at A8 (square 0)
+    chess::Piece piece = chessState->getPiece(0); // A8
     
     // Should be a white piece
     EXPECT_EQ(piece.color, chess::PieceColor::WHITE);

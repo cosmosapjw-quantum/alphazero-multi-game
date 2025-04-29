@@ -861,5 +861,14 @@ void ParallelMCTS::pruneAllExcept(MCTSNode* nodeToKeep) {
     // need to do anything in this implementation.
 }
 
+void ParallelMCTS::setNumSimulations(int numSimulations) {
+    // Wait for any ongoing search to complete
+    while (searchInProgress_.load()) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+    
+    numSimulations_ = numSimulations;
+}
+
 } // namespace mcts
 } // namespace alphazero

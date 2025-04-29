@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "alphazero/mcts/transposition_table.h"
+#include <thread>
 
 namespace alphazero {
 namespace mcts {

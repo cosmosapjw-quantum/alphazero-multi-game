@@ -345,7 +345,7 @@ private:
     void invalidateCache();
     
     // Update zobrist hash
-    void updateHash();
+    void updateHash() const;
     
     // Utility functions
     static int getRank(int square) { return square / 8; }
@@ -355,6 +355,9 @@ private:
     static PieceColor oppositeColor(PieceColor color) {
         return color == PieceColor::WHITE ? PieceColor::BLACK : PieceColor::WHITE;
     }
+    
+    // Make square computation accessible to Chess960
+    friend class Chess960;
 };
 
 } // namespace chess

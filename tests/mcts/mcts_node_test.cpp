@@ -99,7 +99,13 @@ TEST_F(MCTSNodeTest, BackPropagation) {
     
     // Simulate a visit to the grandchild with value 1.0
     grandchildPtr->visitCount.fetch_add(1);
-    grandchildPtr->valueSum.fetch_add(1.0f);
+    
+    // For atomic<float>, we need to use exchange with the updated value
+    float oldValue = grandchildPtr->valueSum.load();
+    float newValue = oldValue + 1.0f;
+    while (!grandchildPtr->valueSum.compare_exchange_weak(oldValue, newValue)) {
+        newValue = oldValue + 1.0f;
+    }
     
     // The visit and value should propagate up the tree
     EXPECT_EQ(grandchildPtr->visitCount.load(), 1);
@@ -108,7 +114,13 @@ TEST_F(MCTSNodeTest, BackPropagation) {
     
     // Update the parent
     childPtr->visitCount.fetch_add(1);
-    childPtr->valueSum.fetch_add(-1.0f); // Value flips sign for parent
+    
+    // For atomic<float>, update parent value
+    oldValue = childPtr->valueSum.load();
+    newValue = oldValue - 1.0f; // Value flips sign for parent
+    while (!childPtr->valueSum.compare_exchange_weak(oldValue, newValue)) {
+        newValue = oldValue - 1.0f;
+    }
     
     EXPECT_EQ(childPtr->visitCount.load(), 1);
     EXPECT_FLOAT_EQ(childPtr->valueSum.load(), -1.0f);
@@ -116,7 +128,13 @@ TEST_F(MCTSNodeTest, BackPropagation) {
     
     // Update the root
     rootNode->visitCount.fetch_add(1);
-    rootNode->valueSum.fetch_add(1.0f); // Value flips sign again
+    
+    // For atomic<float>, update root value
+    oldValue = rootNode->valueSum.load();
+    newValue = oldValue + 1.0f; // Value flips sign again
+    while (!rootNode->valueSum.compare_exchange_weak(oldValue, newValue)) {
+        newValue = oldValue + 1.0f;
+    }
     
     EXPECT_EQ(rootNode->visitCount.load(), 1);
     EXPECT_FLOAT_EQ(rootNode->valueSum.load(), 1.0f);

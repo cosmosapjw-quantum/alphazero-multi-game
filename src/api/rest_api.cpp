@@ -7,6 +7,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <thread>
+#include <regex>
 
 namespace alphazero {
 namespace api {
@@ -291,9 +292,7 @@ nlohmann::json RestApi::handleGameAiMove(const nlohmann::json& request) {
     bool trainingMode = request.value("training_mode", false);
     
     // Update MCTS parameters if needed
-    if (simulations != session->mcts->getNumSimulations()) {
-        session->mcts->setNumSimulations(simulations);
-    }
+    session->mcts->setNumSimulations(simulations);
     
     // Search for best move
     session->mcts->search();

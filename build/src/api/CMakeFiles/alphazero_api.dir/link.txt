@@ -1,0 +1,2 @@
+/usr/bin/ar qc libalphazero_api.a CMakeFiles/alphazero_api.dir/http_server.cpp.o CMakeFiles/alphazero_api.dir/rest_api.cpp.o CMakeFiles/alphazero_api.dir/server_main.cpp.o
+/usr/bin/ranlib libalphazero_api.a

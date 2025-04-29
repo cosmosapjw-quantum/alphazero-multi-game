@@ -1,0 +1,2 @@
+/usr/bin/ar qc libalphazero_chess.a CMakeFiles/alphazero_chess.dir/chess_state.cpp.o CMakeFiles/alphazero_chess.dir/chess_rules.cpp.o CMakeFiles/alphazero_chess.dir/chess960.cpp.o
+/usr/bin/ranlib libalphazero_chess.a

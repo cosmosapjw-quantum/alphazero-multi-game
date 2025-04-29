@@ -60,7 +60,9 @@ void BatchQueue::setBatchSize(int batchSize) {
 }
 
 int BatchQueue::getPendingRequests() const {
-    std::unique_lock<std::mutex> lock(queueMutex_);
+    // Cannot lock a mutex in a const method - need to cast away const
+    std::mutex& mutex = const_cast<std::mutex&>(queueMutex_);
+    std::unique_lock<std::mutex> lock(mutex);
     return static_cast<int>(requestQueue_.size());
 }
 

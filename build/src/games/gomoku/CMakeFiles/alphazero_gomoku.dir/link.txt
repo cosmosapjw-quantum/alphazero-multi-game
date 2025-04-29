@@ -1,0 +1,2 @@
+/usr/bin/ar qc libalphazero_gomoku.a CMakeFiles/alphazero_gomoku.dir/gomoku_state.cpp.o CMakeFiles/alphazero_gomoku.dir/gomoku_rules.cpp.o
+/usr/bin/ranlib libalphazero_gomoku.a

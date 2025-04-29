@@ -1,0 +1,2 @@
+/usr/bin/ar qc libalphazero_mcts.a CMakeFiles/alphazero_mcts.dir/mcts_node.cpp.o CMakeFiles/alphazero_mcts.dir/parallel_mcts.cpp.o CMakeFiles/alphazero_mcts.dir/thread_pool.cpp.o CMakeFiles/alphazero_mcts.dir/transposition_table.cpp.o
+/usr/bin/ranlib libalphazero_mcts.a

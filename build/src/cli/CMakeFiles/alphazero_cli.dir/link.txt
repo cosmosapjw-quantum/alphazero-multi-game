@@ -1,0 +1,2 @@
+/usr/bin/ar qc libalphazero_cli.a CMakeFiles/alphazero_cli.dir/cli_interface.cpp.o CMakeFiles/alphazero_cli.dir/cli_main.cpp.o CMakeFiles/alphazero_cli.dir/command_parser.cpp.o
+/usr/bin/ranlib libalphazero_cli.a

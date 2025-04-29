@@ -1,9 +1,0 @@
-@PACKAGE_INIT@
-
-include(CMakeFindDependencyMacro)
-find_dependency(Threads REQUIRED)
-find_dependency(Torch REQUIRED)
-
-if(NOT TARGET alphazero::alphazero_lib)
-    include("${CMAKE_CURRENT_LIST_DIR}/alphazero-targets.cmake")
-endif()
