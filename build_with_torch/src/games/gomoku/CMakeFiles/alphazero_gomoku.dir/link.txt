@@ -1,2 +1,0 @@
-/home/cosmos/anaconda3/bin/x86_64-conda-linux-gnu-ar qc libalphazero_gomoku.a CMakeFiles/alphazero_gomoku.dir/gomoku_state.cpp.o CMakeFiles/alphazero_gomoku.dir/gomoku_rules.cpp.o
-/home/cosmos/anaconda3/bin/x86_64-conda-linux-gnu-ranlib libalphazero_gomoku.a

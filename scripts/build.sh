@@ -16,6 +16,9 @@ if [ -n "$CONDA_PREFIX" ]; then
     # Save current conda environment variables
     CONDA_BACKUP_LD_LIBRARY_PATH=$LD_LIBRARY_PATH
     
+    # Unset Conda compiler variables to prioritize system ones
+    unset CC CXX FC F77 F90 F95
+    
     # Force using system libraries for compilation
     export CXXFLAGS="-I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11"
     export LDFLAGS="-L/usr/lib/x86_64-linux-gnu"
@@ -287,6 +290,13 @@ fi
 # Add Torch directory if specified
 if [ -n "$TORCH_DIR" ]; then
     CMAKE_OPTIONS="$CMAKE_OPTIONS -DTORCH_DIR=$TORCH_DIR"
+else
+    # If not specified via --torch-dir, try to hint from Conda env if possible
+    CONDA_TORCH_CMAKE_DIR="$CONDA_PREFIX/lib/python*/site-packages/torch/share/cmake/Torch"
+    if [ -d "$(eval echo $CONDA_TORCH_CMAKE_DIR)" ]; then
+      CMAKE_OPTIONS="$CMAKE_OPTIONS -DTorch_DIR=$(eval echo $CONDA_TORCH_CMAKE_DIR)"
+      info "Using Torch from Conda environment: $(eval echo $CONDA_TORCH_CMAKE_DIR)"
+    fi
 fi
 
 # Add CUDA-related options when CUDA is available
@@ -375,14 +385,23 @@ if [ "$ENABLE_GPU" = "ON" ] && command -v nvcc >/dev/null 2>&1; then
     fi
     
     if [ -n "$CUDNN_LIB_PATH" ] && [ -n "$CUDNN_INCLUDE_DIR" ]; then
+        # Always signal intent to use CUDNN to AlphaZero if found
         CMAKE_OPTIONS="$CMAKE_OPTIONS -DALPHAZERO_USE_CUDNN=ON"
-        CMAKE_OPTIONS="$CMAKE_OPTIONS -DCUDNN_LIBRARY=$CUDNN_LIB_PATH"
-        CMAKE_OPTIONS="$CMAKE_OPTIONS -DCUDNN_INCLUDE_DIR=$CUDNN_INCLUDE_DIR"
-        CMAKE_OPTIONS="$CMAKE_OPTIONS -DTORCH_USE_CUDNN=ON"
-        info "Using cuDNN library: $CUDNN_LIB_PATH"
-        info "Using cuDNN headers: $CUDNN_INCLUDE_DIR"
+        # Remove TORCH_USE_CUDNN as it's unused and ignored by Conda Torch CMake
+        # CMAKE_OPTIONS="$CMAKE_OPTIONS -DTORCH_USE_CUDNN=ON" 
+
+        # Only pass explicit system CUDNN paths if NOT in Conda env, 
+        # otherwise let Torch find its own bundled/compatible one.
+        if [ -z "$CONDA_PREFIX" ]; then
+            CMAKE_OPTIONS="$CMAKE_OPTIONS -DCUDNN_LIBRARY=$CUDNN_LIB_PATH"
+            CMAKE_OPTIONS="$CMAKE_OPTIONS -DCUDNN_INCLUDE_DIR=$CUDNN_INCLUDE_DIR"
+            info "Passing system cuDNN paths to CMake: Library=$CUDNN_LIB_PATH, Include=$CUDNN_INCLUDE_DIR"
+        else
+            info "In Conda environment, letting Torch find its own cuDNN (still passing -DTORCH_USE_CUDNN=ON)."
+        fi
     else
         CMAKE_OPTIONS="$CMAKE_OPTIONS -DALPHAZERO_USE_CUDNN=OFF"
+        # TORCH_USE_CUDNN is implicitly OFF if CUDNN is not found
         warning "cuDNN library or headers not found, will build without cuDNN support"
         warning "Please make sure cuDNN is installed and accessible"
     fi
@@ -394,7 +413,6 @@ if [ "$ENABLE_PYTHON" = "ON" ]; then
         PYTHON_PATH=$(which python3)
         CMAKE_OPTIONS="$CMAKE_OPTIONS -DPYTHON_EXECUTABLE=$PYTHON_PATH"
         CMAKE_OPTIONS="$CMAKE_OPTIONS -DPython_EXECUTABLE=$PYTHON_PATH"
-        CMAKE_OPTIONS="$CMAKE_OPTIONS -DPython3_EXECUTABLE=$PYTHON_PATH"
         
         # Force using system libstdc++ instead of conda's
         export CMAKE_CXX_FLAGS="-I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11"
@@ -421,6 +439,64 @@ fi
 # Run CMake configuration
 #============================================================================
 info "Configuring with options: $CMAKE_OPTIONS"
+
+# Construct the path to Torch CMake config within the provided TORCH_DIR or discovered system paths
+TORCH_CMAKE_CONFIG_DIR=""
+SYSTEM_TORCH_FOUND=0
+
+# Construct the path to Torch CMake config within the provided TORCH_DIR
+TORCH_CMAKE_CONFIG_DIR=""
+if [ -n "$TORCH_DIR" ]; then
+    # User specified TORCH_DIR takes precedence
+    TORCH_CMAKE_CONFIG_DIR="${TORCH_DIR}/share/cmake/Torch"
+    if [ -d "$TORCH_CMAKE_CONFIG_DIR" ]; then
+        # Prepend the correct Torch_DIR definition for find_package
+        CMAKE_OPTIONS="-DTorch_DIR=${TORCH_CMAKE_CONFIG_DIR} $CMAKE_OPTIONS"
+        info "Explicitly setting Torch_DIR for CMake from --torch-dir: ${TORCH_CMAKE_CONFIG_DIR}"
+        SYSTEM_TORCH_FOUND=1 # Flag that we found Torch here
+    else
+        warning "Torch CMake config directory not found at specified --torch-dir: ${TORCH_CMAKE_CONFIG_DIR}"
+    fi
+elif [ -n "$CONDA_PREFIX" ]; then
+    # Try finding Torch in Conda environment if TORCH_DIR is not specified
+    CONDA_TORCH_CMAKE_DIR_PATTERN="$CONDA_PREFIX/lib/python*/site-packages/torch/share/cmake/Torch"
+    MATCHING_CONDA_TORCH_DIRS=$(eval echo $CONDA_TORCH_CMAKE_DIR_PATTERN)
+    # Check if the pattern expanded to an existing directory
+    if [ -d "$MATCHING_CONDA_TORCH_DIRS" ]; then
+        TORCH_CMAKE_CONFIG_DIR="$MATCHING_CONDA_TORCH_DIRS"
+        CMAKE_OPTIONS="-DTorch_DIR=${TORCH_CMAKE_CONFIG_DIR} $CMAKE_OPTIONS"
+        info "Using Torch from Conda environment: ${TORCH_CMAKE_CONFIG_DIR}"
+        SYSTEM_TORCH_FOUND=1 # Flag that we found Torch here
+    fi
+fi
+
+# If Torch wasn't found via --torch-dir or Conda, search system paths
+if [ "$SYSTEM_TORCH_FOUND" -eq 0 ]; then
+    info "Searching for system-installed LibTorch..."
+    SYSTEM_TORCH_PATHS=(
+        "/usr/local/lib/python*/dist-packages/torch/share/cmake/Torch"
+        "/usr/lib/python*/dist-packages/torch/share/cmake/Torch"
+        "/opt/pytorch/torch/share/cmake/Torch" # Common location for some installations
+    )
+    for pattern in "${SYSTEM_TORCH_PATHS[@]}"; do
+        MATCHING_SYSTEM_TORCH_DIRS=$(eval echo $pattern)
+        # Check if the pattern expanded to an existing directory
+        if [ -d "$MATCHING_SYSTEM_TORCH_DIRS" ]; then
+            TORCH_CMAKE_CONFIG_DIR="$MATCHING_SYSTEM_TORCH_DIRS"
+            CMAKE_OPTIONS="-DTorch_DIR=${TORCH_CMAKE_CONFIG_DIR} $CMAKE_OPTIONS"
+            info "Found system Torch_DIR for CMake: ${TORCH_CMAKE_CONFIG_DIR}"
+            SYSTEM_TORCH_FOUND=1
+            break # Found it, no need to check further
+        fi
+    done
+
+    if [ "$SYSTEM_TORCH_FOUND" -eq 0 ]; then
+        warning "Could not automatically detect LibTorch installation (checked --torch-dir, Conda env, and system paths)."
+        warning "CMake will attempt find_package(Torch). If it fails, provide --torch-dir."
+        # Let CMake try to find it using its default search paths
+    fi
+fi
+
 cmake .. $CMAKE_OPTIONS || error_exit "CMake configuration failed."
 
 #============================================================================

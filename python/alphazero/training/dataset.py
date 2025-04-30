@@ -7,7 +7,7 @@ import random
 import numpy as np
 import torch
 from torch.utils.data import Dataset, DataLoader
-import pyalphazero as az
+import _alphazero_cpp as az
 
 
 class AlphaZeroDataset(Dataset):

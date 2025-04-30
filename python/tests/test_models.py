@@ -12,10 +12,13 @@ import tempfile
 
 # Add parent directory to path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+# Add the build directory for the C++ extension
+build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'build', 'src', 'pybind'))
+sys.path.insert(0, build_dir)
 
 try:
     from alphazero.models.ddw_randwire import DDWRandWireResNet, ResidualBlock, SEBlock, RouterModule, RandWireBlock
-    import pyalphazero as az
+    import _alphazero_cpp as az
 except ImportError as e:
     print(f"Error importing required modules: {e}")
     sys.exit(1)

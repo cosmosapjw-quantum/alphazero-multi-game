@@ -34,7 +34,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import torch
 from tqdm import tqdm
-import pyalphazero as az
+import _alphazero_cpp as az
 from alphazero.utils.elo import EloRating
 
 # Add project root to path for imports

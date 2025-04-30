@@ -30,7 +30,7 @@ import timeit
 import threading
 import numpy as np
 import torch
-import pyalphazero as az
+import _alphazero_cpp as az
 from alphazero.models import DDWRandWireResNet
 
 # Add project root to path for imports

@@ -8,7 +8,7 @@ import matplotlib.patches as patches
 from matplotlib.colors import LinearSegmentedColormap
 import io
 from PIL import Image
-import pyalphazero as az
+import _alphazero_cpp as az
 
 
 def plot_board(game_state, last_move=None, policy=None, figsize=(8, 8), dpi=100):

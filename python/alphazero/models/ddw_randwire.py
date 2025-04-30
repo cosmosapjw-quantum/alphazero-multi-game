@@ -159,6 +159,7 @@ class DDWRandWireResNet(nn.Module):
     """Dynamic Dense-Wired Random-Wire ResNet for AlphaZero"""
     def __init__(self, input_channels, output_size, channels=128, num_blocks=20):
         super(DDWRandWireResNet, self).__init__()
+        self.input_channels = input_channels
         
         # Input layer
         self.input_conv = nn.Conv2d(input_channels, channels, kernel_size=3, padding=1, bias=False)

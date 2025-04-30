@@ -9,7 +9,7 @@ import torch.optim as optim
 import numpy as np
 import matplotlib.pyplot as plt
 from tqdm import tqdm
-import pyalphazero as az
+import _alphazero_cpp as az
 from alphazero.models.ddw_randwire import DDWRandWireResNet
 import time
 import json

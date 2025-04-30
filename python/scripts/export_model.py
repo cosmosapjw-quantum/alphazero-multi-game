@@ -25,7 +25,7 @@ import argparse
 import time
 import torch
 import numpy as np
-import pyalphazero as az
+import _alphazero_cpp as az
 from alphazero.models import DDWRandWireResNet
 
 # Add project root to path for imports

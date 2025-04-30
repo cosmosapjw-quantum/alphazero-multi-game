@@ -1,2 +1,0 @@
-/home/cosmos/anaconda3/bin/x86_64-conda-linux-gnu-ar qc libalphazero_cli.a CMakeFiles/alphazero_cli.dir/cli_interface.cpp.o CMakeFiles/alphazero_cli.dir/cli_main.cpp.o CMakeFiles/alphazero_cli.dir/command_parser.cpp.o
-/home/cosmos/anaconda3/bin/x86_64-conda-linux-gnu-ranlib libalphazero_cli.a

@@ -15,8 +15,8 @@ namespace py = pybind11;
 namespace alphazero {
 namespace python {
 
-PYBIND11_MODULE(pyalphazero, m) {
-    m.doc() = "AlphaZero Multi-Game AI Engine Python bindings";
+PYBIND11_MODULE(_alphazero_cpp, m) {
+    m.doc() = "AlphaZero Multi-Game AI Engine C++ Bindings";
     
     // Enums
     py::enum_<core::GameType>(m, "GameType")

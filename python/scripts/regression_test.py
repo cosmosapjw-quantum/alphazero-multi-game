@@ -32,7 +32,7 @@ import tempfile
 import shutil
 import numpy as np
 import torch
-import pyalphazero as az
+import _alphazero_cpp as az
 
 # Add project root to path for imports
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))

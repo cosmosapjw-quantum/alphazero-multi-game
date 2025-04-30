@@ -33,7 +33,7 @@ import torch
 import numpy as np
 import matplotlib.pyplot as plt
 from tqdm import tqdm
-import pyalphazero as az
+import _alphazero_cpp as az
 from alphazero.models import DDWRandWireResNet
 from alphazero.utils.elo import EloRating, calculate_elo_change
 

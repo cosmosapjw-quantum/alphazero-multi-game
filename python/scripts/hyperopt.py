@@ -35,7 +35,7 @@ import torch
 import optuna
 from optuna.visualization import plot_optimization_history, plot_param_importances
 from tqdm import tqdm
-import pyalphazero as az
+import _alphazero_cpp as az
 from alphazero.utils.elo import EloRating
 
 # Add project root to path for imports

@@ -1,201 +1,213 @@
 # syntax=docker/dockerfile:1
 ###############################################################################
-# 1. Heavy dependency image (toolchains + Python + CUDA)                      #
+# 1. Base image with CUDA and development tools                              #
 ###############################################################################
-FROM nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04 AS deps
+FROM nvidia/cuda:12.1.0-cudnn8-devel-ubuntu22.04 AS base
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# ── 1-A. Core build tools and Python libs that PyTorch needs
+# Install essential build tools and dependencies
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        build-essential git wget unzip ca-certificates \
-        libopenblas-dev ninja-build pkg-config gdb valgrind \
-        python3-dev python3-pip patch \
+        build-essential \
+        git \
+        wget \
+        unzip \
+        ca-certificates \
+        libopenblas-dev \
+        libspdlog-dev \
+        ninja-build \
+        pkg-config \
+        gdb \
+        valgrind \
+        python3-dev \
+        python3-pip \
+        patch \
         nlohmann-json3-dev \
+        libfmt-dev \
         pybind11-dev \
-        python3-sympy python3-networkx python3-jinja2 \
-        python3-filelock python3-fsspec python3-requests && \
+        libgtest-dev \
+        python3-numpy \
+        python3-matplotlib && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Git over system certificates (useful in CI)
-RUN git config --global http.sslVerify true && \
-    git config --global http.sslCAinfo /etc/ssl/certs/ca-certificates.crt
-
-# ── 1-B. Modern CMake and pip robustness flags
+# Install CMake and upgrade pip
 RUN python3 -m pip install --no-cache-dir --upgrade \
         pip setuptools wheel cmake==3.29.*
 
-ENV PIP_DEFAULT_TIMEOUT=120 \
-    PIP_DISABLE_PIP_VERSION_CHECK=1
+###############################################################################
+# 2. PyTorch dependencies image                                              #
+###############################################################################
+FROM base AS pytorch
 
-# ── 1-C. PyTorch & torchvision wheels (CUDA 12.1 build)
+# Install PyTorch and related packages
 ARG TORCH_VER=2.1.0
 ARG CUDA_TAG=cu121
-RUN pip install --no-cache-dir --retries 5 \
+RUN pip install --no-cache-dir \
         torch==${TORCH_VER}+${CUDA_TAG} \
         torchvision==0.16.0+${CUDA_TAG} \
         --extra-index-url https://download.pytorch.org/whl/${CUDA_TAG}
 
-# ── 1-D. LibTorch C++ distribution (same version)
+# Download and extract LibTorch
 RUN mkdir -p /opt && \
     wget -q https://download.pytorch.org/libtorch/${CUDA_TAG}/libtorch-cxx11-abi-shared-with-deps-${TORCH_VER}%2B${CUDA_TAG}.zip \
         -O /tmp/libtorch.zip && \
     unzip -q /tmp/libtorch.zip -d /opt && rm /tmp/libtorch.zip
+
+# Set environment variables for LibTorch
 ENV TORCH_DIR=/opt/libtorch
-ENV LD_LIBRARY_PATH="/opt/libtorch/lib:${LD_LIBRARY_PATH}"
+ENV LD_LIBRARY_PATH="/opt/libtorch/lib:${LD_LIBRARY_PATH:-}"
+ENV CMAKE_PREFIX_PATH="/opt/libtorch:${CMAKE_PREFIX_PATH:-}"
 
-# ── 1-E. Extra Python utilities + pybind11 wheel (for headers only)
+# Install additional Python packages
 RUN pip install --no-cache-dir \
-        numpy matplotlib tqdm tensorboard \
-        pybind11==2.10.4
-
+        pybind11==2.10.4 \
+        tqdm \
+        tensorboard \
+        pytest
 
 ###############################################################################
-# 2. Build stage (compiles the project)                                       #
+# 3. Build stage                                                             #
 ###############################################################################
-FROM deps AS build
+FROM pytorch AS build
 WORKDIR /src
 
-# Copy project sources
+# Copy the source code
 COPY . .
 
-# ── Patch CMakeLists.txt once: Torch alias, drop all FetchContent, add module
-RUN <<'EOF' > /tmp/az_patch.diff
-diff --git a/CMakeLists.txt b/CMakeLists.txt
---- a/CMakeLists.txt
-+++ b/CMakeLists.txt
-@@
- find_package(Torch REQUIRED)
-+# ─── Torch-target compatibility (torch ≥ 2.0 dropped Torch::Torch) ──────────
-+if(NOT TARGET Torch::Torch AND TARGET torch)
-+    add_library(Torch::Torch ALIAS torch)
-+endif()
-+
--include(FetchContent)
--FetchContent_Declare(
--    nlohmann_json
--    GIT_REPOSITORY https://github.com/nlohmann/json.git
--    GIT_TAG        v3.11.2
--)
--FetchContent_MakeAvailable(nlohmann_json)
-+# Find nlohmann_json system package or create an imported target
-+if(NOT TARGET nlohmann_json::nlohmann_json)
-+    find_package(nlohmann_json CONFIG QUIET)
-+endif()
-+
-+# If not found via find_package, create an imported target manually
-+if(NOT TARGET nlohmann_json::nlohmann_json)
-+    find_path(NLOHMANN_JSON_INCLUDE_DIR nlohmann/json.hpp REQUIRED)
-+    add_library(nlohmann_json INTERFACE IMPORTED)
-+    target_include_directories(nlohmann_json INTERFACE ${NLOHMANN_JSON_INCLUDE_DIR})
-+endif()
-+
-+# Create alias for compatibility
-+if(TARGET nlohmann_json::nlohmann_json AND NOT TARGET nlohmann_json)
-+    add_library(nlohmann_json ALIAS nlohmann_json::nlohmann_json)
-+endif()
-@@
--    find_package(Python COMPONENTS Interpreter Development REQUIRED)
--    FetchContent_Declare(
--        pybind11
--        GIT_REPOSITORY https://github.com/pybind11/pybind11.git
--        GIT_TAG        v2.10.4
--    )
--    FetchContent_MakeAvailable(pybind11)    # target pybind11::pybind11
-+    find_package(Python   COMPONENTS Interpreter Development REQUIRED)
-+    find_package(pybind11 CONFIG REQUIRED)   # provided by pybind11-dev
-+endif()
-+
-+# Remove any other potential FetchContent calls for pybind11
-+if(DEFINED FETCHCONTENT_BASE_DIR AND EXISTS "${FETCHCONTENT_BASE_DIR}/pybind11-subbuild")
-+    message(STATUS "Removing existing pybind11 FetchContent directory")
-+    file(REMOVE_RECURSE "${FETCHCONTENT_BASE_DIR}/pybind11-subbuild")
-+endif()
-@@
- endif()
-EOF
-RUN set -e; \
-    patch -p1 < /tmp/az_patch.diff; \
-    echo "Patch command exited with status $?"; \
-    echo "--- Verifying CMakeLists.txt patch ---"; \
-    if grep pybind11 CMakeLists.txt; then \
-        echo "grep found pybind11, exited with status $?"; \
-    else \
-        echo "grep found no pybind11, exited with status $?"; \
-        # Decide if no pybind11 means success or failure. Here it means success. \
-        # If it meant failure, we would add `exit 1` here. \
-    fi; \
-    echo "------------------------------------"
+# Create a patch for library compatibility
+RUN mkdir -p cmake && \
+    cat <<'EOF' > cmake/Compatibility.cmake
+# Make sure Torch targets exist
+if(NOT TARGET Torch::Torch AND TARGET torch)
+    add_library(Torch::Torch ALIAS torch)
+endif()
 
-# ── Configure, build, install
+# Make sure fmt target exists
+find_package(fmt REQUIRED)
+
+# Make sure spdlog target exists
+# ---- fmt ------------------------------------------------------
+    find_package(fmt QUIET)
+    if(NOT TARGET fmt::fmt)
+        # Fallback: header-only interface target
+        find_path(FMT_INCLUDE_DIR fmt/core.h REQUIRED)
+        add_library(fmt INTERFACE IMPORTED)
+        target_include_directories(fmt INTERFACE ${FMT_INCLUDE_DIR})
+        add_library(fmt::fmt ALIAS fmt)
+    endif()
+    
+
+# Make sure nlohmann_json target exists
+if(NOT TARGET nlohmann_json::nlohmann_json)
+    find_package(nlohmann_json CONFIG QUIET)
+    if(NOT TARGET nlohmann_json::nlohmann_json)
+        find_path(NLOHMANN_JSON_INCLUDE_DIR nlohmann/json.hpp REQUIRED)
+        add_library(nlohmann_json INTERFACE IMPORTED)
+        target_include_directories(nlohmann_json INTERFACE ${NLOHMANN_JSON_INCLUDE_DIR})
+        add_library(nlohmann_json::nlohmann_json ALIAS nlohmann_json)
+    endif()
+endif()
+EOF
+
+# Add the compatibility file to CMakeLists.txt
+RUN sed -i '1s/^/include(cmake\/Compatibility.cmake)\n/' CMakeLists.txt
+
+# Configure the project with CMake
 RUN cmake -S . -B build \
       -DCMAKE_BUILD_TYPE=Release \
       -DTORCH_DIR=${TORCH_DIR} \
-      -DCMAKE_PREFIX_PATH="${TORCH_DIR};/usr/share/cmake" \
+      -DCMAKE_PREFIX_PATH="${TORCH_DIR};/usr/share/cmake;/usr/lib/x86_64-linux-gnu/cmake" \
       -DTorch_DIR=${TORCH_DIR}/share/cmake/Torch \
       -Dpybind11_DIR=/usr/share/cmake/pybind11 \
       -DALPHAZERO_ENABLE_GPU=ON \
-      -DALPHAZERO_ENABLE_PYTHON=OFF \
+      -DALPHAZERO_ENABLE_PYTHON=ON \
       -DALPHAZERO_BUILD_TESTS=ON \
-      -DALPHAZERO_BUILD_EXAMPLES=OFF \
-      -DCMAKE_SKIP_INSTALL_EXPORT=ON \
-      -DCMAKE_CUDA_ARCHITECTURES=86 \
-      -DCMAKE_VERBOSE_MAKEFILE=ON && \
-    cmake --build build -j$(nproc) && \
-    mkdir -p /opt/alphazero/bin /opt/alphazero/lib && \
-    find ./build -name "*.so" -type f -exec cp {} /opt/alphazero/lib/ \; && \
-    find ./build -type f -executable -not -name "*.so" -not -name "*_tests" -exec cp {} /opt/alphazero/bin/ \; || true && \
-    cp -r include /opt/alphazero/ || true
+      -DALPHAZERO_BUILD_EXAMPLES=ON \
+      -DALPHAZERO_BUILD_GUI=OFF \
+      -DALPHAZERO_BUILD_API=ON \
+      -DALPHAZERO_BUILD_CLI=ON \
+      -DALPHAZERO_USE_CUDNN=ON \
+      -DALPHAZERO_DOWNLOAD_DEPENDENCIES=OFF \
+      -DALPHAZERO_STANDALONE_MODE=OFF \
+      -DCMAKE_INSTALL_PREFIX=/opt/alphazero \
+      -DCMAKE_CUDA_ARCHITECTURES="80;86" \
+      -DCMAKE_VERBOSE_MAKEFILE=ON
 
+# Build the project
+RUN cmake --build build -j$(nproc)
+
+# Install the project
+RUN cmake --install build
+
+# Build Python bindings
+RUN if [ -f python/setup.py ]; then \
+      cd python && \
+      LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/src/build/lib" \
+      PYTHONPATH="${PYTHONPATH}:/src/build/lib" \
+      python3 setup.py build && \
+      python3 setup.py install; \
+    fi
 
 ###############################################################################
-# 3. Minimal runtime image                                                    #
+# 4. Final runtime image                                                     #
 ###############################################################################
-FROM deps AS final
+FROM pytorch AS final
 WORKDIR /app
 
-# Copy binaries and libraries
-COPY --from=build /opt/alphazero .
-# Copy test directory structure
-COPY --from=build /src/build /app/build
+# Copy the installed files from the build stage
+COPY --from=build /opt/alphazero /app
+COPY --from=build /src/build/lib/ /app/lib/
+COPY --from=build /usr/local/lib/python3.10/dist-packages/ /usr/local/lib/python3.10/dist-packages/
 
-# Install ctest for test running
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    cmake && \
-    apt-get clean && rm -rf /var/lib/apt/lists/* && \
-    # Create src directory and symlink for test path compatibility
-    mkdir -p /src && \
-    ln -s /app/build /src/build
+# Create directories for data and models
+RUN mkdir -p /app/data /app/models /app/config
 
-# Create test helper script
-RUN echo '#!/bin/bash\n\
-echo "=== Running AlphaZero Tests ==="\n\
-echo ""\n\
-\n\
-# Run tests with verbose output\n\
-ctest --test-dir /app/build -V "$@"\n\
-\n\
-# If any tests exist in the build directory, run them directly\n\
-if find /app/build -name "*_tests" -type f -executable | grep -q .; then\n\
-  echo ""\n\
-  echo "=== Test Executables Found ==="\n\
-  find /app/build -name "*_tests" -type f -executable -exec echo {} \\;\n\
-  \n\
-  # Directly run each test with more debug info\n\
-  echo ""\n\
-  echo "=== Running Individual Test Executables ==="\n\
-  find /app/build -name "*_tests" -type f -executable -exec {} \\;\n\
-fi\n\
-\n\
-echo ""\n\
-echo "=== Tests completed! ==="\n\
-' > /app/run-tests.sh && \
-    chmod +x /app/run-tests.sh
+# Set environment variables
+ENV LD_LIBRARY_PATH="/app/lib:/opt/libtorch/lib:${LD_LIBRARY_PATH:-}"
+ENV PYTHONPATH="/app/lib:/usr/local/lib/python3.10/dist-packages:${PYTHONPATH:-}"
 
-# Update entrypoint script to handle tests
-COPY scripts/docker-entrypoint.sh /docker-entrypoint.sh
-RUN chmod +x /docker-entrypoint.sh
+# Create a simplified test runner script
+RUN cat <<'EOF' > /app/run-tests.sh && chmod +x /app/run-tests.sh
+#!/bin/bash
+echo "Running AlphaZero tests..."
+if [ -d "/app/build" ]; then
+  cd /app/build && ctest --output-on-failure
+else
+  cd /app/lib
+  for test in *_test *_tests; do
+    if [ -x "$test" ]; then
+      echo "Running $test..."
+      ./$test
+    fi
+  done
+fi
+EOF
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
+# Create a simplified entrypoint script
+RUN cat <<'EOF' > /app/entrypoint.sh && chmod +x /app/entrypoint.sh
+#!/bin/bash
+set -e
+
+# Handle test command
+if [[ "$1" == "test" || "$1" == "tests" ]]; then
+  exec /app/run-tests.sh
+# Handle Python test command
+elif [[ "$1" == "pytest" ]]; then
+  exec python3 -m pytest /app/python/tests
+# Default to CLI if command starts with dash or is not executable
+elif [[ "${1:0:1}" == "-" || ! -x "$1" ]]; then
+  if [ -x /app/bin/alphazero_cli ]; then
+    exec /app/bin/alphazero_cli "$@"
+  else
+    echo "ERROR: alphazero_cli not found"
+    exit 1
+  fi
+# Otherwise execute the command directly
+else
+  exec "$@"
+fi
+EOF
+
+ENTRYPOINT ["/app/entrypoint.sh"]
 CMD ["--help"]

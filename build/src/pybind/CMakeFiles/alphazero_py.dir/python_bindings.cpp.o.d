@@ -1,13 +1,14 @@
 src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: \
  /home/cosmos/alphazero-multi-game/src/pybind/python_bindings.cpp \
- /usr/include/stdc-predef.h /opt/libtorch/include/pybind11/pybind11.h \
- /opt/libtorch/include/pybind11/detail/class.h \
- /opt/libtorch/include/pybind11/attr.h \
- /opt/libtorch/include/pybind11/detail/common.h \
- /home/cosmos/anaconda3/include/python3.12/Python.h \
- /home/cosmos/anaconda3/include/python3.12/patchlevel.h \
- /home/cosmos/anaconda3/include/python3.12/pyconfig.h \
- /home/cosmos/anaconda3/include/python3.12/pymacconfig.h \
+ /usr/include/stdc-predef.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/pybind11/pybind11.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/pybind11/detail/class.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/pybind11/attr.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/pybind11/detail/common.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/Python.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/patchlevel.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/pyconfig.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/pymacconfig.h \
  /usr/include/c++/11/stdlib.h /usr/include/c++/11/cstdlib \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -88,7 +89,7 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
- /home/cosmos/anaconda3/include/python3.12/pyport.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/pyport.h \
  /usr/include/inttypes.h \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
@@ -158,120 +159,118 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/statx-generic.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_statx_timestamp.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_statx.h \
- /home/cosmos/anaconda3/include/python3.12/exports.h \
- /home/cosmos/anaconda3/include/python3.12/pymacro.h \
- /home/cosmos/anaconda3/include/python3.12/pymath.h \
- /home/cosmos/anaconda3/include/python3.12/pymem.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/pymem.h \
- /home/cosmos/anaconda3/include/python3.12/pytypedefs.h \
- /home/cosmos/anaconda3/include/python3.12/pybuffer.h \
- /home/cosmos/anaconda3/include/python3.12/object.h \
- /home/cosmos/anaconda3/include/python3.12/pystats.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/object.h \
- /home/cosmos/anaconda3/include/python3.12/objimpl.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/objimpl.h \
- /home/cosmos/anaconda3/include/python3.12/typeslots.h \
- /home/cosmos/anaconda3/include/python3.12/pyhash.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/pydebug.h \
- /home/cosmos/anaconda3/include/python3.12/bytearrayobject.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/bytearrayobject.h \
- /home/cosmos/anaconda3/include/python3.12/bytesobject.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/bytesobject.h \
- /home/cosmos/anaconda3/include/python3.12/unicodeobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/exports.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/pymacro.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/pymath.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/pymem.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/pymem.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/pytypedefs.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/pybuffer.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/object.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/object.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/objimpl.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/objimpl.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/typeslots.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/pyhash.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/pydebug.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/bytearrayobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/bytearrayobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/bytesobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/bytesobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/unicodeobject.h \
  /usr/include/ctype.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/unicodeobject.h \
- /home/cosmos/anaconda3/include/python3.12/longobject.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/longobject.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/longintrepr.h \
- /home/cosmos/anaconda3/include/python3.12/boolobject.h \
- /home/cosmos/anaconda3/include/python3.12/floatobject.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/floatobject.h \
- /home/cosmos/anaconda3/include/python3.12/complexobject.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/complexobject.h \
- /home/cosmos/anaconda3/include/python3.12/rangeobject.h \
- /home/cosmos/anaconda3/include/python3.12/memoryobject.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/memoryobject.h \
- /home/cosmos/anaconda3/include/python3.12/tupleobject.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/tupleobject.h \
- /home/cosmos/anaconda3/include/python3.12/listobject.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/listobject.h \
- /home/cosmos/anaconda3/include/python3.12/dictobject.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/dictobject.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/odictobject.h \
- /home/cosmos/anaconda3/include/python3.12/enumobject.h \
- /home/cosmos/anaconda3/include/python3.12/setobject.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/setobject.h \
- /home/cosmos/anaconda3/include/python3.12/methodobject.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/methodobject.h \
- /home/cosmos/anaconda3/include/python3.12/moduleobject.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/funcobject.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/classobject.h \
- /home/cosmos/anaconda3/include/python3.12/fileobject.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/fileobject.h \
- /home/cosmos/anaconda3/include/python3.12/pycapsule.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/code.h \
- /home/cosmos/anaconda3/include/python3.12/pyframe.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/pyframe.h \
- /home/cosmos/anaconda3/include/python3.12/traceback.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/traceback.h \
- /home/cosmos/anaconda3/include/python3.12/sliceobject.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/cellobject.h \
- /home/cosmos/anaconda3/include/python3.12/iterobject.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/initconfig.h \
- /home/cosmos/anaconda3/include/python3.12/pystate.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/pystate.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/genobject.h \
- /home/cosmos/anaconda3/include/python3.12/descrobject.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/descrobject.h \
- /home/cosmos/anaconda3/include/python3.12/genericaliasobject.h \
- /home/cosmos/anaconda3/include/python3.12/warnings.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/warnings.h \
- /home/cosmos/anaconda3/include/python3.12/weakrefobject.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/weakrefobject.h \
- /home/cosmos/anaconda3/include/python3.12/structseq.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/picklebufobject.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/pytime.h \
- /home/cosmos/anaconda3/include/python3.12/codecs.h \
- /home/cosmos/anaconda3/include/python3.12/pyerrors.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/pyerrors.h \
- /home/cosmos/anaconda3/include/python3.12/pythread.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/pythread.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/unicodeobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/code.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/initconfig.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/pystate.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/pystate.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/pyerrors.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/pyerrors.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/longobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/longobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/longintrepr.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/boolobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/floatobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/floatobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/complexobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/complexobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/rangeobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/memoryobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/tupleobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/tupleobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/listobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/listobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/dictobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/dictobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/odictobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/enumobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/setobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/setobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/methodobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/methodobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/moduleobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/funcobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/classobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/fileobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/fileobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/pycapsule.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/pyframe.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/pyframe.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/traceback.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/traceback.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/sliceobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/cellobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/iterobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/genobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/descrobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/descrobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/genericaliasobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/warnings.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/warnings.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/weakrefobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/weakrefobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/structseq.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/picklebufobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/pytime.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/codecs.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/pythread.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/pythread.h \
  /usr/include/pthread.h /usr/include/sched.h \
  /usr/include/x86_64-linux-gnu/bits/sched.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
  /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/context.h \
- /home/cosmos/anaconda3/include/python3.12/modsupport.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/modsupport.h \
- /home/cosmos/anaconda3/include/python3.12/compile.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/compile.h \
- /home/cosmos/anaconda3/include/python3.12/pythonrun.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/pythonrun.h \
- /home/cosmos/anaconda3/include/python3.12/pylifecycle.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/pylifecycle.h \
- /home/cosmos/anaconda3/include/python3.12/ceval.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/ceval.h \
- /home/cosmos/anaconda3/include/python3.12/sysmodule.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/sysmodule.h \
- /home/cosmos/anaconda3/include/python3.12/osmodule.h \
- /home/cosmos/anaconda3/include/python3.12/intrcheck.h \
- /home/cosmos/anaconda3/include/python3.12/import.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/import.h \
- /home/cosmos/anaconda3/include/python3.12/abstract.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/abstract.h \
- /home/cosmos/anaconda3/include/python3.12/bltinmodule.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/pyctype.h \
- /home/cosmos/anaconda3/include/python3.12/pystrtod.h \
- /home/cosmos/anaconda3/include/python3.12/pystrcmp.h \
- /home/cosmos/anaconda3/include/python3.12/fileutils.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/fileutils.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/pyfpe.h \
- /home/cosmos/anaconda3/include/python3.12/tracemalloc.h \
- /home/cosmos/anaconda3/include/python3.12/frameobject.h \
- /home/cosmos/anaconda3/include/python3.12/cpython/frameobject.h \
- /home/cosmos/anaconda3/include/python3.12/pythread.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/context.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/modsupport.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/modsupport.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/compile.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/compile.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/pythonrun.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/pythonrun.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/pylifecycle.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/pylifecycle.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/ceval.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/ceval.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/sysmodule.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/sysmodule.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/osmodule.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/intrcheck.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/import.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/import.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/abstract.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/abstract.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/bltinmodule.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/pyctype.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/pystrtod.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/pystrcmp.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/fileutils.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/fileutils.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/pyfpe.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/tracemalloc.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/frameobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/cpython/frameobject.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/python3.11/pythread.h \
  /usr/include/c++/11/cstddef /usr/include/c++/11/cstring \
  /usr/include/c++/11/exception /usr/include/c++/11/bits/exception.h \
  /usr/include/c++/11/bits/exception_ptr.h \
@@ -339,11 +338,11 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: \
  /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc /usr/include/c++/11/version \
- /opt/libtorch/include/pybind11/cast.h \
- /opt/libtorch/include/pybind11/detail/descr.h \
- /opt/libtorch/include/pybind11/detail/type_caster_base.h \
- /opt/libtorch/include/pybind11/pytypes.h \
- /opt/libtorch/include/pybind11/buffer_info.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/pybind11/cast.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/pybind11/detail/descr.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/pybind11/detail/type_caster_base.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/pybind11/pytypes.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/pybind11/buffer_info.h \
  /usr/include/c++/11/iterator /usr/include/c++/11/bits/stream_iterator.h \
  /usr/include/c++/11/bits/streambuf_iterator.h \
  /usr/include/c++/11/streambuf /usr/include/c++/11/bits/ios_base.h \
@@ -352,7 +351,8 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: \
  /usr/include/c++/11/system_error \
  /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h \
  /usr/include/c++/11/bits/streambuf.tcc /usr/include/c++/11/optional \
- /opt/libtorch/include/pybind11/detail/internals.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/pybind11/detail/cpp_conduit.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/pybind11/detail/internals.h \
  /usr/include/c++/11/mutex /usr/include/c++/11/chrono \
  /usr/include/c++/11/ratio /usr/include/c++/11/ctime \
  /usr/include/c++/11/bits/parse_numbers.h \
@@ -360,26 +360,30 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: \
  /usr/include/c++/11/bits/unique_lock.h /usr/include/c++/11/thread \
  /usr/include/c++/11/bits/std_thread.h \
  /usr/include/c++/11/bits/this_thread_sleep.h \
- /opt/libtorch/include/pybind11/detail/typeid.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/pybind11/detail/typeid.h \
  /usr/include/c++/11/cxxabi.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/cxxabi_tweaks.h \
- /opt/libtorch/include/pybind11/detail/value_and_holder.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/pybind11/detail/value_and_holder.h \
  /usr/include/c++/11/functional /usr/include/c++/11/bits/std_function.h \
  /usr/include/c++/11/bits/stl_algo.h \
  /usr/include/c++/11/bits/algorithmfwd.h \
  /usr/include/c++/11/bits/stl_heap.h \
  /usr/include/c++/11/bits/uniform_int_dist.h \
- /opt/libtorch/include/pybind11/options.h \
- /opt/libtorch/include/pybind11/detail/init.h \
- /opt/libtorch/include/pybind11/gil.h /usr/include/c++/11/cassert \
- /opt/libtorch/include/pybind11/gil_safe_call_once.h \
- /opt/libtorch/include/pybind11/typing.h /usr/include/c++/11/algorithm \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/pybind11/options.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/pybind11/detail/exception_translation.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/pybind11/detail/init.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/pybind11/gil.h \
+ /usr/include/c++/11/cassert \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/pybind11/gil_safe_call_once.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/pybind11/typing.h \
+ /usr/include/c++/11/algorithm \
  /usr/include/c++/11/pstl/glue_algorithm_defs.h \
- /opt/libtorch/include/pybind11/stl.h /usr/include/c++/11/deque \
- /usr/include/c++/11/bits/stl_deque.h /usr/include/c++/11/bits/deque.tcc \
- /usr/include/c++/11/list /usr/include/c++/11/bits/stl_list.h \
- /usr/include/c++/11/bits/list.tcc /usr/include/c++/11/map \
- /usr/include/c++/11/bits/stl_tree.h /usr/include/c++/11/bits/stl_map.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/pybind11/stl.h \
+ /usr/include/c++/11/deque /usr/include/c++/11/bits/stl_deque.h \
+ /usr/include/c++/11/bits/deque.tcc /usr/include/c++/11/list \
+ /usr/include/c++/11/bits/stl_list.h /usr/include/c++/11/bits/list.tcc \
+ /usr/include/c++/11/map /usr/include/c++/11/bits/stl_tree.h \
+ /usr/include/c++/11/bits/stl_map.h \
  /usr/include/c++/11/bits/stl_multimap.h /usr/include/c++/11/ostream \
  /usr/include/c++/11/ios /usr/include/c++/11/bits/basic_ios.h \
  /usr/include/c++/11/bits/locale_facets.h /usr/include/c++/11/cwctype \
@@ -400,10 +404,10 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: \
  /usr/include/c++/11/bits/gslice_array.h \
  /usr/include/c++/11/bits/mask_array.h \
  /usr/include/c++/11/bits/indirect_array.h /usr/include/c++/11/variant \
- /opt/libtorch/include/pybind11/numpy.h \
- /opt/libtorch/include/pybind11/complex.h /usr/include/c++/11/complex \
- /usr/include/c++/11/sstream /usr/include/c++/11/istream \
- /usr/include/c++/11/bits/istream.tcc \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/pybind11/numpy.h \
+ /home/cosmos/anaconda3/envs/alphazero_env/include/pybind11/complex.h \
+ /usr/include/c++/11/complex /usr/include/c++/11/sstream \
+ /usr/include/c++/11/istream /usr/include/c++/11/bits/istream.tcc \
  /usr/include/c++/11/bits/sstream.tcc /usr/include/c++/11/numeric \
  /usr/include/c++/11/bits/stl_numeric.h \
  /usr/include/c++/11/pstl/glue_numeric_defs.h \

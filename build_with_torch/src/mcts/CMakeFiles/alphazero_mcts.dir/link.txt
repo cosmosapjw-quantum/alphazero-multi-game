@@ -1,2 +1,0 @@
-/home/cosmos/anaconda3/bin/x86_64-conda-linux-gnu-ar qc libalphazero_mcts.a CMakeFiles/alphazero_mcts.dir/mcts_node.cpp.o CMakeFiles/alphazero_mcts.dir/parallel_mcts.cpp.o CMakeFiles/alphazero_mcts.dir/thread_pool.cpp.o CMakeFiles/alphazero_mcts.dir/transposition_table.cpp.o
-/home/cosmos/anaconda3/bin/x86_64-conda-linux-gnu-ranlib libalphazero_mcts.a

@@ -31,12 +31,15 @@ import json
 import random
 import torch
 import numpy as np
-import pyalphazero as az
-from alphazero.models import DDWRandWireResNet
 
-# Add project root to path for imports
+# Add parent directory to path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+# Add the build directory for the C++ extension
+build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'build', 'src', 'pybind'))
+sys.path.insert(0, build_dir)
 
+from alphazero.models import DDWRandWireResNet
+import _alphazero_cpp as az
 
 def parse_args():
     parser = argparse.ArgumentParser(description="AlphaZero Self-Play")

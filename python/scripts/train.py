@@ -32,7 +32,7 @@ import torch.optim as optim
 from torch.utils.data import DataLoader, random_split
 import matplotlib.pyplot as plt
 from tqdm import tqdm
-import pyalphazero as az
+import _alphazero_cpp as az
 from alphazero.models import DDWRandWireResNet
 from alphazero.training import AlphaZeroLoss, WarmupCosineAnnealingLR
 from alphazero.training.dataset import GameDatasetBuilder, AlphaZeroDataset

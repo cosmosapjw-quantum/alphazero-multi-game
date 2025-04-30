@@ -90,44 +90,122 @@ alphazero_py_OBJECTS = \
 # External object files for target alphazero_py
 alphazero_py_EXTERNAL_OBJECTS =
 
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/pybind/CMakeFiles/alphazero_py.dir/build.make
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/core/libalphazero_core.a
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/mcts/libalphazero_mcts.a
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/nn/libalphazero_nn.a
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/games/gomoku/libalphazero_gomoku.a
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/games/chess/libalphazero_chess.a
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/games/go/libalphazero_go.a
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/ui/libalphazero_ui.a
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/selfplay/libalphazero_selfplay.a
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/elo/libalphazero_elo.a
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /opt/libtorch/lib/libc10.so
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /opt/libtorch/lib/libkineto.a
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /usr/local/cuda-12.4/lib64/libnvrtc.so
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /opt/libtorch/lib/libc10_cuda.so
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /usr/lib/x86_64-linux-gnu/libspdlog.so.1.9.2
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/nn/libalphazero_nn.a
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/mcts/libalphazero_mcts.a
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/core/libalphazero_core.a
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /opt/libtorch/lib/libtorch.so
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /opt/libtorch/lib/libc10_cuda.so
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /opt/libtorch/lib/libc10.so
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /usr/local/cuda-12.4/lib64/libcudart.so
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /opt/libtorch/lib/libc10.so
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /opt/libtorch/lib/libkineto.a
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /usr/local/cuda-12.4/lib64/libnvrtc.so
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /usr/local/cuda-12.4/lib64/libnvToolsExt.so
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /opt/libtorch/lib/libc10_cuda.so
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /usr/lib/x86_64-linux-gnu/libcudnn.so
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1
-src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/pybind/CMakeFiles/alphazero_py.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared module alphazero.cpython-312-x86_64-linux-gnu.so"
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: src/pybind/CMakeFiles/alphazero_py.dir/build.make
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: src/core/libalphazero_core.a
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: src/mcts/libalphazero_mcts.a
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: src/nn/libalphazero_nn.a
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: src/games/gomoku/libalphazero_gomoku.a
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: src/games/chess/libalphazero_chess.a
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: src/games/go/libalphazero_go.a
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: src/ui/libalphazero_ui.a
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: src/selfplay/libalphazero_selfplay.a
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: src/elo/libalphazero_elo.a
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libc10.so
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /usr/local/cuda-12.4/lib64/libnvrtc.so
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libc10_cuda.so
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libc10.so
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /usr/lib/x86_64-linux-gnu/libspdlog.so.1.9.2
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: src/nn/libalphazero_nn.a
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: src/mcts/libalphazero_mcts.a
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: src/core/libalphazero_core.a
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libtorch.so
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libprotobuf.so.28.2.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_log_internal_check_op.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_leak_check.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_die_if_null.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_log_internal_conditions.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_log_internal_message.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_log_internal_nullguard.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_examine_stack.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_log_internal_format.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_log_internal_proto.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_log_internal_log_sink_set.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_log_sink.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_log_entry.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_flags_internal.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_flags_marshalling.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_flags_reflection.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_flags_config.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_flags_program_name.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_flags_private_handle_accessor.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_flags_commandlineflag.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_flags_commandlineflag_internal.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_log_initialize.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_log_internal_globals.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_log_globals.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_vlog_config_internal.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_log_internal_fnmatch.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_raw_hash_set.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_hash.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_city.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_low_level_hash.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_hashtablez_sampler.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_random_distributions.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_random_seed_sequences.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_random_internal_pool_urbg.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_random_internal_randen.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_random_internal_randen_hwaes.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_random_internal_randen_hwaes_impl.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_random_internal_randen_slow.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_random_internal_platform.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_random_internal_seed_material.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_random_seed_gen_exception.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_statusor.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_status.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_cord.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_cordz_info.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_cord_internal.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_cordz_functions.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_exponential_biased.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_cordz_handle.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_crc_cord_state.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_crc32c.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_crc_internal.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_crc_cpu_detect.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_bad_optional_access.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_strerror.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_str_format_internal.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_synchronization.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_stacktrace.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_symbolize.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_debugging_internal.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_demangle_internal.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_demangle_rust.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_decode_rust_punycode.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_utf8_for_code_point.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_graphcycles_internal.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_kernel_timeout_internal.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_malloc_internal.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_time.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_civil_time.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_time_zone.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_bad_variant_access.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_strings.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_int128.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_strings_internal.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_string_view.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_base.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_spinlock_wait.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_throw_delegate.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_raw_logging_internal.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_log_severity.so.2407.0.0
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libc10_cuda.so
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libc10.so
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /usr/local/cuda-12.4/lib64/libcudart.so
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libc10.so
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /usr/local/cuda-12.4/lib64/libnvrtc.so
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libc10_cuda.so
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /usr/lib/x86_64-linux-gnu/libcudnn.so
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: src/pybind/CMakeFiles/alphazero_py.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared library _alphazero_cpp.cpython-311-x86_64-linux-gnu.so"
 	cd /home/cosmos/alphazero-multi-game/build/src/pybind && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/alphazero_py.dir/link.txt --verbose=$(VERBOSE)
-	cd /home/cosmos/alphazero-multi-game/build/src/pybind && /usr/bin/strip /home/cosmos/alphazero-multi-game/build/src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so
-	cd /home/cosmos/alphazero-multi-game/build/src/pybind && /usr/bin/cmake -E copy_if_different /home/cosmos/alphazero-multi-game/build/src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so /home/cosmos/alphazero-multi-game/alphazero.cpython-312-x86_64-linux-gnu.so
+	cd /home/cosmos/alphazero-multi-game/build/src/pybind && /usr/bin/strip /home/cosmos/alphazero-multi-game/build/src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so
+	cd /home/cosmos/alphazero-multi-game/build/src/pybind && /usr/bin/cmake -E copy_if_different /home/cosmos/alphazero-multi-game/build/src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so /home/cosmos/alphazero-multi-game/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so
 
 # Rule to build all files generated by this target.
-src/pybind/CMakeFiles/alphazero_py.dir/build: src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so
+src/pybind/CMakeFiles/alphazero_py.dir/build: src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so
 .PHONY : src/pybind/CMakeFiles/alphazero_py.dir/build
 
 src/pybind/CMakeFiles/alphazero_py.dir/clean:

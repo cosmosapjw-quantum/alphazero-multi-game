@@ -30,7 +30,7 @@ import shutil
 import argparse
 from datetime import datetime
 import torch
-import pyalphazero as az
+import _alphazero_cpp as az
 
 # Add project root to path for imports
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -425,7 +425,7 @@ def package_model(args):
         f.write("## Usage\n\n")
         f.write("To use this model with the AlphaZero Multi-Game AI Engine:\n\n")
         f.write("```python\n")
-        f.write("import pyalphazero as az\n\n")
+        f.write("import _alphazero_cpp as az\n\n")
         f.write(f"# Create game state\n")
         f.write(f"game_state = az.createGameState(az.GameType.{args.game.upper()}, {board_size}, {str(args.variant).lower()})\n\n")
         f.write(f"# Load neural network\n")

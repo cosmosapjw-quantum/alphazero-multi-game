@@ -1,2 +1,0 @@
-/home/cosmos/anaconda3/bin/x86_64-conda-linux-gnu-ar qc libalphazero_selfplay.a CMakeFiles/alphazero_selfplay.dir/dataset.cpp.o CMakeFiles/alphazero_selfplay.dir/game_record.cpp.o CMakeFiles/alphazero_selfplay.dir/self_play_manager.cpp.o
-/home/cosmos/anaconda3/bin/x86_64-conda-linux-gnu-ranlib libalphazero_selfplay.a

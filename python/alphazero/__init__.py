@@ -9,7 +9,7 @@ __version__ = '1.0.0'
 
 # Import core components from C++ extension
 try:
-    from pyalphazero import (
+    from _alphazero_cpp import (
         # Enums
         GameType, GameResult, MCTSNodeSelection,
         
@@ -27,7 +27,7 @@ try:
     )
 except ImportError as e:
     raise ImportError(
-        "Failed to import C++ extension 'pyalphazero'. "
+        "Failed to import C++ extension '_alphazero_cpp'. "
         "Make sure the extension is properly built and installed. "
         f"Original error: {e}"
     )

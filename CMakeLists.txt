@@ -45,8 +45,9 @@ include_directories(
 if(NOT ALPHAZERO_STANDALONE_MODE)
   # Find Torch package
   if(DEFINED TORCH_DIR)
-    set(Torch_DIR "${TORCH_DIR}/share/cmake/Torch")
-    message(STATUS "Using custom Torch directory: ${TORCH_DIR}")
+    # The TORCH_DIR variable should point to the root install directory
+    # containing share/cmake/Torch. find_package handles the rest.
+    message(STATUS "Using TORCH_DIR hint: ${TORCH_DIR}")
   endif()
   
   # Find pybind11 for Python bindings
@@ -90,8 +91,8 @@ if(NOT ALPHAZERO_STANDALONE_MODE)
     endif()
   endif()
 
-  # Try to find Torch, but don't require it yet
-  find_package(Torch QUIET)
+  # Try to find Torch. Removed QUIET.
+  find_package(Torch)
   
   if(Torch_FOUND)
     message(STATUS "PyTorch found: ${TORCH_VERSION}")

@@ -19,7 +19,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import tkinter as tk
-import pyalphazero as az
+import _alphazero_cpp as az
 from alphazero.models import DDWRandWireResNet
 from alphazero.utils.visualization import plot_board
 

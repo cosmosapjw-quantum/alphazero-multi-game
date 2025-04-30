@@ -1,7 +1,0 @@
-/home/cosmos/alphazero-multi-game/build/temp.linux-x86_64-3.10/CMakeFiles/alphazero_minimal.dir
-/home/cosmos/alphazero-multi-game/build/temp.linux-x86_64-3.10/CMakeFiles/edit_cache.dir
-/home/cosmos/alphazero-multi-game/build/temp.linux-x86_64-3.10/CMakeFiles/rebuild_cache.dir
-/home/cosmos/alphazero-multi-game/build/temp.linux-x86_64-3.10/CMakeFiles/list_install_components.dir
-/home/cosmos/alphazero-multi-game/build/temp.linux-x86_64-3.10/CMakeFiles/install.dir
-/home/cosmos/alphazero-multi-game/build/temp.linux-x86_64-3.10/CMakeFiles/install/local.dir
-/home/cosmos/alphazero-multi-game/build/temp.linux-x86_64-3.10/CMakeFiles/install/strip.dir

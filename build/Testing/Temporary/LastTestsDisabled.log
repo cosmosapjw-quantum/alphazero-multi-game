@@ -1,8 +1,0 @@
-111:TorchNeuralNetworkTest.Initialization
-112:TorchNeuralNetworkTest.Predict
-113:TorchNeuralNetworkTest.PredictBatch
-114:TorchNeuralNetworkTest.PredictAsync
-115:TorchNeuralNetworkTest.DeviceInfo
-116:TorchNeuralNetworkTest.ModelInfo
-117:TorchNeuralNetworkTest.Benchmark
-118:TorchNeuralNetworkTest.MultipleInferences

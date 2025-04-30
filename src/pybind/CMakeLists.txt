@@ -1,7 +1,7 @@
 if(ALPHAZERO_ENABLE_PYTHON AND pybind11_FOUND)
     # Create the Python module with static linking
     set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-    pybind11_add_module(alphazero_py STATIC python_bindings.cpp)
+    pybind11_add_module(alphazero_py SHARED python_bindings.cpp)
     
     target_include_directories(alphazero_py PRIVATE
         ${CMAKE_SOURCE_DIR}
@@ -10,8 +10,15 @@ if(ALPHAZERO_ENABLE_PYTHON AND pybind11_FOUND)
         ${TORCH_INCLUDE_DIRS}
     )
     
-    # Link with available libraries - use if exists pattern to avoid errors
-    # if libraries are not built yet
+    # Find and explicitly link with the C10 library
+    find_library(C10_LIBRARY c10 PATHS ${TORCH_INSTALL_PREFIX}/lib ${CMAKE_PREFIX_PATH}/lib)
+    if(C10_LIBRARY)
+        message(STATUS "Found c10 library: ${C10_LIBRARY}")
+    else()
+        message(WARNING "c10 library not found!")
+    endif()
+    
+    # Link with all available libraries
     if(TARGET alphazero_core)
         target_link_libraries(alphazero_py PRIVATE alphazero_core)
     endif()
@@ -50,8 +57,11 @@ if(ALPHAZERO_ENABLE_PYTHON AND pybind11_FOUND)
         target_link_libraries(alphazero_py PRIVATE alphazero_elo)
     endif()
     
-    # Always link with Torch libraries
-    target_link_libraries(alphazero_py PRIVATE ${TORCH_LIBRARIES})
+    # Explicitly link with PyTorch libraries
+    target_link_libraries(alphazero_py PRIVATE 
+        ${TORCH_LIBRARIES}
+        ${C10_LIBRARY}
+    )
     
     # Explicitly link with fmt library to resolve symbol issues
     target_link_libraries(alphazero_py PRIVATE fmt::fmt)
@@ -62,8 +72,21 @@ if(ALPHAZERO_ENABLE_PYTHON AND pybind11_FOUND)
         nlohmann_json::nlohmann_json
     )
     
+    # Set RPATH to include the PyTorch library directory
+    if(APPLE)
+        set_target_properties(alphazero_py PROPERTIES
+            INSTALL_RPATH "@loader_path;@loader_path/../lib;${TORCH_INSTALL_PREFIX}/lib"
+            BUILD_WITH_INSTALL_RPATH TRUE
+        )
+    else()
+        set_target_properties(alphazero_py PROPERTIES
+            INSTALL_RPATH "$ORIGIN;$ORIGIN/../lib;${TORCH_INSTALL_PREFIX}/lib"
+            BUILD_WITH_INSTALL_RPATH TRUE
+        )
+    endif()
+    
     set_target_properties(alphazero_py PROPERTIES
-        OUTPUT_NAME "alphazero"
+        OUTPUT_NAME "_alphazero_cpp"
     )
     
     # Copy Python module to the project directory
@@ -74,4 +97,4 @@ if(ALPHAZERO_ENABLE_PYTHON AND pybind11_FOUND)
     )
 else()
     message(STATUS "Skipping Python bindings (pybind11 not found or Python bindings disabled)")
-endif() 
+endif()

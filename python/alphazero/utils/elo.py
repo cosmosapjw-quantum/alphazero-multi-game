@@ -92,11 +92,24 @@ class EloRating:
         new_rating = player_rating + rating_change
         self.ratings[player_id] = new_rating
         
+        # Update opponent rating
+        opponent_score = 1.0 - score
+        opponent_rating_change = calculate_elo_change(
+            opponent_rating, player_rating, opponent_score, self.k_factor
+        )
+        new_opponent_rating = opponent_rating + opponent_rating_change
+        self.ratings[opponent_id] = new_opponent_rating
+        
         # Record history
         timestamp = datetime.datetime.now().isoformat()
         if player_id not in self.history:
             self.history[player_id] = []
         self.history[player_id].append((timestamp, new_rating, opponent_id, score))
+        
+        # Also record history for the opponent
+        if opponent_id not in self.history:
+            self.history[opponent_id] = []
+        self.history[opponent_id].append((timestamp, new_opponent_rating, player_id, opponent_score))
         
         return new_rating
     

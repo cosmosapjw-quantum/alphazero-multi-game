@@ -1,2 +1,0 @@
-/home/cosmos/anaconda3/bin/x86_64-conda-linux-gnu-ar qc libalphazero_go.a CMakeFiles/alphazero_go.dir/go_state.cpp.o CMakeFiles/alphazero_go.dir/go_rules.cpp.o
-/home/cosmos/anaconda3/bin/x86_64-conda-linux-gnu-ranlib libalphazero_go.a

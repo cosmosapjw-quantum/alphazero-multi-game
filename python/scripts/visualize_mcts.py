@@ -33,7 +33,7 @@ import matplotlib.patches as patches
 import networkx as nx
 from matplotlib.cm import get_cmap
 import torch
-import pyalphazero as az
+import _alphazero_cpp as az
 from alphazero.models import DDWRandWireResNet
 from alphazero.utils.visualization import plot_board
 
