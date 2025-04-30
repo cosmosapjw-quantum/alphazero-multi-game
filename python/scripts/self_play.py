@@ -27,6 +27,8 @@ Options:
     --no-gpu              Disable GPU acceleration
     --no-batched-search   Disable batched MCTS search
     --fp16                Use FP16 precision (faster but less accurate)
+    --export-model        Export PyTorch model to LibTorch format
+    --create-random-model Create and export a random model if no model is provided
 """
 
 import os
@@ -37,6 +39,8 @@ import json
 import random
 import torch
 import numpy as np
+import tempfile
+import threading
 
 # Add parent directory to path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -95,19 +99,240 @@ def parse_args():
                         help="Disable batched MCTS search")
     parser.add_argument("--fp16", action="store_true",
                         help="Use FP16 precision (faster but less accurate)")
+    parser.add_argument("--export-model", action="store_true",
+                        help="Export PyTorch model to LibTorch format")
+    parser.add_argument("--create-random-model", action="store_true",
+                        help="Create and export a random model if no model is provided")
     
     return parser.parse_args()
 
 
+def export_pytorch_to_libtorch(model, input_shape, output_path):
+    """Export a PyTorch model to LibTorch format for use with C++ API.
+    
+    Args:
+        model: PyTorch model to export
+        input_shape: Input tensor shape (batch_size, channels, height, width)
+        output_path: Path to save the exported model
+        
+    Returns:
+        Path to the exported model
+    """
+    print(f"Exporting PyTorch model to LibTorch format: {output_path}")
+    
+    # Ensure model is in eval mode
+    model.eval()
+    
+    # Create a dummy input tensor
+    dummy_input = torch.zeros(input_shape, dtype=torch.float32)
+    if torch.cuda.is_available():
+        dummy_input = dummy_input.cuda()
+        model = model.cuda()
+        
+    # Trace the model
+    try:
+        print("Tracing model...")
+        traced_model = torch.jit.trace(model, dummy_input)
+        
+        # Test the traced model
+        print("Testing traced model...")
+        traced_output = traced_model(dummy_input)
+        model_output = model(dummy_input)
+        
+        # Check if outputs match
+        policy_match = torch.allclose(traced_output[0], model_output[0], atol=1e-5)
+        value_match = torch.allclose(traced_output[1], model_output[1], atol=1e-5)
+        
+        if not policy_match or not value_match:
+            print("WARNING: Traced model outputs don't match original model!")
+            print(f"  Policy match: {policy_match}")
+            print(f"  Value match: {value_match}")
+            
+        # Create directory if it doesn't exist
+        os.makedirs(os.path.dirname(os.path.abspath(output_path)), exist_ok=True)
+        
+        # Save the traced model
+        traced_model.save(output_path)
+        print(f"Model successfully exported to {output_path}")
+        return output_path
+    except Exception as e:
+        print(f"Failed to export model: {e}")
+        raise
+
+
+def check_neural_network_gil_safety(nn):
+    """Check if a neural network is safe to use with parallel processing.
+    
+    Args:
+        nn: Neural network to check
+        
+    Returns:
+        bool: True if the neural network is GIL-safe, False otherwise
+    """
+    if nn is None:
+        # Random policy network is GIL-safe
+        print("Using GIL-safe random policy network")
+        return True
+        
+    if hasattr(nn, 'is_gil_safe') and nn.is_gil_safe():
+        print("Using GIL-safe C++ neural network - parallel processing will be efficient.")
+        return True
+    else:
+        print("\nWARNING: Using a Python neural network, which will limit parallelism due to the GIL.")
+        print("For best performance, export your model to LibTorch format and use the C++ API.")
+        print("Try running with the --export-model flag to automatically export your model.")
+        return False
+
+
+def benchmark_gil_impact(nn, num_threads=4):
+    """Benchmark the impact of the GIL on parallel processing with this neural network.
+    
+    Args:
+        nn: Neural network to benchmark
+        num_threads: Number of threads to test
+        
+    Returns:
+        float: Actual speedup achieved
+    """
+    if nn is None:
+        print("Cannot benchmark - no neural network provided")
+        return 0.0
+        
+    print(f"\nBenchmarking GIL impact with {num_threads} threads...")
+    
+    # Create a test game state
+    game_state = az.createGameState(az.GameType.GOMOKU, 15, False)
+    
+    # Function to run in each thread
+    def worker():
+        start = time.time()
+        for _ in range(100):
+            nn.predict(game_state)
+        return time.time() - start
+    
+    # Run in a single thread
+    print("Running single-thread test...")
+    single_thread_time = worker()
+    
+    # Run in multiple threads
+    print(f"Running {num_threads}-thread test...")
+    threads = []
+    thread_times = [0] * num_threads
+    
+    for i in range(num_threads):
+        threads.append(threading.Thread(
+            target=lambda idx=i: thread_times.__setitem__(idx, worker())
+        ))
+    
+    start = time.time()
+    for thread in threads:
+        thread.start()
+    for thread in threads:
+        thread.join()
+    multi_thread_time = time.time() - start
+    
+    # Calculate speedup
+    ideal_speedup = num_threads
+    actual_speedup = single_thread_time * num_threads / multi_thread_time
+    efficiency = actual_speedup / ideal_speedup * 100
+    
+    print(f"\nSingle thread time: {single_thread_time:.3f} s")
+    print(f"Multi-thread time: {multi_thread_time:.3f} s for {num_threads} threads")
+    print(f"Actual speedup: {actual_speedup:.2f}x (Ideal: {ideal_speedup:.2f}x)")
+    print(f"Efficiency: {efficiency:.1f}%")
+    
+    if actual_speedup < ideal_speedup * 0.5:
+        print("\nWARNING: Poor scaling detected - likely due to GIL issues.")
+        print("Consider using a C++-based neural network for better parallel performance.")
+    
+    return actual_speedup
+
+
+def create_random_model(input_channels, action_size, board_size):
+    """Create a random model for testing and export.
+    
+    Args:
+        input_channels: Number of input channels
+        action_size: Size of action space
+        board_size: Board size
+        
+    Returns:
+        PyTorch model
+    """
+    print("Creating a random DDWRandWireResNet model...")
+    model = DDWRandWireResNet(input_channels, action_size, channels=64, num_blocks=8)
+    
+    # Initialize randomly
+    for param in model.parameters():
+        if len(param.shape) >= 2:
+            torch.nn.init.xavier_uniform_(param)
+        else:
+            torch.nn.init.zeros_(param)
+            
+    model.eval()
+    return model
+
+
 def create_neural_network(args, game_type, board_size):
-    """Create a neural network for self-play with GPU batching support."""
+    """Create a neural network for self-play with GPU batching support.
+    
+    Args:
+        args: Command-line arguments
+        game_type: Game type enum value
+        board_size: Board size
+        
+    Returns:
+        Neural network object
+    """
     # Determine if GPU should be used
     use_gpu = torch.cuda.is_available() and not args.no_gpu
     
+    # Create a test game state to get input shape and action size for model
+    game_state = az.createGameState(game_type, board_size, args.variant)
+    tensor_rep = game_state.getEnhancedTensorRepresentation()
+    input_channels = len(tensor_rep)
+    action_size = game_state.getActionSpaceSize()
+    
+    # If export is requested but no model is provided, create a random model
+    if args.export_model and not args.model and args.create_random_model:
+        print("\nExport model requested but no model provided. Creating a random model...")
+        # Create a random model
+        model = create_random_model(input_channels, action_size, board_size)
+        
+        # Export to LibTorch
+        # Create output directory if it doesn't exist
+        os.makedirs("models", exist_ok=True)
+        
+        # Export location
+        libtorch_path = f"models/random_model_{args.game}_{board_size}x{board_size}.pt"
+        
+        # Create input shape based on the game state
+        input_shape = (1, input_channels, board_size, board_size)
+        
+        try:
+            # Export the model
+            libtorch_path = export_pytorch_to_libtorch(model, input_shape, libtorch_path)
+            
+            # Load the exported model with C++ API
+            nn = az.createNeuralNetwork(libtorch_path, game_type, board_size, use_gpu)
+            print(f"Created and exported random model to {libtorch_path}")
+            
+            # Verify GIL safety
+            check_neural_network_gil_safety(nn)
+            
+            print("\nYou can now use this model for testing with:")
+            print(f"  python self_play.py --model {libtorch_path}")
+            
+            return nn
+        except Exception as e:
+            print(f"Failed to export random model: {e}")
+            print("Using random policy network instead")
+            return None
+            
     # If model path is provided, try to load it
     if args.model:
         try:
-            # Try to load with the C++ API first
+            # Try to load with the C++ API first (loads LibTorch models)
             nn = az.createNeuralNetwork(args.model, game_type, board_size, use_gpu)
             print(f"Loaded model from {args.model} (C++ API)")
             if use_gpu:
@@ -116,18 +341,16 @@ def create_neural_network(args, game_type, board_size):
                 print(f"Batch size: {nn.getBatchSize()}")
             else:
                 print(f"Using CPU: {nn.getDeviceInfo()}")
+            
+            # Verify GIL safety
+            check_neural_network_gil_safety(nn)
             return nn
+            
         except Exception as e:
             print(f"Failed to load model with C++ API: {e}")
             
             # Try to load with PyTorch
             try:
-                # Create a test game state to get input shape
-                game_state = az.createGameState(game_type, board_size, args.variant)
-                tensor_rep = game_state.getEnhancedTensorRepresentation()
-                input_channels = len(tensor_rep)
-                action_size = game_state.getActionSpaceSize()
-                
                 # Create and load model
                 device = torch.device("cuda" if use_gpu else "cpu")
                 model = DDWRandWireResNet(input_channels, action_size)
@@ -135,171 +358,80 @@ def create_neural_network(args, game_type, board_size):
                 model = model.to(device)
                 model.eval()
                 
-                # Enable FP16 if requested and GPU is available
-                if args.fp16 and use_gpu and hasattr(torch.cuda, 'amp'):
-                    print("Using FP16 precision for faster inference")
-                
-                # Create wrapper for the PyTorch model with batch support
-                class TorchNeuralNetwork(az.NeuralNetwork):
-                    def __init__(self, model, device, batch_size=8, use_fp16=False):
-                        super().__init__()
-                        self.model = model
-                        self.device = device
-                        self.batch_size = batch_size
-                        self.use_fp16 = use_fp16 and device.type == 'cuda' and hasattr(torch.cuda, 'amp')
-                        self.inference_times = []
+                # Export to LibTorch if requested or needed
+                if args.export_model:
+                    # Create temp model path if not explicitly exporting
+                    libtorch_path = f"{os.path.splitext(args.model)[0]}_libtorch.pt"
+                        
+                    # Create input shape based on the game state
+                    input_shape = (1, input_channels, board_size, board_size)
                     
-                    def predict(self, state):
-                        # Convert state tensor to PyTorch tensor
-                        state_tensor = torch.FloatTensor(state.getEnhancedTensorRepresentation())
-                        state_tensor = state_tensor.unsqueeze(0).to(self.device)
-                        
-                        # Use FP16 if enabled
-                        if self.use_fp16:
-                            state_tensor = state_tensor.half()
-                        
-                        # Measure inference time
-                        start_time = time.time()
-                        
-                        # Forward pass
-                        with torch.no_grad():
-                            if self.use_fp16:
-                                with torch.cuda.amp.autocast():
-                                    policy_logits, value = self.model(state_tensor)
-                            else:
-                                policy_logits, value = self.model(state_tensor)
-                            
-                            policy = torch.softmax(policy_logits, dim=1)[0].cpu().numpy()
-                            value = value.item()
-                        
-                        # Record inference time
-                        end_time = time.time()
-                        self.inference_times.append((end_time - start_time) * 1000)  # ms
-                        if len(self.inference_times) > 100:
-                            self.inference_times.pop(0)
-                        
-                        return policy, value
+                    # Export the model
+                    libtorch_path = export_pytorch_to_libtorch(model, input_shape, libtorch_path)
                     
-                    def predictBatch(self, states, policies, values):
-                        # Convert states to PyTorch tensor
-                        batch_size = len(states)
-                        state_tensors = []
-                        
-                        for i in range(batch_size):
-                            state = states[i].get()
-                            state_tensor = torch.FloatTensor(state.getEnhancedTensorRepresentation())
-                            state_tensors.append(state_tensor)
-                        
-                        batch_tensor = torch.stack(state_tensors).to(self.device)
-                        
-                        # Use FP16 if enabled
-                        if self.use_fp16:
-                            batch_tensor = batch_tensor.half()
-                        
-                        # Measure inference time
-                        start_time = time.time()
-                        
-                        # Forward pass
-                        with torch.no_grad():
-                            if self.use_fp16:
-                                with torch.cuda.amp.autocast():
-                                    policy_logits, value_tensor = self.model(batch_tensor)
-                            else:
-                                policy_logits, value_tensor = self.model(batch_tensor)
-                            
-                            policy_probs = torch.softmax(policy_logits, dim=1).cpu().numpy()
-                            value_list = value_tensor.squeeze(-1).cpu().numpy()
-                        
-                        # Record inference time
-                        end_time = time.time()
-                        self.inference_times.append((end_time - start_time) * 1000 / batch_size)  # ms per sample
-                        if len(self.inference_times) > 100:
-                            self.inference_times.pop(0)
-                        
-                        # Clear existing data
-                        policies.clear()
-                        values.clear()
-                        
-                        # Fill output vectors
-                        for i in range(batch_size):
-                            policies.append(policy_probs[i].tolist())
-                            values.append(float(value_list[i]))
+                    # Load the exported model with C++ API
+                    nn = az.createNeuralNetwork(libtorch_path, game_type, board_size, use_gpu)
+                    print(f"Loaded model via PyTorch export to {libtorch_path}")
                     
-                    def isGpuAvailable(self):
-                        return torch.cuda.is_available() and self.device.type == 'cuda'
-                    
-                    def getDeviceInfo(self):
-                        if self.isGpuAvailable():
-                            gpu_name = torch.cuda.get_device_name(0)
-                            precision = "FP16" if self.use_fp16 else "FP32"
-                            return f"GPU: {gpu_name} ({precision})"
-                        else:
-                            return "CPU"
-                    
-                    def getInferenceTimeMs(self):
-                        if not self.inference_times:
-                            return 0.0
-                        return sum(self.inference_times) / len(self.inference_times)
-                    
-                    def getBatchSize(self):
-                        return self.batch_size
-                    
-                    def getModelInfo(self):
-                        return f"PyTorch DDWRandWireResNet ({self.model.num_nodes} nodes)"
-                    
-                    def getModelSizeBytes(self):
-                        return sum(p.numel() * (2 if self.use_fp16 else 4) for p in self.model.parameters())
-                    
-                    def benchmark(self, numIterations=100, batchSize=16):
-                        if not self.isGpuAvailable():
-                            print("Benchmarking skipped - GPU not available")
-                            return
-                        
-                        # Create a dummy state
-                        state = states[0].get() if len(states) > 0 else None
-                        if state is None:
-                            print("Cannot benchmark - no valid state available")
-                            return
-                        
-                        # Warmup
-                        for _ in range(10):
-                            self.predict(state)
-                        
-                        # Single inference benchmark
-                        start_time = time.time()
-                        for _ in range(numIterations):
-                            self.predict(state)
-                        end_time = time.time()
-                        single_time = (end_time - start_time) * 1000 / numIterations
-                        
-                        print(f"Single inference: {single_time:.2f} ms")
-                        
-                        # Batch inference benchmark
-                        test_states = [state] * batchSize
-                        test_policies = []
-                        test_values = []
-                        
-                        start_time = time.time()
-                        for _ in range(numIterations // batchSize + 1):
-                            self.predictBatch(test_states, test_policies, test_values)
-                        end_time = time.time()
-                        batch_time = (end_time - start_time) * 1000 / numIterations
-                        
-                        print(f"Batch inference: {batch_time:.2f} ms per sample (batch size: {batchSize})")
-                        print(f"Speedup: {single_time / batch_time:.2f}x")
-                    
-                    def enableDebugMode(self, enable):
-                        pass
-                
-                nn = TorchNeuralNetwork(model, device, args.batch_size, args.fp16)
-                print(f"Loaded model from {args.model} (PyTorch)")
-                if device.type == 'cuda':
-                    print(f"Using GPU acceleration with device: {torch.cuda.get_device_name(0)}")
-                    if args.fp16:
-                        print("Using FP16 precision for faster inference")
+                    # Verify GIL safety
+                    check_neural_network_gil_safety(nn)
+                    return nn
                 else:
-                    print("Using CPU")
-                return nn
+                    # Create Python wrapper for PyTorch model
+                    print("Using Python-backed neural network (performance will be limited)")
+                    
+                    # Create a custom Python-backed neural network
+                    class PythonNeuralNetwork:
+                        def __init__(self, model, device):
+                            self.model = model
+                            self.device = device
+                            self.inference_times = []
+                            
+                        def predict(self, state):
+                            # Convert state tensor to PyTorch tensor
+                            state_tensor = torch.FloatTensor(state.getEnhancedTensorRepresentation())
+                            state_tensor = state_tensor.unsqueeze(0).to(self.device)
+                            
+                            # Forward pass
+                            start_time = time.time()
+                            with torch.no_grad():
+                                policy_logits, value = self.model(state_tensor)
+                                policy = torch.softmax(policy_logits, dim=1)[0].cpu().numpy()
+                                value = value.item()
+                            
+                            # Record inference time
+                            end_time = time.time()
+                            self.inference_times.append((end_time - start_time) * 1000)  # ms
+                            if len(self.inference_times) > 100:
+                                self.inference_times.pop(0)
+                            
+                            return policy, value
+                        
+                        def getInferenceTimeMs(self):
+                            if not self.inference_times:
+                                return 0.0
+                            return sum(self.inference_times) / len(self.inference_times)
+                        
+                        def getDeviceInfo(self):
+                            if self.device.type == 'cuda':
+                                return f"GPU: {torch.cuda.get_device_name(0)} (Python API)"
+                            else:
+                                return "CPU (Python API)"
+                        
+                        def getBatchSize(self):
+                            return 1  # No batching in Python wrapper
+                        
+                        def getModelInfo(self):
+                            return "PyTorch Model (Python API - Limited Performance)"
+                        
+                        def is_gil_safe(self):
+                            return False  # Python models are not GIL-safe
+                    
+                    # Return Python-backed neural network
+                    nn = PythonNeuralNetwork(model, device)
+                    check_neural_network_gil_safety(nn)
+                    return nn
+                
             except Exception as e:
                 print(f"Failed to load model with PyTorch: {e}")
                 print("Using random policy network instead")
@@ -311,7 +443,11 @@ def create_neural_network(args, game_type, board_size):
 
 
 def run_self_play(args):
-    """Run self-play games with GPU batching support."""
+    """Run self-play games with GPU batching support.
+    
+    Args:
+        args: Command-line arguments
+    """
     # Set random seed for reproducibility
     if args.seed is not None:
         random.seed(args.seed)
@@ -341,6 +477,13 @@ def run_self_play(args):
     else:
         board_size = args.size
     
+    # Check if we're just exporting a model
+    if args.export_model and not args.model and args.create_random_model:
+        # Create neural network (which will create and export a random model)
+        neural_network = create_neural_network(args, game_type, board_size)
+        print("\nModel export complete.")
+        return
+    
     # Create output directory if it doesn't exist
     os.makedirs(args.output_dir, exist_ok=True)
     
@@ -350,6 +493,10 @@ def run_self_play(args):
     
     # Create neural network
     neural_network = create_neural_network(args, game_type, board_size)
+    
+    # Benchmark GIL impact if we have a neural network
+    if neural_network is not None:
+        benchmark_gil_impact(neural_network, min(4, args.threads))
     
     # Create self-play manager
     self_play = az.SelfPlayManager(
@@ -473,6 +620,8 @@ def run_self_play(args):
                 metadata["device_info"] = neural_network.getDeviceInfo()
             if hasattr(neural_network, 'getModelInfo'):
                 metadata["model_info"] = neural_network.getModelInfo()
+            if hasattr(neural_network, 'is_gil_safe'):
+                metadata["is_gil_safe"] = neural_network.is_gil_safe()
         
         metadata_path = os.path.join(args.output_dir, "metadata.json")
         with open(metadata_path, "w") as f:

@@ -17,6 +17,11 @@
 #include "alphazero/core/igamestate.h"
 #include "alphazero/nn/neural_network.h"
 
+// Include pybind11 headers if we're building with Python bindings
+#ifdef PYBIND11_MODULE
+#include <pybind11/pybind11.h>
+#endif
+
 namespace alphazero {
 namespace nn {
 
@@ -81,6 +86,14 @@ struct BatchQueueStats {
  * 
  * This class collects individual inference requests and processes them
  * in batches for improved efficiency on GPU.
+ * 
+ * WARNING: Using a Python-backed neural network with this class will limit parallelism
+ * due to the Python Global Interpreter Lock (GIL). For best performance, use a
+ * C++-based neural network implementation like TorchNeuralNetwork that directly
+ * uses LibTorch without Python bindings.
+ * 
+ * If you need to use a Python model, export it to LibTorch format first to achieve
+ * proper parallelism.
  */
 class BatchQueue {
 public:
@@ -190,7 +203,7 @@ public:
      * @param neuralNetwork Neural network pointer
      */
     void setNeuralNetwork(NeuralNetwork* neuralNetwork) { neuralNetwork_ = neuralNetwork; }
-    
+
 private:
     /**
      * @brief Request structure

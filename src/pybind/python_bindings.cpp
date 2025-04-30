@@ -6,6 +6,8 @@
 #include "alphazero/games/gomoku/gomoku_state.h"
 #include "alphazero/mcts/parallel_mcts.h"
 #include "alphazero/nn/neural_network.h"
+#include "alphazero/nn/torch_neural_network.h"
+#include "alphazero/nn/random_policy_network.h"
 #include "alphazero/selfplay/self_play_manager.h"
 #include "alphazero/selfplay/game_record.h"
 #include "alphazero/selfplay/dataset.h"
@@ -83,17 +85,37 @@ PYBIND11_MODULE(_alphazero_cpp, m) {
     
     // Neural Network interface
     py::class_<nn::NeuralNetwork>(m, "NeuralNetwork")
-        .def("predict", &nn::NeuralNetwork::predict)
+        .def("predict", [](nn::NeuralNetwork &self, const core::IGameState &state) {
+            // Release GIL during potentially long-running neural network inference
+            py::gil_scoped_release release;
+            return self.predict(state);
+        })
+        .def("predictBatch", [](nn::NeuralNetwork &self, 
+                              const std::vector<std::reference_wrapper<const core::IGameState>> &states,
+                              std::vector<std::vector<float>> &policies,
+                              std::vector<float> &values) {
+            // Release GIL during batch inference
+            py::gil_scoped_release release;
+            self.predictBatch(states, policies, values);
+        })
         .def("isGpuAvailable", &nn::NeuralNetwork::isGpuAvailable)
         .def("getDeviceInfo", &nn::NeuralNetwork::getDeviceInfo)
         .def("getInferenceTimeMs", &nn::NeuralNetwork::getInferenceTimeMs)
         .def("getBatchSize", &nn::NeuralNetwork::getBatchSize)
         .def("getModelInfo", &nn::NeuralNetwork::getModelInfo)
         .def("getModelSizeBytes", &nn::NeuralNetwork::getModelSizeBytes)
-        .def("benchmark", &nn::NeuralNetwork::benchmark,
-            py::arg("numIterations") = 100,
-            py::arg("batchSize") = 16)
-        .def("enableDebugMode", &nn::NeuralNetwork::enableDebugMode);
+        .def("benchmark", [](nn::NeuralNetwork &self, int numIterations, int batchSize) {
+            // Release GIL during benchmark
+            py::gil_scoped_release release;
+            self.benchmark(numIterations, batchSize);
+        }, py::arg("numIterations") = 100, py::arg("batchSize") = 16)
+        .def("enableDebugMode", &nn::NeuralNetwork::enableDebugMode)
+        // Check if a neural network is implemented in C++ and won't trigger GIL issues
+        .def("is_gil_safe", [](nn::NeuralNetwork &self) {
+            // This heuristic checks if the network is one of our known C++ implementations
+            return dynamic_cast<nn::TorchNeuralNetwork*>(&self) != nullptr || 
+                   dynamic_cast<nn::RandomPolicyNetwork*>(&self) != nullptr;
+        });
     
     // Factory function
     m.def("createNeuralNetwork", &nn::NeuralNetwork::create,
@@ -197,7 +219,11 @@ PYBIND11_MODULE(_alphazero_cpp, m) {
             py::arg("config"),
             py::arg("nn") = nullptr,
             py::arg("tt") = nullptr)
-        .def("search", &mcts::ParallelMCTS::search)
+        .def("search", [](mcts::ParallelMCTS &self) {
+            // Release GIL during the computationally intensive search
+            py::gil_scoped_release release;
+            self.search();
+        })
         .def("selectAction", &mcts::ParallelMCTS::selectAction,
             py::arg("isTraining") = false,
             py::arg("temperature") = 1.0f)
@@ -277,10 +303,14 @@ PYBIND11_MODULE(_alphazero_cpp, m) {
             py::arg("numGames") = 100,
             py::arg("numSimulations") = 800,
             py::arg("numThreads") = 4)
-        .def("generateGames", &selfplay::SelfPlayManager::generateGames,
-            py::arg("gameType"),
-            py::arg("boardSize") = 0,
-            py::arg("useVariantRules") = false)
+        .def("generateGames", [](selfplay::SelfPlayManager &self, 
+                                core::GameType gameType, 
+                                int boardSize, 
+                                bool useVariantRules) {
+            // Release GIL during the long-running self-play process
+            py::gil_scoped_release release;
+            return self.generateGames(gameType, boardSize, useVariantRules);
+        }, py::arg("gameType"), py::arg("boardSize") = 0, py::arg("useVariantRules") = false)
         .def("setExplorationParams", &selfplay::SelfPlayManager::setExplorationParams,
             py::arg("dirichletAlpha") = 0.03f,
             py::arg("dirichletEpsilon") = 0.25f,

@@ -109,7 +109,20 @@ struct PendingSimulation {
     float value = 0.0f;
 };
 
-// Parallel MCTS implementation
+/**
+ * @brief Parallel MCTS implementation
+ * 
+ * This class implements a parallel Monte Carlo Tree Search algorithm that can
+ * run multiple simulations concurrently and batch neural network evaluations.
+ * 
+ * WARNING: Using a Python-backed neural network with this class will limit parallelism
+ * due to the Python Global Interpreter Lock (GIL). For best performance, use a
+ * C++-based neural network implementation like TorchNeuralNetwork that directly
+ * uses LibTorch without Python bindings.
+ * 
+ * If you need to use a Python model, export it to LibTorch format first to achieve
+ * proper parallelism.
+ */
 class ParallelMCTS {
 public:
     // Constructor
@@ -221,8 +234,8 @@ private:
     // FeatureMap cache
     std::vector<std::vector<std::vector<float>>> getCachedFeatureMap(const core::IGameState& state);
     void cacheFeatureMap(uint64_t hash, const std::vector<std::vector<std::vector<float>>>& featureMap);
-    
-    // Private data
+
+// Private data
     MCTSConfig config_;
     std::unique_ptr<MCTSNode> rootNode_;
     std::unique_ptr<core::IGameState> rootState_;
