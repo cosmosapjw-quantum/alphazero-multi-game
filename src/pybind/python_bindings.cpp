@@ -36,6 +36,13 @@ PYBIND11_MODULE(_alphazero_cpp, m) {
         .value("UCB", mcts::MCTSNodeSelection::UCB)
         .value("PUCT", mcts::MCTSNodeSelection::PUCT)
         .value("PROGRESSIVE_BIAS", mcts::MCTSNodeSelection::PROGRESSIVE_BIAS)
+        .value("RAVE", mcts::MCTSNodeSelection::RAVE)
+        .export_values();
+    
+    py::enum_<mcts::MCTSSearchMode>(m, "MCTSSearchMode")
+        .value("SERIAL", mcts::MCTSSearchMode::SERIAL)
+        .value("PARALLEL", mcts::MCTSSearchMode::PARALLEL)
+        .value("BATCHED", mcts::MCTSSearchMode::BATCHED)
         .export_values();
     
     // Game State interface
@@ -95,6 +102,62 @@ PYBIND11_MODULE(_alphazero_cpp, m) {
         py::arg("boardSize") = 0,
         py::arg("useGpu") = true);
     
+    // MCTS Config struct
+    py::class_<mcts::MCTSConfig>(m, "MCTSConfig")
+        .def(py::init<>())
+        .def_readwrite("numThreads", &mcts::MCTSConfig::numThreads)
+        .def_readwrite("numSimulations", &mcts::MCTSConfig::numSimulations)
+        .def_readwrite("cPuct", &mcts::MCTSConfig::cPuct)
+        .def_readwrite("fpuReduction", &mcts::MCTSConfig::fpuReduction)
+        .def_readwrite("virtualLoss", &mcts::MCTSConfig::virtualLoss)
+        .def_readwrite("maxSearchDepth", &mcts::MCTSConfig::maxSearchDepth)
+        .def_readwrite("useDirichletNoise", &mcts::MCTSConfig::useDirichletNoise)
+        .def_readwrite("dirichletAlpha", &mcts::MCTSConfig::dirichletAlpha)
+        .def_readwrite("dirichletEpsilon", &mcts::MCTSConfig::dirichletEpsilon)
+        .def_readwrite("useBatchInference", &mcts::MCTSConfig::useBatchInference)
+        .def_readwrite("useTemporalDifference", &mcts::MCTSConfig::useTemporalDifference)
+        .def_readwrite("tdLambda", &mcts::MCTSConfig::tdLambda)
+        .def_readwrite("useProgressiveWidening", &mcts::MCTSConfig::useProgressiveWidening)
+        .def_readwrite("minVisitsForWidening", &mcts::MCTSConfig::minVisitsForWidening)
+        .def_readwrite("progressiveWideningBase", &mcts::MCTSConfig::progressiveWideningBase)
+        .def_readwrite("progressiveWideningExponent", &mcts::MCTSConfig::progressiveWideningExponent)
+        .def_readwrite("selectionStrategy", &mcts::MCTSConfig::selectionStrategy)
+        .def_readwrite("batchSize", &mcts::MCTSConfig::batchSize)
+        .def_readwrite("useBatchedMCTS", &mcts::MCTSConfig::useBatchedMCTS)
+        .def_readwrite("batchTimeoutMs", &mcts::MCTSConfig::batchTimeoutMs)
+        .def_readwrite("searchMode", &mcts::MCTSConfig::searchMode);
+    
+    // MCTS Stats struct
+    py::class_<mcts::MCTSStats>(m, "MCTSStats")
+        .def(py::init<>())
+        .def_property_readonly("nodesCreated", [](const mcts::MCTSStats& stats) {
+            return stats.nodesCreated.load();
+        })
+        .def_property_readonly("nodesExpanded", [](const mcts::MCTSStats& stats) {
+            return stats.nodesExpanded.load();
+        })
+        .def_property_readonly("nodesTotalVisits", [](const mcts::MCTSStats& stats) {
+            return stats.nodesTotalVisits.load();
+        })
+        .def_property_readonly("simulationCount", [](const mcts::MCTSStats& stats) {
+            return stats.simulationCount.load();
+        })
+        .def_property_readonly("evaluationCalls", [](const mcts::MCTSStats& stats) {
+            return stats.evaluationCalls.load();
+        })
+        .def_property_readonly("cacheHits", [](const mcts::MCTSStats& stats) {
+            return stats.cacheHits.load();
+        })
+        .def_property_readonly("cacheMisses", [](const mcts::MCTSStats& stats) {
+            return stats.cacheMisses.load();
+        })
+        .def_property_readonly("batchedEvaluations", [](const mcts::MCTSStats& stats) {
+            return stats.batchedEvaluations.load();
+        })
+        .def_property_readonly("totalBatches", [](const mcts::MCTSStats& stats) {
+            return stats.totalBatches.load();
+        });
+    
     // MCTS implementation
     py::class_<mcts::MCTSNode>(m, "MCTSNode")
         .def("getUcbScore", &mcts::MCTSNode::getUcbScore)
@@ -129,6 +192,11 @@ PYBIND11_MODULE(_alphazero_cpp, m) {
             py::arg("cPuct") = 1.5f,
             py::arg("fpuReduction") = 0.0f,
             py::arg("virtualLoss") = 3)
+        .def(py::init<const core::IGameState&, const mcts::MCTSConfig&, nn::NeuralNetwork*, mcts::TranspositionTable*>(),
+            py::arg("rootState"),
+            py::arg("config"),
+            py::arg("nn") = nullptr,
+            py::arg("tt") = nullptr)
         .def("search", &mcts::ParallelMCTS::search)
         .def("selectAction", &mcts::ParallelMCTS::selectAction,
             py::arg("isTraining") = false,
@@ -148,6 +216,10 @@ PYBIND11_MODULE(_alphazero_cpp, m) {
         .def("setNeuralNetwork", &mcts::ParallelMCTS::setNeuralNetwork)
         .def("setTranspositionTable", &mcts::ParallelMCTS::setTranspositionTable)
         .def("setSelectionStrategy", &mcts::ParallelMCTS::setSelectionStrategy)
+        .def("setConfig", &mcts::ParallelMCTS::setConfig)
+        .def("enableBatchedMCTS", &mcts::ParallelMCTS::enableBatchedMCTS)
+        .def("setBatchSize", &mcts::ParallelMCTS::setBatchSize)
+        .def("setBatchTimeout", &mcts::ParallelMCTS::setBatchTimeout)
         .def("setDeterministicMode", &mcts::ParallelMCTS::setDeterministicMode)
         .def("setDebugMode", &mcts::ParallelMCTS::setDebugMode)
         .def("printSearchStats", &mcts::ParallelMCTS::printSearchStats)

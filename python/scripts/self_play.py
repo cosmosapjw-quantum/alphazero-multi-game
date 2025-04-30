@@ -265,7 +265,7 @@ def run_self_play(args):
     # Calculate some statistics
     total_moves = 0
     for game in games:
-        total_moves += len(game.getMoveHistory())
+        total_moves += len(game.getMoves())
     
     print(f"Total moves: {total_moves}")
     print(f"Average moves per game: {total_moves / len(games):.1f}")

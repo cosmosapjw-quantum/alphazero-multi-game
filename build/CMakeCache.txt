@@ -964,9 +964,9 @@ FIND_PACKAGE_MESSAGE_DETAILS_CUDAToolkit:INTERNAL=[/usr/local/cuda-12.4/include]
 //Details about finding CUDNN
 FIND_PACKAGE_MESSAGE_DETAILS_CUDNN:INTERNAL=[/usr/lib/x86_64-linux-gnu/libcudnn.so][/usr/include][v..()]
 //Details about finding PYTHON
-FIND_PACKAGE_MESSAGE_DETAILS_PYTHON:INTERNAL=/home/cosmos/anaconda3/envs/alphazero_env/bin/python33.11.12
+FIND_PACKAGE_MESSAGE_DETAILS_PYTHON:INTERNAL=/home/cosmos/anaconda3/envs/alphazero_env/bin/python33.11
 //Details about finding Python
-FIND_PACKAGE_MESSAGE_DETAILS_Python:INTERNAL=[/home/cosmos/anaconda3/envs/alphazero_env/bin/python3][cfound components: Interpreter ][v3.11.12()]
+FIND_PACKAGE_MESSAGE_DETAILS_Python:INTERNAL=[/home/cosmos/anaconda3/envs/alphazero_env/bin/python3][cfound components: Interpreter ][v3.11.0()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //Details about finding Torch
@@ -989,7 +989,7 @@ PYTHON_LIBRARY-ADVANCED:INTERNAL=1
 PYTHON_MODULE_DEBUG_POSTFIX:INTERNAL=
 PYTHON_MODULE_EXTENSION:INTERNAL=.cpython-311-x86_64-linux-gnu.so
 PYTHON_MODULE_PREFIX:INTERNAL=
-PYTHON_VERSION:INTERNAL=3.11.12
+PYTHON_VERSION:INTERNAL=3.11.0
 PYTHON_VERSION_MAJOR:INTERNAL=3
 PYTHON_VERSION_MINOR:INTERNAL=11
 Python_ADDITIONAL_VERSIONS:INTERNAL=3.12;3.11;3.10;3.9;3.8;3.7
@@ -1003,7 +1003,7 @@ _PYBIND11_CROSSCOMPILING:INTERNAL=OFF
 _Python:INTERNAL=PYTHON
 _Python_EXECUTABLE:INTERNAL=/home/cosmos/anaconda3/envs/alphazero_env/bin/python3
 //Python Properties
-_Python_INTERPRETER_PROPERTIES:INTERNAL=Python;3;11;12;64;;cpython-311-x86_64-linux-gnu;/home/cosmos/anaconda3/envs/alphazero_env/lib/python3.11;/home/cosmos/anaconda3/envs/alphazero_env/lib/python3.11;/home/cosmos/anaconda3/envs/alphazero_env/lib/python3.11/site-packages;/home/cosmos/anaconda3/envs/alphazero_env/lib/python3.11/site-packages
+_Python_INTERPRETER_PROPERTIES:INTERNAL=Python;3;11;0;64;;cpython-311-x86_64-linux-gnu;/home/cosmos/anaconda3/envs/alphazero_env/lib/python3.11;/home/cosmos/anaconda3/envs/alphazero_env/lib/python3.11;/home/cosmos/anaconda3/envs/alphazero_env/lib/python3.11/site-packages;/home/cosmos/anaconda3/envs/alphazero_env/lib/python3.11/site-packages
 _Python_INTERPRETER_SIGNATURE:INTERNAL=200d6d0b8eebcb6c8da2e492ed38fc3c
 //Result of TRY_COMPILE
 compile_result:INTERNAL=TRUE
