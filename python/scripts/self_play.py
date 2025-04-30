@@ -2,7 +2,8 @@
 """
 Self-play data generation for AlphaZero training.
 
-This script generates self-play games using the specified model.
+This script generates self-play games using the specified model with
+support for GPU batching to significantly improve performance.
 
 Usage:
     python self_play.py [options]
@@ -21,6 +22,11 @@ Options:
     --dirichlet-alpha A   Dirichlet noise alpha (default: 0.03)
     --dirichlet-epsilon E Dirichlet noise weight (default: 0.25)
     --variant             Use variant rules (Renju, Chess960, Chinese)
+    --batch-size SIZE     Batch size for neural network inference (default: 8)
+    --batch-timeout MS    Timeout for batch completion in milliseconds (default: 100)
+    --no-gpu              Disable GPU acceleration
+    --no-batched-search   Disable batched MCTS search
+    --fp16                Use FP16 precision (faster but less accurate)
 """
 
 import os
@@ -38,11 +44,16 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'build', 'src', 'pybind'))
 sys.path.insert(0, build_dir)
 
-from alphazero.models import DDWRandWireResNet
-import _alphazero_cpp as az
+try:
+    from alphazero.models import DDWRandWireResNet
+    import _alphazero_cpp as az
+except ImportError as e:
+    print(f"Import error: {e}")
+    print("Make sure the project is properly built and the Python package is installed.")
+    sys.exit(1)
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="AlphaZero Self-Play")
+    parser = argparse.ArgumentParser(description="AlphaZero Self-Play with GPU Batching")
     parser.add_argument("--model", type=str, default="",
                         help="Path to model file")
     parser.add_argument("--game", type=str, default="gomoku",
@@ -54,7 +65,7 @@ def parse_args():
                         help="Number of games to generate")
     parser.add_argument("--simulations", type=int, default=800,
                         help="Number of MCTS simulations per move")
-    parser.add_argument("--threads", type=int, default=4,
+    parser.add_argument("--threads", type=int, default=12,
                         help="Number of threads")
     parser.add_argument("--output-dir", type=str, default="data/games",
                         help="Output directory for game records")
@@ -72,17 +83,39 @@ def parse_args():
                         help="Use variant rules")
     parser.add_argument("--seed", type=int, default=None,
                         help="Random seed for reproducibility")
+    
+    # GPU and batching related arguments
+    parser.add_argument("--batch-size", type=int, default=64,
+                        help="Batch size for neural network inference")
+    parser.add_argument("--batch-timeout", type=int, default=100,
+                        help="Timeout for batch completion in milliseconds")
+    parser.add_argument("--no-gpu", action="store_true",
+                        help="Disable GPU acceleration")
+    parser.add_argument("--no-batched-search", action="store_true",
+                        help="Disable batched MCTS search")
+    parser.add_argument("--fp16", action="store_true",
+                        help="Use FP16 precision (faster but less accurate)")
+    
     return parser.parse_args()
 
 
 def create_neural_network(args, game_type, board_size):
-    """Create a neural network for self-play."""
+    """Create a neural network for self-play with GPU batching support."""
+    # Determine if GPU should be used
+    use_gpu = torch.cuda.is_available() and not args.no_gpu
+    
     # If model path is provided, try to load it
     if args.model:
         try:
             # Try to load with the C++ API first
-            nn = az.createNeuralNetwork(args.model, game_type, board_size)
+            nn = az.createNeuralNetwork(args.model, game_type, board_size, use_gpu)
             print(f"Loaded model from {args.model} (C++ API)")
+            if use_gpu:
+                print(f"Using GPU acceleration with device: {nn.getDeviceInfo()}")
+                print(f"Average inference time: {nn.getInferenceTimeMs():.2f} ms")
+                print(f"Batch size: {nn.getBatchSize()}")
+            else:
+                print(f"Using CPU: {nn.getDeviceInfo()}")
             return nn
         except Exception as e:
             print(f"Failed to load model with C++ API: {e}")
@@ -96,29 +129,54 @@ def create_neural_network(args, game_type, board_size):
                 action_size = game_state.getActionSpaceSize()
                 
                 # Create and load model
-                device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+                device = torch.device("cuda" if use_gpu else "cpu")
                 model = DDWRandWireResNet(input_channels, action_size)
                 model.load_state_dict(torch.load(args.model, map_location=device))
                 model = model.to(device)
                 model.eval()
                 
-                # Create wrapper for the PyTorch model
+                # Enable FP16 if requested and GPU is available
+                if args.fp16 and use_gpu and hasattr(torch.cuda, 'amp'):
+                    print("Using FP16 precision for faster inference")
+                
+                # Create wrapper for the PyTorch model with batch support
                 class TorchNeuralNetwork(az.NeuralNetwork):
-                    def __init__(self, model, device):
+                    def __init__(self, model, device, batch_size=8, use_fp16=False):
                         super().__init__()
                         self.model = model
                         self.device = device
+                        self.batch_size = batch_size
+                        self.use_fp16 = use_fp16 and device.type == 'cuda' and hasattr(torch.cuda, 'amp')
+                        self.inference_times = []
                     
                     def predict(self, state):
                         # Convert state tensor to PyTorch tensor
                         state_tensor = torch.FloatTensor(state.getEnhancedTensorRepresentation())
                         state_tensor = state_tensor.unsqueeze(0).to(self.device)
                         
+                        # Use FP16 if enabled
+                        if self.use_fp16:
+                            state_tensor = state_tensor.half()
+                        
+                        # Measure inference time
+                        start_time = time.time()
+                        
                         # Forward pass
                         with torch.no_grad():
-                            policy_logits, value = self.model(state_tensor)
+                            if self.use_fp16:
+                                with torch.cuda.amp.autocast():
+                                    policy_logits, value = self.model(state_tensor)
+                            else:
+                                policy_logits, value = self.model(state_tensor)
+                            
                             policy = torch.softmax(policy_logits, dim=1)[0].cpu().numpy()
                             value = value.item()
+                        
+                        # Record inference time
+                        end_time = time.time()
+                        self.inference_times.append((end_time - start_time) * 1000)  # ms
+                        if len(self.inference_times) > 100:
+                            self.inference_times.pop(0)
                         
                         return policy, value
                     
@@ -134,49 +192,113 @@ def create_neural_network(args, game_type, board_size):
                         
                         batch_tensor = torch.stack(state_tensors).to(self.device)
                         
+                        # Use FP16 if enabled
+                        if self.use_fp16:
+                            batch_tensor = batch_tensor.half()
+                        
+                        # Measure inference time
+                        start_time = time.time()
+                        
                         # Forward pass
                         with torch.no_grad():
-                            policy_logits, value_tensor = self.model(batch_tensor)
+                            if self.use_fp16:
+                                with torch.cuda.amp.autocast():
+                                    policy_logits, value_tensor = self.model(batch_tensor)
+                            else:
+                                policy_logits, value_tensor = self.model(batch_tensor)
+                            
                             policy_probs = torch.softmax(policy_logits, dim=1).cpu().numpy()
                             value_list = value_tensor.squeeze(-1).cpu().numpy()
                         
-                        # Set output
+                        # Record inference time
+                        end_time = time.time()
+                        self.inference_times.append((end_time - start_time) * 1000 / batch_size)  # ms per sample
+                        if len(self.inference_times) > 100:
+                            self.inference_times.pop(0)
+                        
+                        # Clear existing data
+                        policies.clear()
+                        values.clear()
+                        
+                        # Fill output vectors
                         for i in range(batch_size):
-                            policies[i] = policy_probs[i].tolist()
-                            values[i] = value_list[i]
+                            policies.append(policy_probs[i].tolist())
+                            values.append(float(value_list[i]))
                     
                     def isGpuAvailable(self):
-                        return torch.cuda.is_available()
+                        return torch.cuda.is_available() and self.device.type == 'cuda'
                     
                     def getDeviceInfo(self):
-                        if torch.cuda.is_available():
-                            return f"GPU: {torch.cuda.get_device_name(0)}"
+                        if self.isGpuAvailable():
+                            gpu_name = torch.cuda.get_device_name(0)
+                            precision = "FP16" if self.use_fp16 else "FP32"
+                            return f"GPU: {gpu_name} ({precision})"
                         else:
                             return "CPU"
                     
                     def getInferenceTimeMs(self):
-                        return 0.0
+                        if not self.inference_times:
+                            return 0.0
+                        return sum(self.inference_times) / len(self.inference_times)
                     
                     def getBatchSize(self):
-                        return 16
+                        return self.batch_size
                     
                     def getModelInfo(self):
-                        return "PyTorch DDWRandWireResNet"
+                        return f"PyTorch DDWRandWireResNet ({self.model.num_nodes} nodes)"
                     
                     def getModelSizeBytes(self):
-                        return sum(p.numel() * 4 for p in self.model.parameters())
+                        return sum(p.numel() * (2 if self.use_fp16 else 4) for p in self.model.parameters())
                     
                     def benchmark(self, numIterations=100, batchSize=16):
-                        pass
+                        if not self.isGpuAvailable():
+                            print("Benchmarking skipped - GPU not available")
+                            return
+                        
+                        # Create a dummy state
+                        state = states[0].get() if len(states) > 0 else None
+                        if state is None:
+                            print("Cannot benchmark - no valid state available")
+                            return
+                        
+                        # Warmup
+                        for _ in range(10):
+                            self.predict(state)
+                        
+                        # Single inference benchmark
+                        start_time = time.time()
+                        for _ in range(numIterations):
+                            self.predict(state)
+                        end_time = time.time()
+                        single_time = (end_time - start_time) * 1000 / numIterations
+                        
+                        print(f"Single inference: {single_time:.2f} ms")
+                        
+                        # Batch inference benchmark
+                        test_states = [state] * batchSize
+                        test_policies = []
+                        test_values = []
+                        
+                        start_time = time.time()
+                        for _ in range(numIterations // batchSize + 1):
+                            self.predictBatch(test_states, test_policies, test_values)
+                        end_time = time.time()
+                        batch_time = (end_time - start_time) * 1000 / numIterations
+                        
+                        print(f"Batch inference: {batch_time:.2f} ms per sample (batch size: {batchSize})")
+                        print(f"Speedup: {single_time / batch_time:.2f}x")
                     
                     def enableDebugMode(self, enable):
                         pass
-                    
-                    def printModelSummary(self):
-                        pass
                 
-                nn = TorchNeuralNetwork(model, device)
+                nn = TorchNeuralNetwork(model, device, args.batch_size, args.fp16)
                 print(f"Loaded model from {args.model} (PyTorch)")
+                if device.type == 'cuda':
+                    print(f"Using GPU acceleration with device: {torch.cuda.get_device_name(0)}")
+                    if args.fp16:
+                        print("Using FP16 precision for faster inference")
+                else:
+                    print("Using CPU")
                 return nn
             except Exception as e:
                 print(f"Failed to load model with PyTorch: {e}")
@@ -189,7 +311,7 @@ def create_neural_network(args, game_type, board_size):
 
 
 def run_self_play(args):
-    """Run self-play games."""
+    """Run self-play games with GPU batching support."""
     # Set random seed for reproducibility
     if args.seed is not None:
         random.seed(args.seed)
@@ -222,6 +344,10 @@ def run_self_play(args):
     # Create output directory if it doesn't exist
     os.makedirs(args.output_dir, exist_ok=True)
     
+    # Determine if GPU and batched search should be used
+    use_gpu = torch.cuda.is_available() and not args.no_gpu
+    use_batched_search = use_gpu and not args.no_batched_search
+    
     # Create neural network
     neural_network = create_neural_network(args, game_type, board_size)
     
@@ -242,62 +368,119 @@ def run_self_play(args):
     # Set output directory
     self_play.setSaveGames(True, args.output_dir)
     
-    # Set progress callback
-    def progress_callback(game, move, total_games, total_moves):
-        sys.stdout.write(f"\rGame {game+1}/{total_games}, Move {move+1}")
-        sys.stdout.flush()
-    
     # Generate games
-    print(f"Generating {args.num_games} self-play games...")
-    print(f"Game type: {args.game}")
-    print(f"Board size: {board_size}")
-    print(f"MCTS simulations: {args.simulations}")
+    print(f"\nGenerating {args.num_games} self-play games...")
+    print(f"Game: {args.game.upper()}, Board size: {board_size}x{board_size}")
+    print(f"MCTS simulations per move: {args.simulations}")
     print(f"Threads: {args.threads}")
+    print(f"Using GPU: {use_gpu}")
+    print(f"Using batched search: {use_batched_search}")
+    print(f"Batch size: {args.batch_size}")
     print(f"Output directory: {args.output_dir}")
     
+    # Performance monitoring variables
     start_time = time.time()
-    games = self_play.generateGames(game_type, board_size, args.variant)
+    last_check_time = start_time
+    last_check_games = 0
+    
+    try:
+        games = self_play.generateGames(game_type, board_size, args.variant)
+        
+        # Print periodic progress updates
+        current_time = time.time()
+        if current_time - last_check_time > 10:  # Update every 10 seconds
+            games_completed = len(games) - last_check_games
+            elapsed = current_time - last_check_time
+            
+            if games_completed > 0:
+                print(f"Progress: {len(games)}/{args.num_games} games, " +
+                      f"Rate: {games_completed / elapsed:.2f} games/sec")
+            
+            last_check_time = current_time
+            last_check_games = len(games)
+            
+    except KeyboardInterrupt:
+        print("\nSelf-play interrupted. Saving completed games...")
+        # In case of interruption, we still process any completed games
+        games = []  # Reset to empty list since we can't access interrupted games
+    
     end_time = time.time()
     
     # Print results
     print(f"\nGenerated {len(games)} games in {end_time - start_time:.2f} seconds")
     
-    # Calculate some statistics
+    # If no games were completed, exit
+    if not games:
+        print("No complete games were generated.")
+        return
+    
+    # Calculate statistics
     total_moves = 0
     for game in games:
         total_moves += len(game.getMoves())
     
-    print(f"Total moves: {total_moves}")
-    print(f"Average moves per game: {total_moves / len(games):.1f}")
-    print(f"Average time per game: {(end_time - start_time) / len(games):.2f} seconds")
-    print(f"Average moves per second: {total_moves / (end_time - start_time):.1f}")
-    
-    # Save a metadata file with the run information
-    metadata = {
-        "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
-        "game": args.game,
-        "board_size": board_size,
-        "num_games": args.num_games,
-        "simulations": args.simulations,
-        "threads": args.threads,
-        "temperature": args.temperature,
-        "temp_drop": args.temp_drop,
-        "final_temp": args.final_temp,
-        "dirichlet_alpha": args.dirichlet_alpha,
-        "dirichlet_epsilon": args.dirichlet_epsilon,
-        "variant": args.variant,
-        "model": args.model,
-        "total_moves": total_moves,
-        "avg_moves_per_game": total_moves / len(games),
-        "total_time": end_time - start_time,
-        "avg_time_per_game": (end_time - start_time) / len(games),
-        "avg_moves_per_second": total_moves / (end_time - start_time)
-    }
-    
-    with open(os.path.join(args.output_dir, "metadata.json"), "w") as f:
-        json.dump(metadata, f, indent=2)
-    
-    print(f"Metadata saved to {os.path.join(args.output_dir, 'metadata.json')}")
+    # Handle case where games were completed
+    if len(games) > 0:
+        avg_moves_per_game = total_moves / len(games)
+        avg_time_per_game = (end_time - start_time) / len(games)
+        avg_moves_per_second = total_moves / (end_time - start_time)
+        
+        print(f"Total moves: {total_moves}")
+        print(f"Average moves per game: {avg_moves_per_game:.1f}")
+        print(f"Average time per game: {avg_time_per_game:.2f} seconds")
+        print(f"Average moves per second: {avg_moves_per_second:.1f}")
+        
+        # Performance details if neural network is available
+        if neural_network and hasattr(neural_network, 'getInferenceTimeMs'):
+            inference_time = neural_network.getInferenceTimeMs()
+            if inference_time > 0:
+                print(f"Average neural network inference time: {inference_time:.2f} ms")
+                percentage_time = inference_time * avg_moves_per_game * args.simulations / (avg_time_per_game * 1000) * 100
+                print(f"Neural network time: {percentage_time:.1f}% of total")
+        
+        # Save a metadata file with the run information
+        metadata = {
+            "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+            "game": args.game,
+            "board_size": board_size,
+            "num_games": len(games),
+            "simulations": args.simulations,
+            "threads": args.threads,
+            "temperature": args.temperature,
+            "temp_drop": args.temp_drop,
+            "final_temp": args.final_temp,
+            "dirichlet_alpha": args.dirichlet_alpha,
+            "dirichlet_epsilon": args.dirichlet_epsilon,
+            "variant": args.variant,
+            "model": args.model,
+            "total_moves": total_moves,
+            "avg_moves_per_game": avg_moves_per_game,
+            "total_time": end_time - start_time,
+            "avg_time_per_game": avg_time_per_game,
+            "avg_moves_per_second": avg_moves_per_second,
+            "use_gpu": use_gpu,
+            "use_batched_search": use_batched_search,
+            "batch_size": args.batch_size,
+            "batch_timeout": args.batch_timeout,
+            "fp16": args.fp16
+        }
+        
+        # Add neural network information if available
+        if neural_network:
+            if hasattr(neural_network, 'getInferenceTimeMs'):
+                metadata["inference_time_ms"] = neural_network.getInferenceTimeMs()
+            if hasattr(neural_network, 'getDeviceInfo'):
+                metadata["device_info"] = neural_network.getDeviceInfo()
+            if hasattr(neural_network, 'getModelInfo'):
+                metadata["model_info"] = neural_network.getModelInfo()
+        
+        metadata_path = os.path.join(args.output_dir, "metadata.json")
+        with open(metadata_path, "w") as f:
+            json.dump(metadata, f, indent=2)
+        
+        print(f"Metadata saved to {metadata_path}")
+    else:
+        print("No statistics to calculate as no games were completed.")
 
 
 if __name__ == "__main__":

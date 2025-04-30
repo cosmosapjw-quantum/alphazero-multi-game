@@ -244,7 +244,7 @@ private:
     
     // Feature map cache
     std::unordered_map<uint64_t, std::vector<std::vector<std::vector<float>>>> featureMapCache_;
-    std::mutex featureMapMutex_;
+    mutable std::mutex featureMapMutex_;
     
     // Random number generator
     mutable std::mt19937 rng_;

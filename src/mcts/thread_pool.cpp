@@ -1,5 +1,5 @@
 // thread_pool.cpp
-#include "alphazero/mcts/parallel_mcts.h"
+#include "alphazero/mcts/thread_pool.h"
 
 namespace alphazero {
 namespace mcts {
