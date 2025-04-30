@@ -1,0 +1,61 @@
+Performing C++ SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/cosmos/alphazero-multi-game/build_with_torch/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_7e989/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_7e989.dir/build.make CMakeFiles/cmTC_7e989.dir/build
+gmake[1]: Entering directory '/home/cosmos/alphazero-multi-game/build_with_torch/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_7e989.dir/src.cxx.o
+/home/cosmos/anaconda3/bin/x86_64-conda-linux-gnu-c++ -DCMAKE_HAVE_LIBC_PTHREAD  -fvisibility=default  -fPIE -std=c++17 -o CMakeFiles/cmTC_7e989.dir/src.cxx.o -c /home/cosmos/alphazero-multi-game/build_with_torch/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_7e989
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7e989.dir/link.txt --verbose=1
+/home/cosmos/anaconda3/bin/x86_64-conda-linux-gnu-c++ -fvisibility=default  -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/cosmos/anaconda3/lib -Wl,-rpath-link,/home/cosmos/anaconda3/lib -L/home/cosmos/anaconda3/lib  CMakeFiles/cmTC_7e989.dir/src.cxx.o -o cmTC_7e989 
+/home/cosmos/anaconda3/bin/../lib/gcc/x86_64-conda-linux-gnu/14.2.0/../../../../x86_64-conda-linux-gnu/bin/ld: CMakeFiles/cmTC_7e989.dir/src.cxx.o: in function `main':
+src.cxx:(.text+0x2f): undefined reference to `pthread_create'
+/home/cosmos/anaconda3/bin/../lib/gcc/x86_64-conda-linux-gnu/14.2.0/../../../../x86_64-conda-linux-gnu/bin/ld: src.cxx:(.text+0x3b): undefined reference to `pthread_detach'
+/home/cosmos/anaconda3/bin/../lib/gcc/x86_64-conda-linux-gnu/14.2.0/../../../../x86_64-conda-linux-gnu/bin/ld: src.cxx:(.text+0x47): undefined reference to `pthread_cancel'
+/home/cosmos/anaconda3/bin/../lib/gcc/x86_64-conda-linux-gnu/14.2.0/../../../../x86_64-conda-linux-gnu/bin/ld: src.cxx:(.text+0x58): undefined reference to `pthread_join'
+/home/cosmos/anaconda3/bin/../lib/gcc/x86_64-conda-linux-gnu/14.2.0/../../../../x86_64-conda-linux-gnu/bin/ld: src.cxx:(.text+0x6c): undefined reference to `pthread_atfork'
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [CMakeFiles/cmTC_7e989.dir/build.make:99: cmTC_7e989] Error 1
+gmake[1]: Leaving directory '/home/cosmos/alphazero-multi-game/build_with_torch/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:127: cmTC_7e989/fast] Error 2
+
+
+Source file was:
+#include <pthread.h>
+
+static void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_cancel(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/cosmos/alphazero-multi-game/build_with_torch/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_73954/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_73954.dir/build.make CMakeFiles/cmTC_73954.dir/build
+gmake[1]: Entering directory '/home/cosmos/alphazero-multi-game/build_with_torch/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_73954.dir/CheckFunctionExists.cxx.o
+/home/cosmos/anaconda3/bin/x86_64-conda-linux-gnu-c++   -fvisibility=default -DCHECK_FUNCTION_EXISTS=pthread_create -fPIE -std=c++17 -o CMakeFiles/cmTC_73954.dir/CheckFunctionExists.cxx.o -c /home/cosmos/alphazero-multi-game/build_with_torch/CMakeFiles/CheckLibraryExists/CheckFunctionExists.cxx
+Linking CXX executable cmTC_73954
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_73954.dir/link.txt --verbose=1
+/home/cosmos/anaconda3/bin/x86_64-conda-linux-gnu-c++ -fvisibility=default -DCHECK_FUNCTION_EXISTS=pthread_create -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/cosmos/anaconda3/lib -Wl,-rpath-link,/home/cosmos/anaconda3/lib -L/home/cosmos/anaconda3/lib  CMakeFiles/cmTC_73954.dir/CheckFunctionExists.cxx.o -o cmTC_73954  -lpthreads 
+/home/cosmos/anaconda3/bin/../lib/gcc/x86_64-conda-linux-gnu/14.2.0/../../../../x86_64-conda-linux-gnu/bin/ld: cannot find -lpthreads: No such file or directory
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [CMakeFiles/cmTC_73954.dir/build.make:99: cmTC_73954] Error 1
+gmake[1]: Leaving directory '/home/cosmos/alphazero-multi-game/build_with_torch/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:127: cmTC_73954/fast] Error 2
+
+
+

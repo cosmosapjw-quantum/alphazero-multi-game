@@ -1,0 +1,2 @@
+/home/cosmos/anaconda3/bin/x86_64-conda-linux-gnu-ar qc libalphazero_core.a CMakeFiles/alphazero_core.dir/AlphaZero.cpp.o CMakeFiles/alphazero_core.dir/igamestate.cpp.o CMakeFiles/alphazero_core.dir/game_factory.cpp.o CMakeFiles/alphazero_core.dir/zobrist_hash.cpp.o
+/home/cosmos/anaconda3/bin/x86_64-conda-linux-gnu-ranlib libalphazero_core.a

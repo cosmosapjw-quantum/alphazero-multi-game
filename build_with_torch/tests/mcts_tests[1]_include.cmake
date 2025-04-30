@@ -1,0 +1,5 @@
+if(EXISTS "/home/cosmos/alphazero-multi-game/build_with_torch/tests/mcts_tests[1]_tests.cmake")
+  include("/home/cosmos/alphazero-multi-game/build_with_torch/tests/mcts_tests[1]_tests.cmake")
+else()
+  add_test(mcts_tests_NOT_BUILT mcts_tests_NOT_BUILT)
+endif()

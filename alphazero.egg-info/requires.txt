@@ -1,0 +1,13 @@
+black>=22.3.0
+flake8>=4.0.1
+graphviz>=0.19.1
+isort>=5.10.1
+matplotlib>=3.5.0
+networkx>=2.6.3
+numpy>=1.20.0
+pydot>=1.4.2
+pytest-cov>=3.0.0
+pytest>=7.0.0
+tensorboard>=2.8.0
+torch>=2.0.0
+tqdm>=4.62.0

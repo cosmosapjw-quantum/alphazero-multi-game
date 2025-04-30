@@ -1,0 +1,2 @@
+/home/cosmos/anaconda3/bin/x86_64-conda-linux-gnu-ar qc libalphazero_elo.a CMakeFiles/alphazero_elo.dir/elo_tracker.cpp.o
+/home/cosmos/anaconda3/bin/x86_64-conda-linux-gnu-ranlib libalphazero_elo.a

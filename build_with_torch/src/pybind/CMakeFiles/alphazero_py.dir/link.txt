@@ -1,0 +1,2 @@
+/home/cosmos/anaconda3/bin/x86_64-conda-linux-gnu-ar qc alphazero.cpython-312-x86_64-linux-gnu.so CMakeFiles/alphazero_py.dir/python_bindings.cpp.o
+/home/cosmos/anaconda3/bin/x86_64-conda-linux-gnu-ranlib alphazero.cpython-312-x86_64-linux-gnu.so

@@ -1,0 +1,2 @@
+/home/cosmos/anaconda3/bin/x86_64-conda-linux-gnu-ar qc libalphazero_chess.a CMakeFiles/alphazero_chess.dir/chess_state.cpp.o CMakeFiles/alphazero_chess.dir/chess_rules.cpp.o CMakeFiles/alphazero_chess.dir/chess960.cpp.o
+/home/cosmos/anaconda3/bin/x86_64-conda-linux-gnu-ranlib libalphazero_chess.a

@@ -90,42 +90,44 @@ alphazero_py_OBJECTS = \
 # External object files for target alphazero_py
 alphazero_py_EXTERNAL_OBJECTS =
 
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: src/pybind/CMakeFiles/alphazero_py.dir/build.make
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: src/core/libalphazero_core.a
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: src/mcts/libalphazero_mcts.a
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: src/nn/libalphazero_nn.a
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: src/games/gomoku/libalphazero_gomoku.a
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: src/games/chess/libalphazero_chess.a
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: src/games/go/libalphazero_go.a
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: src/ui/libalphazero_ui.a
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: src/selfplay/libalphazero_selfplay.a
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: src/elo/libalphazero_elo.a
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: /opt/libtorch/lib/libc10.so
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: /opt/libtorch/lib/libkineto.a
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: /usr/local/cuda-12.4/lib64/libnvrtc.so
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: /opt/libtorch/lib/libc10_cuda.so
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: src/nn/libalphazero_nn.a
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: src/mcts/libalphazero_mcts.a
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: src/core/libalphazero_core.a
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: /opt/libtorch/lib/libtorch.so
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: /opt/libtorch/lib/libc10_cuda.so
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: /opt/libtorch/lib/libc10.so
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: /usr/local/cuda-12.4/lib64/libcudart.so
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: /opt/libtorch/lib/libc10.so
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: /opt/libtorch/lib/libkineto.a
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: /usr/local/cuda-12.4/lib64/libnvrtc.so
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: /usr/local/cuda-12.4/lib64/libnvToolsExt.so
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: /opt/libtorch/lib/libc10_cuda.so
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: /usr/lib/x86_64-linux-gnu/libcudnn.so
-src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so: src/pybind/CMakeFiles/alphazero_py.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared module alphazero.cpython-310-x86_64-linux-gnu.so"
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/pybind/CMakeFiles/alphazero_py.dir/build.make
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/core/libalphazero_core.a
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/mcts/libalphazero_mcts.a
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/nn/libalphazero_nn.a
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/games/gomoku/libalphazero_gomoku.a
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/games/chess/libalphazero_chess.a
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/games/go/libalphazero_go.a
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/ui/libalphazero_ui.a
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/selfplay/libalphazero_selfplay.a
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/elo/libalphazero_elo.a
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /opt/libtorch/lib/libc10.so
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /opt/libtorch/lib/libkineto.a
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /usr/local/cuda-12.4/lib64/libnvrtc.so
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /opt/libtorch/lib/libc10_cuda.so
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /usr/lib/x86_64-linux-gnu/libspdlog.so.1.9.2
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/nn/libalphazero_nn.a
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/mcts/libalphazero_mcts.a
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/core/libalphazero_core.a
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /opt/libtorch/lib/libtorch.so
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /opt/libtorch/lib/libc10_cuda.so
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /opt/libtorch/lib/libc10.so
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /usr/local/cuda-12.4/lib64/libcudart.so
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /opt/libtorch/lib/libc10.so
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /opt/libtorch/lib/libkineto.a
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /usr/local/cuda-12.4/lib64/libnvrtc.so
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /usr/local/cuda-12.4/lib64/libnvToolsExt.so
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /opt/libtorch/lib/libc10_cuda.so
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /usr/lib/x86_64-linux-gnu/libcudnn.so
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1
+src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so: src/pybind/CMakeFiles/alphazero_py.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared module alphazero.cpython-312-x86_64-linux-gnu.so"
 	cd /home/cosmos/alphazero-multi-game/build/src/pybind && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/alphazero_py.dir/link.txt --verbose=$(VERBOSE)
-	cd /home/cosmos/alphazero-multi-game/build/src/pybind && /usr/bin/strip /home/cosmos/alphazero-multi-game/build/src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so
-	cd /home/cosmos/alphazero-multi-game/build/src/pybind && /usr/bin/cmake -E copy_if_different /home/cosmos/alphazero-multi-game/build/src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so /home/cosmos/alphazero-multi-game/alphazero.cpython-310-x86_64-linux-gnu.so
+	cd /home/cosmos/alphazero-multi-game/build/src/pybind && /usr/bin/strip /home/cosmos/alphazero-multi-game/build/src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so
+	cd /home/cosmos/alphazero-multi-game/build/src/pybind && /usr/bin/cmake -E copy_if_different /home/cosmos/alphazero-multi-game/build/src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so /home/cosmos/alphazero-multi-game/alphazero.cpython-312-x86_64-linux-gnu.so
 
 # Rule to build all files generated by this target.
-src/pybind/CMakeFiles/alphazero_py.dir/build: src/pybind/alphazero.cpython-310-x86_64-linux-gnu.so
+src/pybind/CMakeFiles/alphazero_py.dir/build: src/pybind/alphazero.cpython-312-x86_64-linux-gnu.so
 .PHONY : src/pybind/CMakeFiles/alphazero_py.dir/build
 
 src/pybind/CMakeFiles/alphazero_py.dir/clean:

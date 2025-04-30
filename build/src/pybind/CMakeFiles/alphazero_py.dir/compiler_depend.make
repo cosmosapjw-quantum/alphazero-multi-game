@@ -7,15 +7,14 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
   /opt/libtorch/include/pybind11/detail/class.h \
   /opt/libtorch/include/pybind11/attr.h \
   /opt/libtorch/include/pybind11/detail/common.h \
-  /usr/include/python3.10/Python.h \
-  /usr/include/python3.10/patchlevel.h \
-  /usr/include/python3.10/pyconfig.h \
-  /usr/include/x86_64-linux-gnu/python3.10/pyconfig.h \
-  /usr/include/python3.10/pymacconfig.h \
-  /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h \
-  /usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h \
-  /usr/include/limits.h \
-  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+  /home/cosmos/anaconda3/include/python3.12/Python.h \
+  /home/cosmos/anaconda3/include/python3.12/patchlevel.h \
+  /home/cosmos/anaconda3/include/python3.12/pyconfig.h \
+  /home/cosmos/anaconda3/include/python3.12/pymacconfig.h \
+  /usr/include/c++/11/stdlib.h \
+  /usr/include/c++/11/cstdlib \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
   /usr/include/features.h \
   /usr/include/features-time64.h \
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -24,54 +23,21 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
   /usr/include/x86_64-linux-gnu/bits/long-double.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
-  /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
-  /usr/include/x86_64-linux-gnu/bits/local_lim.h \
-  /usr/include/linux/limits.h \
-  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
-  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
-  /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
-  /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
-  /usr/include/stdio.h \
-  /usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h \
-  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h \
-  /usr/include/x86_64-linux-gnu/bits/types.h \
-  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
-  /usr/include/x86_64-linux-gnu/bits/time64.h \
-  /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
-  /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
-  /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
-  /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
-  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
-  /usr/include/x86_64-linux-gnu/bits/floatn.h \
-  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
-  /usr/include/x86_64-linux-gnu/bits/stdio.h \
-  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
-  /usr/include/string.h \
-  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
-  /usr/include/strings.h \
-  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
-  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
-  /usr/include/errno.h \
-  /usr/include/x86_64-linux-gnu/bits/errno.h \
-  /usr/include/linux/errno.h \
-  /usr/include/x86_64-linux-gnu/asm/errno.h \
-  /usr/include/asm-generic/errno.h \
-  /usr/include/asm-generic/errno-base.h \
-  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
-  /usr/include/c++/11/stdlib.h \
-  /usr/include/c++/11/cstdlib \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h \
   /usr/include/c++/11/pstl/pstl_config.h \
   /usr/include/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h \
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
   /usr/include/x86_64-linux-gnu/sys/types.h \
+  /usr/include/x86_64-linux-gnu/bits/types.h \
+  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+  /usr/include/x86_64-linux-gnu/bits/time64.h \
   /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
@@ -100,6 +66,29 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/c++/11/bits/std_abs.h \
+  /usr/include/stdio.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
+  /usr/include/errno.h \
+  /usr/include/x86_64-linux-gnu/bits/errno.h \
+  /usr/include/linux/errno.h \
+  /usr/include/x86_64-linux-gnu/asm/errno.h \
+  /usr/include/asm-generic/errno.h \
+  /usr/include/asm-generic/errno-base.h \
+  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
   /usr/include/x86_64-linux-gnu/bits/environments.h \
@@ -110,12 +99,26 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h \
   /usr/include/assert.h \
-  /usr/include/python3.10/pyport.h \
+  /usr/include/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
+  /home/cosmos/anaconda3/include/python3.12/pyport.h \
   /usr/include/inttypes.h \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h \
   /usr/include/stdint.h \
-  /usr/include/x86_64-linux-gnu/bits/wchar.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h \
+  /usr/include/limits.h \
+  /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+  /usr/include/linux/limits.h \
+  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
+  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/c++/11/math.h \
   /usr/include/c++/11/cmath \
   /usr/include/c++/11/bits/cpp_type_traits.h \
@@ -184,79 +187,84 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
   /usr/include/x86_64-linux-gnu/bits/statx-generic.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_statx_timestamp.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_statx.h \
-  /usr/include/python3.10/exports.h \
-  /usr/include/python3.10/pymacro.h \
-  /usr/include/python3.10/pymath.h \
-  /usr/include/python3.10/pymem.h \
-  /usr/include/python3.10/cpython/pymem.h \
-  /usr/include/python3.10/object.h \
-  /usr/include/python3.10/cpython/object.h \
-  /usr/include/python3.10/objimpl.h \
-  /usr/include/python3.10/cpython/objimpl.h \
-  /usr/include/python3.10/typeslots.h \
-  /usr/include/python3.10/pyhash.h \
-  /usr/include/python3.10/cpython/pydebug.h \
-  /usr/include/python3.10/bytearrayobject.h \
-  /usr/include/python3.10/cpython/bytearrayobject.h \
-  /usr/include/python3.10/bytesobject.h \
-  /usr/include/python3.10/cpython/bytesobject.h \
-  /usr/include/python3.10/unicodeobject.h \
+  /home/cosmos/anaconda3/include/python3.12/exports.h \
+  /home/cosmos/anaconda3/include/python3.12/pymacro.h \
+  /home/cosmos/anaconda3/include/python3.12/pymath.h \
+  /home/cosmos/anaconda3/include/python3.12/pymem.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/pymem.h \
+  /home/cosmos/anaconda3/include/python3.12/pytypedefs.h \
+  /home/cosmos/anaconda3/include/python3.12/pybuffer.h \
+  /home/cosmos/anaconda3/include/python3.12/object.h \
+  /home/cosmos/anaconda3/include/python3.12/pystats.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/object.h \
+  /home/cosmos/anaconda3/include/python3.12/objimpl.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/objimpl.h \
+  /home/cosmos/anaconda3/include/python3.12/typeslots.h \
+  /home/cosmos/anaconda3/include/python3.12/pyhash.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/pydebug.h \
+  /home/cosmos/anaconda3/include/python3.12/bytearrayobject.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/bytearrayobject.h \
+  /home/cosmos/anaconda3/include/python3.12/bytesobject.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/bytesobject.h \
+  /home/cosmos/anaconda3/include/python3.12/unicodeobject.h \
   /usr/include/ctype.h \
-  /usr/include/wchar.h \
-  /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
-  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
-  /usr/include/python3.10/cpython/unicodeobject.h \
-  /usr/include/python3.10/longobject.h \
-  /usr/include/python3.10/longintrepr.h \
-  /usr/include/python3.10/boolobject.h \
-  /usr/include/python3.10/floatobject.h \
-  /usr/include/python3.10/complexobject.h \
-  /usr/include/python3.10/rangeobject.h \
-  /usr/include/python3.10/memoryobject.h \
-  /usr/include/python3.10/tupleobject.h \
-  /usr/include/python3.10/cpython/tupleobject.h \
-  /usr/include/python3.10/listobject.h \
-  /usr/include/python3.10/cpython/listobject.h \
-  /usr/include/python3.10/dictobject.h \
-  /usr/include/python3.10/cpython/dictobject.h \
-  /usr/include/python3.10/cpython/odictobject.h \
-  /usr/include/python3.10/enumobject.h \
-  /usr/include/python3.10/setobject.h \
-  /usr/include/python3.10/methodobject.h \
-  /usr/include/python3.10/cpython/methodobject.h \
-  /usr/include/python3.10/moduleobject.h \
-  /usr/include/python3.10/funcobject.h \
-  /usr/include/python3.10/classobject.h \
-  /usr/include/python3.10/fileobject.h \
-  /usr/include/python3.10/cpython/fileobject.h \
-  /usr/include/python3.10/pycapsule.h \
-  /usr/include/python3.10/code.h \
-  /usr/include/python3.10/cpython/code.h \
-  /usr/include/python3.10/pyframe.h \
-  /usr/include/python3.10/traceback.h \
-  /usr/include/python3.10/cpython/traceback.h \
-  /usr/include/python3.10/sliceobject.h \
-  /usr/include/python3.10/cellobject.h \
-  /usr/include/python3.10/iterobject.h \
-  /usr/include/python3.10/cpython/initconfig.h \
-  /usr/include/python3.10/genobject.h \
-  /usr/include/python3.10/pystate.h \
-  /usr/include/python3.10/cpython/pystate.h \
-  /usr/include/python3.10/abstract.h \
-  /usr/include/python3.10/cpython/abstract.h \
-  /usr/include/python3.10/descrobject.h \
-  /usr/include/python3.10/genericaliasobject.h \
-  /usr/include/python3.10/warnings.h \
-  /usr/include/python3.10/weakrefobject.h \
-  /usr/include/python3.10/structseq.h \
-  /usr/include/python3.10/namespaceobject.h \
-  /usr/include/python3.10/cpython/picklebufobject.h \
-  /usr/include/python3.10/cpython/pytime.h \
-  /usr/include/python3.10/codecs.h \
-  /usr/include/python3.10/pyerrors.h \
-  /usr/include/python3.10/cpython/pyerrors.h \
-  /usr/include/python3.10/pythread.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/unicodeobject.h \
+  /home/cosmos/anaconda3/include/python3.12/longobject.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/longobject.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/longintrepr.h \
+  /home/cosmos/anaconda3/include/python3.12/boolobject.h \
+  /home/cosmos/anaconda3/include/python3.12/floatobject.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/floatobject.h \
+  /home/cosmos/anaconda3/include/python3.12/complexobject.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/complexobject.h \
+  /home/cosmos/anaconda3/include/python3.12/rangeobject.h \
+  /home/cosmos/anaconda3/include/python3.12/memoryobject.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/memoryobject.h \
+  /home/cosmos/anaconda3/include/python3.12/tupleobject.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/tupleobject.h \
+  /home/cosmos/anaconda3/include/python3.12/listobject.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/listobject.h \
+  /home/cosmos/anaconda3/include/python3.12/dictobject.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/dictobject.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/odictobject.h \
+  /home/cosmos/anaconda3/include/python3.12/enumobject.h \
+  /home/cosmos/anaconda3/include/python3.12/setobject.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/setobject.h \
+  /home/cosmos/anaconda3/include/python3.12/methodobject.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/methodobject.h \
+  /home/cosmos/anaconda3/include/python3.12/moduleobject.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/funcobject.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/classobject.h \
+  /home/cosmos/anaconda3/include/python3.12/fileobject.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/fileobject.h \
+  /home/cosmos/anaconda3/include/python3.12/pycapsule.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/code.h \
+  /home/cosmos/anaconda3/include/python3.12/pyframe.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/pyframe.h \
+  /home/cosmos/anaconda3/include/python3.12/traceback.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/traceback.h \
+  /home/cosmos/anaconda3/include/python3.12/sliceobject.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/cellobject.h \
+  /home/cosmos/anaconda3/include/python3.12/iterobject.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/initconfig.h \
+  /home/cosmos/anaconda3/include/python3.12/pystate.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/pystate.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/genobject.h \
+  /home/cosmos/anaconda3/include/python3.12/descrobject.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/descrobject.h \
+  /home/cosmos/anaconda3/include/python3.12/genericaliasobject.h \
+  /home/cosmos/anaconda3/include/python3.12/warnings.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/warnings.h \
+  /home/cosmos/anaconda3/include/python3.12/weakrefobject.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/weakrefobject.h \
+  /home/cosmos/anaconda3/include/python3.12/structseq.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/picklebufobject.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/pytime.h \
+  /home/cosmos/anaconda3/include/python3.12/codecs.h \
+  /home/cosmos/anaconda3/include/python3.12/pyerrors.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/pyerrors.h \
+  /home/cosmos/anaconda3/include/python3.12/pythread.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/pythread.h \
   /usr/include/pthread.h \
   /usr/include/sched.h \
   /usr/include/x86_64-linux-gnu/bits/sched.h \
@@ -264,34 +272,36 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
   /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
   /usr/include/x86_64-linux-gnu/bits/setjmp.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
-  /usr/include/python3.10/context.h \
-  /usr/include/python3.10/modsupport.h \
-  /usr/include/python3.10/compile.h \
-  /usr/include/python3.10/cpython/compile.h \
-  /usr/include/python3.10/pythonrun.h \
-  /usr/include/python3.10/cpython/pythonrun.h \
-  /usr/include/python3.10/pylifecycle.h \
-  /usr/include/python3.10/cpython/pylifecycle.h \
-  /usr/include/python3.10/ceval.h \
-  /usr/include/python3.10/cpython/ceval.h \
-  /usr/include/python3.10/sysmodule.h \
-  /usr/include/python3.10/cpython/sysmodule.h \
-  /usr/include/python3.10/osmodule.h \
-  /usr/include/python3.10/intrcheck.h \
-  /usr/include/python3.10/import.h \
-  /usr/include/python3.10/cpython/import.h \
-  /usr/include/python3.10/bltinmodule.h \
-  /usr/include/python3.10/eval.h \
-  /usr/include/python3.10/cpython/pyctype.h \
-  /usr/include/python3.10/pystrtod.h \
-  /usr/include/python3.10/pystrcmp.h \
-  /usr/include/python3.10/fileutils.h \
-  /usr/include/python3.10/cpython/fileutils.h \
-  /usr/include/python3.10/cpython/pyfpe.h \
-  /usr/include/python3.10/tracemalloc.h \
-  /usr/include/python3.10/frameobject.h \
-  /usr/include/python3.10/cpython/frameobject.h \
-  /usr/include/python3.10/pythread.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/context.h \
+  /home/cosmos/anaconda3/include/python3.12/modsupport.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/modsupport.h \
+  /home/cosmos/anaconda3/include/python3.12/compile.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/compile.h \
+  /home/cosmos/anaconda3/include/python3.12/pythonrun.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/pythonrun.h \
+  /home/cosmos/anaconda3/include/python3.12/pylifecycle.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/pylifecycle.h \
+  /home/cosmos/anaconda3/include/python3.12/ceval.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/ceval.h \
+  /home/cosmos/anaconda3/include/python3.12/sysmodule.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/sysmodule.h \
+  /home/cosmos/anaconda3/include/python3.12/osmodule.h \
+  /home/cosmos/anaconda3/include/python3.12/intrcheck.h \
+  /home/cosmos/anaconda3/include/python3.12/import.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/import.h \
+  /home/cosmos/anaconda3/include/python3.12/abstract.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/abstract.h \
+  /home/cosmos/anaconda3/include/python3.12/bltinmodule.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/pyctype.h \
+  /home/cosmos/anaconda3/include/python3.12/pystrtod.h \
+  /home/cosmos/anaconda3/include/python3.12/pystrcmp.h \
+  /home/cosmos/anaconda3/include/python3.12/fileutils.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/fileutils.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/pyfpe.h \
+  /home/cosmos/anaconda3/include/python3.12/tracemalloc.h \
+  /home/cosmos/anaconda3/include/python3.12/frameobject.h \
+  /home/cosmos/anaconda3/include/python3.12/cpython/frameobject.h \
+  /home/cosmos/anaconda3/include/python3.12/pythread.h \
   /usr/include/c++/11/cstddef \
   /usr/include/c++/11/cstring \
   /usr/include/c++/11/exception \
@@ -517,8 +527,6 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
 
 ../include/alphazero/selfplay/game_record.h:
 
-../include/alphazero/nn/neural_network.h:
-
 /usr/include/c++/11/bits/quoted_string.h:
 
 /usr/include/c++/11/bits/locale_conv.h:
@@ -529,7 +537,11 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
 
 /usr/include/c++/11/bits/locale_facets_nonio.h:
 
+../include/alphazero/mcts/mcts_node.h:
+
 /usr/include/c++/11/bits/random.h:
+
+/usr/include/c++/11/atomic:
 
 /usr/include/libintl.h:
 
@@ -545,13 +557,9 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
 
 /usr/include/c++/11/bits/stl_numeric.h:
 
-/usr/include/c++/11/numeric:
-
 /usr/include/c++/11/istream:
 
 /usr/include/c++/11/sstream:
-
-/opt/libtorch/include/pybind11/complex.h:
 
 /opt/libtorch/include/pybind11/numpy.h:
 
@@ -561,13 +569,7 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
 
 /usr/include/c++/11/bits/mask_array.h:
 
-/usr/include/c++/11/bits/gslice.h:
-
 /usr/include/c++/11/bits/valarray_after.h:
-
-/usr/include/c++/11/bits/slice_array.h:
-
-/usr/include/c++/11/bits/valarray_array.h:
 
 /usr/include/c++/11/valarray:
 
@@ -575,33 +577,27 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
 
 /usr/include/c++/11/bits/ostream.tcc:
 
-/usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h:
-
-/usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
-
 /usr/include/c++/11/ostream:
 
 /usr/include/c++/11/bits/stl_multimap.h:
 
-/usr/include/c++/11/bits/stl_map.h:
+/usr/include/c++/11/bits/stl_tree.h:
 
 /usr/include/c++/11/map:
 
 /usr/include/c++/11/bits/list.tcc:
 
+/usr/include/c++/11/list:
+
 /usr/include/c++/11/bits/deque.tcc:
 
 /opt/libtorch/include/pybind11/stl.h:
 
-/usr/include/c++/11/algorithm:
+/usr/include/c++/11/bits/basic_ios.h:
 
-/usr/include/c++/11/cassert:
+/usr/include/c++/11/bits/uniform_int_dist.h:
 
-/opt/libtorch/include/pybind11/detail/init.h:
-
-/opt/libtorch/include/pybind11/options.h:
-
-/opt/libtorch/include/pybind11/detail/value_and_holder.h:
+/usr/include/x86_64-linux-gnu/c++/11/bits/cxxabi_tweaks.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h:
 
@@ -609,7 +605,7 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
 
 /opt/libtorch/include/pybind11/detail/typeid.h:
 
-/usr/include/c++/11/ctime:
+/usr/include/c++/11/bits/parse_numbers.h:
 
 /usr/include/c++/11/condition_variable:
 
@@ -619,7 +615,7 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
 
 /usr/include/c++/11/mutex:
 
-/usr/include/c++/11/system_error:
+/usr/include/c++/11/optional:
 
 /usr/include/c++/11/bits/locale_classes.tcc:
 
@@ -635,6 +631,10 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
 
 /opt/libtorch/include/pybind11/detail/descr.h:
 
+/usr/include/c++/11/streambuf:
+
+/opt/libtorch/include/pybind11/cast.h:
+
 /usr/include/c++/11/version:
 
 /usr/include/c++/11/bits/vector.tcc:
@@ -645,17 +645,25 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
 
 /usr/include/c++/11/bits/unordered_map.h:
 
+/usr/include/c++/11/bits/codecvt.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/opt_random.h:
+
+/usr/include/c++/11/bits/basic_ios.tcc:
+
+/usr/include/c++/11/bits/enable_special_members.h:
+
 /usr/include/c++/11/bits/hashtable.h:
 
 /usr/include/c++/11/unordered_map:
 
-/usr/include/c++/11/bits/basic_string.tcc:
-
-/usr/include/c++/11/bits/charconv.h:
-
 ../include/alphazero/selfplay/self_play_manager.h:
 
 /usr/include/c++/11/cstdio:
+
+/usr/include/c++/11/bits/atomic_futex.h:
+
+/usr/include/c++/11/ext/string_conversions.h:
 
 /usr/include/c++/11/bits/string_view.tcc:
 
@@ -675,25 +683,23 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
 
 /usr/include/c++/11/bits/localefwd.h:
 
+/usr/include/c++/11/bits/char_traits.h:
+
 /usr/include/c++/11/pstl/glue_algorithm_defs.h:
 
 /usr/include/c++/11/stdexcept:
 
-../include/alphazero/games/gomoku/gomoku_state.h:
-
-/usr/include/c++/11/bits/algorithmfwd.h:
-
-/usr/include/c++/11/pstl/execution_defs.h:
-
 /usr/include/c++/11/backward/auto_ptr.h:
+
+/usr/include/c++/11/bits/valarray_array.tcc:
+
+/usr/include/c++/11/bits/atomic_lockfree_defines.h:
 
 /usr/include/c++/11/bits/atomic_base.h:
 
-/usr/include/c++/11/queue:
-
-/usr/include/c++/11/bits/shared_ptr_atomic.h:
-
 /usr/include/c++/11/ext/concurrence.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/gthr-default.h:
 
@@ -705,7 +711,15 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
 
 /usr/include/c++/11/bits/functional_hash.h:
 
+/usr/include/c++/11/bits/invoke.h:
+
 /usr/include/c++/11/tuple:
+
+/usr/include/c++/11/ios:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h:
+
+/usr/include/c++/11/utility:
 
 /usr/include/c++/11/bits/unique_ptr.h:
 
@@ -725,6 +739,10 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
 
 /usr/include/c++/11/bits/stl_uninitialized.h:
 
+/usr/include/c++/11/bits/shared_ptr.h:
+
+/usr/include/c++/11/bits/stl_construct.h:
+
 /usr/include/c++/11/ext/new_allocator.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h:
@@ -743,8 +761,6 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
 
 /usr/include/c++/11/forward_list:
 
-/usr/include/c++/11/bits/nested_exception.h:
-
 /usr/include/c++/11/bits/sstream.tcc:
 
 /usr/include/c++/11/new:
@@ -759,65 +775,61 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
 
 /usr/include/c++/11/exception:
 
-/usr/include/c++/11/atomic:
+/home/cosmos/anaconda3/include/python3.12/cpython/pyfpe.h:
 
-/usr/include/python3.10/cpython/frameobject.h:
+/home/cosmos/anaconda3/include/python3.12/fileutils.h:
 
-/usr/include/python3.10/tracemalloc.h:
+/home/cosmos/anaconda3/include/python3.12/bltinmodule.h:
 
-/usr/include/python3.10/cpython/pyfpe.h:
+/home/cosmos/anaconda3/include/python3.12/cpython/abstract.h:
 
-/usr/include/python3.10/cpython/fileutils.h:
+/home/cosmos/anaconda3/include/python3.12/abstract.h:
 
-/usr/include/python3.10/cpython/pyctype.h:
+/home/cosmos/anaconda3/include/python3.12/cpython/import.h:
 
-/usr/include/c++/11/bits/valarray_array.tcc:
+/home/cosmos/anaconda3/include/python3.12/cpython/sysmodule.h:
 
-/usr/include/c++/11/bits/atomic_lockfree_defines.h:
+/usr/include/c++/11/bits/slice_array.h:
 
-/usr/include/python3.10/bltinmodule.h:
+/home/cosmos/anaconda3/include/python3.12/ceval.h:
 
-/usr/include/python3.10/cpython/import.h:
+/usr/include/c++/11/bits/nested_exception.h:
 
-/usr/include/c++/11/bits/char_traits.h:
+/home/cosmos/anaconda3/include/python3.12/cpython/pylifecycle.h:
 
-/usr/include/python3.10/import.h:
+/usr/include/c++/11/bits/valarray_array.h:
 
-/usr/include/python3.10/intrcheck.h:
+/home/cosmos/anaconda3/include/python3.12/pythonrun.h:
 
-/usr/include/c++/11/bits/stl_multiset.h:
+/home/cosmos/anaconda3/include/python3.12/cpython/context.h:
 
-/usr/include/python3.10/osmodule.h:
+/usr/include/c++/11/ext/alloc_traits.h:
 
-/usr/include/c++/11/bits/shared_ptr.h:
-
-/usr/include/c++/11/bits/stl_construct.h:
-
-/usr/include/python3.10/cpython/sysmodule.h:
-
-/usr/include/python3.10/sysmodule.h:
-
-/usr/include/c++/11/bits/stl_vector.h:
-
-/usr/include/c++/11/cstddef:
-
-/usr/include/python3.10/ceval.h:
-
-/usr/include/python3.10/cpython/pylifecycle.h:
-
-/usr/include/python3.10/cpython/compile.h:
-
-/usr/include/python3.10/compile.h:
-
-/usr/include/python3.10/modsupport.h:
+/usr/include/x86_64-linux-gnu/bits/sched.h:
 
 /usr/include/wctype.h:
 
 /usr/include/sched.h:
 
-/usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h:
+/usr/include/pthread.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/error_t.h:
+/home/cosmos/anaconda3/include/python3.12/cpython/pythread.h:
+
+/home/cosmos/anaconda3/include/python3.12/cpython/pyerrors.h:
+
+/opt/libtorch/include/pybind11/detail/value_and_holder.h:
+
+/home/cosmos/anaconda3/include/python3.12/pyerrors.h:
+
+/usr/include/c++/11/bits/basic_string.tcc:
+
+/home/cosmos/anaconda3/include/python3.12/codecs.h:
+
+/home/cosmos/anaconda3/include/python3.12/cpython/pytime.h:
+
+/usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
+
+/home/cosmos/anaconda3/include/python3.12/cpython/picklebufobject.h:
 
 /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
 
@@ -833,15 +845,13 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
 
 /usr/include/c++/11/cmath:
 
+/home/cosmos/anaconda3/include/python3.12/pystrtod.h:
+
 /usr/include/c++/11/math.h:
 
-/usr/include/x86_64-linux-gnu/sys/select.h:
+/usr/include/x86_64-linux-gnu/bits/waitflags.h:
 
-/usr/include/python3.10/cpython/dictobject.h:
-
-/usr/include/c++/11/bits/node_handle.h:
-
-/usr/include/x86_64-linux-gnu/bits/fp-fast.h:
+/home/cosmos/anaconda3/include/python3.12/cpython/ceval.h:
 
 /usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
 
@@ -850,6 +860,36 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
 /usr/include/c++/11/bits/shared_ptr_base.h:
 
 /usr/include/linux/limits.h:
+
+/opt/libtorch/include/pybind11/detail/internals.h:
+
+/usr/include/x86_64-linux-gnu/bits/local_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/stat.h:
+
+/usr/include/c++/11/bits/valarray_before.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h:
+
+/usr/include/x86_64-linux-gnu/sys/select.h:
+
+/usr/include/c++/11/bits/istream.tcc:
+
+/home/cosmos/anaconda3/include/python3.12/pyport.h:
+
+/usr/include/c++/11/bits/specfun.h:
+
+/home/cosmos/anaconda3/include/python3.12/frameobject.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/strings_fortified.h:
 
 /usr/include/assert.h:
 
@@ -863,303 +903,67 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
 
 /usr/include/c++/11/tr1/poly_laguerre.tcc:
 
-/usr/include/c++/11/bits/codecvt.h:
+/home/cosmos/anaconda3/include/python3.12/pymacro.h:
 
-/usr/include/x86_64-linux-gnu/c++/11/bits/opt_random.h:
-
-/usr/include/c++/11/bits/basic_ios.tcc:
-
-/usr/include/c++/11/bits/enable_special_members.h:
-
-/usr/include/python3.10/structseq.h:
-
-/usr/include/linux/close_range.h:
+/home/cosmos/anaconda3/include/python3.12/tracemalloc.h:
 
 /usr/include/x86_64-linux-gnu/bits/unistd_ext.h:
 
+/home/cosmos/anaconda3/include/python3.12/pylifecycle.h:
+
 /usr/include/x86_64-linux-gnu/bits/unistd.h:
 
-/usr/include/x86_64-linux-gnu/c++/11/bits/cxxabi_tweaks.h:
-
-/usr/include/python3.10/pystrtod.h:
-
-/usr/include/python3.10/codecs.h:
+/usr/include/x86_64-linux-gnu/bits/confname.h:
 
 /usr/include/x86_64-linux-gnu/bits/posix_opt.h:
 
-/usr/include/python3.10/pyport.h:
-
-/usr/include/alloca.h:
-
-/usr/include/python3.10/cpython/pyerrors.h:
-
 /usr/include/strings.h:
 
-/usr/include/python3.10/cpython/unicodeobject.h:
+/usr/include/x86_64-linux-gnu/bits/types/error_t.h:
 
-/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
+/usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h:
 
-/usr/include/c++/11/cwchar:
+/usr/include/x86_64-linux-gnu/bits/cpu-set.h:
 
-/usr/include/x86_64-linux-gnu/bits/select2.h:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h:
-
-/opt/libtorch/include/pybind11/typing.h:
-
-/usr/include/linux/types.h:
-
-/usr/include/c++/11/bits/gslice_array.h:
-
-/usr/include/c++/11/bits/stl_set.h:
-
-/usr/include/x86_64-linux-gnu/bits/struct_stat.h:
-
-/usr/include/python3.10/cpython/bytesobject.h:
-
-/usr/include/python3.10/cpython/odictobject.h:
-
-/usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
-
-/usr/include/c++/11/bits/random.tcc:
-
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
-
-/opt/libtorch/include/pybind11/detail/type_caster_base.h:
-
-/usr/include/x86_64-linux-gnu/bits/endianness.h:
-
-/usr/include/c++/11/tr1/modified_bessel_func.tcc:
-
-/usr/include/c++/11/optional:
-
-/usr/include/python3.10/cpython/pythonrun.h:
-
-/usr/include/python3.10/cpython/objimpl.h:
-
-/usr/include/python3.10/pystrcmp.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
-
-../include/alphazero/nn/batch_queue.h:
-
-/usr/include/x86_64-linux-gnu/bits/types.h:
-
-/usr/include/c++/11/future:
-
-/usr/include/c++/11/ext/aligned_buffer.h:
-
-/usr/include/x86_64-linux-gnu/sys/types.h:
-
-/usr/include/c++/11/cstdint:
-
-/usr/include/x86_64-linux-gnu/bits/waitstatus.h:
-
-/usr/include/c++/11/tr1/special_function_util.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_statx.h:
-
-/usr/include/python3.10/cellobject.h:
-
-/usr/include/stdlib.h:
-
-/usr/include/c++/11/pstl/pstl_config.h:
-
-/usr/include/c++/11/complex:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h:
-
-/usr/include/x86_64-linux-gnu/bits/timesize.h:
-
-/usr/include/x86_64-linux-gnu/bits/mathcalls.h:
-
-/usr/include/c++/11/list:
-
-/usr/include/python3.10/pylifecycle.h:
-
-/usr/include/python3.10/cpython/methodobject.h:
+/usr/include/x86_64-linux-gnu/asm/posix_types_64.h:
 
 /usr/include/asm-generic/errno-base.h:
 
-/usr/include/python3.10/weakrefobject.h:
+/home/cosmos/anaconda3/include/python3.12/traceback.h:
 
-/usr/include/inttypes.h:
+/usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
 
-/usr/include/c++/11/bits/stl_deque.h:
+/usr/include/asm-generic/errno.h:
 
-/usr/include/x86_64-linux-gnu/gnu/stubs.h:
+/home/cosmos/anaconda3/include/python3.12/cpython/pyctype.h:
 
-/usr/include/x86_64-linux-gnu/bits/endian.h:
+/usr/include/c++/11/tr1/ell_integral.tcc:
 
-/usr/include/python3.10/frameobject.h:
+/usr/include/c++/11/ext/type_traits.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
+/usr/include/c++/11/functional:
 
-/opt/libtorch/include/pybind11/detail/common.h:
+/usr/include/linux/errno.h:
 
-/usr/include/x86_64-linux-gnu/bits/long-double.h:
+/opt/libtorch/include/pybind11/options.h:
 
-/usr/include/python3.10/genobject.h:
+/home/cosmos/anaconda3/include/python3.12/cpython/dictobject.h:
 
-/usr/include/c++/11/typeindex:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
-
-/usr/include/python3.10/context.h:
+/usr/include/x86_64-linux-gnu/asm/errno.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdlib.h:
-
-/usr/include/c++/11/ext/alloc_traits.h:
-
-/usr/include/x86_64-linux-gnu/bits/sched.h:
-
-/usr/include/python3.10/pythread.h:
-
-/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
-
-/usr/include/c++/11/bits/stl_relops.h:
-
-/usr/include/limits.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdio2.h:
-
-/usr/include/c++/11/chrono:
-
-/usr/include/c++/11/bits/forward_list.tcc:
-
-/usr/include/x86_64-linux-gnu/bits/wordsize.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
-
-/usr/include/pthread.h:
-
-/usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
-
-/usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
-
-/usr/include/x86_64-linux-gnu/bits/stat.h:
-
-/usr/include/c++/11/bits/stl_bvector.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h:
-
-/usr/include/x86_64-linux-gnu/asm/types.h:
-
-/usr/include/c++/11/bits/alloc_traits.h:
-
-/usr/include/stdc-predef.h:
-
-/usr/include/asm-generic/posix_types.h:
-
-/usr/include/c++/11/stdlib.h:
-
-/usr/include/python3.10/pymacconfig.h:
-
-/opt/libtorch/include/pybind11/detail/internals.h:
-
-/usr/include/x86_64-linux-gnu/bits/local_lim.h:
-
-/usr/include/x86_64-linux-gnu/bits/wchar.h:
-
-/usr/include/c++/11/cerrno:
-
-/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
-
-/usr/include/python3.10/typeslots.h:
-
-/usr/include/python3.10/cpython/abstract.h:
-
-/usr/include/c++/11/bits/ostream_insert.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
-
-/usr/include/python3.10/Python.h:
-
-/opt/libtorch/include/pybind11/pybind11.h:
-
-/usr/include/c++/11/bits/forward_list.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
-
-/usr/include/c++/11/cstring:
-
-/usr/include/math.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
-
-/usr/include/c++/11/bits/functexcept.h:
-
-/usr/include/python3.10/iterobject.h:
-
-/usr/include/x86_64-linux-gnu/bits/time64.h:
-
-../include/alphazero/core/utils/hash_specializations.h:
-
-/usr/include/c++/11/string_view:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h:
-
-/usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
-
-/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
-
-/usr/include/c++/11/bits/stl_iterator.h:
-
-/usr/include/x86_64-linux-gnu/bits/strings_fortified.h:
-
-../src/pybind/python_bindings.cpp:
-
-/usr/include/features.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdio.h:
 
 /usr/include/c++/11/unordered_set:
 
 /usr/include/x86_64-linux-gnu/bits/types/FILE.h:
 
-/usr/include/c++/11/bits/basic_ios.h:
+../include/alphazero/games/gomoku/gomoku_state.h:
 
-/usr/include/c++/11/bits/uniform_int_dist.h:
+/usr/include/c++/11/bits/algorithmfwd.h:
 
-/usr/include/python3.10/setobject.h:
+/usr/include/c++/11/pstl/execution_defs.h:
 
-/usr/include/python3.10/cpython/pymem.h:
-
-/usr/include/x86_64-linux-gnu/bits/getopt_core.h:
-
-/usr/include/c++/11/debug/assertions.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h:
-
-/usr/include/python3.10/tupleobject.h:
-
-/usr/include/x86_64-linux-gnu/python3.10/pyconfig.h:
-
-/usr/include/c++/11/bits/erase_if.h:
-
-/usr/include/python3.10/cpython/ceval.h:
-
-/usr/include/stdint.h:
-
-/usr/include/c++/11/bits/ptr_traits.h:
-
-/usr/include/endian.h:
-
-/usr/include/python3.10/methodobject.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
-
-/usr/include/c++/11/string:
-
-/usr/include/x86_64-linux-gnu/bits/uio_lim.h:
+/home/cosmos/anaconda3/include/python3.12/typeslots.h:
 
 /usr/include/c++/11/memory:
 
@@ -1169,65 +973,153 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
 
 /usr/include/c++/11/type_traits:
 
-/usr/include/x86_64-linux-gnu/asm/errno.h:
-
-/usr/include/python3.10/unicodeobject.h:
-
-/usr/include/python3.10/sliceobject.h:
-
 /usr/include/x86_64-linux-gnu/bits/errno.h:
 
-/usr/include/python3.10/cpython/traceback.h:
+/usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h:
 
-/usr/include/c++/11/bits/refwrap.h:
+/home/cosmos/anaconda3/include/python3.12/cpython/longintrepr.h:
 
-/usr/include/linux/stddef.h:
+/usr/include/x86_64-linux-gnu/bits/stdio.h:
 
-/usr/include/python3.10/objimpl.h:
+/usr/include/c++/11/bits/streambuf.tcc:
 
-/usr/include/python3.10/funcobject.h:
-
-/usr/include/python3.10/patchlevel.h:
-
-/usr/include/x86_64-linux-gnu/sys/stat.h:
-
-/usr/include/c++/11/bits/hash_bytes.h:
-
-/usr/include/c++/11/bits/move.h:
-
-/usr/include/python3.10/longintrepr.h:
+/usr/include/string.h:
 
 /usr/include/c++/11/typeinfo:
 
 /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
 
-/usr/include/c++/11/functional:
+/usr/include/c++/11/bits/stl_multiset.h:
 
-/usr/include/linux/errno.h:
+/home/cosmos/anaconda3/include/python3.12/pytypedefs.h:
 
-/usr/include/c++/11/bits/parse_numbers.h:
+/usr/include/wchar.h:
 
-/usr/include/python3.10/cpython/pytime.h:
+/usr/include/c++/11/bits/ostream_insert.h:
 
-/usr/include/x86_64-linux-gnu/bits/confname.h:
+/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
 
-/usr/include/python3.10/pyconfig.h:
+/usr/include/c++/11/debug/assertions.h:
 
-/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h:
 
-/usr/include/c++/11/backward/binders.h:
+/usr/include/alloca.h:
 
-/usr/include/x86_64-linux-gnu/asm/bitsperlong.h:
+/usr/include/c++/11/cstdint:
 
-/usr/include/x86_64-linux-gnu/bits/types/time_t.h:
+/usr/include/x86_64-linux-gnu/bits/waitstatus.h:
 
-/usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
+/usr/include/x86_64-linux-gnu/bits/types/struct_statx.h:
 
-/usr/include/python3.10/boolobject.h:
+/usr/include/stdlib.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h:
+
+/opt/libtorch/include/pybind11/attr.h:
+
+/usr/include/c++/11/chrono:
+
+/usr/include/c++/11/bits/forward_list.tcc:
+
+/usr/include/x86_64-linux-gnu/bits/wordsize.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
+
+/usr/include/inttypes.h:
+
+/usr/include/c++/11/bits/stl_deque.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs.h:
+
+/usr/include/x86_64-linux-gnu/sys/stat.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar2.h:
+
+/usr/include/x86_64-linux-gnu/bits/fp-logb.h:
+
+/opt/libtorch/include/pybind11/detail/init.h:
+
+/home/cosmos/anaconda3/include/python3.12/moduleobject.h:
+
+/usr/include/c++/11/bits/random.tcc:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
+
+/usr/include/c++/11/cerrno:
+
+/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
+
+/home/cosmos/anaconda3/include/python3.12/cpython/descrobject.h:
+
+../src/pybind/python_bindings.cpp:
+
+/usr/include/features.h:
+
+/usr/include/c++/11/bits/refwrap.h:
+
+/usr/include/linux/stddef.h:
+
+/usr/include/x86_64-linux-gnu/bits/getopt_core.h:
+
+/usr/include/x86_64-linux-gnu/bits/timesize.h:
+
+/usr/include/c++/11/complex:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h:
+
+/usr/include/x86_64-linux-gnu/asm/types.h:
+
+/usr/include/c++/11/bits/alloc_traits.h:
+
+/usr/include/stdc-predef.h:
+
+/usr/include/asm-generic/posix_types.h:
+
+/usr/include/c++/11/bits/stl_bvector.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/byteswap.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h:
+
+/home/cosmos/anaconda3/include/python3.12/cpython/bytesobject.h:
+
+/usr/include/x86_64-linux-gnu/bits/long-double.h:
+
+/home/cosmos/anaconda3/include/python3.12/cpython/funcobject.h:
+
+/home/cosmos/anaconda3/include/python3.12/Python.h:
+
+../include/alphazero/nn/batch_queue.h:
+
+/usr/include/x86_64-linux-gnu/bits/types.h:
+
+/home/cosmos/anaconda3/include/python3.12/cpython/compile.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
+
+/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
+
+/usr/include/c++/11/bits/hash_bytes.h:
+
+/usr/include/c++/11/bits/move.h:
+
+/home/cosmos/anaconda3/include/python3.12/patchlevel.h:
 
 /usr/include/c++/11/bits/stl_heap.h:
 
+/home/cosmos/anaconda3/include/python3.12/setobject.h:
+
 /usr/include/c++/11/bits/std_abs.h:
+
+/home/cosmos/anaconda3/include/python3.12/pycapsule.h:
 
 /usr/include/c++/11/bits/stl_queue.h:
 
@@ -1235,9 +1127,41 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
 
-/usr/include/stdio.h:
+/usr/include/c++/11/bits/forward_list.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h:
+
+/usr/include/c++/11/cstring:
+
+/home/cosmos/anaconda3/include/python3.12/osmodule.h:
+
+/usr/include/math.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
+
+/home/cosmos/anaconda3/include/python3.12/pystrcmp.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
+
+/opt/libtorch/include/pybind11/complex.h:
+
+/home/cosmos/anaconda3/include/python3.12/pyconfig.h:
+
+/usr/include/c++/11/stdlib.h:
+
+/opt/libtorch/include/pybind11/pybind11.h:
+
+/usr/include/c++/11/queue:
+
+/usr/include/c++/11/bits/shared_ptr_atomic.h:
+
+/home/cosmos/anaconda3/include/python3.12/rangeobject.h:
+
+/opt/libtorch/include/pybind11/detail/type_caster_base.h:
+
+/usr/include/x86_64-linux-gnu/bits/endianness.h:
+
+/usr/include/c++/11/tr1/modified_bessel_func.tcc:
 
 /usr/include/c++/11/iterator:
 
@@ -1245,41 +1169,153 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
 
 /usr/include/x86_64-linux-gnu/bits/floatn.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
+/usr/include/stdio.h:
 
-/usr/include/x86_64-linux-gnu/bits/floatn-common.h:
+/home/cosmos/anaconda3/include/python3.12/pymacconfig.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
+
+/usr/include/c++/11/future:
+
+/usr/include/c++/11/ext/aligned_buffer.h:
+
+/usr/include/x86_64-linux-gnu/sys/types.h:
+
+/usr/include/c++/11/bits/functexcept.h:
+
+/usr/include/x86_64-linux-gnu/bits/time64.h:
+
+/opt/libtorch/include/pybind11/detail/common.h:
+
+/home/cosmos/anaconda3/include/python3.12/complexobject.h:
+
+/usr/include/c++/11/string:
+
+/usr/include/x86_64-linux-gnu/bits/uio_lim.h:
+
+/usr/include/c++/11/bits/erase_if.h:
+
+/usr/include/stdint.h:
+
+/usr/include/c++/11/bits/ptr_traits.h:
+
+/usr/include/endian.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
+
+/usr/include/c++/11/ctime:
+
+/home/cosmos/anaconda3/include/python3.12/cpython/initconfig.h:
+
+/usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
+
+/home/cosmos/anaconda3/include/python3.12/cpython/weakrefobject.h:
+
+/usr/include/c++/11/bits/stl_iterator.h:
+
+/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
+
+/home/cosmos/anaconda3/include/python3.12/cpython/traceback.h:
+
+/home/cosmos/anaconda3/include/python3.12/cpython/objimpl.h:
+
+/usr/include/c++/11/bits/gslice_array.h:
+
+/usr/include/c++/11/bits/stl_set.h:
+
+/usr/include/x86_64-linux-gnu/bits/struct_stat.h:
+
+/home/cosmos/anaconda3/include/python3.12/pyhash.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
 
-/usr/include/errno.h:
+/home/cosmos/anaconda3/include/python3.12/bytearrayobject.h:
 
-/usr/include/c++/11/ext/type_traits.h:
+/usr/include/x86_64-linux-gnu/sys/cdefs.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
+/usr/include/c++/11/cwchar:
 
-/usr/include/asm-generic/errno.h:
+/usr/include/x86_64-linux-gnu/bits/select2.h:
 
-/usr/include/c++/11/tr1/ell_integral.tcc:
+/usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h:
+
+/opt/libtorch/include/pybind11/typing.h:
+
+/home/cosmos/anaconda3/include/python3.12/bytesobject.h:
+
+/usr/include/linux/types.h:
+
+/usr/include/c++/11/bits/stl_relops.h:
+
+/usr/include/limits.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:
+
+/home/cosmos/anaconda3/include/python3.12/methodobject.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
+
+/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
+
+/usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
+
+/home/cosmos/anaconda3/include/python3.12/cpython/odictobject.h:
+
+/home/cosmos/anaconda3/include/python3.12/pythread.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/time_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
+
+/usr/include/c++/11/backward/binders.h:
+
+/home/cosmos/anaconda3/include/python3.12/sysmodule.h:
+
+/usr/include/x86_64-linux-gnu/asm/bitsperlong.h:
+
+../include/alphazero/core/utils/hash_specializations.h:
+
+/usr/include/c++/11/string_view:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
+
+/usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
+
+/home/cosmos/anaconda3/include/python3.12/objimpl.h:
+
+/usr/include/c++/11/bits/node_handle.h:
+
+/usr/include/x86_64-linux-gnu/bits/fp-fast.h:
+
+/usr/include/x86_64-linux-gnu/bits/mathcalls.h:
+
+/home/cosmos/anaconda3/include/python3.12/object.h:
 
 /usr/include/c++/11/bits/postypes.h:
 
+/home/cosmos/anaconda3/include/python3.12/cpython/frameobject.h:
+
 /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
+
+/usr/include/c++/11/tr1/special_function_util.h:
+
+/home/cosmos/anaconda3/include/python3.12/descrobject.h:
 
 /usr/include/c++/11/bits/stl_list.h:
 
 /usr/include/x86_64-linux-gnu/bits/iscanonical.h:
 
-/usr/include/c++/11/bits/specfun.h:
-
-/usr/include/x86_64-linux-gnu/bits/fp-logb.h:
-
-/usr/include/x86_64-linux-gnu/bits/wchar2.h:
-
-/usr/include/x86_64-linux-gnu/bits/environments.h:
+/home/cosmos/anaconda3/include/python3.12/iterobject.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h:
 
+/usr/include/x86_64-linux-gnu/bits/environments.h:
+
 /usr/include/c++/11/bits/exception_defines.h:
+
+/home/cosmos/anaconda3/include/python3.12/cpython/code.h:
 
 /usr/include/c++/11/ext/numeric_traits.h:
 
@@ -1295,15 +1331,15 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
 
 /usr/include/c++/11/bits/stl_iterator_base_funcs.h:
 
+/usr/include/asm-generic/bitsperlong.h:
+
 /usr/include/asm-generic/types.h:
 
-/usr/include/asm-generic/bitsperlong.h:
+/home/cosmos/anaconda3/include/python3.12/cpython/object.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
 
 /usr/include/c++/11/bits/concept_check.h:
-
-/usr/include/python3.10/cpython/listobject.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h:
 
@@ -1327,27 +1363,31 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
 
 /usr/include/c++/11/tr1/bessel_function.tcc:
 
-/usr/include/c++/11/bits/invoke.h:
+/usr/include/c++/11/numeric:
 
-/usr/include/python3.10/pymath.h:
+/home/cosmos/anaconda3/include/python3.12/cpython/classobject.h:
 
 /usr/include/c++/11/array:
+
+/home/cosmos/anaconda3/include/python3.12/cpython/pymem.h:
 
 /opt/libtorch/include/pybind11/detail/class.h:
 
 /usr/include/c++/11/tr1/beta_function.tcc:
 
-/usr/include/python3.10/dictobject.h:
-
-/usr/include/python3.10/pymem.h:
-
 /usr/include/c++/11/tr1/exp_integral.tcc:
+
+/usr/include/c++/11/bits/stl_vector.h:
+
+/usr/include/c++/11/cstddef:
+
+/home/cosmos/anaconda3/include/python3.12/pybuffer.h:
+
+/home/cosmos/anaconda3/include/python3.12/cpython/pyframe.h:
 
 /usr/include/c++/11/tr1/hypergeometric.tcc:
 
-/usr/include/c++/11/bits/istream.tcc:
-
-/usr/include/python3.10/cpython/object.h:
+/home/cosmos/anaconda3/include/python3.12/floatobject.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h:
 
@@ -1355,15 +1395,11 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
 
 /usr/include/c++/11/tr1/legendre_function.tcc:
 
-/usr/include/python3.10/moduleobject.h:
-
 /opt/libtorch/include/pybind11/gil_safe_call_once.h:
 
 /usr/include/c++/11/tr1/poly_hermite.tcc:
 
-/usr/include/python3.10/pythonrun.h:
-
-/usr/include/python3.10/floatobject.h:
+/home/cosmos/anaconda3/include/python3.12/pymem.h:
 
 /usr/include/c++/11/tr1/riemann_zeta.tcc:
 
@@ -1385,7 +1421,11 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
 
 /usr/include/c++/11/bits/this_thread_sleep.h:
 
+/home/cosmos/anaconda3/include/python3.12/compile.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+
+/home/cosmos/anaconda3/include/python3.12/cpython/fileutils.h:
 
 /usr/include/unistd.h:
 
@@ -1393,140 +1433,130 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
 
 /usr/include/x86_64-linux-gnu/bits/statx.h:
 
-/usr/include/python3.10/longobject.h:
+/usr/include/c++/11/typeindex:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
+
+/home/cosmos/anaconda3/include/python3.12/unicodeobject.h:
 
 /usr/include/c++/11/bits/stl_algo.h:
 
 /usr/include/asm-generic/int-ll64.h:
 
+/home/cosmos/anaconda3/include/python3.12/modsupport.h:
+
 /usr/include/x86_64-linux-gnu/asm/posix_types.h:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h:
-
-/usr/include/python3.10/namespaceobject.h:
 
 /usr/include/c++/11/bits/hashtable_policy.h:
 
 /usr/include/x86_64-linux-gnu/bits/statx-generic.h:
 
-/usr/include/python3.10/fileobject.h:
+/usr/include/c++/11/algorithm:
 
-/usr/include/python3.10/exports.h:
+/home/cosmos/anaconda3/include/python3.12/pymath.h:
 
-/usr/include/x86_64-linux-gnu/bits/byteswap.h:
+/home/cosmos/anaconda3/include/python3.12/pystats.h:
 
-/usr/include/python3.10/pymacro.h:
+/home/cosmos/anaconda3/include/python3.12/longobject.h:
 
-/usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h:
+/home/cosmos/anaconda3/include/python3.12/cpython/pydebug.h:
 
-/opt/libtorch/include/pybind11/attr.h:
+/usr/include/linux/close_range.h:
 
-/usr/include/python3.10/warnings.h:
-
-/usr/include/x86_64-linux-gnu/sys/cdefs.h:
-
-/usr/include/python3.10/pyhash.h:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h:
-
-/usr/include/python3.10/eval.h:
-
-/usr/include/python3.10/bytearrayobject.h:
-
-/usr/include/c++/11/bits/atomic_futex.h:
-
-/usr/include/c++/11/ext/string_conversions.h:
-
-/usr/include/python3.10/object.h:
-
-/usr/include/python3.10/cpython/bytearrayobject.h:
-
-/usr/include/c++/11/streambuf:
-
-/opt/libtorch/include/pybind11/cast.h:
-
-/usr/include/python3.10/cpython/pystate.h:
-
-/usr/include/x86_64-linux-gnu/bits/waitflags.h:
-
-/usr/include/python3.10/bytesobject.h:
+/home/cosmos/anaconda3/include/python3.12/cpython/bytearrayobject.h:
 
 /usr/include/c++/11/locale:
 
 /usr/include/ctype.h:
 
-../include/alphazero/mcts/mcts_node.h:
+/usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
 
-/usr/include/python3.10/listobject.h:
+/home/cosmos/anaconda3/include/python3.12/cpython/unicodeobject.h:
 
-/usr/include/wchar.h:
+/home/cosmos/anaconda3/include/python3.12/cpython/pythonrun.h:
 
-/usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
+/home/cosmos/anaconda3/include/python3.12/cpython/longobject.h:
 
-/usr/include/python3.10/complexobject.h:
-
-/usr/include/python3.10/rangeobject.h:
-
-/usr/include/python3.10/memoryobject.h:
-
-/usr/include/c++/11/ios:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h:
-
-/usr/include/c++/11/utility:
-
-/usr/include/python3.10/enumobject.h:
-
-/usr/include/x86_64-linux-gnu/bits/cpu-set.h:
-
-/usr/include/x86_64-linux-gnu/asm/posix_types_64.h:
-
-/usr/include/python3.10/cpython/tupleobject.h:
-
-/usr/include/python3.10/cpython/pydebug.h:
-
-/usr/include/python3.10/cpython/fileobject.h:
-
-/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
-
-/usr/include/python3.10/pycapsule.h:
-
-/usr/include/python3.10/code.h:
-
-/usr/include/python3.10/cpython/code.h:
-
-/usr/include/python3.10/classobject.h:
-
-/usr/include/python3.10/pyframe.h:
+/home/cosmos/anaconda3/include/python3.12/boolobject.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
 
-/usr/include/python3.10/cpython/picklebufobject.h:
+/home/cosmos/anaconda3/include/python3.12/cpython/floatobject.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
+/home/cosmos/anaconda3/include/python3.12/cpython/complexobject.h:
 
-/usr/include/python3.10/traceback.h:
+/home/cosmos/anaconda3/include/python3.12/cpython/modsupport.h:
 
-/usr/include/c++/11/bits/streambuf.tcc:
+/home/cosmos/anaconda3/include/python3.12/memoryobject.h:
 
-/usr/include/string.h:
+/home/cosmos/anaconda3/include/python3.12/intrcheck.h:
 
-/usr/include/python3.10/cpython/initconfig.h:
+/home/cosmos/anaconda3/include/python3.12/cpython/memoryobject.h:
 
-/usr/include/python3.10/pystate.h:
+/usr/include/c++/11/bits/stl_map.h:
 
-/usr/include/c++/11/bits/valarray_before.h:
+/home/cosmos/anaconda3/include/python3.12/weakrefobject.h:
 
-/usr/include/python3.10/fileutils.h:
+/home/cosmos/anaconda3/include/python3.12/tupleobject.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h:
+/home/cosmos/anaconda3/include/python3.12/enumobject.h:
 
-/usr/include/python3.10/abstract.h:
+/home/cosmos/anaconda3/include/python3.12/listobject.h:
 
-/usr/include/python3.10/descrobject.h:
+/usr/include/errno.h:
 
-/usr/include/c++/11/bits/stl_tree.h:
+/home/cosmos/anaconda3/include/python3.12/cpython/listobject.h:
 
-/usr/include/python3.10/genericaliasobject.h:
+/home/cosmos/anaconda3/include/python3.12/exports.h:
 
-/usr/include/python3.10/pyerrors.h:
+/home/cosmos/anaconda3/include/python3.12/dictobject.h:
+
+/home/cosmos/anaconda3/include/python3.12/cpython/setobject.h:
+
+/usr/include/c++/11/pstl/pstl_config.h:
+
+/home/cosmos/anaconda3/include/python3.12/cpython/methodobject.h:
+
+/usr/include/c++/11/cassert:
+
+/home/cosmos/anaconda3/include/python3.12/cpython/tupleobject.h:
+
+/home/cosmos/anaconda3/include/python3.12/fileobject.h:
+
+/usr/include/x86_64-linux-gnu/bits/endian.h:
+
+/home/cosmos/anaconda3/include/python3.12/cpython/fileobject.h:
+
+/home/cosmos/anaconda3/include/python3.12/import.h:
+
+/usr/include/x86_64-linux-gnu/bits/floatn-common.h:
+
+/home/cosmos/anaconda3/include/python3.12/pyframe.h:
+
+/home/cosmos/anaconda3/include/python3.12/sliceobject.h:
+
+/usr/include/c++/11/bits/gslice.h:
+
+/home/cosmos/anaconda3/include/python3.12/cpython/cellobject.h:
+
+/usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
+
+/home/cosmos/anaconda3/include/python3.12/pystate.h:
+
+/home/cosmos/anaconda3/include/python3.12/cpython/pystate.h:
+
+/home/cosmos/anaconda3/include/python3.12/cpython/genobject.h:
+
+/usr/include/c++/11/bits/charconv.h:
+
+/home/cosmos/anaconda3/include/python3.12/genericaliasobject.h:
+
+../include/alphazero/nn/neural_network.h:
+
+/home/cosmos/anaconda3/include/python3.12/warnings.h:
+
+/usr/include/c++/11/system_error:
+
+/home/cosmos/anaconda3/include/python3.12/cpython/warnings.h:
+
+/home/cosmos/anaconda3/include/python3.12/structseq.h:

@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/alphazero_minimal.dir/minimal_torch.cpp.o -o alphazero_minimal 

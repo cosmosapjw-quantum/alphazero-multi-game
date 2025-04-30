@@ -1,0 +1,2 @@
+/home/cosmos/anaconda3/bin/x86_64-conda-linux-gnu-ar qc libalphazero_nn.a CMakeFiles/alphazero_nn.dir/neural_network.cpp.o CMakeFiles/alphazero_nn.dir/torch_neural_network.cpp.o CMakeFiles/alphazero_nn.dir/batch_queue.cpp.o CMakeFiles/alphazero_nn.dir/attack_defense_module.cpp.o CMakeFiles/alphazero_nn.dir/random_policy_network.cpp.o
+/home/cosmos/anaconda3/bin/x86_64-conda-linux-gnu-ranlib libalphazero_nn.a

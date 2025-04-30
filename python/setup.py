@@ -13,8 +13,15 @@ from setuptools.command.build_ext import build_ext
 VERSION = '1.0.0'
 
 # Read long description from README
-with open('README.md', 'r', encoding='utf-8') as f:
-    long_description = f.read()
+try:
+    readme_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'README.md')
+    if os.path.exists(readme_path):
+        with open(readme_path, 'r', encoding='utf-8') as f:
+            long_description = f.read()
+    else:
+        long_description = "AlphaZero Multi-Game AI Engine"
+except:
+    long_description = "AlphaZero Multi-Game AI Engine"
 
 
 class CMakeExtension(Extension):
@@ -89,8 +96,17 @@ class CMakeBuild(build_ext):
 
 # Get requirements from requirements.txt
 def get_requirements():
-    with open('requirements.txt', 'r') as f:
-        return [line.strip() for line in f if not line.startswith('#')]
+    try:
+        req_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'requirements.txt')
+        if os.path.exists(req_path):
+            with open(req_path, 'r') as f:
+                return [line.strip() for line in f if not line.startswith('#')]
+        else:
+            # Default minimal requirements if file doesn't exist
+            return ['numpy>=1.19.0', 'pybind11>=2.6.0']
+    except:
+        # Fallback requirements
+        return ['numpy>=1.19.0', 'pybind11>=2.6.0']
 
 
 setup(

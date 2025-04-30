@@ -1,0 +1,2 @@
+/home/cosmos/anaconda3/bin/x86_64-conda-linux-gnu-ar qc libalphazero_api.a CMakeFiles/alphazero_api.dir/http_server.cpp.o CMakeFiles/alphazero_api.dir/rest_api.cpp.o CMakeFiles/alphazero_api.dir/server_main.cpp.o
+/home/cosmos/anaconda3/bin/x86_64-conda-linux-gnu-ranlib libalphazero_api.a

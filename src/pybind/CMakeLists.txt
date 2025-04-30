@@ -1,6 +1,7 @@
 if(ALPHAZERO_ENABLE_PYTHON AND pybind11_FOUND)
-    # Create the Python module
-    pybind11_add_module(alphazero_py python_bindings.cpp)
+    # Create the Python module with static linking
+    set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+    pybind11_add_module(alphazero_py STATIC python_bindings.cpp)
     
     target_include_directories(alphazero_py PRIVATE
         ${CMAKE_SOURCE_DIR}
@@ -51,6 +52,15 @@ if(ALPHAZERO_ENABLE_PYTHON AND pybind11_FOUND)
     
     # Always link with Torch libraries
     target_link_libraries(alphazero_py PRIVATE ${TORCH_LIBRARIES})
+    
+    # Explicitly link with fmt library to resolve symbol issues
+    target_link_libraries(alphazero_py PRIVATE fmt::fmt)
+    
+    # Add other common dependencies
+    target_link_libraries(alphazero_py PRIVATE 
+        spdlog::spdlog 
+        nlohmann_json::nlohmann_json
+    )
     
     set_target_properties(alphazero_py PROPERTIES
         OUTPUT_NAME "alphazero"

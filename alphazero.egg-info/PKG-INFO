@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: alphazero
+Version: 1.0.0
+Summary: AlphaZero Multi-Game AI Engine
+Home-page: https://github.com/alphazero/multi-game
+Author: AlphaZero Team
+Author-email: alphazero@example.com
+License: UNKNOWN
+Keywords: alphazero,ai,reinforcement learning,mcts,chess,go,gomoku
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: C++
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+AlphaZero Multi-Game AI Engine
+
