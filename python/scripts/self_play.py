@@ -201,140 +201,69 @@ def create_random_model(input_channels, action_size, board_size):
 
 
 def create_neural_network(args, game_type, board_size):
-    """Create a neural network using the C++ API, potentially exporting a PyTorch model first.
-
-    Args:
-        args: Command-line arguments
-        game_type: Game type enum value
-        board_size: Board size
-
-    Returns:
-        C++ Neural network object (az.NeuralNetwork) or None if failed/not specified.
-    """
-    # Determine if GPU should be used
+    """Create a neural network using the C++ API, exporting PyTorch if needed."""
     use_gpu = torch.cuda.is_available() and not args.no_gpu
-
-    # Create a test game state to get input shape and action size
     game_state = az.createGameState(game_type, board_size, args.variant)
     tensor_rep = game_state.getEnhancedTensorRepresentation()
     input_channels = len(tensor_rep)
-    action_size = game_state.getActionSpaceSize()
-    input_shape = (1, input_channels, board_size, board_size)
+    action_size    = game_state.getActionSpaceSize()
+    input_shape    = (1, input_channels, board_size, board_size)
 
     model_path_to_load = args.model
-    is_temp_model = False
+    is_temp_model      = False
 
-    # Handle creation of a random model if requested and no model provided
     if args.create_random_model and not args.model:
-        print("Creating and exporting a random model...")
         try:
-            # Create a random PyTorch model
             pytorch_model = create_random_model(input_channels, action_size, board_size)
-
-            # Define export path
             export_dir = "models"
             os.makedirs(export_dir, exist_ok=True)
             export_path = os.path.join(export_dir, f"random_model_{args.game}_{board_size}x{board_size}.pt")
-
-            # Export to LibTorch
             model_path_to_load = export_pytorch_to_libtorch(pytorch_model, input_shape, export_path)
             print(f"Random model exported to {model_path_to_load}")
-            print("You can now use this model for subsequent runs with:")
-            print(f"  python self_play.py --model {model_path_to_load} ...")
-
         except Exception as e:
-            print(f"Failed to create or export random model: {e}")
+            print(f"Failed to create/export random model: {e}")
             print("Proceeding without a neural network (random policy).")
             return None
 
-    # If a model path is provided, attempt to load it
     if model_path_to_load:
         nn = None
-        # 1. Try loading directly with C++ API (assumes LibTorch format)
+        # Attempt C++ load
         try:
-            print(f"Attempting to load model directly with C++ API: {model_path_to_load}")
-            # Set batch size and timeout for C++ network
-            az.NeuralNetwork.set_batch_size(args.batch_size)
-            az.NeuralNetwork.set_batch_timeout(args.batch_timeout)
-            az.NeuralNetwork.set_use_fp16(args.fp16)
-
+            print(f"Attempting to load model with C++ API: {model_path_to_load}")
             nn = az.createNeuralNetwork(model_path_to_load, game_type, board_size, use_gpu)
-            print(f"Successfully loaded model using C++ API from: {model_path_to_load}")
-
+            print(f"Loaded C++ model from {model_path_to_load}")
         except Exception as e_cpp:
-            print(f"Failed to load model with C++ API: {e_cpp}")
-            print("Assuming it might be a PyTorch model, attempting conversion...")
-
-            # 2. If C++ loading fails, try loading as PyTorch and exporting
+            print(f"Failed C++ load: {e_cpp}. Trying PyTorch->LibTorch export...")
             try:
                 device = torch.device("cuda" if use_gpu else "cpu")
-                pytorch_model = DDWRandWireResNet(input_channels, action_size) # Adapt if model architecture varies
-                pytorch_model.load_state_dict(torch.load(model_path_to_load, map_location=device))
-                pytorch_model.to(device)
-                pytorch_model.eval()
-                print(f"Successfully loaded model using PyTorch: {model_path_to_load}")
-
-                # Export to a temporary LibTorch file
-                with tempfile.NamedTemporaryFile(suffix=".pt", delete=False) as tmp_file:
-                    temp_libtorch_path = tmp_file.name
-
-                print(f"Exporting PyTorch model to temporary LibTorch file: {temp_libtorch_path}")
-                export_pytorch_to_libtorch(pytorch_model, input_shape, temp_libtorch_path)
-
-                # Keep track of the temp file for cleanup
+                pm = DDWRandWireResNet(input_channels, action_size)
+                pm.load_state_dict(torch.load(model_path_to_load, map_location=device))
+                pm.to(device).eval()
+                with tempfile.NamedTemporaryFile(suffix=".pt", delete=False) as tmpf:
+                    temp_libtorch_path = tmpf.name
+                export_pytorch_to_libtorch(pm, input_shape, temp_libtorch_path)
                 _temp_files.append(temp_libtorch_path)
-                is_temp_model = True
-                model_path_to_load = temp_libtorch_path
-
-                # Try loading the exported temporary model with C++ API again
-                print(f"Attempting to load exported temporary model with C++ API: {model_path_to_load}")
-                # Set batch size and timeout again if needed (might be reset)
-                az.NeuralNetwork.set_batch_size(args.batch_size)
-                az.NeuralNetwork.set_batch_timeout(args.batch_timeout)
-                az.NeuralNetwork.set_use_fp16(args.fp16)
-                nn = az.createNeuralNetwork(model_path_to_load, game_type, board_size, use_gpu)
-                print(f"Successfully loaded exported model using C++ API from: {model_path_to_load}")
-
-            except Exception as e_export:
-                print(f"Failed to load with PyTorch or export to LibTorch: {e_export}")
-                if is_temp_model and os.path.exists(model_path_to_load):
-                    os.remove(model_path_to_load) # Clean up failed temp export
-                print("Failed to load or convert the model.")
+                nn = az.createNeuralNetwork(temp_libtorch_path, game_type, board_size, use_gpu)
+                print(f"Loaded exported C++ model from {temp_libtorch_path}")
+            except Exception as e2:
+                print(f"Conversion failed: {e2}")
                 print("Proceeding without a neural network (random policy).")
                 return None
 
-        # If loading succeeded (either directly or via export)
         if nn:
-            if use_gpu:
-                print(f"Using GPU acceleration with device: {nn.getDeviceInfo()}")
-            else:
-                print(f"Using CPU: {nn.getDeviceInfo()}")
-
+            print(f"Neural network loaded into C++ API: {nn.getDeviceInfo()}")
             print(f"C++ NN Batch size: {nn.getBatchSize()}")
-            print(f"C++ NN Batch timeout: {nn.getBatchTimeout()} ms")
-            print(f"C++ NN FP16 enabled: {nn.getUseFp16()}")
-            if nn.getInferenceTimeMs() > 0: # May be 0 initially
-                 print(f"Average inference time: {nn.getInferenceTimeMs():.2f} ms (will update)")
-            print("Neural network loaded via C++ API - GIL issues avoided.")
+            if nn.getInferenceTimeMs() > 0:
+                print(f"Initial inference time: {nn.getInferenceTimeMs():.2f} ms")
             return nn
-        else:
-             # Should not happen if logic is correct, but as a safeguard
-            print("Model loading failed unexpectedly.")
-            print("Proceeding without a neural network (random policy).")
-            return None
 
-    # If no model path was provided and not creating a random one
-    print("No model specified. Using random policy network (C++ internal).")
+    print("No model specified. Using random policy network.")
     return None
 
 
 def run_self_play(args):
-    """Run self-play games using the C++ SelfPlayManager.
-
-    Args:
-        args: Command-line arguments
-    """
-    # Set random seed for reproducibility
+    """Run self-play games using the C++ SelfPlayManager."""
+    # Seed everything
     if args.seed is not None:
         print(f"Setting random seed: {args.seed}")
         random.seed(args.seed)
@@ -349,47 +278,21 @@ def run_self_play(args):
         except AttributeError:
             print("Warning: Could not set C++ random seed (az.set_random_seed not found).")
 
-
-    # Convert game type string to enum
-    game_type_map = {
-        "gomoku": az.GameType.GOMOKU,
-        "chess": az.GameType.CHESS,
-        "go": az.GameType.GO
-    }
+    game_type_map = {"gomoku": az.GameType.GOMOKU,
+                     "chess": az.GameType.CHESS,
+                     "go":    az.GameType.GO}
     game_type = game_type_map[args.game]
-
-    # Default board sizes
-    if args.size <= 0:
-        if args.game == "gomoku":
-            board_size = 15
-        elif args.game == "chess":
-            board_size = 8  # Chess is always 8x8
-        elif args.game == "go":
-            board_size = 19  # Default to 19x19
-        else:
-            # Should not happen due to choices in argparse
-            print(f"Warning: Unknown game type '{args.game}', defaulting size to 15.")
-            board_size = 15
-    else:
-        board_size = args.size
-
-    # Create output directory if it doesn't exist
+    board_size = args.size if args.size > 0 else {"gomoku":15,"chess":8,"go":19}[args.game]
     os.makedirs(args.output_dir, exist_ok=True)
-
-    # Determine if GPU and batched search should be used
     use_gpu = torch.cuda.is_available() and not args.no_gpu
-    # Note: C++ SelfPlayManager likely handles batched search internally if NN supports batching
-    use_batched_search = use_gpu and not args.no_batched_search # Keep for info, C++ decides
 
-    # Create neural network (always attempts C++ path)
     print("Initializing Neural Network...")
     neural_network = create_neural_network(args, game_type, board_size)
 
-    # Create self-play manager using the C++ implementation
     print("Initializing Self-Play Manager...")
     try:
         self_play = az.SelfPlayManager(
-            neural_network, # Can be None for random policy
+            neural_network,
             args.num_games,
             args.simulations,
             args.threads
@@ -398,7 +301,8 @@ def run_self_play(args):
         print(f"Fatal error creating SelfPlayManager: {e}")
         sys.exit(1)
 
-    # Set exploration parameters
+    # Configure batched MCTS
+    self_play.setBatchConfig(args.batch_size, args.batch_timeout)
     self_play.setExplorationParams(
         args.dirichlet_alpha,
         args.dirichlet_epsilon,
@@ -406,16 +310,10 @@ def run_self_play(args):
         args.temp_drop,
         args.final_temp
     )
-
-    # Set game saving parameters
     self_play.setSaveGames(True, args.output_dir)
 
-    # Set game type and variant for the manager
-    self_play.setGameParams(game_type, board_size, args.variant)
-
-    # --- Start Game Generation ---
-    print(f"Starting self-play generation...")
-    print("-" * 30)
+    print("Starting self-play generation...")
+    print("-"*40)
     print(f"Game:               {args.game.upper()}")
     print(f"Board size:         {board_size}x{board_size}")
     print(f"Variant rules:      {args.variant}")
@@ -430,77 +328,45 @@ def run_self_play(args):
     print(f"Model path:         {args.model if args.model else 'Random (C++)'}")
     if neural_network:
         print(f"NN Device Info:     {neural_network.getDeviceInfo()}")
-    print("-" * 30)
+    print("-" * 40)
 
-    # Performance monitoring variables
     start_time = time.time()
     last_update_time = start_time
     completed_games_count = 0
-    total_moves_count = 0
+    total_moves_count     = 0
 
-    try:
-        # Use the C++ manager's progress callback mechanism if available
-        # Assuming a hypothetical structure like this:
-        if hasattr(self_play, 'setProgressCallback'):
-            def progress_update(completed_games, total_moves):
-                nonlocal last_update_time, completed_games_count, total_moves_count
-                current_time = time.time()
-                elapsed_since_last = current_time - last_update_time
-                games_since_last = completed_games - completed_games_count
+    # Progress callback
+    if hasattr(self_play, 'setProgressCallback'):
+        def progress_update(game_id, move_num, total_games, total_moves):
+            nonlocal last_update_time, completed_games_count, total_moves_count
+            now = time.time()
+            dt = now - last_update_time
+            dg = game_id - completed_games_count
+            if dt > 0 and dg > 0:
+                rate = dg / dt
+                print(f"Progress: {game_id}/{total_games} games | {total_moves} moves | {rate:.2f} games/sec")
+            else:
+                print(f"Progress: {game_id}/{total_games} games | {total_moves} moves")
+            last_update_time = now
+            completed_games_count = game_id
+            total_moves_count     = total_moves
 
-                if elapsed_since_last > 0 and games_since_last > 0:
-                    rate = games_since_last / elapsed_since_last
-                    print(f"Progress: {completed_games}/{args.num_games} games | "
-                          f"{total_moves} moves | Rate: {rate:.2f} games/sec")
-                else:
-                     print(f"Progress: {completed_games}/{args.num_games} games | "
-                           f"{total_moves} moves")
-
-                last_update_time = current_time
-                completed_games_count = completed_games
-                total_moves_count = total_moves
-
-            # Register callback to be called every N seconds or M games from C++
-            self_play.setProgressCallback(progress_update, interval_seconds=10)
-            print("Registered progress callback.")
-
-            # Blocking call to generate games
-            self_play.generateGames() # Assumes generateGames is now blocking and uses callback
-
-        else:
-            # Fallback if no callback: manual blocking call and stats after
-            print("Progress callback not available in C++ module. Stats will be shown at the end.")
-            # This assumes generateGames returns completed games list, adjust if it doesn't
-            games_data = self_play.generateGames() # Might return game objects or just stats
-            # If it returns game objects (like az.GameRecord), process them:
-            if isinstance(games_data, list) and games_data and hasattr(games_data[0], 'getMoves'):
-                 completed_games_count = len(games_data)
-                 total_moves_count = sum(len(game.getMoves()) for game in games_data)
-            elif isinstance(games_data, dict): # Or if it returns a stats dictionary
-                 completed_games_count = games_data.get('completed_games', 0)
-                 total_moves_count = games_data.get('total_moves', 0)
-            else: # Or just rely on the manager's internal count if available
-                 completed_games_count = self_play.getCompletedGamesCount() if hasattr(self_play, 'getCompletedGamesCount') else 0
-                 total_moves_count = self_play.getTotalMovesCount() if hasattr(self_play, 'getTotalMovesCount') else 0
-
-
-    except KeyboardInterrupt:
-        print("Self-play interrupted by user.")
-        # Attempt to get final counts from the manager if possible
-        if hasattr(self_play, 'getCompletedGamesCount'):
-             completed_games_count = self_play.getCompletedGamesCount()
-        if hasattr(self_play, 'getTotalMovesCount'):
-             total_moves_count = self_play.getTotalMovesCount()
-        print("Processing results from completed games (if any)...")
-    except Exception as e:
-        print(f"An error occurred during self-play: {e}")
-        # Attempt to get final counts
-        if hasattr(self_play, 'getCompletedGamesCount'):
-             completed_games_count = self_play.getCompletedGamesCount()
-        if hasattr(self_play, 'getTotalMovesCount'):
-             total_moves_count = self_play.getTotalMovesCount()
-        print("Processing results from completed games (if any)...")
-
+        self_play.setProgressCallback(progress_update)
+        print("Registered progress callback.")
+        self_play.generateGames(game_type, board_size, args.variant)
+    else:
+        print("No progress callback; blocking until done.")
+        games_data = self_play.generateGames(game_type, board_size, args.variant)
+        # If it returns game objects (like az.GameRecord), process them:
+        if isinstance(games_data, list) and games_data and hasattr(games_data[0], 'getMoves'):
+             completed_games_count = len(games_data)
+             total_moves_count = sum(len(game.getMoves()) for game in games_data)
+        elif isinstance(games_data, dict): # Or if it returns a stats dictionary
+             completed_games_count = games_data.get('completed_games', 0)
+             total_moves_count = games_data.get('total_moves', 0)
+        else: # Or just rely on the manager's internal count if available
+             completed_games_count = self_play.getCompletedGamesCount() if hasattr(self_play, 'getCompletedGamesCount') else 0
+             total_moves_count = self_play.getTotalMovesCount() if hasattr(self_play, 'getTotalMovesCount') else 0
 
     end_time = time.time()
     total_duration = end_time - start_time
@@ -528,11 +394,6 @@ def run_self_play(args):
         avg_inference_time = neural_network.getInferenceTimeMs()
         if avg_inference_time > 0:
             print(f"Avg NN inference:   {avg_inference_time:.2f} ms (C++ API)")
-            # Estimate NN contribution percentage (rough estimate)
-            # total_nn_calls = total_moves * simulations
-            # total_nn_time_ms = total_nn_calls * avg_inference_time
-            # percentage_time = (total_nn_time_ms / 1000) / total_duration * 100
-            # print(f"Est. NN time %:     {percentage_time:.1f}% (approx)")
         else:
             print("Avg NN inference:   N/A (no inferences recorded)")
 
@@ -551,44 +412,30 @@ def run_self_play(args):
         "dirichlet_alpha": args.dirichlet_alpha,
         "dirichlet_epsilon": args.dirichlet_epsilon,
         "variant": args.variant,
-        "model_path_arg": args.model, # Original arg
+        "model_path_arg": args.model,
         "total_moves": total_moves_count,
         "avg_moves_per_game": avg_moves_per_game,
         "total_time_seconds": total_duration,
         "avg_time_per_game_seconds": avg_time_per_game,
         "avg_moves_per_second": avg_moves_per_second,
         "use_gpu": use_gpu,
-        "fp16_used": args.fp16 and use_gpu, # Actual usage depends on NN load
-        "batch_size_used": args.batch_size if neural_network else None,
-        "batch_timeout_used": args.batch_timeout if neural_network else None,
-        "seed": args.seed
+        "fp16_used": args.fp16,
+        "batch_size_used": (neural_network.getBatchSize() if neural_network else None),
+        "batch_timeout_used": args.batch_timeout,
+        "seed": args.seed,
+        "nn_loaded": neural_network is not None,
+        "nn_avg_inference_ms": (neural_network.getInferenceTimeMs() if neural_network else None),
+        "nn_device_info": (neural_network.getDeviceInfo() if neural_network else None),
+        "nn_batch_size": (neural_network.getBatchSize() if neural_network else None),
+        "nn_batch_timeout": args.batch_timeout,
+        "nn_fp16_enabled": args.fp16
     }
 
-    # Add neural network specific info if available
-    if neural_network:
-        metadata["nn_loaded"] = True
-        if hasattr(neural_network, 'getInferenceTimeMs'):
-            metadata["nn_avg_inference_ms"] = neural_network.getInferenceTimeMs()
-        if hasattr(neural_network, 'getDeviceInfo'):
-            metadata["nn_device_info"] = neural_network.getDeviceInfo()
-        # Assuming the C++ network object might have a way to report the actual model file loaded
-        # or some internal identifier. Replace 'getLoadedModelIdentifier' with actual method if it exists.
-        # metadata["nn_loaded_identifier"] = neural_network.getLoadedModelIdentifier()
-        metadata["nn_batch_size"] = neural_network.getBatchSize() if hasattr(neural_network, 'getBatchSize') else args.batch_size
-        metadata["nn_batch_timeout"] = neural_network.getBatchTimeout() if hasattr(neural_network, 'getBatchTimeout') else args.batch_timeout
-        metadata["nn_fp16_enabled"] = neural_network.getUseFp16() if hasattr(neural_network, 'getUseFp16') else args.fp16
-    else:
-         metadata["nn_loaded"] = False
-
-    metadata_filename = f"metadata_{time.strftime('%Y%m%d_%H%M%S')}.json"
-    metadata_path = os.path.join(args.output_dir, metadata_filename)
-    try:
-        with open(metadata_path, "w") as f:
-            json.dump(metadata, f, indent=2)
-        print(f"Metadata saved to {metadata_path}")
-    except Exception as e:
-        print(f"Error saving metadata to {metadata_path}: {e}")
-
+    metadata_path = os.path.join(args.output_dir,
+                                 f"metadata_{time.strftime('%Y%m%d_%H%M%S')}.json")
+    with open(metadata_path, "w") as f:
+        json.dump(metadata, f, indent=2)
+    print(f"Metadata saved to {metadata_path}")
     print("Self-play finished.")
 
 

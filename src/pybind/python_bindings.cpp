@@ -1,6 +1,7 @@
 // src/pybind/python_bindings.cpp
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
+#include <pybind11/functional.h>
 #include <pybind11/numpy.h>
 #include "alphazero/core/igamestate.h"
 #include "alphazero/games/gomoku/gomoku_state.h"
@@ -299,28 +300,31 @@ PYBIND11_MODULE(_alphazero_cpp, m) {
     // Self-Play Manager
     py::class_<selfplay::SelfPlayManager>(m, "SelfPlayManager")
         .def(py::init<nn::NeuralNetwork*, int, int, int>(),
-            py::arg("neuralNetwork"),
-            py::arg("numGames") = 100,
-            py::arg("numSimulations") = 800,
-            py::arg("numThreads") = 4)
-        .def("generateGames", [](selfplay::SelfPlayManager &self, 
-                                core::GameType gameType, 
-                                int boardSize, 
-                                bool useVariantRules) {
-            // Release GIL during the long-running self-play process
+             py::arg("neuralNetwork"),
+             py::arg("numGames") = 100,
+             py::arg("numSimulations") = 800,
+             py::arg("numThreads") = 4)
+        .def("generateGames", [](selfplay::SelfPlayManager &self,
+                                 core::GameType gameType,
+                                 int boardSize,
+                                 bool useVariantRules) {
             py::gil_scoped_release release;
             return self.generateGames(gameType, boardSize, useVariantRules);
         }, py::arg("gameType"), py::arg("boardSize") = 0, py::arg("useVariantRules") = false)
+        .def("setBatchConfig", &selfplay::SelfPlayManager::setBatchConfig,
+             py::arg("batchSize"),
+             py::arg("batchTimeoutMs"))
         .def("setExplorationParams", &selfplay::SelfPlayManager::setExplorationParams,
-            py::arg("dirichletAlpha") = 0.03f,
-            py::arg("dirichletEpsilon") = 0.25f,
-            py::arg("initialTemperature") = 1.0f,
-            py::arg("temperatureDropMove") = 30,
-            py::arg("finalTemperature") = 0.0f)
+             py::arg("dirichletAlpha")     = 0.03f,
+             py::arg("dirichletEpsilon")   = 0.25f,
+             py::arg("initialTemperature") = 1.0f,
+             py::arg("temperatureDropMove")= 30,
+             py::arg("finalTemperature")   = 0.0f)
         .def("setSaveGames", &selfplay::SelfPlayManager::setSaveGames,
-            py::arg("saveGames"),
-            py::arg("outputDir") = "games")
+             py::arg("saveGames"),
+             py::arg("outputDir") = "games")
         .def("setAbort", &selfplay::SelfPlayManager::setAbort)
+        .def("setProgressCallback", &selfplay::SelfPlayManager::setProgressCallback)
         .def("isRunning", &selfplay::SelfPlayManager::isRunning);
 }
 

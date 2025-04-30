@@ -76,9 +76,16 @@ public:
     /**
      * @brief Set the callback for progress updates
      * 
-     * @param callback Function to call with progress updates
+     * Callback signature: (gameId, moveNum, totalGames, totalMoves)
      */
-    void setProgressCallback(std::function<void(int, int, int, int)> callback);
+    void setProgressCallback(std::function<void(int,int,int,int)> callback);
+    
+    /**
+     * @brief Configure batch settings for internal MCTS
+     * @param batchSize Number of states per batched inference
+     * @param batchTimeoutMs Timeout in milliseconds for forming a batch
+     */
+    void setBatchConfig(int batchSize, int batchTimeoutMs);
     
     /**
      * @brief Set whether to save games to files
@@ -120,13 +127,17 @@ private:
     std::string outputDir_;
     
     // Progress tracking
-    std::function<void(int, int, int, int)> progressCallback_;  // (game, move, totalGames, totalMoves)
+    std::function<void(int,int,int,int)> progressCallback_;
     std::atomic<bool> abort_;
     std::atomic<bool> running_;
     
     // Thread-safe game record collection
     std::vector<GameRecord> gameRecords_;
     std::mutex gameRecordsMutex_;
+    
+    // MCTS batch inference parameters
+    int batchSize_{16};
+    int batchTimeoutMs_{5};
     
     /**
      * @brief Play a single game
@@ -144,7 +155,7 @@ private:
         bool useVariantRules);
     
     /**
-     * @brief Get temperature for the current move
+     * @brief Compute temperature for the current move
      * 
      * @param moveNum Current move number
      * @return Temperature value
