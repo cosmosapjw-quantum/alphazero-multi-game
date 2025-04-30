@@ -73,43 +73,43 @@ tests/CMakeFiles/mcts_tests.dir/mcts/mcts_node_test.cpp.o: tests/CMakeFiles/mcts
 tests/CMakeFiles/mcts_tests.dir/mcts/mcts_node_test.cpp.o: ../tests/mcts/mcts_node_test.cpp
 tests/CMakeFiles/mcts_tests.dir/mcts/mcts_node_test.cpp.o: tests/CMakeFiles/mcts_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object tests/CMakeFiles/mcts_tests.dir/mcts/mcts_node_test.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/mcts_tests.dir/mcts/mcts_node_test.cpp.o -MF CMakeFiles/mcts_tests.dir/mcts/mcts_node_test.cpp.o.d -o CMakeFiles/mcts_tests.dir/mcts/mcts_node_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/mcts/mcts_node_test.cpp
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/mcts_tests.dir/mcts/mcts_node_test.cpp.o -MF CMakeFiles/mcts_tests.dir/mcts/mcts_node_test.cpp.o.d -o CMakeFiles/mcts_tests.dir/mcts/mcts_node_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/mcts/mcts_node_test.cpp
 
 tests/CMakeFiles/mcts_tests.dir/mcts/mcts_node_test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mcts_tests.dir/mcts/mcts_node_test.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/mcts/mcts_node_test.cpp > CMakeFiles/mcts_tests.dir/mcts/mcts_node_test.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/mcts/mcts_node_test.cpp > CMakeFiles/mcts_tests.dir/mcts/mcts_node_test.cpp.i
 
 tests/CMakeFiles/mcts_tests.dir/mcts/mcts_node_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mcts_tests.dir/mcts/mcts_node_test.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/mcts/mcts_node_test.cpp -o CMakeFiles/mcts_tests.dir/mcts/mcts_node_test.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/mcts/mcts_node_test.cpp -o CMakeFiles/mcts_tests.dir/mcts/mcts_node_test.cpp.s
 
 tests/CMakeFiles/mcts_tests.dir/mcts/parallel_mcts_test.cpp.o: tests/CMakeFiles/mcts_tests.dir/flags.make
 tests/CMakeFiles/mcts_tests.dir/mcts/parallel_mcts_test.cpp.o: ../tests/mcts/parallel_mcts_test.cpp
 tests/CMakeFiles/mcts_tests.dir/mcts/parallel_mcts_test.cpp.o: tests/CMakeFiles/mcts_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object tests/CMakeFiles/mcts_tests.dir/mcts/parallel_mcts_test.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/mcts_tests.dir/mcts/parallel_mcts_test.cpp.o -MF CMakeFiles/mcts_tests.dir/mcts/parallel_mcts_test.cpp.o.d -o CMakeFiles/mcts_tests.dir/mcts/parallel_mcts_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/mcts/parallel_mcts_test.cpp
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/mcts_tests.dir/mcts/parallel_mcts_test.cpp.o -MF CMakeFiles/mcts_tests.dir/mcts/parallel_mcts_test.cpp.o.d -o CMakeFiles/mcts_tests.dir/mcts/parallel_mcts_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/mcts/parallel_mcts_test.cpp
 
 tests/CMakeFiles/mcts_tests.dir/mcts/parallel_mcts_test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mcts_tests.dir/mcts/parallel_mcts_test.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/mcts/parallel_mcts_test.cpp > CMakeFiles/mcts_tests.dir/mcts/parallel_mcts_test.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/mcts/parallel_mcts_test.cpp > CMakeFiles/mcts_tests.dir/mcts/parallel_mcts_test.cpp.i
 
 tests/CMakeFiles/mcts_tests.dir/mcts/parallel_mcts_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mcts_tests.dir/mcts/parallel_mcts_test.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/mcts/parallel_mcts_test.cpp -o CMakeFiles/mcts_tests.dir/mcts/parallel_mcts_test.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/mcts/parallel_mcts_test.cpp -o CMakeFiles/mcts_tests.dir/mcts/parallel_mcts_test.cpp.s
 
 tests/CMakeFiles/mcts_tests.dir/mcts/transposition_table_test.cpp.o: tests/CMakeFiles/mcts_tests.dir/flags.make
 tests/CMakeFiles/mcts_tests.dir/mcts/transposition_table_test.cpp.o: ../tests/mcts/transposition_table_test.cpp
 tests/CMakeFiles/mcts_tests.dir/mcts/transposition_table_test.cpp.o: tests/CMakeFiles/mcts_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object tests/CMakeFiles/mcts_tests.dir/mcts/transposition_table_test.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/mcts_tests.dir/mcts/transposition_table_test.cpp.o -MF CMakeFiles/mcts_tests.dir/mcts/transposition_table_test.cpp.o.d -o CMakeFiles/mcts_tests.dir/mcts/transposition_table_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/mcts/transposition_table_test.cpp
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/mcts_tests.dir/mcts/transposition_table_test.cpp.o -MF CMakeFiles/mcts_tests.dir/mcts/transposition_table_test.cpp.o.d -o CMakeFiles/mcts_tests.dir/mcts/transposition_table_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/mcts/transposition_table_test.cpp
 
 tests/CMakeFiles/mcts_tests.dir/mcts/transposition_table_test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mcts_tests.dir/mcts/transposition_table_test.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/mcts/transposition_table_test.cpp > CMakeFiles/mcts_tests.dir/mcts/transposition_table_test.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/mcts/transposition_table_test.cpp > CMakeFiles/mcts_tests.dir/mcts/transposition_table_test.cpp.i
 
 tests/CMakeFiles/mcts_tests.dir/mcts/transposition_table_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mcts_tests.dir/mcts/transposition_table_test.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/mcts/transposition_table_test.cpp -o CMakeFiles/mcts_tests.dir/mcts/transposition_table_test.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/mcts/transposition_table_test.cpp -o CMakeFiles/mcts_tests.dir/mcts/transposition_table_test.cpp.s
 
 # Object files for target mcts_tests
 mcts_tests_OBJECTS = \
@@ -136,6 +136,8 @@ tests/mcts_tests: /opt/libtorch/lib/libkineto.a
 tests/mcts_tests: /usr/local/cuda-12.4/lib64/libnvrtc.so
 tests/mcts_tests: /usr/local/cuda-12.4/lib64/libnvToolsExt.so
 tests/mcts_tests: /opt/libtorch/lib/libc10_cuda.so
+tests/mcts_tests: /usr/lib/x86_64-linux-gnu/libspdlog.so.1.9.2
+tests/mcts_tests: /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1
 tests/mcts_tests: /usr/lib/x86_64-linux-gnu/libgtest.a
 tests/mcts_tests: tests/CMakeFiles/mcts_tests.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable mcts_tests"

@@ -770,7 +770,11 @@ tests/CMakeFiles/mcts_tests.dir/mcts/parallel_mcts_test.cpp.o: ../tests/mcts/par
   /usr/include/c++/11/algorithm \
   /usr/include/c++/11/pstl/glue_algorithm_defs.h \
   ../include/alphazero/mcts/transposition_table.h \
+  ../include/alphazero/nn/batch_queue.h \
+  /usr/include/c++/11/queue \
+  /usr/include/c++/11/bits/stl_queue.h \
   ../include/alphazero/nn/neural_network.h \
+  ../include/alphazero/nn/random_policy_network.h \
   ../include/alphazero/games/gomoku/gomoku_state.h \
   /usr/include/c++/11/unordered_set \
   /usr/include/c++/11/bits/unordered_set.h \
@@ -1542,6 +1546,8 @@ tests/CMakeFiles/mcts_tests.dir/mcts/transposition_table_test.cpp.o: ../tests/mc
 
 /usr/include/x86_64-linux-gnu/sys/select.h:
 
+/usr/include/c++/11/bits/stl_queue.h:
+
 /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
@@ -1573,6 +1579,8 @@ tests/CMakeFiles/mcts_tests.dir/mcts/transposition_table_test.cpp.o: ../tests/mc
 /usr/include/c++/11/bits/shared_ptr.h:
 
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
+
+../include/alphazero/nn/batch_queue.h:
 
 /usr/include/x86_64-linux-gnu/bits/types.h:
 
@@ -1675,6 +1683,8 @@ tests/CMakeFiles/mcts_tests.dir/mcts/transposition_table_test.cpp.o: ../tests/mc
 /usr/include/c++/11/ext/string_conversions.h:
 
 /usr/include/c++/11/bits/nested_exception.h:
+
+/usr/include/c++/11/queue:
 
 /usr/include/c++/11/bits/shared_ptr_atomic.h:
 
@@ -1913,6 +1923,8 @@ tests/CMakeFiles/mcts_tests.dir/mcts/transposition_table_test.cpp.o: ../tests/mc
 /usr/include/c++/11/bits/istream.tcc:
 
 /usr/include/c++/11/bits/locale_facets_nonio.h:
+
+../include/alphazero/nn/random_policy_network.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h:
 

@@ -3,6 +3,7 @@
 #define TORCH_NEURAL_NETWORK_H
 
 #include "alphazero/nn/neural_network.h"
+#include "alphazero/nn/batch_queue.h"
 
 // Only include torch headers if LibTorch is enabled
 #ifndef LIBTORCH_OFF
@@ -14,9 +15,29 @@
 #include <condition_variable>
 #include <thread>
 #include <future>
+#include <unordered_map>
 
 namespace alphazero {
 namespace nn {
+
+/**
+ * @brief Configuration for TorchNeuralNetwork
+ */
+struct TorchNeuralNetworkConfig {
+    bool useGpu = true;                    // Use GPU if available
+    bool useFp16 = false;                  // Use half precision (FP16)
+    int batchSize = 16;                    // Default batch size
+    bool useTensorCaching = true;          // Cache tensors to avoid repeated conversions
+    bool useJitScripting = true;           // Use JIT scripting for model optimization
+    bool useAsyncExecution = true;         // Use asynchronous execution
+    bool useOutputCompression = false;     // Apply output compression for less memory usage
+    int maxCacheSize = 1024;               // Maximum tensor cache size
+    int maxQueueSize = 256;                // Maximum queue size for async execution
+    std::string modelBackend = "default";  // Model backend
+    bool useNhwcFormat = false;            // Use NHWC format instead of NCHW
+    bool useWarmup = true;                 // Perform warmup inferences at startup
+    int numWarmupIterations = 5;           // Number of warmup iterations
+};
 
 /**
  * @brief PyTorch implementation of the neural network
@@ -30,11 +51,13 @@ public:
      * @param gameType Game type
      * @param boardSize Board size
      * @param useGpu Whether to use GPU
+     * @param config TorchNeuralNetwork configuration
      */
     TorchNeuralNetwork(const std::string& modelPath, 
                       core::GameType gameType,
                       int boardSize = 0,
-                      bool useGpu = true);
+                      bool useGpu = true,
+                      const TorchNeuralNetworkConfig& config = TorchNeuralNetworkConfig());
     
     /**
      * @brief Destructor
@@ -64,17 +87,81 @@ public:
     void enableDebugMode(bool enable) override;
     void printModelSummary() const override;
     
+    /**
+     * @brief Get configuration
+     * 
+     * @return Current configuration
+     */
+    const TorchNeuralNetworkConfig& getConfig() const { return config_; }
+    
+    /**
+     * @brief Set configuration
+     * 
+     * @param config New configuration
+     */
+    void setConfig(const TorchNeuralNetworkConfig& config);
+    
+    /**
+     * @brief Clear tensor cache
+     */
+    void clearCache();
+    
+    /**
+     * @brief Get cache statistics
+     * 
+     * @return String with cache statistics
+     */
+    std::string getCacheStats() const;
+    
+    /**
+     * @brief Export model to ONNX format
+     * 
+     * @param outputPath Output path
+     * @return true if successful
+     */
+    bool exportToOnnx(const std::string& outputPath) const;
+    
+    /**
+     * @brief Clear the batch queue
+     */
+    void clearBatchQueue();
+    
+    /**
+     * @brief Get the batch queue stats
+     * 
+     * @return String with batch queue stats
+     */
+    std::string getBatchQueueStats() const;
+    
 private:
     // Game and board information
     core::GameType gameType_;
     int boardSize_;
     int inputChannels_;
     int actionSpaceSize_;
+    TorchNeuralNetworkConfig config_;
     
 #ifndef LIBTORCH_OFF
     // PyTorch model
     torch::jit::script::Module model_;
-    torch::Device device_;
+    torch::Device device_{torch::kCPU};
+    
+    // Tensor cache
+    struct CacheEntry {
+        torch::Tensor tensor;
+        std::chrono::steady_clock::time_point lastAccess;
+        
+        CacheEntry(torch::Tensor t) 
+            : tensor(std::move(t)), lastAccess(std::chrono::steady_clock::now()) {}
+    };
+    
+    mutable std::mutex cacheMutex_;
+    mutable std::unordered_map<uint64_t, CacheEntry> tensorCache_;
+    
+    // Cache statistics
+    mutable std::atomic<size_t> cacheHits_{0};
+    mutable std::atomic<size_t> cacheMisses_{0};
+    mutable std::atomic<size_t> cacheSize_{0};
 #endif
 
     bool isGpu_;
@@ -86,23 +173,20 @@ private:
     int batchSize_;
     
     // Batch processing
-#ifndef LIBTORCH_OFF
-    std::queue<std::pair<torch::Tensor, std::promise<std::pair<std::vector<float>, float>>>> batchQueue_;
-#else
-    std::queue<std::pair<int, std::promise<std::pair<std::vector<float>, float>>>> batchQueue_;
-#endif
-    std::mutex batchMutex_;
-    std::condition_variable batchCondVar_;
-    std::thread batchThread_;
-    bool stopBatchThread_;
+    std::unique_ptr<BatchQueue> batchQueue_;
     
 #ifndef LIBTORCH_OFF
     // Helper methods
     torch::Tensor stateTensor(const core::IGameState& state) const;
+    torch::Tensor getCachedStateTensor(const core::IGameState& state) const;
     std::pair<std::vector<float>, float> processOutput(const torch::jit::IValue& output, int actionSize) const;
-#endif
-    void batchProcessingLoop();
     void createModel();
+    void performWarmup();
+#endif
+
+    // Feature map compression and decompression
+    std::vector<float> compressPolicy(const std::vector<float>& policy) const;
+    std::vector<float> decompressPolicy(const std::vector<float>& compressedPolicy, int actionSize) const;
 };
 
 } // namespace nn

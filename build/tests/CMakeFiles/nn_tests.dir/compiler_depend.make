@@ -706,6 +706,38 @@ tests/CMakeFiles/nn_tests.dir/nn/batch_queue_test.cpp.o: ../tests/nn/batch_queue
   /usr/include/c++/11/bits/this_thread_sleep.h \
   ../include/alphazero/core/igamestate.h \
   ../include/alphazero/nn/neural_network.h \
+  ../include/alphazero/nn/random_policy_network.h \
+  /usr/include/c++/11/random \
+  /usr/include/c++/11/cmath \
+  /usr/include/math.h \
+  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
+  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
+  /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
+  /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
+  /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
+  /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
+  /usr/include/c++/11/bits/specfun.h \
+  /usr/include/c++/11/tr1/gamma.tcc \
+  /usr/include/c++/11/tr1/special_function_util.h \
+  /usr/include/c++/11/tr1/bessel_function.tcc \
+  /usr/include/c++/11/tr1/beta_function.tcc \
+  /usr/include/c++/11/tr1/ell_integral.tcc \
+  /usr/include/c++/11/tr1/exp_integral.tcc \
+  /usr/include/c++/11/tr1/hypergeometric.tcc \
+  /usr/include/c++/11/tr1/legendre_function.tcc \
+  /usr/include/c++/11/tr1/modified_bessel_func.tcc \
+  /usr/include/c++/11/tr1/poly_hermite.tcc \
+  /usr/include/c++/11/tr1/poly_laguerre.tcc \
+  /usr/include/c++/11/tr1/riemann_zeta.tcc \
+  /usr/include/c++/11/bits/random.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/opt_random.h \
+  /usr/include/c++/11/bits/random.tcc \
+  /usr/include/c++/11/numeric \
+  /usr/include/c++/11/bits/stl_numeric.h \
+  /usr/include/c++/11/pstl/glue_numeric_defs.h \
   ../include/alphazero/games/gomoku/gomoku_state.h \
   /usr/include/c++/11/unordered_set \
   /usr/include/c++/11/bits/unordered_set.h \
@@ -1807,6 +1839,14 @@ tests/CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.o: ../tests/nn/to
   /usr/include/c++/11/bits/atomic_futex.h \
   /usr/include/c++/11/bits/std_thread.h \
   ../include/alphazero/core/igamestate.h \
+  ../include/alphazero/nn/batch_queue.h \
+  /usr/include/c++/11/queue \
+  /usr/include/c++/11/deque \
+  /usr/include/c++/11/bits/stl_deque.h \
+  /usr/include/c++/11/bits/deque.tcc \
+  /usr/include/c++/11/bits/stl_queue.h \
+  /usr/include/c++/11/thread \
+  /usr/include/c++/11/bits/this_thread_sleep.h \
   /opt/libtorch/include/torch/csrc/api/include/torch/torch.h \
   /opt/libtorch/include/torch/csrc/api/include/torch/all.h \
   /opt/libtorch/include/torch/csrc/api/include/torch/autograd.h \
@@ -1962,9 +2002,6 @@ tests/CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.o: ../tests/nn/to
   /opt/libtorch/include/ATen/core/DeprecatedTypePropertiesRegistry.h \
   /opt/libtorch/include/ATen/core/DeprecatedTypeProperties.h \
   /opt/libtorch/include/ATen/core/Generator.h \
-  /usr/include/c++/11/deque \
-  /usr/include/c++/11/bits/stl_deque.h \
-  /usr/include/c++/11/bits/deque.tcc \
   /opt/libtorch/include/c10/core/GeneratorImpl.h \
   /opt/libtorch/include/ATen/core/NamedTensor.h \
   /opt/libtorch/include/ATen/core/Dimname.h \
@@ -2480,8 +2517,6 @@ tests/CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.o: ../tests/nn/to
   /opt/libtorch/include/ATen/record_function.h \
   /opt/libtorch/include/c10/util/LeftRight.h \
   /opt/libtorch/include/c10/util/Synchronized.h \
-  /usr/include/c++/11/thread \
-  /usr/include/c++/11/bits/this_thread_sleep.h \
   /opt/libtorch/include/ATen/core/grad_mode.h \
   /opt/libtorch/include/c10/core/GradMode.h \
   /opt/libtorch/include/torch/csrc/jit/frontend/function_schema_parser.h \
@@ -6336,8 +6371,6 @@ tests/CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.o: ../tests/nn/to
   /opt/libtorch/include/torch/csrc/api/include/torch/detail/TensorDataContainer.h \
   /opt/libtorch/include/torch/csrc/api/include/torch/data/detail/data_shuttle.h \
   /opt/libtorch/include/torch/csrc/api/include/torch/data/detail/queue.h \
-  /usr/include/c++/11/queue \
-  /usr/include/c++/11/bits/stl_queue.h \
   /opt/libtorch/include/torch/csrc/api/include/torch/data/detail/sequencers.h \
   /opt/libtorch/include/torch/csrc/api/include/torch/data/iterator.h \
   /opt/libtorch/include/torch/csrc/api/include/torch/data/samplers/random.h \

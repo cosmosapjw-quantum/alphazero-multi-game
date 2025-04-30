@@ -1,0 +1,18 @@
+Determining if the function pthread_create exists in the pthread failed with the following output:
+Change Dir: /home/cosmos/alphazero-multi-game/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_28a80/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_28a80.dir/build.make CMakeFiles/cmTC_28a80.dir/build
+gmake[1]: Entering directory '/home/cosmos/alphazero-multi-game/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_28a80.dir/CheckFunctionExists.cxx.o
+/home/cosmos/anaconda3/bin/x86_64-conda-linux-gnu-c++   -fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/cosmos/anaconda3/include -DCHECK_FUNCTION_EXISTS=pthread_create -fPIE -std=c++17 -o CMakeFiles/cmTC_28a80.dir/CheckFunctionExists.cxx.o -c /home/cosmos/alphazero-multi-game/build/CMakeFiles/CheckLibraryExists/CheckFunctionExists.cxx
+Linking CXX executable cmTC_28a80
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_28a80.dir/link.txt --verbose=1
+/home/cosmos/anaconda3/bin/x86_64-conda-linux-gnu-c++ -fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/cosmos/anaconda3/include -DCHECK_FUNCTION_EXISTS=pthread_create -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/cosmos/anaconda3/lib -Wl,-rpath-link,/home/cosmos/anaconda3/lib -L/home/cosmos/anaconda3/lib  CMakeFiles/cmTC_28a80.dir/CheckFunctionExists.cxx.o -o cmTC_28a80  -lpthread 
+/home/cosmos/anaconda3/bin/../lib/gcc/x86_64-conda-linux-gnu/14.2.0/../../../../x86_64-conda-linux-gnu/bin/ld: cannot open output file cmTC_28a80: No such file or directory
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [CMakeFiles/cmTC_28a80.dir/build.make:99: cmTC_28a80] Error 1
+gmake[1]: Leaving directory '/home/cosmos/alphazero-multi-game/build/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:127: cmTC_28a80/fast] Error 2
+
+
+

@@ -125,7 +125,34 @@ bool GoState::isLegalMove(int action) const {
         return true;  // Pass is always legal
     }
     
-    return isValidMove(action);
+    // First check basic validity
+    if (!isValidMove(action)) {
+        return false;
+    }
+    
+    // Create a temporary copy to test for superko (position repetition)
+    GoState tempState(*this);
+    
+    // Temporarily apply move
+    tempState.setStone(action, tempState.current_player_);
+    
+    // Process any captures that would occur
+    std::vector<StoneGroup> opponentGroups = tempState.rules_->findGroups(3 - tempState.current_player_);
+    for (const auto& group : opponentGroups) {
+        if (group.liberties.empty()) {
+            tempState.captureGroup(group);
+        }
+    }
+    
+    // Check if this position has appeared before (superko rule)
+    uint64_t newHash = tempState.getHash();
+    for (uint64_t hash : tempState.position_history_) {
+        if (hash == newHash) {
+            return false;  // Position repetition found, move is illegal
+        }
+    }
+    
+    return true;
 }
 
 void GoState::makeMove(int action) {
@@ -180,8 +207,12 @@ void GoState::makeMove(int action) {
         // Record move
         move_history_.push_back(action);
         
+        // Get the updated hash after captures
+        invalidateHash();
+        uint64_t newHash = getHash();
+        
         // Record position for ko detection
-        position_history_.push_back(currentHash);
+        position_history_.push_back(newHash);
     }
     
     // Switch players

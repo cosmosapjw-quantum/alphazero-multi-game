@@ -1019,6 +1019,9 @@ src/selfplay/CMakeFiles/alphazero_selfplay.dir/self_play_manager.cpp.o
  /usr/include/c++/11/algorithm
  /usr/include/c++/11/pstl/glue_algorithm_defs.h
  /home/cosmos/alphazero-multi-game/include/alphazero/mcts/transposition_table.h
+ /home/cosmos/alphazero-multi-game/include/alphazero/nn/batch_queue.h
+ /usr/include/c++/11/queue
+ /usr/include/c++/11/bits/stl_queue.h
  /home/cosmos/alphazero-multi-game/include/alphazero/nn/neural_network.h
  /home/cosmos/alphazero-multi-game/include/alphazero/selfplay/game_record.h
  /usr/include/c++/11/filesystem

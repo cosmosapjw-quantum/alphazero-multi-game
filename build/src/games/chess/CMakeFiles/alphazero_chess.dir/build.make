@@ -73,43 +73,43 @@ src/games/chess/CMakeFiles/alphazero_chess.dir/chess_state.cpp.o: src/games/ches
 src/games/chess/CMakeFiles/alphazero_chess.dir/chess_state.cpp.o: ../src/games/chess/chess_state.cpp
 src/games/chess/CMakeFiles/alphazero_chess.dir/chess_state.cpp.o: src/games/chess/CMakeFiles/alphazero_chess.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/games/chess/CMakeFiles/alphazero_chess.dir/chess_state.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src/games/chess && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/games/chess/CMakeFiles/alphazero_chess.dir/chess_state.cpp.o -MF CMakeFiles/alphazero_chess.dir/chess_state.cpp.o.d -o CMakeFiles/alphazero_chess.dir/chess_state.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/chess/chess_state.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src/games/chess && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/games/chess/CMakeFiles/alphazero_chess.dir/chess_state.cpp.o -MF CMakeFiles/alphazero_chess.dir/chess_state.cpp.o.d -o CMakeFiles/alphazero_chess.dir/chess_state.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/chess/chess_state.cpp
 
 src/games/chess/CMakeFiles/alphazero_chess.dir/chess_state.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_chess.dir/chess_state.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src/games/chess && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/games/chess/chess_state.cpp > CMakeFiles/alphazero_chess.dir/chess_state.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src/games/chess && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/games/chess/chess_state.cpp > CMakeFiles/alphazero_chess.dir/chess_state.cpp.i
 
 src/games/chess/CMakeFiles/alphazero_chess.dir/chess_state.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_chess.dir/chess_state.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src/games/chess && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/games/chess/chess_state.cpp -o CMakeFiles/alphazero_chess.dir/chess_state.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src/games/chess && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/games/chess/chess_state.cpp -o CMakeFiles/alphazero_chess.dir/chess_state.cpp.s
 
 src/games/chess/CMakeFiles/alphazero_chess.dir/chess_rules.cpp.o: src/games/chess/CMakeFiles/alphazero_chess.dir/flags.make
 src/games/chess/CMakeFiles/alphazero_chess.dir/chess_rules.cpp.o: ../src/games/chess/chess_rules.cpp
 src/games/chess/CMakeFiles/alphazero_chess.dir/chess_rules.cpp.o: src/games/chess/CMakeFiles/alphazero_chess.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/games/chess/CMakeFiles/alphazero_chess.dir/chess_rules.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src/games/chess && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/games/chess/CMakeFiles/alphazero_chess.dir/chess_rules.cpp.o -MF CMakeFiles/alphazero_chess.dir/chess_rules.cpp.o.d -o CMakeFiles/alphazero_chess.dir/chess_rules.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/chess/chess_rules.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src/games/chess && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/games/chess/CMakeFiles/alphazero_chess.dir/chess_rules.cpp.o -MF CMakeFiles/alphazero_chess.dir/chess_rules.cpp.o.d -o CMakeFiles/alphazero_chess.dir/chess_rules.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/chess/chess_rules.cpp
 
 src/games/chess/CMakeFiles/alphazero_chess.dir/chess_rules.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_chess.dir/chess_rules.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src/games/chess && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/games/chess/chess_rules.cpp > CMakeFiles/alphazero_chess.dir/chess_rules.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src/games/chess && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/games/chess/chess_rules.cpp > CMakeFiles/alphazero_chess.dir/chess_rules.cpp.i
 
 src/games/chess/CMakeFiles/alphazero_chess.dir/chess_rules.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_chess.dir/chess_rules.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src/games/chess && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/games/chess/chess_rules.cpp -o CMakeFiles/alphazero_chess.dir/chess_rules.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src/games/chess && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/games/chess/chess_rules.cpp -o CMakeFiles/alphazero_chess.dir/chess_rules.cpp.s
 
 src/games/chess/CMakeFiles/alphazero_chess.dir/chess960.cpp.o: src/games/chess/CMakeFiles/alphazero_chess.dir/flags.make
 src/games/chess/CMakeFiles/alphazero_chess.dir/chess960.cpp.o: ../src/games/chess/chess960.cpp
 src/games/chess/CMakeFiles/alphazero_chess.dir/chess960.cpp.o: src/games/chess/CMakeFiles/alphazero_chess.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/games/chess/CMakeFiles/alphazero_chess.dir/chess960.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src/games/chess && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/games/chess/CMakeFiles/alphazero_chess.dir/chess960.cpp.o -MF CMakeFiles/alphazero_chess.dir/chess960.cpp.o.d -o CMakeFiles/alphazero_chess.dir/chess960.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/chess/chess960.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src/games/chess && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/games/chess/CMakeFiles/alphazero_chess.dir/chess960.cpp.o -MF CMakeFiles/alphazero_chess.dir/chess960.cpp.o.d -o CMakeFiles/alphazero_chess.dir/chess960.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/chess/chess960.cpp
 
 src/games/chess/CMakeFiles/alphazero_chess.dir/chess960.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_chess.dir/chess960.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src/games/chess && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/games/chess/chess960.cpp > CMakeFiles/alphazero_chess.dir/chess960.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src/games/chess && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/games/chess/chess960.cpp > CMakeFiles/alphazero_chess.dir/chess960.cpp.i
 
 src/games/chess/CMakeFiles/alphazero_chess.dir/chess960.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_chess.dir/chess960.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src/games/chess && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/games/chess/chess960.cpp -o CMakeFiles/alphazero_chess.dir/chess960.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src/games/chess && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/games/chess/chess960.cpp -o CMakeFiles/alphazero_chess.dir/chess960.cpp.s
 
 # Object files for target alphazero_chess
 alphazero_chess_OBJECTS = \

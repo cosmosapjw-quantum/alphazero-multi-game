@@ -55,6 +55,9 @@ target_include_directories(alphazero_lib PUBLIC
 target_link_libraries(alphazero_lib PUBLIC
     ${TORCH_LIBRARIES}
     Threads::Threads
+    fmt::fmt
+    spdlog::spdlog
+    nlohmann_json::nlohmann_json
 )
 
 # Install the library

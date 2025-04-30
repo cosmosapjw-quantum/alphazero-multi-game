@@ -15,15 +15,18 @@
 #include <memory>
 #include <condition_variable>
 #include <functional>
+#include <unordered_map>
 #include "alphazero/core/igamestate.h"
 #include "alphazero/mcts/mcts_node.h"
 #include "alphazero/mcts/transposition_table.h"
+#include "alphazero/nn/batch_queue.h"
 
 namespace alphazero {
 
 // Forward declarations
 namespace nn {
     class NeuralNetwork;
+    class BatchQueue;
 }
 
 namespace mcts {
@@ -34,7 +37,8 @@ namespace mcts {
 enum class MCTSNodeSelection {
     UCB,             // Standard UCB formula
     PUCT,            // AlphaZero's PUCT formula
-    PROGRESSIVE_BIAS // Progressive bias with visit count
+    PROGRESSIVE_BIAS, // Progressive bias with visit count
+    RAVE            // Rapid Action Value Estimation
 };
 
 /**
@@ -67,6 +71,63 @@ private:
 };
 
 /**
+ * @brief Statistics for MCTS search
+ */
+struct MCTSStats {
+    std::atomic<size_t> nodesCreated{0};
+    std::atomic<size_t> nodesExpanded{0};
+    std::atomic<size_t> nodesTotalVisits{0};
+    std::atomic<size_t> cacheHits{0};
+    std::atomic<size_t> cacheMisses{0};
+    std::atomic<size_t> evaluationCalls{0};
+    std::atomic<size_t> simulationCount{0};
+    std::atomic<size_t> batchCount{0};
+    std::atomic<size_t> batchSize{0};
+    
+    void reset() {
+        nodesCreated = 0;
+        nodesExpanded = 0;
+        nodesTotalVisits = 0;
+        cacheHits = 0;
+        cacheMisses = 0;
+        evaluationCalls = 0;
+        simulationCount = 0;
+        batchCount = 0;
+        batchSize = 0;
+    }
+};
+
+/**
+ * @brief Configuration for MCTS search
+ */
+struct MCTSConfig {
+    int numThreads = 4;
+    int numSimulations = 800;
+    float cPuct = 1.5f;
+    float fpuReduction = 0.2f;
+    int virtualLoss = 3;
+    MCTSNodeSelection selectionStrategy = MCTSNodeSelection::PUCT;
+    bool useProgressiveWidening = true;
+    int progressiveWideningBase = 4;
+    float progressiveWideningExponent = 0.5f;
+    int minVisitsForWidening = 2;
+    bool useDirichletNoise = false;
+    float dirichletAlpha = 0.03f;
+    float dirichletEpsilon = 0.25f;
+    float firstPlayUrgency = 1.0f;
+    bool useBatchInference = true;
+    int batchSize = 8;
+    int transpositionTableSize = 1048576;
+    int cacheEntryMaxAge = 50000; // milliseconds
+    bool useValueBounds = true;
+    bool useTemporalDifference = false;
+    float tdLambda = 0.8f;
+    int maxSearchDepth = 1000;
+    int visitThresholdForPruning = 1;
+    bool useFmapCache = true;
+};
+
+/**
  * @brief Parallel Monte Carlo Tree Search implementation
  * 
  * This class implements the MCTS algorithm with parallel search
@@ -95,6 +156,21 @@ public:
         float cPuct = 1.5f,
         float fpuReduction = 0.0f,
         int virtualLoss = 3
+    );
+    
+    /**
+     * @brief Constructor with configuration
+     * 
+     * @param rootState The initial game state
+     * @param config MCTS configuration
+     * @param nn Neural network for evaluation (can be nullptr)
+     * @param tt Transposition table (can be nullptr)
+     */
+    ParallelMCTS(
+        const core::IGameState& rootState,
+        const MCTSConfig& config,
+        alphazero::nn::NeuralNetwork* nn = nullptr,
+        TranspositionTable* tt = nullptr
     );
     
     /**
@@ -171,21 +247,21 @@ public:
      * 
      * @param cPuct Exploration constant
      */
-    void setCPuct(float cPuct) { cPuct_ = cPuct; }
+    void setCPuct(float cPuct) { config_.cPuct = cPuct; }
     
     /**
      * @brief Set first play urgency reduction
      * 
      * @param fpuReduction FPU reduction value
      */
-    void setFpuReduction(float fpuReduction) { fpuReduction_ = fpuReduction; }
+    void setFpuReduction(float fpuReduction) { config_.fpuReduction = fpuReduction; }
     
     /**
      * @brief Set virtual loss amount
      * 
      * @param virtualLoss Virtual loss amount
      */
-    void setVirtualLoss(int virtualLoss) { virtualLoss_ = virtualLoss; }
+    void setVirtualLoss(int virtualLoss) { config_.virtualLoss = virtualLoss; }
     
     /**
      * @brief Set neural network for evaluation
@@ -206,7 +282,21 @@ public:
      * 
      * @param strategy Selection strategy enum
      */
-    void setSelectionStrategy(MCTSNodeSelection strategy) { selectionStrategy_ = strategy; }
+    void setSelectionStrategy(MCTSNodeSelection strategy) { config_.selectionStrategy = strategy; }
+    
+    /**
+     * @brief Set MCTS configuration
+     * 
+     * @param config New configuration
+     */
+    void setConfig(const MCTSConfig& config);
+    
+    /**
+     * @brief Get current MCTS configuration
+     * 
+     * @return Current configuration
+     */
+    const MCTSConfig& getConfig() const { return config_; }
     
     /**
      * @brief Set deterministic mode for reproducible results
@@ -259,25 +349,86 @@ public:
     
     /**
      * @brief Release memory by pruning unused nodes
+     * 
+     * @param visitThreshold Minimum visit count to keep a node
+     * @return Number of nodes pruned
      */
-    void releaseMemory();
+    size_t releaseMemory(int visitThreshold = 1);
+    
+    /**
+     * @brief Get the search statistics
+     * 
+     * @return Search statistics
+     */
+    const MCTSStats& getStats() const { return stats_; }
+    
+    /**
+     * @brief Reset search statistics
+     */
+    void resetStats() { stats_.reset(); }
+    
+    /**
+     * @brief Get the root node
+     * 
+     * @return Pointer to root node
+     */
+    MCTSNode* getRootNode() const { return rootNode_.get(); }
+    
+    /**
+     * @brief Get the current root state
+     * 
+     * @return Reference to current root state
+     */
+    const core::IGameState& getRootState() const { return *rootState_; }
+    
+    /**
+     * @brief Analyze the position and return top N moves with info
+     * 
+     * @param topN Number of top moves to return
+     * @return Vector of (action, visits, value, prior) tuples
+     */
+    std::vector<std::tuple<int, int, float, float>> analyzePosition(int topN = 5) const;
+    
+    /**
+     * @brief Enable or disable progressive widening
+     * 
+     * @param enable Whether to enable progressive widening
+     */
+    void enableProgressiveWidening(bool enable) { config_.useProgressiveWidening = enable; }
+    
+    /**
+     * @brief Get the number of nodes created in the search tree
+     * 
+     * @return Number of nodes
+     */
+    size_t getNodeCount() const { return stats_.nodesCreated.load(); }
+    
+    /**
+     * @brief Get the number of evaluations performed
+     * 
+     * @return Number of evaluations
+     */
+    size_t getEvaluationCount() const { return stats_.evaluationCalls.load(); }
     
 private:
     // Member variables
     std::unique_ptr<core::IGameState> rootState_;   // Current root state
     std::unique_ptr<MCTSNode> rootNode_;            // Root of the search tree
     alphazero::nn::NeuralNetwork* nn_;              // Neural network for evaluation
-    TranspositionTable* tt_;                       // Optional transposition table
-    std::unique_ptr<ThreadPool> threadPool_;       // Thread pool for parallel search
-    std::atomic<int> pendingSimulations_{0};       // Counter for remaining simulations
+    TranspositionTable* tt_;                        // Optional transposition table
+    std::unique_ptr<nn::BatchQueue> batchQueue_;    // Queue for batching network requests
+    std::unique_ptr<ThreadPool> threadPool_;        // Thread pool for parallel search
+    std::atomic<int> pendingSimulations_{0};        // Counter for remaining simulations
     
-    // MCTS parameters
-    int numSimulations_;
-    float cPuct_;
-    float fpuReduction_;
-    int virtualLoss_;
-    bool deterministicMode_{false};
-    MCTSNodeSelection selectionStrategy_{MCTSNodeSelection::PUCT};
+    // MCTS configuration
+    MCTSConfig config_;
+    
+    // Statistics
+    MCTSStats stats_;
+    
+    // Feature map cache for avoiding redundant tensor computation
+    std::unordered_map<uint64_t, std::vector<std::vector<std::vector<float>>>> featureMapCache_;
+    mutable std::mutex featureMapMutex_;
     
     // Random number generation
     std::mt19937 rng_;
@@ -290,20 +441,30 @@ private:
     bool debugMode_{false};
     
     // Helper methods
+    void initialize(const core::IGameState& rootState);
     void runSingleSimulation();
     MCTSNode* selectLeaf(core::IGameState& state);
     void expandNode(MCTSNode* node, const core::IGameState& state);
     void backpropagate(MCTSNode* node, float value);
     std::pair<std::vector<float>, float> evaluateState(const core::IGameState& state);
+    std::pair<std::vector<float>, float> evaluateStateBatch(const std::vector<std::reference_wrapper<const core::IGameState>>& states);
     float getTemperatureVisitWeight(int visitCount, float temperature) const;
     MCTSNode* selectChildUcb(MCTSNode* node, const core::IGameState& state);
     MCTSNode* selectChildPuct(MCTSNode* node, const core::IGameState& state);
     MCTSNode* selectChildProgressiveBias(MCTSNode* node, const core::IGameState& state);
+    MCTSNode* selectChildRave(MCTSNode* node, const core::IGameState& state);
     float convertToValue(core::GameResult result, int currentPlayer);
     float getDirichletAlpha() const;
     
+    // Progressive widening
+    int getProgressiveWideningCount(int parentVisits, int totalChildren) const;
+    
     // Memory management helpers
     void pruneAllExcept(MCTSNode* nodeToKeep);
+    
+    // Feature map caching
+    std::vector<std::vector<std::vector<float>>> getCachedFeatureMap(const core::IGameState& state);
+    void cacheFeatureMap(uint64_t hash, const std::vector<std::vector<std::vector<float>>>& featureMap);
 };
 
 // Template implementation for ThreadPool::enqueue

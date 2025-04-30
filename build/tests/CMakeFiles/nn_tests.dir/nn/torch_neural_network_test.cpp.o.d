@@ -73,6 +73,7 @@ tests/CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar2.h \
  /usr/include/c++/11/bits/shared_ptr_base.h /usr/include/c++/11/typeinfo \
  /usr/include/c++/11/bits/allocated_ptr.h \
  /usr/include/c++/11/bits/refwrap.h \
@@ -138,16 +139,20 @@ tests/CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.o: \
  /usr/include/x86_64-linux-gnu/sys/select.h \
  /usr/include/x86_64-linux-gnu/bits/select.h \
  /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
- /usr/include/alloca.h /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+ /usr/include/x86_64-linux-gnu/bits/select2.h /usr/include/alloca.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib.h \
  /usr/include/c++/11/bits/std_abs.h /usr/include/c++/11/cstdio \
  /usr/include/stdio.h /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
  /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
- /usr/include/c++/11/cerrno /usr/include/errno.h \
- /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
- /usr/include/x86_64-linux-gnu/asm/errno.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio2.h /usr/include/c++/11/cerrno \
+ /usr/include/errno.h /usr/include/x86_64-linux-gnu/bits/errno.h \
+ /usr/include/linux/errno.h /usr/include/x86_64-linux-gnu/asm/errno.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
  /usr/include/c++/11/bits/charconv.h \
@@ -172,6 +177,8 @@ tests/CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.o: \
  /usr/include/gtest/internal/gtest-internal.h \
  /usr/include/gtest/internal/gtest-port.h /usr/include/c++/11/stdlib.h \
  /usr/include/string.h /usr/include/strings.h \
+ /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+ /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
  /usr/include/x86_64-linux-gnu/sys/stat.h \
  /usr/include/x86_64-linux-gnu/bits/stat.h \
  /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -202,6 +209,7 @@ tests/CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/confname.h \
  /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+ /usr/include/x86_64-linux-gnu/bits/unistd.h \
  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
  /usr/include/linux/close_range.h /usr/include/regex.h \
  /usr/include/c++/11/any /usr/include/c++/11/optional \
@@ -275,6 +283,11 @@ tests/CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.o: \
  /usr/include/c++/11/bits/atomic_futex.h \
  /usr/include/c++/11/bits/std_thread.h \
  /home/cosmos/alphazero-multi-game/include/alphazero/core/igamestate.h \
+ /home/cosmos/alphazero-multi-game/include/alphazero/nn/batch_queue.h \
+ /usr/include/c++/11/queue /usr/include/c++/11/deque \
+ /usr/include/c++/11/bits/stl_deque.h /usr/include/c++/11/bits/deque.tcc \
+ /usr/include/c++/11/bits/stl_queue.h /usr/include/c++/11/thread \
+ /usr/include/c++/11/bits/this_thread_sleep.h \
  /opt/libtorch/include/torch/csrc/api/include/torch/torch.h \
  /opt/libtorch/include/torch/csrc/api/include/torch/all.h \
  /opt/libtorch/include/torch/csrc/api/include/torch/autograd.h \
@@ -421,8 +434,7 @@ tests/CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.o: \
  /opt/libtorch/include/c10/core/DefaultDtype.h \
  /opt/libtorch/include/ATen/core/DeprecatedTypePropertiesRegistry.h \
  /opt/libtorch/include/ATen/core/DeprecatedTypeProperties.h \
- /opt/libtorch/include/ATen/core/Generator.h /usr/include/c++/11/deque \
- /usr/include/c++/11/bits/stl_deque.h /usr/include/c++/11/bits/deque.tcc \
+ /opt/libtorch/include/ATen/core/Generator.h \
  /opt/libtorch/include/c10/core/GeneratorImpl.h \
  /opt/libtorch/include/ATen/core/NamedTensor.h \
  /opt/libtorch/include/ATen/core/Dimname.h \
@@ -935,8 +947,7 @@ tests/CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.o: \
  /usr/include/c++/11/bits/stl_list.h /usr/include/c++/11/bits/list.tcc \
  /opt/libtorch/include/ATen/record_function.h \
  /opt/libtorch/include/c10/util/LeftRight.h \
- /opt/libtorch/include/c10/util/Synchronized.h /usr/include/c++/11/thread \
- /usr/include/c++/11/bits/this_thread_sleep.h \
+ /opt/libtorch/include/c10/util/Synchronized.h \
  /opt/libtorch/include/ATen/core/grad_mode.h \
  /opt/libtorch/include/c10/core/GradMode.h \
  /opt/libtorch/include/torch/csrc/jit/frontend/function_schema_parser.h \
@@ -4786,7 +4797,6 @@ tests/CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.o: \
  /opt/libtorch/include/torch/csrc/api/include/torch/detail/TensorDataContainer.h \
  /opt/libtorch/include/torch/csrc/api/include/torch/data/detail/data_shuttle.h \
  /opt/libtorch/include/torch/csrc/api/include/torch/data/detail/queue.h \
- /usr/include/c++/11/queue /usr/include/c++/11/bits/stl_queue.h \
  /opt/libtorch/include/torch/csrc/api/include/torch/data/detail/sequencers.h \
  /opt/libtorch/include/torch/csrc/api/include/torch/data/iterator.h \
  /opt/libtorch/include/torch/csrc/api/include/torch/data/samplers/random.h \

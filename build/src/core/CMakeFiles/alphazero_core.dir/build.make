@@ -73,57 +73,57 @@ src/core/CMakeFiles/alphazero_core.dir/AlphaZero.cpp.o: src/core/CMakeFiles/alph
 src/core/CMakeFiles/alphazero_core.dir/AlphaZero.cpp.o: ../src/core/AlphaZero.cpp
 src/core/CMakeFiles/alphazero_core.dir/AlphaZero.cpp.o: src/core/CMakeFiles/alphazero_core.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/core/CMakeFiles/alphazero_core.dir/AlphaZero.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src/core && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/core/CMakeFiles/alphazero_core.dir/AlphaZero.cpp.o -MF CMakeFiles/alphazero_core.dir/AlphaZero.cpp.o.d -o CMakeFiles/alphazero_core.dir/AlphaZero.cpp.o -c /home/cosmos/alphazero-multi-game/src/core/AlphaZero.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src/core && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/core/CMakeFiles/alphazero_core.dir/AlphaZero.cpp.o -MF CMakeFiles/alphazero_core.dir/AlphaZero.cpp.o.d -o CMakeFiles/alphazero_core.dir/AlphaZero.cpp.o -c /home/cosmos/alphazero-multi-game/src/core/AlphaZero.cpp
 
 src/core/CMakeFiles/alphazero_core.dir/AlphaZero.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_core.dir/AlphaZero.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src/core && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/core/AlphaZero.cpp > CMakeFiles/alphazero_core.dir/AlphaZero.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src/core && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/core/AlphaZero.cpp > CMakeFiles/alphazero_core.dir/AlphaZero.cpp.i
 
 src/core/CMakeFiles/alphazero_core.dir/AlphaZero.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_core.dir/AlphaZero.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src/core && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/core/AlphaZero.cpp -o CMakeFiles/alphazero_core.dir/AlphaZero.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src/core && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/core/AlphaZero.cpp -o CMakeFiles/alphazero_core.dir/AlphaZero.cpp.s
 
 src/core/CMakeFiles/alphazero_core.dir/igamestate.cpp.o: src/core/CMakeFiles/alphazero_core.dir/flags.make
 src/core/CMakeFiles/alphazero_core.dir/igamestate.cpp.o: ../src/core/igamestate.cpp
 src/core/CMakeFiles/alphazero_core.dir/igamestate.cpp.o: src/core/CMakeFiles/alphazero_core.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/core/CMakeFiles/alphazero_core.dir/igamestate.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src/core && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/core/CMakeFiles/alphazero_core.dir/igamestate.cpp.o -MF CMakeFiles/alphazero_core.dir/igamestate.cpp.o.d -o CMakeFiles/alphazero_core.dir/igamestate.cpp.o -c /home/cosmos/alphazero-multi-game/src/core/igamestate.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src/core && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/core/CMakeFiles/alphazero_core.dir/igamestate.cpp.o -MF CMakeFiles/alphazero_core.dir/igamestate.cpp.o.d -o CMakeFiles/alphazero_core.dir/igamestate.cpp.o -c /home/cosmos/alphazero-multi-game/src/core/igamestate.cpp
 
 src/core/CMakeFiles/alphazero_core.dir/igamestate.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_core.dir/igamestate.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src/core && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/core/igamestate.cpp > CMakeFiles/alphazero_core.dir/igamestate.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src/core && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/core/igamestate.cpp > CMakeFiles/alphazero_core.dir/igamestate.cpp.i
 
 src/core/CMakeFiles/alphazero_core.dir/igamestate.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_core.dir/igamestate.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src/core && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/core/igamestate.cpp -o CMakeFiles/alphazero_core.dir/igamestate.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src/core && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/core/igamestate.cpp -o CMakeFiles/alphazero_core.dir/igamestate.cpp.s
 
 src/core/CMakeFiles/alphazero_core.dir/game_factory.cpp.o: src/core/CMakeFiles/alphazero_core.dir/flags.make
 src/core/CMakeFiles/alphazero_core.dir/game_factory.cpp.o: ../src/core/game_factory.cpp
 src/core/CMakeFiles/alphazero_core.dir/game_factory.cpp.o: src/core/CMakeFiles/alphazero_core.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/core/CMakeFiles/alphazero_core.dir/game_factory.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src/core && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/core/CMakeFiles/alphazero_core.dir/game_factory.cpp.o -MF CMakeFiles/alphazero_core.dir/game_factory.cpp.o.d -o CMakeFiles/alphazero_core.dir/game_factory.cpp.o -c /home/cosmos/alphazero-multi-game/src/core/game_factory.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src/core && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/core/CMakeFiles/alphazero_core.dir/game_factory.cpp.o -MF CMakeFiles/alphazero_core.dir/game_factory.cpp.o.d -o CMakeFiles/alphazero_core.dir/game_factory.cpp.o -c /home/cosmos/alphazero-multi-game/src/core/game_factory.cpp
 
 src/core/CMakeFiles/alphazero_core.dir/game_factory.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_core.dir/game_factory.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src/core && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/core/game_factory.cpp > CMakeFiles/alphazero_core.dir/game_factory.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src/core && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/core/game_factory.cpp > CMakeFiles/alphazero_core.dir/game_factory.cpp.i
 
 src/core/CMakeFiles/alphazero_core.dir/game_factory.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_core.dir/game_factory.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src/core && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/core/game_factory.cpp -o CMakeFiles/alphazero_core.dir/game_factory.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src/core && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/core/game_factory.cpp -o CMakeFiles/alphazero_core.dir/game_factory.cpp.s
 
 src/core/CMakeFiles/alphazero_core.dir/zobrist_hash.cpp.o: src/core/CMakeFiles/alphazero_core.dir/flags.make
 src/core/CMakeFiles/alphazero_core.dir/zobrist_hash.cpp.o: ../src/core/zobrist_hash.cpp
 src/core/CMakeFiles/alphazero_core.dir/zobrist_hash.cpp.o: src/core/CMakeFiles/alphazero_core.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/core/CMakeFiles/alphazero_core.dir/zobrist_hash.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src/core && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/core/CMakeFiles/alphazero_core.dir/zobrist_hash.cpp.o -MF CMakeFiles/alphazero_core.dir/zobrist_hash.cpp.o.d -o CMakeFiles/alphazero_core.dir/zobrist_hash.cpp.o -c /home/cosmos/alphazero-multi-game/src/core/zobrist_hash.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src/core && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/core/CMakeFiles/alphazero_core.dir/zobrist_hash.cpp.o -MF CMakeFiles/alphazero_core.dir/zobrist_hash.cpp.o.d -o CMakeFiles/alphazero_core.dir/zobrist_hash.cpp.o -c /home/cosmos/alphazero-multi-game/src/core/zobrist_hash.cpp
 
 src/core/CMakeFiles/alphazero_core.dir/zobrist_hash.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_core.dir/zobrist_hash.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src/core && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/core/zobrist_hash.cpp > CMakeFiles/alphazero_core.dir/zobrist_hash.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src/core && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/core/zobrist_hash.cpp > CMakeFiles/alphazero_core.dir/zobrist_hash.cpp.i
 
 src/core/CMakeFiles/alphazero_core.dir/zobrist_hash.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_core.dir/zobrist_hash.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src/core && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/core/zobrist_hash.cpp -o CMakeFiles/alphazero_core.dir/zobrist_hash.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src/core && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/core/zobrist_hash.cpp -o CMakeFiles/alphazero_core.dir/zobrist_hash.cpp.s
 
 # Object files for target alphazero_core
 alphazero_core_OBJECTS = \

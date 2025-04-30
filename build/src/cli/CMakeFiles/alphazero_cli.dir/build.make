@@ -73,43 +73,43 @@ src/cli/CMakeFiles/alphazero_cli.dir/cli_interface.cpp.o: src/cli/CMakeFiles/alp
 src/cli/CMakeFiles/alphazero_cli.dir/cli_interface.cpp.o: ../src/cli/cli_interface.cpp
 src/cli/CMakeFiles/alphazero_cli.dir/cli_interface.cpp.o: src/cli/CMakeFiles/alphazero_cli.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/cli/CMakeFiles/alphazero_cli.dir/cli_interface.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src/cli && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/cli/CMakeFiles/alphazero_cli.dir/cli_interface.cpp.o -MF CMakeFiles/alphazero_cli.dir/cli_interface.cpp.o.d -o CMakeFiles/alphazero_cli.dir/cli_interface.cpp.o -c /home/cosmos/alphazero-multi-game/src/cli/cli_interface.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src/cli && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/cli/CMakeFiles/alphazero_cli.dir/cli_interface.cpp.o -MF CMakeFiles/alphazero_cli.dir/cli_interface.cpp.o.d -o CMakeFiles/alphazero_cli.dir/cli_interface.cpp.o -c /home/cosmos/alphazero-multi-game/src/cli/cli_interface.cpp
 
 src/cli/CMakeFiles/alphazero_cli.dir/cli_interface.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_cli.dir/cli_interface.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src/cli && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/cli/cli_interface.cpp > CMakeFiles/alphazero_cli.dir/cli_interface.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src/cli && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/cli/cli_interface.cpp > CMakeFiles/alphazero_cli.dir/cli_interface.cpp.i
 
 src/cli/CMakeFiles/alphazero_cli.dir/cli_interface.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_cli.dir/cli_interface.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src/cli && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/cli/cli_interface.cpp -o CMakeFiles/alphazero_cli.dir/cli_interface.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src/cli && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/cli/cli_interface.cpp -o CMakeFiles/alphazero_cli.dir/cli_interface.cpp.s
 
 src/cli/CMakeFiles/alphazero_cli.dir/cli_main.cpp.o: src/cli/CMakeFiles/alphazero_cli.dir/flags.make
 src/cli/CMakeFiles/alphazero_cli.dir/cli_main.cpp.o: ../src/cli/cli_main.cpp
 src/cli/CMakeFiles/alphazero_cli.dir/cli_main.cpp.o: src/cli/CMakeFiles/alphazero_cli.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/cli/CMakeFiles/alphazero_cli.dir/cli_main.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src/cli && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/cli/CMakeFiles/alphazero_cli.dir/cli_main.cpp.o -MF CMakeFiles/alphazero_cli.dir/cli_main.cpp.o.d -o CMakeFiles/alphazero_cli.dir/cli_main.cpp.o -c /home/cosmos/alphazero-multi-game/src/cli/cli_main.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src/cli && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/cli/CMakeFiles/alphazero_cli.dir/cli_main.cpp.o -MF CMakeFiles/alphazero_cli.dir/cli_main.cpp.o.d -o CMakeFiles/alphazero_cli.dir/cli_main.cpp.o -c /home/cosmos/alphazero-multi-game/src/cli/cli_main.cpp
 
 src/cli/CMakeFiles/alphazero_cli.dir/cli_main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_cli.dir/cli_main.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src/cli && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/cli/cli_main.cpp > CMakeFiles/alphazero_cli.dir/cli_main.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src/cli && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/cli/cli_main.cpp > CMakeFiles/alphazero_cli.dir/cli_main.cpp.i
 
 src/cli/CMakeFiles/alphazero_cli.dir/cli_main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_cli.dir/cli_main.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src/cli && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/cli/cli_main.cpp -o CMakeFiles/alphazero_cli.dir/cli_main.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src/cli && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/cli/cli_main.cpp -o CMakeFiles/alphazero_cli.dir/cli_main.cpp.s
 
 src/cli/CMakeFiles/alphazero_cli.dir/command_parser.cpp.o: src/cli/CMakeFiles/alphazero_cli.dir/flags.make
 src/cli/CMakeFiles/alphazero_cli.dir/command_parser.cpp.o: ../src/cli/command_parser.cpp
 src/cli/CMakeFiles/alphazero_cli.dir/command_parser.cpp.o: src/cli/CMakeFiles/alphazero_cli.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/cli/CMakeFiles/alphazero_cli.dir/command_parser.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src/cli && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/cli/CMakeFiles/alphazero_cli.dir/command_parser.cpp.o -MF CMakeFiles/alphazero_cli.dir/command_parser.cpp.o.d -o CMakeFiles/alphazero_cli.dir/command_parser.cpp.o -c /home/cosmos/alphazero-multi-game/src/cli/command_parser.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src/cli && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/cli/CMakeFiles/alphazero_cli.dir/command_parser.cpp.o -MF CMakeFiles/alphazero_cli.dir/command_parser.cpp.o.d -o CMakeFiles/alphazero_cli.dir/command_parser.cpp.o -c /home/cosmos/alphazero-multi-game/src/cli/command_parser.cpp
 
 src/cli/CMakeFiles/alphazero_cli.dir/command_parser.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_cli.dir/command_parser.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src/cli && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/cli/command_parser.cpp > CMakeFiles/alphazero_cli.dir/command_parser.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src/cli && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/cli/command_parser.cpp > CMakeFiles/alphazero_cli.dir/command_parser.cpp.i
 
 src/cli/CMakeFiles/alphazero_cli.dir/command_parser.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_cli.dir/command_parser.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src/cli && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/cli/command_parser.cpp -o CMakeFiles/alphazero_cli.dir/command_parser.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src/cli && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/cli/command_parser.cpp -o CMakeFiles/alphazero_cli.dir/command_parser.cpp.s
 
 # Object files for target alphazero_cli
 alphazero_cli_OBJECTS = \

@@ -505,6 +505,9 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o
  /usr/include/c++/11/bits/locale_conv.h
  /usr/include/c++/11/bits/quoted_string.h
  /home/cosmos/alphazero-multi-game/include/alphazero/mcts/transposition_table.h
+ /home/cosmos/alphazero-multi-game/include/alphazero/nn/batch_queue.h
+ /usr/include/c++/11/queue
+ /usr/include/c++/11/bits/stl_queue.h
  /home/cosmos/alphazero-multi-game/include/alphazero/nn/neural_network.h
  /home/cosmos/alphazero-multi-game/include/alphazero/selfplay/self_play_manager.h
  /home/cosmos/alphazero-multi-game/include/alphazero/selfplay/game_record.h

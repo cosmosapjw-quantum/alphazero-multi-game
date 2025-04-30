@@ -475,11 +475,37 @@ src/nn/CMakeFiles/alphazero_nn.dir/batch_queue.cpp.o
  /usr/include/c++/11/backward/auto_ptr.h
  /usr/include/c++/11/pstl/glue_memory_defs.h
  /usr/include/c++/11/pstl/execution_defs.h
+ /usr/include/c++/11/sstream
+ /usr/include/c++/11/istream
+ /usr/include/c++/11/ios
+ /usr/include/c++/11/bits/ios_base.h
+ /usr/include/c++/11/bits/locale_classes.h
+ /usr/include/c++/11/bits/locale_classes.tcc
+ /usr/include/c++/11/streambuf
+ /usr/include/c++/11/bits/streambuf.tcc
+ /usr/include/c++/11/bits/basic_ios.h
+ /usr/include/c++/11/bits/locale_facets.h
+ /usr/include/c++/11/cwctype
+ /usr/include/wctype.h
+ /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h
+ /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h
+ /usr/include/c++/11/bits/streambuf_iterator.h
+ /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h
+ /usr/include/c++/11/bits/locale_facets.tcc
+ /usr/include/c++/11/bits/basic_ios.tcc
+ /usr/include/c++/11/ostream
+ /usr/include/c++/11/bits/ostream.tcc
+ /usr/include/c++/11/bits/istream.tcc
+ /usr/include/c++/11/bits/sstream.tcc
  /home/cosmos/alphazero-multi-game/include/alphazero/core/igamestate.h
  /usr/include/c++/11/optional
  /home/cosmos/alphazero-multi-game/include/alphazero/nn/neural_network.h
  /usr/include/c++/11/algorithm
  /usr/include/c++/11/pstl/glue_algorithm_defs.h
+ /usr/include/c++/11/numeric
+ /usr/include/c++/11/bits/stl_numeric.h
+ /usr/include/c++/11/pstl/glue_numeric_defs.h
+ /usr/include/c++/11/iostream
 
 src/nn/CMakeFiles/alphazero_nn.dir/neural_network.cpp.o
  /home/cosmos/alphazero-multi-game/src/nn/neural_network.cpp
@@ -759,6 +785,16 @@ src/nn/CMakeFiles/alphazero_nn.dir/neural_network.cpp.o
  /usr/include/c++/11/istream
  /usr/include/c++/11/bits/istream.tcc
  /home/cosmos/alphazero-multi-game/include/alphazero/nn/torch_neural_network.h
+ /home/cosmos/alphazero-multi-game/include/alphazero/nn/batch_queue.h
+ /usr/include/c++/11/queue
+ /usr/include/c++/11/deque
+ /usr/include/c++/11/bits/stl_deque.h
+ /usr/include/c++/11/bits/deque.tcc
+ /usr/include/c++/11/bits/stl_queue.h
+ /usr/include/c++/11/thread
+ /usr/include/c++/11/bits/this_thread_sleep.h
+ /usr/include/c++/11/sstream
+ /usr/include/c++/11/bits/sstream.tcc
  /opt/libtorch/include/torch/csrc/api/include/torch/torch.h
  /opt/libtorch/include/torch/csrc/api/include/torch/all.h
  /opt/libtorch/include/torch/csrc/api/include/torch/autograd.h
@@ -794,8 +830,6 @@ src/nn/CMakeFiles/alphazero_nn.dir/neural_network.cpp.o
  /usr/include/x86_64-linux-gnu/bits/string_fortified.h
  /usr/include/c++/11/iterator
  /usr/include/c++/11/bits/stream_iterator.h
- /usr/include/c++/11/sstream
- /usr/include/c++/11/bits/sstream.tcc
  /usr/include/c++/11/variant
  /opt/libtorch/include/c10/core/Layout.h
  /opt/libtorch/include/c10/core/Backend.h
@@ -899,9 +933,6 @@ src/nn/CMakeFiles/alphazero_nn.dir/neural_network.cpp.o
  /opt/libtorch/include/ATen/core/DeprecatedTypePropertiesRegistry.h
  /opt/libtorch/include/ATen/core/DeprecatedTypeProperties.h
  /opt/libtorch/include/ATen/core/Generator.h
- /usr/include/c++/11/deque
- /usr/include/c++/11/bits/stl_deque.h
- /usr/include/c++/11/bits/deque.tcc
  /opt/libtorch/include/c10/core/GeneratorImpl.h
  /opt/libtorch/include/ATen/core/NamedTensor.h
  /opt/libtorch/include/ATen/core/Dimname.h
@@ -1434,8 +1465,6 @@ src/nn/CMakeFiles/alphazero_nn.dir/neural_network.cpp.o
  /opt/libtorch/include/ATen/record_function.h
  /opt/libtorch/include/c10/util/LeftRight.h
  /opt/libtorch/include/c10/util/Synchronized.h
- /usr/include/c++/11/thread
- /usr/include/c++/11/bits/this_thread_sleep.h
  /opt/libtorch/include/ATen/core/grad_mode.h
  /opt/libtorch/include/c10/core/GradMode.h
  /opt/libtorch/include/torch/csrc/jit/frontend/function_schema_parser.h
@@ -5290,8 +5319,6 @@ src/nn/CMakeFiles/alphazero_nn.dir/neural_network.cpp.o
  /opt/libtorch/include/torch/csrc/api/include/torch/detail/TensorDataContainer.h
  /opt/libtorch/include/torch/csrc/api/include/torch/data/detail/data_shuttle.h
  /opt/libtorch/include/torch/csrc/api/include/torch/data/detail/queue.h
- /usr/include/c++/11/queue
- /usr/include/c++/11/bits/stl_queue.h
  /opt/libtorch/include/torch/csrc/api/include/torch/data/detail/sequencers.h
  /opt/libtorch/include/torch/csrc/api/include/torch/data/iterator.h
  /opt/libtorch/include/torch/csrc/api/include/torch/data/samplers/random.h
@@ -5959,6 +5986,36 @@ src/nn/CMakeFiles/alphazero_nn.dir/torch_neural_network.cpp.o
  /usr/include/c++/11/pstl/glue_memory_defs.h
  /usr/include/c++/11/pstl/execution_defs.h
  /usr/include/c++/11/optional
+ /home/cosmos/alphazero-multi-game/include/alphazero/nn/batch_queue.h
+ /usr/include/c++/11/queue
+ /usr/include/c++/11/deque
+ /usr/include/c++/11/bits/stl_deque.h
+ /usr/include/c++/11/bits/deque.tcc
+ /usr/include/c++/11/bits/stl_queue.h
+ /usr/include/c++/11/thread
+ /usr/include/c++/11/bits/this_thread_sleep.h
+ /usr/include/c++/11/sstream
+ /usr/include/c++/11/istream
+ /usr/include/c++/11/ios
+ /usr/include/c++/11/bits/ios_base.h
+ /usr/include/c++/11/bits/locale_classes.h
+ /usr/include/c++/11/bits/locale_classes.tcc
+ /usr/include/c++/11/streambuf
+ /usr/include/c++/11/bits/streambuf.tcc
+ /usr/include/c++/11/bits/basic_ios.h
+ /usr/include/c++/11/bits/locale_facets.h
+ /usr/include/c++/11/cwctype
+ /usr/include/wctype.h
+ /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h
+ /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h
+ /usr/include/c++/11/bits/streambuf_iterator.h
+ /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h
+ /usr/include/c++/11/bits/locale_facets.tcc
+ /usr/include/c++/11/bits/basic_ios.tcc
+ /usr/include/c++/11/ostream
+ /usr/include/c++/11/bits/ostream.tcc
+ /usr/include/c++/11/bits/istream.tcc
+ /usr/include/c++/11/bits/sstream.tcc
  /opt/libtorch/include/torch/csrc/api/include/torch/torch.h
  /opt/libtorch/include/torch/csrc/api/include/torch/all.h
  /opt/libtorch/include/torch/csrc/api/include/torch/autograd.h
@@ -5976,24 +6033,6 @@ src/nn/CMakeFiles/alphazero_nn.dir/torch_neural_network.cpp.o
  /opt/libtorch/include/c10/core/Device.h
  /opt/libtorch/include/c10/core/DeviceType.h
  /usr/include/c++/11/cstddef
- /usr/include/c++/11/ostream
- /usr/include/c++/11/ios
- /usr/include/c++/11/bits/ios_base.h
- /usr/include/c++/11/bits/locale_classes.h
- /usr/include/c++/11/bits/locale_classes.tcc
- /usr/include/c++/11/streambuf
- /usr/include/c++/11/bits/streambuf.tcc
- /usr/include/c++/11/bits/basic_ios.h
- /usr/include/c++/11/bits/locale_facets.h
- /usr/include/c++/11/cwctype
- /usr/include/wctype.h
- /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h
- /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h
- /usr/include/c++/11/bits/streambuf_iterator.h
- /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h
- /usr/include/c++/11/bits/locale_facets.tcc
- /usr/include/c++/11/bits/basic_ios.tcc
- /usr/include/c++/11/bits/ostream.tcc
  /opt/libtorch/include/c10/util/Exception.h
  /opt/libtorch/include/c10/macros/Macros.h
  /usr/include/c++/11/cassert
@@ -6012,10 +6051,6 @@ src/nn/CMakeFiles/alphazero_nn.dir/torch_neural_network.cpp.o
  /usr/include/x86_64-linux-gnu/bits/string_fortified.h
  /usr/include/c++/11/iterator
  /usr/include/c++/11/bits/stream_iterator.h
- /usr/include/c++/11/sstream
- /usr/include/c++/11/istream
- /usr/include/c++/11/bits/istream.tcc
- /usr/include/c++/11/bits/sstream.tcc
  /usr/include/c++/11/variant
  /opt/libtorch/include/c10/core/Layout.h
  /opt/libtorch/include/c10/core/Backend.h
@@ -6147,9 +6182,6 @@ src/nn/CMakeFiles/alphazero_nn.dir/torch_neural_network.cpp.o
  /opt/libtorch/include/ATen/core/DeprecatedTypePropertiesRegistry.h
  /opt/libtorch/include/ATen/core/DeprecatedTypeProperties.h
  /opt/libtorch/include/ATen/core/Generator.h
- /usr/include/c++/11/deque
- /usr/include/c++/11/bits/stl_deque.h
- /usr/include/c++/11/bits/deque.tcc
  /opt/libtorch/include/c10/core/GeneratorImpl.h
  /opt/libtorch/include/ATen/core/NamedTensor.h
  /opt/libtorch/include/ATen/core/Dimname.h
@@ -6682,8 +6714,6 @@ src/nn/CMakeFiles/alphazero_nn.dir/torch_neural_network.cpp.o
  /opt/libtorch/include/ATen/record_function.h
  /opt/libtorch/include/c10/util/LeftRight.h
  /opt/libtorch/include/c10/util/Synchronized.h
- /usr/include/c++/11/thread
- /usr/include/c++/11/bits/this_thread_sleep.h
  /opt/libtorch/include/ATen/core/grad_mode.h
  /opt/libtorch/include/c10/core/GradMode.h
  /opt/libtorch/include/torch/csrc/jit/frontend/function_schema_parser.h
@@ -10538,8 +10568,6 @@ src/nn/CMakeFiles/alphazero_nn.dir/torch_neural_network.cpp.o
  /opt/libtorch/include/torch/csrc/api/include/torch/detail/TensorDataContainer.h
  /opt/libtorch/include/torch/csrc/api/include/torch/data/detail/data_shuttle.h
  /opt/libtorch/include/torch/csrc/api/include/torch/data/detail/queue.h
- /usr/include/c++/11/queue
- /usr/include/c++/11/bits/stl_queue.h
  /opt/libtorch/include/torch/csrc/api/include/torch/data/detail/sequencers.h
  /opt/libtorch/include/torch/csrc/api/include/torch/data/iterator.h
  /opt/libtorch/include/torch/csrc/api/include/torch/data/samplers/random.h
@@ -10722,15 +10750,15 @@ src/nn/CMakeFiles/alphazero_nn.dir/torch_neural_network.cpp.o
  /opt/libtorch/include/torch/csrc/api/include/torch/special.h
  /opt/libtorch/include/torch/csrc/api/include/torch/version.h
  /opt/libtorch/include/torch/csrc/api/include/torch/xpu.h
- /usr/include/c++/11/fstream
- /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h
- /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h
- /usr/include/c++/11/bits/fstream.tcc
  /opt/libtorch/include/torch/script.h
  /opt/libtorch/include/torch/csrc/autograd/InferenceMode.h
  /opt/libtorch/include/torch/csrc/jit/runtime/custom_operator.h
  /opt/libtorch/include/torch/csrc/jit/serialization/import.h
  /opt/libtorch/include/caffe2/serialize/inline_container.h
+ /usr/include/c++/11/fstream
+ /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h
+ /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h
+ /usr/include/c++/11/bits/fstream.tcc
  /opt/libtorch/include/caffe2/serialize/istream_adapter.h
  /opt/libtorch/include/caffe2/serialize/read_adapter_interface.h
  /opt/libtorch/include/caffe2/serialize/versions.h
@@ -10749,4 +10777,78 @@ src/nn/CMakeFiles/alphazero_nn.dir/torch_neural_network.cpp.o
  /opt/libtorch/include/torch/csrc/jit/frontend/schema_matching.h
  /opt/libtorch/include/torch/csrc/jit/frontend/versioned_symbols.h
  /opt/libtorch/include/torch/csrc/jit/frontend/tree_views.h
+ /usr/include/spdlog/spdlog.h
+ /usr/include/spdlog/common.h
+ /usr/include/spdlog/tweakme.h
+ /usr/include/spdlog/details/null_mutex.h
+ /usr/include/spdlog/fmt/fmt.h
+ /usr/include/fmt/core.h
+ /usr/include/fmt/format.h
+ /usr/include/fmt/core.h
+ /usr/include/spdlog/common-inl.h
+ /usr/include/spdlog/details/registry.h
+ /usr/include/spdlog/details/registry-inl.h
+ /usr/include/spdlog/details/periodic_worker.h
+ /usr/include/spdlog/details/periodic_worker-inl.h
+ /usr/include/spdlog/logger.h
+ /usr/include/spdlog/details/log_msg.h
+ /usr/include/spdlog/details/log_msg-inl.h
+ /usr/include/spdlog/details/os.h
+ /usr/include/spdlog/details/os-inl.h
+ /usr/include/x86_64-linux-gnu/sys/stat.h
+ /usr/include/x86_64-linux-gnu/bits/stat.h
+ /usr/include/x86_64-linux-gnu/bits/struct_stat.h
+ /usr/include/x86_64-linux-gnu/bits/statx.h
+ /usr/include/linux/stat.h
+ /usr/include/linux/types.h
+ /usr/include/x86_64-linux-gnu/asm/types.h
+ /usr/include/asm-generic/types.h
+ /usr/include/asm-generic/int-ll64.h
+ /usr/include/x86_64-linux-gnu/asm/bitsperlong.h
+ /usr/include/asm-generic/bitsperlong.h
+ /usr/include/linux/posix_types.h
+ /usr/include/linux/stddef.h
+ /usr/include/x86_64-linux-gnu/asm/posix_types.h
+ /usr/include/x86_64-linux-gnu/asm/posix_types_64.h
+ /usr/include/asm-generic/posix_types.h
+ /usr/include/x86_64-linux-gnu/bits/statx-generic.h
+ /usr/include/x86_64-linux-gnu/bits/types/struct_statx_timestamp.h
+ /usr/include/x86_64-linux-gnu/bits/types/struct_statx.h
+ /usr/include/fcntl.h
+ /usr/include/x86_64-linux-gnu/bits/fcntl.h
+ /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h
+ /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h
+ /usr/include/linux/falloc.h
+ /usr/include/x86_64-linux-gnu/bits/fcntl2.h
+ /usr/include/unistd.h
+ /usr/include/x86_64-linux-gnu/bits/posix_opt.h
+ /usr/include/x86_64-linux-gnu/bits/environments.h
+ /usr/include/x86_64-linux-gnu/bits/confname.h
+ /usr/include/x86_64-linux-gnu/bits/getopt_posix.h
+ /usr/include/x86_64-linux-gnu/bits/getopt_core.h
+ /usr/include/x86_64-linux-gnu/bits/unistd.h
+ /usr/include/x86_64-linux-gnu/bits/unistd_ext.h
+ /usr/include/linux/close_range.h
+ /usr/include/x86_64-linux-gnu/sys/syscall.h
+ /usr/include/x86_64-linux-gnu/asm/unistd.h
+ /usr/include/x86_64-linux-gnu/asm/unistd_64.h
+ /usr/include/x86_64-linux-gnu/bits/syscall.h
+ /usr/include/spdlog/details/backtracer.h
+ /usr/include/spdlog/details/log_msg_buffer.h
+ /usr/include/spdlog/details/log_msg_buffer-inl.h
+ /usr/include/spdlog/details/circular_q.h
+ /usr/include/spdlog/details/backtracer-inl.h
+ /usr/include/spdlog/logger-inl.h
+ /usr/include/spdlog/sinks/sink.h
+ /usr/include/spdlog/formatter.h
+ /usr/include/spdlog/sinks/sink-inl.h
+ /usr/include/spdlog/pattern_formatter.h
+ /usr/include/spdlog/pattern_formatter-inl.h
+ /usr/include/spdlog/details/fmt_helper.h
+ /usr/include/spdlog/sinks/ansicolor_sink.h
+ /usr/include/spdlog/details/console_globals.h
+ /usr/include/spdlog/sinks/ansicolor_sink-inl.h
+ /usr/include/spdlog/version.h
+ /usr/include/spdlog/details/synchronous_factory.h
+ /usr/include/spdlog/spdlog-inl.h
 

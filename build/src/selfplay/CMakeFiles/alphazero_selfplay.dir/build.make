@@ -73,43 +73,43 @@ src/selfplay/CMakeFiles/alphazero_selfplay.dir/dataset.cpp.o: src/selfplay/CMake
 src/selfplay/CMakeFiles/alphazero_selfplay.dir/dataset.cpp.o: ../src/selfplay/dataset.cpp
 src/selfplay/CMakeFiles/alphazero_selfplay.dir/dataset.cpp.o: src/selfplay/CMakeFiles/alphazero_selfplay.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/selfplay/CMakeFiles/alphazero_selfplay.dir/dataset.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src/selfplay && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/selfplay/CMakeFiles/alphazero_selfplay.dir/dataset.cpp.o -MF CMakeFiles/alphazero_selfplay.dir/dataset.cpp.o.d -o CMakeFiles/alphazero_selfplay.dir/dataset.cpp.o -c /home/cosmos/alphazero-multi-game/src/selfplay/dataset.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src/selfplay && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/selfplay/CMakeFiles/alphazero_selfplay.dir/dataset.cpp.o -MF CMakeFiles/alphazero_selfplay.dir/dataset.cpp.o.d -o CMakeFiles/alphazero_selfplay.dir/dataset.cpp.o -c /home/cosmos/alphazero-multi-game/src/selfplay/dataset.cpp
 
 src/selfplay/CMakeFiles/alphazero_selfplay.dir/dataset.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_selfplay.dir/dataset.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src/selfplay && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/selfplay/dataset.cpp > CMakeFiles/alphazero_selfplay.dir/dataset.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src/selfplay && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/selfplay/dataset.cpp > CMakeFiles/alphazero_selfplay.dir/dataset.cpp.i
 
 src/selfplay/CMakeFiles/alphazero_selfplay.dir/dataset.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_selfplay.dir/dataset.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src/selfplay && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/selfplay/dataset.cpp -o CMakeFiles/alphazero_selfplay.dir/dataset.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src/selfplay && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/selfplay/dataset.cpp -o CMakeFiles/alphazero_selfplay.dir/dataset.cpp.s
 
 src/selfplay/CMakeFiles/alphazero_selfplay.dir/game_record.cpp.o: src/selfplay/CMakeFiles/alphazero_selfplay.dir/flags.make
 src/selfplay/CMakeFiles/alphazero_selfplay.dir/game_record.cpp.o: ../src/selfplay/game_record.cpp
 src/selfplay/CMakeFiles/alphazero_selfplay.dir/game_record.cpp.o: src/selfplay/CMakeFiles/alphazero_selfplay.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/selfplay/CMakeFiles/alphazero_selfplay.dir/game_record.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src/selfplay && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/selfplay/CMakeFiles/alphazero_selfplay.dir/game_record.cpp.o -MF CMakeFiles/alphazero_selfplay.dir/game_record.cpp.o.d -o CMakeFiles/alphazero_selfplay.dir/game_record.cpp.o -c /home/cosmos/alphazero-multi-game/src/selfplay/game_record.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src/selfplay && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/selfplay/CMakeFiles/alphazero_selfplay.dir/game_record.cpp.o -MF CMakeFiles/alphazero_selfplay.dir/game_record.cpp.o.d -o CMakeFiles/alphazero_selfplay.dir/game_record.cpp.o -c /home/cosmos/alphazero-multi-game/src/selfplay/game_record.cpp
 
 src/selfplay/CMakeFiles/alphazero_selfplay.dir/game_record.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_selfplay.dir/game_record.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src/selfplay && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/selfplay/game_record.cpp > CMakeFiles/alphazero_selfplay.dir/game_record.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src/selfplay && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/selfplay/game_record.cpp > CMakeFiles/alphazero_selfplay.dir/game_record.cpp.i
 
 src/selfplay/CMakeFiles/alphazero_selfplay.dir/game_record.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_selfplay.dir/game_record.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src/selfplay && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/selfplay/game_record.cpp -o CMakeFiles/alphazero_selfplay.dir/game_record.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src/selfplay && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/selfplay/game_record.cpp -o CMakeFiles/alphazero_selfplay.dir/game_record.cpp.s
 
 src/selfplay/CMakeFiles/alphazero_selfplay.dir/self_play_manager.cpp.o: src/selfplay/CMakeFiles/alphazero_selfplay.dir/flags.make
 src/selfplay/CMakeFiles/alphazero_selfplay.dir/self_play_manager.cpp.o: ../src/selfplay/self_play_manager.cpp
 src/selfplay/CMakeFiles/alphazero_selfplay.dir/self_play_manager.cpp.o: src/selfplay/CMakeFiles/alphazero_selfplay.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/selfplay/CMakeFiles/alphazero_selfplay.dir/self_play_manager.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src/selfplay && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/selfplay/CMakeFiles/alphazero_selfplay.dir/self_play_manager.cpp.o -MF CMakeFiles/alphazero_selfplay.dir/self_play_manager.cpp.o.d -o CMakeFiles/alphazero_selfplay.dir/self_play_manager.cpp.o -c /home/cosmos/alphazero-multi-game/src/selfplay/self_play_manager.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src/selfplay && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/selfplay/CMakeFiles/alphazero_selfplay.dir/self_play_manager.cpp.o -MF CMakeFiles/alphazero_selfplay.dir/self_play_manager.cpp.o.d -o CMakeFiles/alphazero_selfplay.dir/self_play_manager.cpp.o -c /home/cosmos/alphazero-multi-game/src/selfplay/self_play_manager.cpp
 
 src/selfplay/CMakeFiles/alphazero_selfplay.dir/self_play_manager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_selfplay.dir/self_play_manager.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src/selfplay && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/selfplay/self_play_manager.cpp > CMakeFiles/alphazero_selfplay.dir/self_play_manager.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src/selfplay && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/selfplay/self_play_manager.cpp > CMakeFiles/alphazero_selfplay.dir/self_play_manager.cpp.i
 
 src/selfplay/CMakeFiles/alphazero_selfplay.dir/self_play_manager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_selfplay.dir/self_play_manager.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src/selfplay && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/selfplay/self_play_manager.cpp -o CMakeFiles/alphazero_selfplay.dir/self_play_manager.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src/selfplay && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/selfplay/self_play_manager.cpp -o CMakeFiles/alphazero_selfplay.dir/self_play_manager.cpp.s
 
 # Object files for target alphazero_selfplay
 alphazero_selfplay_OBJECTS = \

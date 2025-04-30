@@ -184,11 +184,6 @@ cuda_test_app/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cuda_test_app.dir/build.make CMakeFiles/cuda_test_app.dir/build
 .PHONY : cuda_test_app/fast
 
-# Manual pre-install relink rule for target.
-cuda_test_app/preinstall:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cuda_test_app.dir/build.make CMakeFiles/cuda_test_app.dir/preinstall
-.PHONY : cuda_test_app/preinstall
-
 #=============================================================================
 # Target rules for targets named standalone_cuda_test
 
@@ -201,11 +196,6 @@ standalone_cuda_test: cmake_check_build_system
 standalone_cuda_test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/standalone_cuda_test.dir/build.make CMakeFiles/standalone_cuda_test.dir/build
 .PHONY : standalone_cuda_test/fast
-
-# Manual pre-install relink rule for target.
-standalone_cuda_test/preinstall:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/standalone_cuda_test.dir/build.make CMakeFiles/standalone_cuda_test.dir/preinstall
-.PHONY : standalone_cuda_test/preinstall
 
 #=============================================================================
 # Target rules for targets named alphazero_lib

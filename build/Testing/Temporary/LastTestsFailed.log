@@ -1,3 +1,1 @@
-69:ParallelMCTSTest.SelectActionTrainingVsEvaluation
-127:ChessIntegrationTest.Checkmate
-135:GoIntegrationTest.KoRuleEnforcement
+126:GoIntegrationTest.PlayAgainstSelf

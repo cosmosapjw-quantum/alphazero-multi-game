@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include "alphazero/mcts/mcts_node.h"
 #include "alphazero/games/gomoku/gomoku_state.h"
+#include <iostream>
 
 namespace alphazero {
 namespace mcts {
@@ -176,6 +177,14 @@ TEST_F(MCTSNodeTest, GetUcbScore) {
     // Now the score should be more reasonable
     float expectedScore = 0.5f + cPuct * prior * sqrtf(1.0f) / (1.0f + 1.0f);
     EXPECT_NEAR(ucbScore, expectedScore, 0.001f);
+    
+    // Debug print
+    std::cout << "Expected score: " << expectedScore << std::endl;
+    std::cout << "Actual score: " << ucbScore << std::endl;
+    std::cout << "Values: cPuct=" << cPuct << ", prior=" << prior 
+              << ", rootVisits=" << rootNode->visitCount.load() 
+              << ", childVisits=" << childPtr->visitCount.load()
+              << ", childValue=" << childPtr->getValue() << std::endl;
 }
 
 TEST_F(MCTSNodeTest, VirtualLoss) {

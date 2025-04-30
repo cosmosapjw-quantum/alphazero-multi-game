@@ -11,6 +11,7 @@
 #include <sstream>
 #include <iomanip>
 #include <algorithm>
+#include <unordered_map>
 #include "alphazero/core/igamestate.h"
 
 namespace alphazero {
@@ -33,8 +34,10 @@ public:
      * @param state Game state this node represents (not owned)
      * @param parent Parent node (nullptr for root)
      * @param prior Prior probability from policy network
+     * @param action Action that led to this node (-1 for root)
      */
-    MCTSNode(const core::IGameState* state, MCTSNode* parent = nullptr, float prior = 0.0f);
+    MCTSNode(const core::IGameState* state, MCTSNode* parent = nullptr, 
+             float prior = 0.0f, int action = -1);
     
     /**
      * @brief Destructor
@@ -50,7 +53,9 @@ public:
     // Core MCTS statistics - atomic for thread safety
     std::atomic<int> visitCount{0};       // Number of visits to this node
     std::atomic<float> valueSum{0.0f};    // Sum of values from this node
+    std::atomic<int> virtualLoss{0};      // Virtual loss for parallel search
     float prior;                           // Prior probability from policy network
+    int action;                            // Action that led to this node (-1 for root)
     
     // Tree structure
     MCTSNode* parent;                                    // Parent node
@@ -73,8 +78,18 @@ public:
      * @return The value estimate [-1,1]
      */
     float getValue() const {
-        return visitCount.load() > 0 ? valueSum.load() / visitCount.load() : 0.0f;
+        int visits = visitCount.load(std::memory_order_relaxed);
+        if (visits == 0) return 0.0f;
+        
+        return valueSum.load(std::memory_order_relaxed) / visits;
     }
+    
+    /**
+     * @brief Get the adjusted value that accounts for virtual loss
+     * 
+     * @return The adjusted value estimate [-1,1]
+     */
+    float getAdjustedValue() const;
     
     /**
      * @brief Convert terminal game result to value
@@ -90,23 +105,45 @@ public:
      * @param cPuct Exploration constant
      * @param currentPlayer Current player perspective
      * @param fpuReduction First play urgency reduction
+     * @param parentVisits Parent visit count
      * @return The UCB score
      */
-    float getUcbScore(float cPuct, int currentPlayer, float fpuReduction = 0.0f) const;
+    float getUcbScore(float cPuct, int currentPlayer, float fpuReduction = 0.0f, int parentVisits = 0) const;
+    
+    /**
+     * @brief Get the PUCT score for this node
+     * 
+     * @param cPuct Exploration constant
+     * @param currentPlayer Current player perspective
+     * @param fpuReduction First play urgency reduction
+     * @param parentVisits Parent visit count
+     * @return The PUCT score
+     */
+    float getPuctScore(float cPuct, int currentPlayer, float fpuReduction = 0.0f, int parentVisits = 0) const;
+    
+    /**
+     * @brief Get the Progressive Bias score for this node
+     * 
+     * @param cPuct Exploration constant
+     * @param currentPlayer Current player perspective
+     * @param parentVisits Parent visit count
+     * @return The Progressive Bias score
+     */
+    float getProgressiveBiasScore(float cPuct, int currentPlayer, int parentVisits = 0) const;
     
     /**
      * @brief Add virtual loss for parallel search
      * 
-     * @param virtualLoss Amount of virtual loss to add
+     * @param virtualLossAmount Amount of virtual loss to add
      */
-    void addVirtualLoss(int virtualLoss);
+    void addVirtualLoss(int virtualLossAmount);
     
     /**
      * @brief Remove virtual loss after search completes
      * 
-     * @param virtualLoss Amount of virtual loss to remove
+     * @param virtualLossAmount Amount of virtual loss to remove
      */
-    void removeVirtualLoss(int virtualLoss);
+    void removeVirtualLoss(int virtualLossAmount);
     
     /**
      * @brief Get child node at specific index
@@ -115,6 +152,14 @@ public:
      * @return Pointer to child node (nullptr if not exists)
      */
     MCTSNode* getChild(int actionIndex) const;
+    
+    /**
+     * @brief Get child node for a specific action
+     * 
+     * @param action The action to find the child for
+     * @return Pointer to child node (nullptr if not exists)
+     */
+    MCTSNode* getChildForAction(int action) const;
     
     /**
      * @brief Get index of action in children array
@@ -139,6 +184,13 @@ public:
      * @return true if node has children, false otherwise
      */
     bool hasChildren() const { return !children.empty(); }
+    
+    /**
+     * @brief Get the number of children
+     * 
+     * @return The number of child nodes
+     */
+    size_t getChildCount() const { return children.size(); }
     
     /**
      * @brief Get the best action based on visit counts
@@ -184,10 +236,42 @@ public:
      */
     void printTree(int maxDepth = 1) const;
     
+    /**
+     * @brief Check if node has unexpanded children
+     * 
+     * @return true if node has at least one unexpanded child
+     */
+    bool hasUnexpandedChildren() const;
+    
+    /**
+     * @brief Get the total size of the tree rooted at this node
+     * 
+     * @return The total number of nodes in the tree
+     */
+    size_t getTreeSize() const;
+    
+    /**
+     * @brief Get the estimated memory usage of the tree rooted at this node
+     * 
+     * @return The estimated memory usage in bytes
+     */
+    size_t getTreeMemoryUsage() const;
+    
+    /**
+     * @brief Prune the tree to reduce memory usage
+     * 
+     * @param visitThreshold Minimum visit count to keep a node
+     * @return Number of nodes pruned
+     */
+    size_t pruneTree(int visitThreshold);
+    
 private:
     // Helper methods
     std::string indentString(int depth) const;
     float convertToValue(GameResult result, int perspectivePlayer) const;
+    
+    // Node metadata for memory optimization
+    static constexpr size_t ESTIMATED_NODE_SIZE = 128; // Bytes per node (estimated)
 };
 
 } // namespace mcts

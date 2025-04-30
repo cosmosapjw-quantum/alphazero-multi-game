@@ -1,0 +1,412 @@
+[
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIE -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/cuda_test_app.dir/cuda_test.cpp.o -c /home/cosmos/alphazero-multi-game/cuda_test.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/cuda_test.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIE -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/standalone_cuda_test.dir/standalone_cuda_test.cpp.o -c /home/cosmos/alphazero-multi-game/standalone_cuda_test.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/standalone_cuda_test.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_lib.dir/core/AlphaZero.cpp.o -c /home/cosmos/alphazero-multi-game/src/core/AlphaZero.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/core/AlphaZero.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_lib.dir/core/game_factory.cpp.o -c /home/cosmos/alphazero-multi-game/src/core/game_factory.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/core/game_factory.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_lib.dir/core/igamestate.cpp.o -c /home/cosmos/alphazero-multi-game/src/core/igamestate.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/core/igamestate.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_lib.dir/core/zobrist_hash.cpp.o -c /home/cosmos/alphazero-multi-game/src/core/zobrist_hash.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/core/zobrist_hash.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_lib.dir/mcts/mcts_node.cpp.o -c /home/cosmos/alphazero-multi-game/src/mcts/mcts_node.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/mcts/mcts_node.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_lib.dir/mcts/parallel_mcts.cpp.o -c /home/cosmos/alphazero-multi-game/src/mcts/parallel_mcts.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/mcts/parallel_mcts.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_lib.dir/mcts/thread_pool.cpp.o -c /home/cosmos/alphazero-multi-game/src/mcts/thread_pool.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/mcts/thread_pool.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_lib.dir/mcts/transposition_table.cpp.o -c /home/cosmos/alphazero-multi-game/src/mcts/transposition_table.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/mcts/transposition_table.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_lib.dir/nn/attack_defense_module.cpp.o -c /home/cosmos/alphazero-multi-game/src/nn/attack_defense_module.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/nn/attack_defense_module.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_lib.dir/nn/batch_queue.cpp.o -c /home/cosmos/alphazero-multi-game/src/nn/batch_queue.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/nn/batch_queue.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.o -c /home/cosmos/alphazero-multi-game/src/nn/neural_network.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/nn/neural_network.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_lib.dir/nn/random_policy_network.cpp.o -c /home/cosmos/alphazero-multi-game/src/nn/random_policy_network.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/nn/random_policy_network.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.o -c /home/cosmos/alphazero-multi-game/src/nn/torch_neural_network.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/nn/torch_neural_network.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_lib.dir/selfplay/dataset.cpp.o -c /home/cosmos/alphazero-multi-game/src/selfplay/dataset.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/selfplay/dataset.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_lib.dir/selfplay/game_record.cpp.o -c /home/cosmos/alphazero-multi-game/src/selfplay/game_record.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/selfplay/game_record.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o -c /home/cosmos/alphazero-multi-game/src/selfplay/self_play_manager.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/selfplay/self_play_manager.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_lib.dir/games/chess/chess_state.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/chess/chess_state.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/games/chess/chess_state.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_lib.dir/games/chess/chess_rules.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/chess/chess_rules.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/games/chess/chess_rules.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_lib.dir/games/chess/chess960.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/chess/chess960.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/games/chess/chess960.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_lib.dir/games/go/go_state.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/go/go_state.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/games/go/go_state.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_lib.dir/games/go/go_rules.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/go/go_rules.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/games/go/go_rules.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_state.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_state.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_state.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_lib.dir/games/gomoku/gomoku_rules.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_rules.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_rules.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/core",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_core.dir/AlphaZero.cpp.o -c /home/cosmos/alphazero-multi-game/src/core/AlphaZero.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/core/AlphaZero.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/core",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_core.dir/igamestate.cpp.o -c /home/cosmos/alphazero-multi-game/src/core/igamestate.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/core/igamestate.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/core",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_core.dir/game_factory.cpp.o -c /home/cosmos/alphazero-multi-game/src/core/game_factory.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/core/game_factory.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/core",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_core.dir/zobrist_hash.cpp.o -c /home/cosmos/alphazero-multi-game/src/core/zobrist_hash.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/core/zobrist_hash.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/mcts",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_mcts.dir/mcts_node.cpp.o -c /home/cosmos/alphazero-multi-game/src/mcts/mcts_node.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/mcts/mcts_node.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/mcts",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_mcts.dir/parallel_mcts.cpp.o -c /home/cosmos/alphazero-multi-game/src/mcts/parallel_mcts.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/mcts/parallel_mcts.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/mcts",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_mcts.dir/thread_pool.cpp.o -c /home/cosmos/alphazero-multi-game/src/mcts/thread_pool.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/mcts/thread_pool.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/mcts",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_mcts.dir/transposition_table.cpp.o -c /home/cosmos/alphazero-multi-game/src/mcts/transposition_table.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/mcts/transposition_table.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/nn",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_nn.dir/neural_network.cpp.o -c /home/cosmos/alphazero-multi-game/src/nn/neural_network.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/nn/neural_network.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/nn",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_nn.dir/torch_neural_network.cpp.o -c /home/cosmos/alphazero-multi-game/src/nn/torch_neural_network.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/nn/torch_neural_network.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/nn",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_nn.dir/batch_queue.cpp.o -c /home/cosmos/alphazero-multi-game/src/nn/batch_queue.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/nn/batch_queue.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/nn",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_nn.dir/attack_defense_module.cpp.o -c /home/cosmos/alphazero-multi-game/src/nn/attack_defense_module.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/nn/attack_defense_module.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/nn",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_nn.dir/random_policy_network.cpp.o -c /home/cosmos/alphazero-multi-game/src/nn/random_policy_network.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/nn/random_policy_network.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/games/chess",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_chess.dir/chess_state.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/chess/chess_state.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/games/chess/chess_state.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/games/chess",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_chess.dir/chess_rules.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/chess/chess_rules.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/games/chess/chess_rules.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/games/chess",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_chess.dir/chess960.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/chess/chess960.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/games/chess/chess960.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/games/go",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_go.dir/go_state.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/go/go_state.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/games/go/go_state.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/games/go",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_go.dir/go_rules.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/go/go_rules.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/games/go/go_rules.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/games/gomoku",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_gomoku.dir/gomoku_state.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_state.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_state.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/games/gomoku",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_gomoku.dir/gomoku_rules.cpp.o -c /home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_rules.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/games/gomoku/gomoku_rules.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/selfplay",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_selfplay.dir/dataset.cpp.o -c /home/cosmos/alphazero-multi-game/src/selfplay/dataset.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/selfplay/dataset.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/selfplay",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_selfplay.dir/game_record.cpp.o -c /home/cosmos/alphazero-multi-game/src/selfplay/game_record.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/selfplay/game_record.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/selfplay",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_selfplay.dir/self_play_manager.cpp.o -c /home/cosmos/alphazero-multi-game/src/selfplay/self_play_manager.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/selfplay/self_play_manager.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/elo",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_elo.dir/elo_tracker.cpp.o -c /home/cosmos/alphazero-multi-game/src/elo/elo_tracker.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/elo/elo_tracker.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/ui",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_ui.dir/game_ui.cpp.o -c /home/cosmos/alphazero-multi-game/src/ui/game_ui.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/ui/game_ui.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/ui",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_ui.dir/renderer.cpp.o -c /home/cosmos/alphazero-multi-game/src/ui/renderer.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/ui/renderer.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/pybind",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -Dalphazero_py_EXPORTS -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/include/python3.10 -isystem /home/cosmos/.local/lib/python3.10/site-packages/pybind11/include -isystem /usr/local/cuda-12.4/include -fPIC -fvisibility=hidden -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_py.dir/python_bindings.cpp.o -c /home/cosmos/alphazero-multi-game/src/pybind/python_bindings.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/pybind/python_bindings.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/api",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_api.dir/http_server.cpp.o -c /home/cosmos/alphazero-multi-game/src/api/http_server.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/api/http_server.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/api",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_api.dir/rest_api.cpp.o -c /home/cosmos/alphazero-multi-game/src/api/rest_api.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/api/rest_api.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/api",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_api.dir/server_main.cpp.o -c /home/cosmos/alphazero-multi-game/src/api/server_main.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/api/server_main.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/cli",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_cli.dir/cli_interface.cpp.o -c /home/cosmos/alphazero-multi-game/src/cli/cli_interface.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/cli/cli_interface.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/cli",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_cli.dir/cli_main.cpp.o -c /home/cosmos/alphazero-multi-game/src/cli/cli_main.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/cli/cli_main.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/src/cli",
+  "command": "/usr/bin/g++ -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -fPIC -D_GLIBCXX_USE_CXX11_ABI=1 -std=c++17 -o CMakeFiles/alphazero_cli.dir/command_parser.cpp.o -c /home/cosmos/alphazero-multi-game/src/cli/command_parser.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/src/cli/command_parser.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/tests",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIE -D_GLIBCXX_USE_CXX11_ABI=1 -DGTEST_HAS_PTHREAD=1 -std=c++17 -o CMakeFiles/core_tests.dir/core/game_factory_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/core/game_factory_test.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/tests/core/game_factory_test.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/tests",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIE -D_GLIBCXX_USE_CXX11_ABI=1 -DGTEST_HAS_PTHREAD=1 -std=c++17 -o CMakeFiles/core_tests.dir/core/igamestate_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/core/igamestate_test.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/tests/core/igamestate_test.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/tests",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIE -D_GLIBCXX_USE_CXX11_ABI=1 -DGTEST_HAS_PTHREAD=1 -std=c++17 -o CMakeFiles/core_tests.dir/core/zobrist_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/core/zobrist_test.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/tests/core/zobrist_test.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/tests",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIE -D_GLIBCXX_USE_CXX11_ABI=1 -DGTEST_HAS_PTHREAD=1 -std=c++17 -o CMakeFiles/game_tests.dir/games/chess/chess960_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/games/chess/chess960_test.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/tests/games/chess/chess960_test.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/tests",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIE -D_GLIBCXX_USE_CXX11_ABI=1 -DGTEST_HAS_PTHREAD=1 -std=c++17 -o CMakeFiles/game_tests.dir/games/chess/chess_state_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/games/chess/chess_state_test.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/tests/games/chess/chess_state_test.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/tests",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIE -D_GLIBCXX_USE_CXX11_ABI=1 -DGTEST_HAS_PTHREAD=1 -std=c++17 -o CMakeFiles/game_tests.dir/games/go/go_rules_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/games/go/go_rules_test.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/tests/games/go/go_rules_test.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/tests",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIE -D_GLIBCXX_USE_CXX11_ABI=1 -DGTEST_HAS_PTHREAD=1 -std=c++17 -o CMakeFiles/game_tests.dir/games/go/go_state_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/games/go/go_state_test.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/tests/games/go/go_state_test.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/tests",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIE -D_GLIBCXX_USE_CXX11_ABI=1 -DGTEST_HAS_PTHREAD=1 -std=c++17 -o CMakeFiles/game_tests.dir/games/gomoku/gomoku_rules_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/games/gomoku/gomoku_rules_test.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/tests/games/gomoku/gomoku_rules_test.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/tests",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIE -D_GLIBCXX_USE_CXX11_ABI=1 -DGTEST_HAS_PTHREAD=1 -std=c++17 -o CMakeFiles/game_tests.dir/games/gomoku/gomoku_state_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/games/gomoku/gomoku_state_test.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/tests/games/gomoku/gomoku_state_test.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/tests",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIE -D_GLIBCXX_USE_CXX11_ABI=1 -DGTEST_HAS_PTHREAD=1 -std=c++17 -o CMakeFiles/mcts_tests.dir/mcts/mcts_node_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/mcts/mcts_node_test.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/tests/mcts/mcts_node_test.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/tests",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIE -D_GLIBCXX_USE_CXX11_ABI=1 -DGTEST_HAS_PTHREAD=1 -std=c++17 -o CMakeFiles/mcts_tests.dir/mcts/parallel_mcts_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/mcts/parallel_mcts_test.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/tests/mcts/parallel_mcts_test.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/tests",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIE -D_GLIBCXX_USE_CXX11_ABI=1 -DGTEST_HAS_PTHREAD=1 -std=c++17 -o CMakeFiles/mcts_tests.dir/mcts/transposition_table_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/mcts/transposition_table_test.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/tests/mcts/transposition_table_test.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/tests",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIE -D_GLIBCXX_USE_CXX11_ABI=1 -DGTEST_HAS_PTHREAD=1 -std=c++17 -o CMakeFiles/nn_tests.dir/nn/attack_defense_module_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/nn/attack_defense_module_test.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/tests/nn/attack_defense_module_test.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/tests",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIE -D_GLIBCXX_USE_CXX11_ABI=1 -DGTEST_HAS_PTHREAD=1 -std=c++17 -o CMakeFiles/nn_tests.dir/nn/batch_queue_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/nn/batch_queue_test.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/tests/nn/batch_queue_test.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/tests",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIE -D_GLIBCXX_USE_CXX11_ABI=1 -DGTEST_HAS_PTHREAD=1 -std=c++17 -o CMakeFiles/nn_tests.dir/nn/neural_network_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/nn/neural_network_test.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/tests/nn/neural_network_test.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/tests",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIE -D_GLIBCXX_USE_CXX11_ABI=1 -DGTEST_HAS_PTHREAD=1 -std=c++17 -o CMakeFiles/nn_tests.dir/nn/random_policy_network_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/nn/random_policy_network_test.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/tests/nn/random_policy_network_test.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/tests",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIE -D_GLIBCXX_USE_CXX11_ABI=1 -DGTEST_HAS_PTHREAD=1 -std=c++17 -o CMakeFiles/nn_tests.dir/nn/torch_neural_network_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/nn/torch_neural_network_test.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/tests/nn/torch_neural_network_test.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/tests",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIE -D_GLIBCXX_USE_CXX11_ABI=1 -DGTEST_HAS_PTHREAD=1 -std=c++17 -o CMakeFiles/integration_tests.dir/integration/chess_integration_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/integration/chess_integration_test.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/tests/integration/chess_integration_test.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/tests",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIE -D_GLIBCXX_USE_CXX11_ABI=1 -DGTEST_HAS_PTHREAD=1 -std=c++17 -o CMakeFiles/integration_tests.dir/integration/go_integration_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/integration/go_integration_test.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/tests/integration/go_integration_test.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/tests",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIE -D_GLIBCXX_USE_CXX11_ABI=1 -DGTEST_HAS_PTHREAD=1 -std=c++17 -o CMakeFiles/integration_tests.dir/integration/gomoku_integration_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/integration/gomoku_integration_test.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/tests/integration/gomoku_integration_test.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/tests",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIE -D_GLIBCXX_USE_CXX11_ABI=1 -DGTEST_HAS_PTHREAD=1 -std=c++17 -o CMakeFiles/integration_tests.dir/integration/multi_game_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/integration/multi_game_test.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/tests/integration/multi_game_test.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/tests",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIE -D_GLIBCXX_USE_CXX11_ABI=1 -DGTEST_HAS_PTHREAD=1 -std=c++17 -o CMakeFiles/performance_tests.dir/performance/chess_performance_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/performance/chess_performance_test.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/tests/performance/chess_performance_test.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/tests",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIE -D_GLIBCXX_USE_CXX11_ABI=1 -DGTEST_HAS_PTHREAD=1 -std=c++17 -o CMakeFiles/performance_tests.dir/performance/go_performance_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/performance/go_performance_test.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/tests/performance/go_performance_test.cpp"
+},
+{
+  "directory": "/home/cosmos/alphazero-multi-game/build/tests",
+  "command": "/usr/bin/g++ -DFMT_SHARED -DHAS_LIBTORCH=1 -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_CUDA -DUSE_CUDNN -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE -I/home/cosmos/alphazero-multi-game -I/home/cosmos/alphazero-multi-game/include -isystem /opt/libtorch/include -isystem /opt/libtorch/include/torch/csrc/api/include -isystem /opt/libtorch/include/torch/csrc/api/include/torch/csrc/api/include -isystem /usr/local/cuda-12.4/include -isystem /home/cosmos/anaconda3/include -fPIE -D_GLIBCXX_USE_CXX11_ABI=1 -DGTEST_HAS_PTHREAD=1 -std=c++17 -o CMakeFiles/performance_tests.dir/performance/gomoku_performance_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/performance/gomoku_performance_test.cpp",
+  "file": "/home/cosmos/alphazero-multi-game/tests/performance/gomoku_performance_test.cpp"
+}
+]

@@ -1,0 +1,488 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						15
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Release-0a1a53b137b810d6ab32.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.18"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						14,
+						20
+					]
+				},
+				{
+					"build" : "src",
+					"childIndexes" : 
+					[
+						2,
+						3,
+						4,
+						5,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-src-Release-d621124e6fd646cae4a7.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.18"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src",
+					"targetIndexes" : 
+					[
+						7
+					]
+				},
+				{
+					"build" : "src/core",
+					"jsonFile" : "directory-src.core-Release-36daa2e54a8600f0fb49.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.18"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/core",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "src/mcts",
+					"jsonFile" : "directory-src.mcts-Release-312bd5a854b97ed89d79.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.18"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/mcts",
+					"targetIndexes" : 
+					[
+						8
+					]
+				},
+				{
+					"build" : "src/nn",
+					"jsonFile" : "directory-src.nn-Release-a15142d1cc9aa542d5ed.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.18"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/nn",
+					"targetIndexes" : 
+					[
+						9
+					]
+				},
+				{
+					"build" : "src/games",
+					"childIndexes" : 
+					[
+						6,
+						7,
+						8
+					],
+					"jsonFile" : "directory-src.games-Release-37d28644c0397d24867e.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.18"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/games"
+				},
+				{
+					"build" : "src/games/chess",
+					"jsonFile" : "directory-src.games.chess-Release-037ec658a7c13a62712d.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.18"
+					},
+					"parentIndex" : 5,
+					"projectIndex" : 0,
+					"source" : "src/games/chess",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "src/games/go",
+					"jsonFile" : "directory-src.games.go-Release-932381798b7d34152461.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.18"
+					},
+					"parentIndex" : 5,
+					"projectIndex" : 0,
+					"source" : "src/games/go",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"build" : "src/games/gomoku",
+					"jsonFile" : "directory-src.games.gomoku-Release-9eeea2256a7da8a38bad.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.18"
+					},
+					"parentIndex" : 5,
+					"projectIndex" : 0,
+					"source" : "src/games/gomoku",
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"build" : "src/selfplay",
+					"jsonFile" : "directory-src.selfplay-Release-1324fed16419fc1215d0.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.18"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/selfplay",
+					"targetIndexes" : 
+					[
+						11
+					]
+				},
+				{
+					"build" : "src/elo",
+					"jsonFile" : "directory-src.elo-Release-ab4580c4d91d5b3ee5df.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.18"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/elo",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "src/ui",
+					"jsonFile" : "directory-src.ui-Release-c1f78044602f134edac6.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.18"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/ui",
+					"targetIndexes" : 
+					[
+						12
+					]
+				},
+				{
+					"build" : "src/pybind",
+					"jsonFile" : "directory-src.pybind-Release-57a17c1ddf7542935d25.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.18"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/pybind",
+					"targetIndexes" : 
+					[
+						10
+					]
+				},
+				{
+					"build" : "src/api",
+					"jsonFile" : "directory-src.api-Release-c4068b274e968da3f289.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.18"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/api",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "src/cli",
+					"jsonFile" : "directory-src.cli-Release-e3d76ec1d64e7bb7a7d0.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.18"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/cli",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "tests",
+					"jsonFile" : "directory-tests-Release-b01f6abb0ab61427ef3b.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.18"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "tests",
+					"targetIndexes" : 
+					[
+						13,
+						15,
+						16,
+						17,
+						18,
+						19
+					]
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15
+					],
+					"name" : "AlphaZero",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 13,
+					"id" : "alphazero_api::@f0e24b7f04f99860965c",
+					"jsonFile" : "target-alphazero_api-Release-9e1b841d49bb42d29ba0.json",
+					"name" : "alphazero_api",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 6,
+					"id" : "alphazero_chess::@f038f8c08ca90edbdce5",
+					"jsonFile" : "target-alphazero_chess-Release-86cd52415525e3d95503.json",
+					"name" : "alphazero_chess",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 14,
+					"id" : "alphazero_cli::@148c4bdfdd3fd6bf8e37",
+					"jsonFile" : "target-alphazero_cli-Release-b004add9448e8b27be41.json",
+					"name" : "alphazero_cli",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "alphazero_core::@0618756b1ff51bca1a0e",
+					"jsonFile" : "target-alphazero_core-Release-15431419ec3e980f08bc.json",
+					"name" : "alphazero_core",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 10,
+					"id" : "alphazero_elo::@da91aa38b634b1600350",
+					"jsonFile" : "target-alphazero_elo-Release-9f27c8ed5fff4c343a76.json",
+					"name" : "alphazero_elo",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 7,
+					"id" : "alphazero_go::@308f079627205eadf0a4",
+					"jsonFile" : "target-alphazero_go-Release-1d6b9a76c0aebbd9dabe.json",
+					"name" : "alphazero_go",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 8,
+					"id" : "alphazero_gomoku::@6bef114d1ba06b9a7b91",
+					"jsonFile" : "target-alphazero_gomoku-Release-8a58eee34cf2d5522523.json",
+					"name" : "alphazero_gomoku",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "alphazero_lib::@145eef247bfb46b6828c",
+					"jsonFile" : "target-alphazero_lib-Release-6cb056362bbd18faa816.json",
+					"name" : "alphazero_lib",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "alphazero_mcts::@03604faf3eb9eb5e5d65",
+					"jsonFile" : "target-alphazero_mcts-Release-0a62d284a1163d9db089.json",
+					"name" : "alphazero_mcts",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "alphazero_nn::@052dd91a2288d843efbd",
+					"jsonFile" : "target-alphazero_nn-Release-76381e70fdd9804ed8c9.json",
+					"name" : "alphazero_nn",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 12,
+					"id" : "alphazero_py::@def73f038a73c51bbc90",
+					"jsonFile" : "target-alphazero_py-Release-93fca443aab34daa8103.json",
+					"name" : "alphazero_py",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 9,
+					"id" : "alphazero_selfplay::@3963f0d8fedd8ec56c7b",
+					"jsonFile" : "target-alphazero_selfplay-Release-7d916f943de9c112fe54.json",
+					"name" : "alphazero_selfplay",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 11,
+					"id" : "alphazero_ui::@e0ce1d6ecae3dc67b834",
+					"jsonFile" : "target-alphazero_ui-Release-1a7e1b0f4ad6d671a151.json",
+					"name" : "alphazero_ui",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 15,
+					"id" : "core_tests::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-core_tests-Release-d204ac300563bd500842.json",
+					"name" : "core_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "cuda_test_app::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cuda_test_app-Release-243f1e3fd1e9cb19153b.json",
+					"name" : "cuda_test_app",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 15,
+					"id" : "game_tests::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-game_tests-Release-7c55dae54d41910ca5cc.json",
+					"name" : "game_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 15,
+					"id" : "integration_tests::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-integration_tests-Release-99f985bf6cc6c19b7287.json",
+					"name" : "integration_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 15,
+					"id" : "mcts_tests::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-mcts_tests-Release-c2ac237ffed3e39f1b80.json",
+					"name" : "mcts_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 15,
+					"id" : "nn_tests::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-nn_tests-Release-b0ee818b5f2051486efb.json",
+					"name" : "nn_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 15,
+					"id" : "performance_tests::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-performance_tests-Release-4a075ae563aa5f690175.json",
+					"name" : "performance_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "standalone_cuda_test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-standalone_cuda_test-Release-d59b5c80d0d5c09b0fa4.json",
+					"name" : "standalone_cuda_test",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/cosmos/alphazero-multi-game/build",
+		"source" : "/home/cosmos/alphazero-multi-game"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

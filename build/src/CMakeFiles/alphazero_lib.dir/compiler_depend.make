@@ -7690,7 +7690,14 @@ src/CMakeFiles/alphazero_lib.dir/mcts/mcts_node.cpp.o: ../src/mcts/mcts_node.cpp
   /usr/include/c++/11/bits/erase_if.h \
   ../include/alphazero/core/igamestate.h \
   /usr/include/c++/11/optional \
-  /usr/include/c++/11/iostream
+  /usr/include/c++/11/iostream \
+  /usr/include/c++/11/stack \
+  /usr/include/c++/11/deque \
+  /usr/include/c++/11/bits/stl_deque.h \
+  /usr/include/c++/11/bits/deque.tcc \
+  /usr/include/c++/11/bits/stl_stack.h \
+  /usr/include/c++/11/queue \
+  /usr/include/c++/11/bits/stl_queue.h
 
 src/CMakeFiles/alphazero_lib.dir/mcts/parallel_mcts.cpp.o: ../src/mcts/parallel_mcts.cpp \
   /usr/include/stdc-predef.h \
@@ -7988,8 +7995,15 @@ src/CMakeFiles/alphazero_lib.dir/mcts/parallel_mcts.cpp.o: ../src/mcts/parallel_
   /usr/include/c++/11/algorithm \
   /usr/include/c++/11/pstl/glue_algorithm_defs.h \
   ../include/alphazero/mcts/transposition_table.h \
+  ../include/alphazero/nn/batch_queue.h \
+  /usr/include/c++/11/queue \
+  /usr/include/c++/11/bits/stl_queue.h \
   ../include/alphazero/nn/neural_network.h \
-  /usr/include/c++/11/iostream
+  /usr/include/c++/11/iostream \
+  /usr/include/c++/11/map \
+  /usr/include/c++/11/bits/stl_tree.h \
+  /usr/include/c++/11/bits/stl_map.h \
+  /usr/include/c++/11/bits/stl_multimap.h
 
 src/CMakeFiles/alphazero_lib.dir/mcts/thread_pool.cpp.o: ../src/mcts/thread_pool.cpp \
   /usr/include/stdc-predef.h \
@@ -8286,7 +8300,11 @@ src/CMakeFiles/alphazero_lib.dir/mcts/thread_pool.cpp.o: ../src/mcts/thread_pool
   /usr/include/c++/11/bits/quoted_string.h \
   /usr/include/c++/11/algorithm \
   /usr/include/c++/11/pstl/glue_algorithm_defs.h \
-  ../include/alphazero/mcts/transposition_table.h
+  ../include/alphazero/mcts/transposition_table.h \
+  ../include/alphazero/nn/batch_queue.h \
+  /usr/include/c++/11/queue \
+  /usr/include/c++/11/bits/stl_queue.h \
+  ../include/alphazero/nn/neural_network.h
 
 src/CMakeFiles/alphazero_lib.dir/mcts/transposition_table.cpp.o: ../src/mcts/transposition_table.cpp \
   /usr/include/stdc-predef.h \
@@ -8535,7 +8553,136 @@ src/CMakeFiles/alphazero_lib.dir/mcts/transposition_table.cpp.o: ../src/mcts/tra
   /usr/include/c++/11/bits/std_function.h \
   /usr/include/c++/11/thread \
   /usr/include/c++/11/bits/std_thread.h \
-  /usr/include/c++/11/bits/this_thread_sleep.h
+  /usr/include/c++/11/bits/this_thread_sleep.h \
+  /usr/include/c++/11/sstream \
+  /usr/include/c++/11/istream \
+  /usr/include/c++/11/ios \
+  /usr/include/c++/11/bits/ios_base.h \
+  /usr/include/c++/11/bits/locale_classes.h \
+  /usr/include/c++/11/bits/locale_classes.tcc \
+  /usr/include/c++/11/streambuf \
+  /usr/include/c++/11/bits/streambuf.tcc \
+  /usr/include/c++/11/bits/basic_ios.h \
+  /usr/include/c++/11/bits/locale_facets.h \
+  /usr/include/c++/11/cwctype \
+  /usr/include/wctype.h \
+  /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h \
+  /usr/include/c++/11/bits/streambuf_iterator.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h \
+  /usr/include/c++/11/bits/locale_facets.tcc \
+  /usr/include/c++/11/bits/basic_ios.tcc \
+  /usr/include/c++/11/ostream \
+  /usr/include/c++/11/bits/ostream.tcc \
+  /usr/include/c++/11/bits/istream.tcc \
+  /usr/include/c++/11/bits/sstream.tcc \
+  /usr/include/c++/11/iomanip \
+  /usr/include/c++/11/locale \
+  /usr/include/c++/11/bits/locale_facets_nonio.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/11/bits/codecvt.h \
+  /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/11/bits/locale_conv.h \
+  /usr/include/c++/11/bits/quoted_string.h \
+  /usr/include/c++/11/random \
+  /usr/include/c++/11/bits/random.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/opt_random.h \
+  /usr/include/c++/11/bits/random.tcc \
+  /usr/include/c++/11/numeric \
+  /usr/include/c++/11/bits/stl_numeric.h \
+  /usr/include/c++/11/pstl/glue_numeric_defs.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/x86intrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/x86gprintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/ia32intrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/adxintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/bmiintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/bmi2intrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/cetintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/cldemoteintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/clflushoptintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/clwbintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/clzerointrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/enqcmdintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/fxsrintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/lzcntintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/lwpintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/movdirintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/mwaitintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/mwaitxintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/pconfigintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/popcntintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/pkuintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/rdseedintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/rtmintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/serializeintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/sgxintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/tbmintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/tsxldtrkintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/uintrintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/waitpkgintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/wbnoinvdintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/xsaveintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/xsavecintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/xsaveoptintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/xsavesintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/xtestintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/hresetintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/immintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/mmintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/xmmintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/mm_malloc.h \
+  /usr/include/c++/11/stdlib.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/emmintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/pmmintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/tmmintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/smmintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/wmmintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avxintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avxvnniintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avx2intrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512fintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512erintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512pfintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512cdintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vlintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512bwintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512dqintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vlbwintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vldqintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512ifmaintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512ifmavlintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vbmiintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vbmivlintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avx5124fmapsintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avx5124vnniwintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vpopcntdqintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vbmi2intrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vbmi2vlintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vnniintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vnnivlintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vpopcntdqvlintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512bitalgintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vp2intersectintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vp2intersectvlintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/shaintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/fmaintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/f16cintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/gfniintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/vaesintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/vpclmulqdqintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512bf16vlintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512bf16intrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/amxtileintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/amxint8intrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/amxbf16intrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/prfchwintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/keylockerintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/mm3dnow.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/fma4intrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/ammintrin.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/xopintrin.h
 
 src/CMakeFiles/alphazero_lib.dir/nn/attack_defense_module.cpp.o: ../src/nn/attack_defense_module.cpp \
   /usr/include/stdc-predef.h \
@@ -9009,11 +9156,37 @@ src/CMakeFiles/alphazero_lib.dir/nn/batch_queue.cpp.o: ../src/nn/batch_queue.cpp
   /usr/include/c++/11/backward/auto_ptr.h \
   /usr/include/c++/11/pstl/glue_memory_defs.h \
   /usr/include/c++/11/pstl/execution_defs.h \
+  /usr/include/c++/11/sstream \
+  /usr/include/c++/11/istream \
+  /usr/include/c++/11/ios \
+  /usr/include/c++/11/bits/ios_base.h \
+  /usr/include/c++/11/bits/locale_classes.h \
+  /usr/include/c++/11/bits/locale_classes.tcc \
+  /usr/include/c++/11/streambuf \
+  /usr/include/c++/11/bits/streambuf.tcc \
+  /usr/include/c++/11/bits/basic_ios.h \
+  /usr/include/c++/11/bits/locale_facets.h \
+  /usr/include/c++/11/cwctype \
+  /usr/include/wctype.h \
+  /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h \
+  /usr/include/c++/11/bits/streambuf_iterator.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h \
+  /usr/include/c++/11/bits/locale_facets.tcc \
+  /usr/include/c++/11/bits/basic_ios.tcc \
+  /usr/include/c++/11/ostream \
+  /usr/include/c++/11/bits/ostream.tcc \
+  /usr/include/c++/11/bits/istream.tcc \
+  /usr/include/c++/11/bits/sstream.tcc \
   ../include/alphazero/core/igamestate.h \
   /usr/include/c++/11/optional \
   ../include/alphazero/nn/neural_network.h \
   /usr/include/c++/11/algorithm \
-  /usr/include/c++/11/pstl/glue_algorithm_defs.h
+  /usr/include/c++/11/pstl/glue_algorithm_defs.h \
+  /usr/include/c++/11/numeric \
+  /usr/include/c++/11/bits/stl_numeric.h \
+  /usr/include/c++/11/pstl/glue_numeric_defs.h \
+  /usr/include/c++/11/iostream
 
 src/CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.o: ../src/nn/neural_network.cpp \
   /usr/include/stdc-predef.h \
@@ -9292,6 +9465,16 @@ src/CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.o: ../src/nn/neural_netwo
   /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
   ../include/alphazero/nn/torch_neural_network.h \
+  ../include/alphazero/nn/batch_queue.h \
+  /usr/include/c++/11/queue \
+  /usr/include/c++/11/deque \
+  /usr/include/c++/11/bits/stl_deque.h \
+  /usr/include/c++/11/bits/deque.tcc \
+  /usr/include/c++/11/bits/stl_queue.h \
+  /usr/include/c++/11/thread \
+  /usr/include/c++/11/bits/this_thread_sleep.h \
+  /usr/include/c++/11/sstream \
+  /usr/include/c++/11/bits/sstream.tcc \
   /opt/libtorch/include/torch/csrc/api/include/torch/torch.h \
   /opt/libtorch/include/torch/csrc/api/include/torch/all.h \
   /opt/libtorch/include/torch/csrc/api/include/torch/autograd.h \
@@ -9327,8 +9510,6 @@ src/CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.o: ../src/nn/neural_netwo
   /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/iterator \
   /usr/include/c++/11/bits/stream_iterator.h \
-  /usr/include/c++/11/sstream \
-  /usr/include/c++/11/bits/sstream.tcc \
   /usr/include/c++/11/variant \
   /opt/libtorch/include/c10/core/Layout.h \
   /opt/libtorch/include/c10/core/Backend.h \
@@ -9432,9 +9613,6 @@ src/CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.o: ../src/nn/neural_netwo
   /opt/libtorch/include/ATen/core/DeprecatedTypePropertiesRegistry.h \
   /opt/libtorch/include/ATen/core/DeprecatedTypeProperties.h \
   /opt/libtorch/include/ATen/core/Generator.h \
-  /usr/include/c++/11/deque \
-  /usr/include/c++/11/bits/stl_deque.h \
-  /usr/include/c++/11/bits/deque.tcc \
   /opt/libtorch/include/c10/core/GeneratorImpl.h \
   /opt/libtorch/include/ATen/core/NamedTensor.h \
   /opt/libtorch/include/ATen/core/Dimname.h \
@@ -9967,8 +10145,6 @@ src/CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.o: ../src/nn/neural_netwo
   /opt/libtorch/include/ATen/record_function.h \
   /opt/libtorch/include/c10/util/LeftRight.h \
   /opt/libtorch/include/c10/util/Synchronized.h \
-  /usr/include/c++/11/thread \
-  /usr/include/c++/11/bits/this_thread_sleep.h \
   /opt/libtorch/include/ATen/core/grad_mode.h \
   /opt/libtorch/include/c10/core/GradMode.h \
   /opt/libtorch/include/torch/csrc/jit/frontend/function_schema_parser.h \
@@ -13823,8 +13999,6 @@ src/CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.o: ../src/nn/neural_netwo
   /opt/libtorch/include/torch/csrc/api/include/torch/detail/TensorDataContainer.h \
   /opt/libtorch/include/torch/csrc/api/include/torch/data/detail/data_shuttle.h \
   /opt/libtorch/include/torch/csrc/api/include/torch/data/detail/queue.h \
-  /usr/include/c++/11/queue \
-  /usr/include/c++/11/bits/stl_queue.h \
   /opt/libtorch/include/torch/csrc/api/include/torch/data/detail/sequencers.h \
   /opt/libtorch/include/torch/csrc/api/include/torch/data/iterator.h \
   /opt/libtorch/include/torch/csrc/api/include/torch/data/samplers/random.h \
@@ -14490,6 +14664,36 @@ src/CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.o: ../src/nn/torch_
   /usr/include/c++/11/pstl/glue_memory_defs.h \
   /usr/include/c++/11/pstl/execution_defs.h \
   /usr/include/c++/11/optional \
+  ../include/alphazero/nn/batch_queue.h \
+  /usr/include/c++/11/queue \
+  /usr/include/c++/11/deque \
+  /usr/include/c++/11/bits/stl_deque.h \
+  /usr/include/c++/11/bits/deque.tcc \
+  /usr/include/c++/11/bits/stl_queue.h \
+  /usr/include/c++/11/thread \
+  /usr/include/c++/11/bits/this_thread_sleep.h \
+  /usr/include/c++/11/sstream \
+  /usr/include/c++/11/istream \
+  /usr/include/c++/11/ios \
+  /usr/include/c++/11/bits/ios_base.h \
+  /usr/include/c++/11/bits/locale_classes.h \
+  /usr/include/c++/11/bits/locale_classes.tcc \
+  /usr/include/c++/11/streambuf \
+  /usr/include/c++/11/bits/streambuf.tcc \
+  /usr/include/c++/11/bits/basic_ios.h \
+  /usr/include/c++/11/bits/locale_facets.h \
+  /usr/include/c++/11/cwctype \
+  /usr/include/wctype.h \
+  /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h \
+  /usr/include/c++/11/bits/streambuf_iterator.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h \
+  /usr/include/c++/11/bits/locale_facets.tcc \
+  /usr/include/c++/11/bits/basic_ios.tcc \
+  /usr/include/c++/11/ostream \
+  /usr/include/c++/11/bits/ostream.tcc \
+  /usr/include/c++/11/bits/istream.tcc \
+  /usr/include/c++/11/bits/sstream.tcc \
   /opt/libtorch/include/torch/csrc/api/include/torch/torch.h \
   /opt/libtorch/include/torch/csrc/api/include/torch/all.h \
   /opt/libtorch/include/torch/csrc/api/include/torch/autograd.h \
@@ -14507,24 +14711,6 @@ src/CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.o: ../src/nn/torch_
   /opt/libtorch/include/c10/core/Device.h \
   /opt/libtorch/include/c10/core/DeviceType.h \
   /usr/include/c++/11/cstddef \
-  /usr/include/c++/11/ostream \
-  /usr/include/c++/11/ios \
-  /usr/include/c++/11/bits/ios_base.h \
-  /usr/include/c++/11/bits/locale_classes.h \
-  /usr/include/c++/11/bits/locale_classes.tcc \
-  /usr/include/c++/11/streambuf \
-  /usr/include/c++/11/bits/streambuf.tcc \
-  /usr/include/c++/11/bits/basic_ios.h \
-  /usr/include/c++/11/bits/locale_facets.h \
-  /usr/include/c++/11/cwctype \
-  /usr/include/wctype.h \
-  /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h \
-  /usr/include/c++/11/bits/streambuf_iterator.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h \
-  /usr/include/c++/11/bits/locale_facets.tcc \
-  /usr/include/c++/11/bits/basic_ios.tcc \
-  /usr/include/c++/11/bits/ostream.tcc \
   /opt/libtorch/include/c10/util/Exception.h \
   /opt/libtorch/include/c10/macros/Macros.h \
   /usr/include/c++/11/cassert \
@@ -14543,10 +14729,6 @@ src/CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.o: ../src/nn/torch_
   /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
   /usr/include/c++/11/iterator \
   /usr/include/c++/11/bits/stream_iterator.h \
-  /usr/include/c++/11/sstream \
-  /usr/include/c++/11/istream \
-  /usr/include/c++/11/bits/istream.tcc \
-  /usr/include/c++/11/bits/sstream.tcc \
   /usr/include/c++/11/variant \
   /opt/libtorch/include/c10/core/Layout.h \
   /opt/libtorch/include/c10/core/Backend.h \
@@ -14678,9 +14860,6 @@ src/CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.o: ../src/nn/torch_
   /opt/libtorch/include/ATen/core/DeprecatedTypePropertiesRegistry.h \
   /opt/libtorch/include/ATen/core/DeprecatedTypeProperties.h \
   /opt/libtorch/include/ATen/core/Generator.h \
-  /usr/include/c++/11/deque \
-  /usr/include/c++/11/bits/stl_deque.h \
-  /usr/include/c++/11/bits/deque.tcc \
   /opt/libtorch/include/c10/core/GeneratorImpl.h \
   /opt/libtorch/include/ATen/core/NamedTensor.h \
   /opt/libtorch/include/ATen/core/Dimname.h \
@@ -15213,8 +15392,6 @@ src/CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.o: ../src/nn/torch_
   /opt/libtorch/include/ATen/record_function.h \
   /opt/libtorch/include/c10/util/LeftRight.h \
   /opt/libtorch/include/c10/util/Synchronized.h \
-  /usr/include/c++/11/thread \
-  /usr/include/c++/11/bits/this_thread_sleep.h \
   /opt/libtorch/include/ATen/core/grad_mode.h \
   /opt/libtorch/include/c10/core/GradMode.h \
   /opt/libtorch/include/torch/csrc/jit/frontend/function_schema_parser.h \
@@ -19069,8 +19246,6 @@ src/CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.o: ../src/nn/torch_
   /opt/libtorch/include/torch/csrc/api/include/torch/detail/TensorDataContainer.h \
   /opt/libtorch/include/torch/csrc/api/include/torch/data/detail/data_shuttle.h \
   /opt/libtorch/include/torch/csrc/api/include/torch/data/detail/queue.h \
-  /usr/include/c++/11/queue \
-  /usr/include/c++/11/bits/stl_queue.h \
   /opt/libtorch/include/torch/csrc/api/include/torch/data/detail/sequencers.h \
   /opt/libtorch/include/torch/csrc/api/include/torch/data/iterator.h \
   /opt/libtorch/include/torch/csrc/api/include/torch/data/samplers/random.h \
@@ -19253,15 +19428,15 @@ src/CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.o: ../src/nn/torch_
   /opt/libtorch/include/torch/csrc/api/include/torch/special.h \
   /opt/libtorch/include/torch/csrc/api/include/torch/version.h \
   /opt/libtorch/include/torch/csrc/api/include/torch/xpu.h \
-  /usr/include/c++/11/fstream \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
-  /usr/include/c++/11/bits/fstream.tcc \
   /opt/libtorch/include/torch/script.h \
   /opt/libtorch/include/torch/csrc/autograd/InferenceMode.h \
   /opt/libtorch/include/torch/csrc/jit/runtime/custom_operator.h \
   /opt/libtorch/include/torch/csrc/jit/serialization/import.h \
   /opt/libtorch/include/caffe2/serialize/inline_container.h \
+  /usr/include/c++/11/fstream \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+  /usr/include/c++/11/bits/fstream.tcc \
   /opt/libtorch/include/caffe2/serialize/istream_adapter.h \
   /opt/libtorch/include/caffe2/serialize/read_adapter_interface.h \
   /opt/libtorch/include/caffe2/serialize/versions.h \
@@ -19279,7 +19454,23 @@ src/CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.o: ../src/nn/torch_
   /opt/libtorch/include/torch/csrc/jit/frontend/strtod.h \
   /opt/libtorch/include/torch/csrc/jit/frontend/schema_matching.h \
   /opt/libtorch/include/torch/csrc/jit/frontend/versioned_symbols.h \
-  /opt/libtorch/include/torch/csrc/jit/frontend/tree_views.h
+  /opt/libtorch/include/torch/csrc/jit/frontend/tree_views.h \
+  /usr/include/spdlog/spdlog.h \
+  /usr/include/spdlog/common.h \
+  /usr/include/spdlog/tweakme.h \
+  /usr/include/spdlog/details/null_mutex.h \
+  /usr/include/spdlog/fmt/fmt.h \
+  /usr/include/fmt/core.h \
+  /usr/include/fmt/format.h \
+  /usr/include/fmt/core.h \
+  /usr/include/spdlog/details/registry.h \
+  /usr/include/spdlog/logger.h \
+  /usr/include/spdlog/details/log_msg.h \
+  /usr/include/spdlog/details/backtracer.h \
+  /usr/include/spdlog/details/log_msg_buffer.h \
+  /usr/include/spdlog/details/circular_q.h \
+  /usr/include/spdlog/version.h \
+  /usr/include/spdlog/details/synchronous_factory.h
 
 src/CMakeFiles/alphazero_lib.dir/selfplay/dataset.cpp.o: ../src/selfplay/dataset.cpp \
   /usr/include/stdc-predef.h \
@@ -20296,6 +20487,9 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
   /usr/include/c++/11/algorithm \
   /usr/include/c++/11/pstl/glue_algorithm_defs.h \
   ../include/alphazero/mcts/transposition_table.h \
+  ../include/alphazero/nn/batch_queue.h \
+  /usr/include/c++/11/queue \
+  /usr/include/c++/11/bits/stl_queue.h \
   ../include/alphazero/nn/neural_network.h \
   ../include/alphazero/selfplay/game_record.h \
   /usr/include/c++/11/filesystem \
@@ -20349,6 +20543,126 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /usr/include/c++/11/filesystem:
 
+/usr/include/nlohmann/detail/meta/type_traits.hpp:
+
+/usr/include/nlohmann/detail/meta/identity_tag.hpp:
+
+/usr/include/nlohmann/detail/meta/cpp_future.hpp:
+
+/usr/include/nlohmann/detail/meta/detected.hpp:
+
+/usr/include/nlohmann/thirdparty/hedley/hedley.hpp:
+
+/usr/include/nlohmann/detail/macro_scope.hpp:
+
+/usr/include/nlohmann/detail/string_escape.hpp:
+
+/usr/include/nlohmann/detail/value_t.hpp:
+
+/usr/include/nlohmann/detail/exceptions.hpp:
+
+/usr/include/c++/11/bits/indirect_array.h:
+
+/usr/include/c++/11/bits/mask_array.h:
+
+/usr/include/c++/11/bits/gslice.h:
+
+/usr/include/c++/11/bits/slice_array.h:
+
+/usr/include/c++/11/bits/valarray_before.h:
+
+/usr/include/c++/11/bits/valarray_array.tcc:
+
+/usr/include/c++/11/bits/valarray_array.h:
+
+/usr/include/c++/11/valarray:
+
+/usr/include/c++/11/bits/forward_list.h:
+
+/usr/include/c++/11/forward_list:
+
+/usr/include/nlohmann/adl_serializer.hpp:
+
+/usr/include/nlohmann/json.hpp:
+
+../include/alphazero/selfplay/dataset.h:
+
+/usr/include/spdlog/version.h:
+
+/usr/include/spdlog/details/circular_q.h:
+
+/usr/include/spdlog/details/log_msg.h:
+
+/usr/include/spdlog/logger.h:
+
+/usr/include/fmt/format.h:
+
+/usr/include/spdlog/fmt/fmt.h:
+
+/usr/include/spdlog/tweakme.h:
+
+/usr/include/nlohmann/detail/meta/call_std/begin.hpp:
+
+/usr/include/spdlog/common.h:
+
+/opt/libtorch/include/torch/csrc/jit/frontend/schema_matching.h:
+
+/opt/libtorch/include/torch/csrc/jit/frontend/parser_constants.h:
+
+/opt/libtorch/include/torch/csrc/jit/frontend/lexer.h:
+
+/opt/libtorch/include/torch/csrc/jit/frontend/resolver.h:
+
+/opt/libtorch/include/torch/csrc/jit/serialization/pickle.h:
+
+/opt/libtorch/include/caffe2/serialize/versions.h:
+
+/opt/libtorch/include/caffe2/serialize/read_adapter_interface.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h:
+
+/usr/include/c++/11/fstream:
+
+/opt/libtorch/include/caffe2/serialize/inline_container.h:
+
+/opt/libtorch/include/torch/csrc/autograd/InferenceMode.h:
+
+/opt/libtorch/include/torch/script.h:
+
+../include/alphazero/nn/torch_neural_network.h:
+
+../include/alphazero/nn/random_policy_network.h:
+
+../include/alphazero/nn/attack_defense_module.h:
+
+../src/nn/attack_defense_module.cpp:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/xopintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/fma4intrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/keylockerintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/prfchwintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/amxbf16intrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/amxint8intrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/amxtileintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512bf16intrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/vaesintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/f16cintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/fmaintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/shaintrin.h:
+
 /opt/libtorch/include/ATen/ops/linalg_diagonal_ops.h:
 
 /opt/libtorch/include/ATen/ops/linalg_det.h:
@@ -20391,8 +20705,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/kaiser_window.h:
 
-/opt/libtorch/include/torch/csrc/jit/frontend/resolver.h:
-
 /opt/libtorch/include/ATen/ops/isreal.h:
 
 /opt/libtorch/include/ATen/ops/nanmedian_ops.h:
@@ -20426,6 +20738,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/sum_to_size_native.h:
 
 /opt/libtorch/include/ATen/ops/nested_to_padded_tensor.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vp2intersectvlintrin.h:
 
 /opt/libtorch/include/ATen/ops/indices_copy_ops.h:
 
@@ -20511,6 +20825,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/gelu.h:
 
+/usr/include/fmt/core.h:
+
 /opt/libtorch/include/ATen/ops/gather.h:
 
 /opt/libtorch/include/ATen/ops/fused_moving_avg_obs_fake_quant.h:
@@ -20524,8 +20840,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/from_file_ops.h:
 
 /opt/libtorch/include/ATen/ops/reflection_pad1d_backward_ops.h:
-
-/usr/include/c++/11/bits/valarray_before.h:
 
 /opt/libtorch/include/torch/csrc/api/include/torch/nn/options/dropout.h:
 
@@ -20647,6 +20961,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/ceil.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vnnivlintrin.h:
+
 /opt/libtorch/include/ATen/ops/rad2deg_native.h:
 
 /opt/libtorch/include/ATen/ops/erf.h:
@@ -20729,9 +21045,11 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/lshift_ops.h:
 
-/opt/libtorch/include/ATen/ops/cumulative_trapezoid.h:
+/opt/libtorch/include/torch/csrc/jit/serialization/import.h:
 
-/opt/libtorch/include/ATen/ops/cumprod_backward.h:
+/opt/libtorch/include/ATen/ops/any_native.h:
+
+/opt/libtorch/include/ATen/ops/cumulative_trapezoid.h:
 
 /opt/libtorch/include/ATen/ops/cummax.h:
 
@@ -20777,6 +21095,10 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/abs.h:
 
+/opt/libtorch/include/torch/csrc/jit/runtime/custom_operator.h:
+
+/opt/libtorch/include/ATen/ops/smooth_l1_loss_backward.h:
+
 /opt/libtorch/include/ATen/ops/div_native.h:
 
 /opt/libtorch/include/ATen/ops/avg_pool3d_backward_meta.h:
@@ -20802,6 +21124,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/convolution_overrideable_ops.h:
 
 /opt/libtorch/include/ATen/ops/convolution_overrideable.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/cldemoteintrin.h:
 
 /opt/libtorch/include/ATen/ops/convolution_backward_overrideable_ops.h:
 
@@ -20861,8 +21185,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/angle.h:
 
-/opt/libtorch/include/ATen/ops/replication_pad2d_backward.h:
-
 /opt/libtorch/include/ATen/ops/cholesky_solve.h:
 
 /opt/libtorch/include/ATen/ops/_masked_softmax_native.h:
@@ -20879,7 +21201,13 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/huber_loss_backward.h:
 
+/opt/libtorch/include/torch/csrc/jit/frontend/sugared_value.h:
+
+/opt/libtorch/include/ATen/ops/arctan_native.h:
+
 /opt/libtorch/include/ATen/ops/combinations.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512bitalgintrin.h:
 
 /opt/libtorch/include/ATen/ops/cat_ops.h:
 
@@ -21019,10 +21347,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/as_strided_copy.h:
 
-/usr/include/c++/11/bits/align.h:
-
-/opt/libtorch/include/ATen/ops/argwhere.h:
-
 /opt/libtorch/include/ATen/ops/argsort.h:
 
 /opt/libtorch/include/ATen/ops/sym_constrain_range_ops.h:
@@ -21051,6 +21375,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/flatten_dense_tensors_native.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/mm3dnow.h:
+
 /opt/libtorch/include/ATen/ops/amax.h:
 
 /opt/libtorch/include/ATen/ops/_foreach_sub.h:
@@ -21069,8 +21395,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/hardswish_backward_ops.h:
 
-/opt/libtorch/include/ATen/ops/align_as.h:
-
 /opt/libtorch/include/ATen/ops/alias_copy.h:
 
 /opt/libtorch/include/ATen/ops/_linalg_eigh.h:
@@ -21082,8 +21406,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/affine_grid_generator_backward.h:
 
 /opt/libtorch/include/ATen/ops/addmm.h:
-
-/usr/include/c++/11/bits/valarray_array.h:
 
 /opt/libtorch/include/ATen/ops/add.h:
 
@@ -21098,8 +21420,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/adaptive_max_pool2d_backward.h:
 
 /opt/libtorch/include/ATen/ops/im2col.h:
-
-/usr/include/c++/11/bits/indirect_array.h:
 
 /opt/libtorch/include/ATen/ops/adaptive_max_pool2d_ops.h:
 
@@ -21124,6 +21444,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/conv1d_ops.h:
 
 /opt/libtorch/include/ATen/ops/_wrapped_quantized_linear_prepacked_ops.h:
+
+/usr/include/spdlog/details/null_mutex.h:
 
 /opt/libtorch/include/ATen/ops/_wrapped_quantized_linear_prepacked.h:
 
@@ -21182,8 +21504,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/_validate_sparse_bsr_tensor_args.h:
 
 /opt/libtorch/include/ATen/Device.h:
-
-/opt/libtorch/include/caffe2/serialize/inline_container.h:
 
 /opt/libtorch/include/ATen/ops/adaptive_max_pool3d.h:
 
@@ -21339,8 +21659,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/row_indices.h:
 
-/opt/libtorch/include/torch/csrc/jit/serialization/pickle.h:
-
 /opt/libtorch/include/ATen/ops/logical_or_native.h:
 
 /opt/libtorch/include/ATen/ops/fbgemm_linear_int8_weight_fp32_activation_ops.h:
@@ -21386,6 +21704,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/resize_as_sparse_native.h:
 
 /opt/libtorch/include/ATen/ops/_spdiags_ops.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512pfintrin.h:
 
 /opt/libtorch/include/ATen/ops/_sparse_sparse_matmul_ops.h:
 
@@ -21445,6 +21765,12 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/true_divide.h:
 
+/usr/include/c++/11/bits/align.h:
+
+/opt/libtorch/include/ATen/ops/argwhere.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/lzcntintrin.h:
+
 /opt/libtorch/include/ATen/ops/binomial.h:
 
 /opt/libtorch/include/ATen/ops/_sparse_csr_tensor_unsafe_ops.h:
@@ -21496,6 +21822,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/_sparse_broadcast_to_copy.h:
 
 /opt/libtorch/include/ATen/ops/_sparse_sum.h:
+
+/usr/include/spdlog/details/log_msg_buffer.h:
 
 /opt/libtorch/include/ATen/ops/_softmax_ops.h:
 
@@ -21566,8 +21894,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/_scaled_dot_product_cudnn_attention_backward.h:
 
 /opt/libtorch/include/ATen/ops/_scaled_dot_product_cudnn_attention.h:
-
-/opt/libtorch/include/ATen/ops/meshgrid.h:
 
 /opt/libtorch/include/ATen/ops/_scaled_dot_product_attention_math.h:
 
@@ -21667,6 +21993,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/linalg_lu_native.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vp2intersectintrin.h:
+
 /opt/libtorch/include/ATen/ops/_nnz.h:
 
 /opt/libtorch/include/ATen/ops/_sobol_engine_ff_ops.h:
@@ -21693,6 +22021,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/pad_native.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/popcntintrin.h:
+
 /opt/libtorch/include/ATen/ops/_pin_memory_ops.h:
 
 /opt/libtorch/include/ATen/ops/_nested_view_from_buffer_ops.h:
@@ -21714,6 +22044,12 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/alias_copy_ops.h:
 
 /opt/libtorch/include/ATen/ops/_grid_sampler_2d_cpu_fallback_backward_native.h:
+
+../src/selfplay/dataset.cpp:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vnniintrin.h:
+
+/opt/libtorch/include/ATen/ops/_nested_get_values_ops.h:
 
 /opt/libtorch/include/c10/util/Logging.h:
 
@@ -21763,11 +22099,7 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/histogram_native.h:
 
-/opt/libtorch/include/ATen/ops/_unique2_ops.h:
-
 /opt/libtorch/include/ATen/ops/_masked_softmax_backward_ops.h:
-
-/usr/include/nlohmann/json.hpp:
 
 /opt/libtorch/include/ATen/ops/_unique_ops.h:
 
@@ -21778,6 +22110,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/torch/csrc/api/include/torch/nn/functional/normalization.h:
 
 /opt/libtorch/include/ATen/ops/as_strided.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/wmmintrin.h:
 
 /opt/libtorch/include/ATen/ops/logit_backward_ops.h:
 
@@ -21796,8 +22130,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/_validate_sparse_csc_tensor_args_ops.h:
 
 /opt/libtorch/include/ATen/ops/_log_softmax_backward_data_ops.h:
-
-../include/alphazero/nn/random_policy_network.h:
 
 /opt/libtorch/include/ATen/ops/_unique.h:
 
@@ -22373,6 +22705,10 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/special_xlog1py_ops.h:
 
+/usr/include/nlohmann/detail/input/position_t.hpp:
+
+/opt/libtorch/include/ATen/ops/tile_native.h:
+
 /opt/libtorch/include/ATen/ops/_pad_enum_ops.h:
 
 /opt/libtorch/include/ATen/ops/chalf_ops.h:
@@ -22412,6 +22748,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/detail/AcceleratorHooksInterface.h:
 
 /opt/libtorch/include/ATen/ops/_validate_sparse_coo_tensor_args.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vpopcntdqvlintrin.h:
 
 /opt/libtorch/include/torch/csrc/api/include/torch/nn/modules/container/parameterdict.h:
 
@@ -22481,6 +22819,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/masked_scatter_backward_native.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/xsavecintrin.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/time_t.h:
 
 /opt/libtorch/include/ATen/core/ivalue_inl.h:
@@ -22521,8 +22861,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/special_log_softmax.h:
 
-/usr/include/nlohmann/detail/meta/identity_tag.hpp:
-
 /opt/libtorch/include/ATen/ops/fractional_max_pool3d_backward.h:
 
 /opt/libtorch/include/ATen/ops/hardshrink_backward.h:
@@ -22557,6 +22895,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/logspace_ops.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/pconfigintrin.h:
+
 /opt/libtorch/include/ATen/ops/atan2_ops.h:
 
 /opt/libtorch/include/ATen/ops/view_as_native.h:
@@ -22566,6 +22906,10 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/unsafe_chunk_ops.h:
 
 /opt/libtorch/include/ATen/ops/_neg_view_ops.h:
+
+/opt/libtorch/include/ATen/ops/meshgrid.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vbmiintrin.h:
 
 /opt/libtorch/include/ATen/ops/_pin_memory.h:
 
@@ -22627,6 +22971,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /usr/include/c++/11/bits/stl_set.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/mm_malloc.h:
+
 /opt/libtorch/include/ATen/ops/_autocast_to_full_precision_ops.h:
 
 /opt/libtorch/include/ATen/ops/fbgemm_linear_fp16_weight_fp32_activation_native.h:
@@ -22670,8 +23016,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/detach_copy_ops.h:
 
 /opt/libtorch/include/c10/util/ExclusivelyOwnedTensorTraits.h:
-
-/opt/libtorch/include/ATen/ops/ceil_ops.h:
 
 /opt/libtorch/include/ATen/ops/_foreach_norm.h:
 
@@ -22771,6 +23115,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/_sparse_broadcast_to_ops.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/hresetintrin.h:
+
 /usr/include/c++/11/bits/cxxabi_forced.h:
 
 /opt/libtorch/include/ATen/ops/_softmax_backward_data_native.h:
@@ -22802,6 +23148,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/fractional_max_pool2d_backward_ops.h:
 
 /opt/libtorch/include/ATen/ops/fake_quantize_per_channel_affine_cachemask_native.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512bwintrin.h:
 
 /usr/include/c++/11/ratio:
 
@@ -22851,8 +23199,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /usr/include/c++/11/bits/locale_facets.h:
 
-/usr/include/c++/11/bits/valarray_array.tcc:
-
 /opt/libtorch/include/ATen/ops/any.h:
 
 /opt/libtorch/include/ATen/ops/_sparse_csr_prod_native.h:
@@ -22878,8 +23224,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/negative_native.h:
 
 /opt/libtorch/include/ATen/ops/frac.h:
-
-/opt/libtorch/include/caffe2/serialize/versions.h:
 
 /opt/libtorch/include/ATen/ops/layer_norm.h:
 
@@ -23029,11 +23373,9 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h:
 
-/opt/libtorch/include/ATen/core/op_registration/infer_schema.h:
+../include/alphazero/selfplay/game_record.h:
 
 /opt/libtorch/include/ATen/ops/full_like.h:
-
-../include/alphazero/selfplay/game_record.h:
 
 /opt/libtorch/include/ATen/ops/_foreach_neg_ops.h:
 
@@ -23209,6 +23551,10 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/sparse_resize_ops.h:
 
+/usr/include/c++/11/bits/forward_list.tcc:
+
+/opt/libtorch/include/ATen/ops/_upsample_nearest_exact1d.h:
+
 /usr/include/c++/11/bits/allocated_ptr.h:
 
 /opt/libtorch/include/ATen/ops/scatter_ops.h:
@@ -23218,10 +23564,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/qscheme.h:
 
 /usr/include/c++/11/numeric:
-
-/opt/libtorch/include/ATen/ops/cudnn_is_acceptable.h:
-
-/opt/libtorch/include/ATen/ops/view_ops.h:
 
 /opt/libtorch/include/ATen/ops/_efficientzerotensor.h:
 
@@ -23284,8 +23626,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/_foreach_tanh.h:
 
 /opt/libtorch/include/ATen/ops/mv.h:
-
-../include/alphazero/nn/torch_neural_network.h:
 
 /opt/libtorch/include/ATen/ops/_values_copy_ops.h:
 
@@ -23387,6 +23727,10 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/where.h:
 
+../src/nn/batch_queue.cpp:
+
+/usr/include/c++/11/iosfwd:
+
 /opt/libtorch/include/ATen/ops/sparse_csr_tensor.h:
 
 /opt/libtorch/include/ATen/ops/miopen_batch_norm_backward.h:
@@ -23396,10 +23740,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/coalesce_ops.h:
 
 /opt/libtorch/include/ATen/ops/native_norm_ops.h:
-
-/opt/libtorch/include/ATen/ops/roll_ops.h:
-
-/opt/libtorch/include/ATen/ops/addcdiv.h:
 
 /opt/libtorch/include/ATen/ops/to_sparse_ops.h:
 
@@ -23489,6 +23829,10 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/nanmean.h:
 
+../src/nn/neural_network.cpp:
+
+/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
+
 /usr/include/c++/11/bits/exception.h:
 
 /opt/libtorch/include/ATen/ops/_nested_from_padded_ops.h:
@@ -23547,8 +23891,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/torch/csrc/autograd/function_hook.h:
 
-../src/nn/attack_defense_module.cpp:
-
 /usr/include/c++/11/bits/exception_defines.h:
 
 /opt/libtorch/include/ATen/ops/_nested_tensor_strides_native.h:
@@ -23594,6 +23936,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /usr/include/features.h:
 
 /usr/include/c++/11/bits/stringfwd.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/cetintrin.h:
 
 /opt/libtorch/include/torch/csrc/jit/api/method.h:
 
@@ -23704,8 +24048,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /usr/include/x86_64-linux-gnu/bits/wordsize.h:
 
 /opt/libtorch/include/ATen/ops/avg_pool2d_backward_native.h:
-
-/usr/include/nlohmann/thirdparty/hedley/hedley.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
 
@@ -23952,6 +24294,10 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /usr/include/c++/11/bits/char_traits.h:
 
 /usr/include/c++/11/bits/concept_check.h:
+
+/usr/include/nlohmann/detail/conversions/from_json.hpp:
+
+/opt/libtorch/include/ATen/ops/avg_pool3d_meta.h:
 
 /opt/libtorch/include/ATen/ops/_foreach_norm_ops.h:
 
@@ -24201,6 +24547,12 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/core/ivalue.h:
 
+/opt/libtorch/include/ATen/ops/roll_ops.h:
+
+/opt/libtorch/include/ATen/ops/addcdiv.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/tsxldtrkintrin.h:
+
 /opt/libtorch/include/ATen/ops/absolute_ops.h:
 
 ../src/games/go/go_rules.cpp:
@@ -24286,6 +24638,10 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/upsample_trilinear3d_backward_meta.h:
 
 /usr/include/c++/11/tuple:
+
+/opt/libtorch/include/torch/csrc/jit/frontend/versioned_symbols.h:
+
+/opt/libtorch/include/ATen/ops/logsumexp.h:
 
 /opt/libtorch/include/ATen/ops/nll_loss2d_backward_ops.h:
 
@@ -24443,6 +24799,10 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
 
+/opt/libtorch/include/c10/util/FbcodeMaps.h:
+
+/opt/libtorch/include/ATen/ops/_copy_from_and_resize_native.h:
+
 /opt/libtorch/include/ATen/ops/_remove_batch_dim_ops.h:
 
 /opt/libtorch/include/ATen/ops/aminmax_native.h:
@@ -24523,8 +24883,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/_foreach_erfc.h:
 
-../include/alphazero/nn/attack_defense_module.h:
-
 /opt/libtorch/include/ATen/ops/_version_ops.h:
 
 /opt/libtorch/include/ATen/ops/mps_convolution_transpose_backward_native.h:
@@ -24579,6 +24937,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/float_power_ops.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/xsaveintrin.h:
+
 /opt/libtorch/include/ATen/ops/scatter_reduce_ops.h:
 
 /usr/include/c++/11/bits/hashtable_policy.h:
@@ -24623,10 +24983,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/_fft_r2c.h:
 
-/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
-
-../src/nn/neural_network.cpp:
-
 /opt/libtorch/include/ATen/ops/diff_ops.h:
 
 /opt/libtorch/include/ATen/ops/_log_softmax_backward_data.h:
@@ -24662,6 +25018,10 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/max_unpool2d_ops.h:
 
 /opt/libtorch/include/ATen/ops/nll_loss2d_backward.h:
+
+/opt/libtorch/include/ATen/ops/cumprod_backward.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vlbwintrin.h:
 
 /opt/libtorch/include/ATen/ops/avg_pool1d.h:
 
@@ -24702,8 +25062,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/expm1_ops.h:
 
 /opt/libtorch/include/ATen/ops/batch_norm_ops.h:
-
-/usr/include/c++/11/bits/slice_array.h:
 
 /opt/libtorch/include/ATen/ops/exponential_ops.h:
 
@@ -24887,6 +25245,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/isposinf_ops.h:
 
+/usr/include/spdlog/details/backtracer.h:
+
 /opt/libtorch/include/ATen/ops/diff.h:
 
 /opt/libtorch/include/c10/util/floating_point_utils.h:
@@ -24914,10 +25274,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/_addmm_activation_ops.h:
 
 /opt/libtorch/include/ATen/ops/mv_ops.h:
-
-/opt/libtorch/include/ATen/ops/gradient.h:
-
-/opt/libtorch/include/ATen/ops/_foreach_sign_native.h:
 
 /opt/libtorch/include/ATen/ops/arccosh_ops.h:
 
@@ -24966,8 +25322,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/isin_meta.h:
 
 /opt/libtorch/include/ATen/ops/affine_grid_generator_native.h:
-
-../include/alphazero/selfplay/dataset.h:
 
 /opt/libtorch/include/ATen/ops/full.h:
 
@@ -25181,8 +25535,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/embedding_renorm.h:
 
-/usr/include/nlohmann/detail/meta/detected.hpp:
-
 /opt/libtorch/include/ATen/ops/_cast_Int_ops.h:
 
 /opt/libtorch/include/c10/core/ScalarTypeToTypeMeta.h:
@@ -25210,6 +25562,10 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/set_data_ops.h:
 
 /opt/libtorch/include/ATen/ops/_softmax_meta.h:
+
+/usr/include/c++/11/bits/fstream.tcc:
+
+/usr/include/c++/11/new:
 
 /opt/libtorch/include/ATen/ops/sigmoid_ops.h:
 
@@ -25308,8 +25664,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/linalg_lu_solve_meta.h:
 
 ../include/alphazero/nn/batch_queue.h:
-
-/opt/libtorch/include/ATen/core/List.h:
 
 /opt/libtorch/include/ATen/ops/to_sparse_bsc_ops.h:
 
@@ -25533,10 +25887,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/core/boxing/BoxedKernel.h:
 
-/opt/libtorch/include/ATen/ops/smooth_l1_loss_backward.h:
-
-/opt/libtorch/include/torch/csrc/jit/runtime/custom_operator.h:
-
 /opt/libtorch/include/ATen/ops/_cast_Char.h:
 
 /opt/libtorch/include/ATen/ops/nonzero_numpy_ops.h:
@@ -25587,6 +25937,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/linalg_matrix_rank.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/xsavesintrin.h:
+
 /opt/libtorch/include/ATen/ops/corrcoef_native.h:
 
 /opt/libtorch/include/ATen/ops/_copy_from_and_resize_ops.h:
@@ -25622,6 +25974,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /usr/include/c++/11/bits/istream.tcc:
 
 /opt/libtorch/include/ATen/ops/_copy_from_native.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/xmmintrin.h:
 
 /opt/libtorch/include/ATen/ops/to_mkldnn_backward_ops.h:
 
@@ -25725,6 +26079,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/unflatten_native.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/lwpintrin.h:
+
 /opt/libtorch/include/ATen/ops/fix_native.h:
 
 /opt/libtorch/include/ATen/ops/miopen_convolution_relu_ops.h:
@@ -25810,6 +26166,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/_conj_copy_ops.h:
 
 /opt/libtorch/include/ATen/ops/_backward.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vpopcntdqintrin.h:
 
 /opt/libtorch/include/ATen/ops/_assert_scalar_ops.h:
 
@@ -25919,6 +26277,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/_nested_view_from_buffer_copy_ops.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/vpclmulqdqintrin.h:
+
 /opt/libtorch/include/ATen/ops/histogramdd_ops.h:
 
 /opt/libtorch/include/ATen/ops/column_stack_native.h:
@@ -25972,6 +26332,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/linalg_inv_ex_ops.h:
 
 /opt/libtorch/include/ATen/ops/_indices_native.h:
+
+/usr/include/spdlog/details/synchronous_factory.h:
 
 /opt/libtorch/include/ATen/ops/nanmean_native.h:
 
@@ -26147,6 +26509,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/squeeze_copy_native.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/clflushoptintrin.h:
+
 /opt/libtorch/include/ATen/ops/logical_not.h:
 
 /opt/libtorch/include/ATen/detail/PrivateUse1HooksInterface.h:
@@ -26205,10 +26569,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/mH.h:
 
-/opt/libtorch/include/ATen/ops/special_modified_bessel_i1_ops.h:
-
-/opt/libtorch/include/ATen/ops/margin_ranking_loss_ops.h:
-
 /opt/libtorch/include/ATen/ops/_foreach_addcdiv.h:
 
 /opt/libtorch/include/ATen/ops/arange.h:
@@ -26234,6 +26594,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/masked_select_backward_ops.h:
 
 /opt/libtorch/include/torch/csrc/api/include/torch/optim/schedulers/lr_scheduler.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avxvnniintrin.h:
 
 /opt/libtorch/include/ATen/ops/special_bessel_j1.h:
 
@@ -26336,6 +26698,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/miopen_batch_norm_backward_ops.h:
 
 /opt/libtorch/include/ATen/ops/max_pool3d_with_indices_backward_ops.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/ammintrin.h:
 
 /opt/libtorch/include/ATen/ops/special_softmax.h:
 
@@ -26442,10 +26806,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/mkldnn_max_pool2d.h:
 
 /opt/libtorch/include/ATen/ops/mkldnn_max_pool2d_ops.h:
-
-/opt/libtorch/include/ATen/core/boxing/OperatorKernel.h:
-
-/opt/libtorch/include/ATen/ops/bitwise_or_meta.h:
 
 /opt/libtorch/include/ATen/ops/mkldnn_max_pool2d_backward.h:
 
@@ -26689,10 +27049,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/nonzero.h:
 
-/opt/libtorch/include/ATen/ops/tile_native.h:
-
-/usr/include/nlohmann/detail/input/position_t.hpp:
-
 /opt/libtorch/include/ATen/ops/nonzero_numpy.h:
 
 /usr/include/nlohmann/json_fwd.hpp:
@@ -26787,6 +27143,10 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/poisson_nll_loss.h:
 
+/opt/libtorch/include/ATen/ops/replication_pad2d_backward.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vldqintrin.h:
+
 /opt/libtorch/include/ATen/ops/poisson_nll_loss_ops.h:
 
 /opt/libtorch/include/ATen/ops/polar.h:
@@ -26841,11 +27201,15 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/tril_indices.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/immintrin.h:
+
 /opt/libtorch/include/ATen/ops/asinh_native.h:
 
 /opt/libtorch/include/ATen/ops/quantized_batch_norm.h:
 
 /opt/libtorch/include/ATen/ops/as_strided_scatter_native.h:
+
+/usr/include/spdlog/spdlog.h:
 
 /opt/libtorch/include/ATen/ops/quantized_lstm_cell.h:
 
@@ -26901,10 +27265,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/range.h:
 
-/usr/include/c++/11/iosfwd:
-
-../src/nn/batch_queue.cpp:
-
 /opt/libtorch/include/ATen/ops/addbmm.h:
 
 /opt/libtorch/include/ATen/ops/ravel.h:
@@ -26922,6 +27282,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/lcm.h:
 
 /opt/libtorch/include/ATen/ops/constant_pad_nd_native.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512dqintrin.h:
 
 /opt/libtorch/include/ATen/ops/reflection_pad1d_ops.h:
 
@@ -26964,6 +27326,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/_sparse_log_softmax_backward_data_native.h:
 
 /opt/libtorch/include/ATen/ops/replication_pad2d.h:
+
+/usr/include/c++/11/stdlib.h:
 
 /opt/libtorch/include/ATen/ops/replication_pad2d_ops.h:
 
@@ -27117,7 +27481,7 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/sigmoid.h:
 
-/opt/libtorch/include/torch/csrc/jit/frontend/schema_matching.h:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vbmi2vlintrin.h:
 
 /opt/libtorch/include/ATen/ops/_test_optional_floatlist_native.h:
 
@@ -27132,6 +27496,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/silu_backward.h:
 
 /opt/libtorch/include/ATen/ops/polar_native.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/movdirintrin.h:
 
 /opt/libtorch/include/ATen/ops/index_copy_native.h:
 
@@ -27205,8 +27571,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/where_native.h:
 
-/usr/include/c++/11/forward_list:
-
 /opt/libtorch/include/ATen/ops/softshrink_backward_ops.h:
 
 /usr/include/x86_64-linux-gnu/bits/setjmp.h:
@@ -27257,6 +27621,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/special_erf.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512fintrin.h:
+
 /opt/libtorch/include/ATen/ops/linalg_lu_factor_ex_native.h:
 
 /opt/libtorch/include/ATen/ops/special_erfc.h:
@@ -27268,8 +27634,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/_cdist_forward_native.h:
 
 /opt/libtorch/include/ATen/ops/_make_dual_copy_native.h:
-
-/usr/include/c++/11/bits/forward_list.h:
 
 /opt/libtorch/include/ATen/ops/col_indices_copy.h:
 
@@ -27306,8 +27670,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/special_gammaincc.h:
 
 /opt/libtorch/include/ATen/ops/special_hermite_polynomial_h.h:
-
-/opt/libtorch/include/ATen/ops/special_hermite_polynomial_h_ops.h:
 
 /opt/libtorch/include/ATen/ops/special_hermite_polynomial_he.h:
 
@@ -27359,6 +27721,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/special_modified_bessel_i1.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/gfniintrin.h:
+
 /opt/libtorch/include/ATen/ops/special_modified_bessel_k0.h:
 
 /opt/libtorch/include/ATen/ops/index_put.h:
@@ -27368,6 +27732,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/_cast_Char_ops.h:
 
 /opt/libtorch/include/torch/csrc/api/include/torch/nn/functional/loss.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/mmintrin.h:
 
 /opt/libtorch/include/ATen/ops/special_modified_bessel_k0_ops.h:
 
@@ -27431,10 +27797,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/torch/csrc/api/include/torch/data/transforms/stack.h:
 
-/opt/libtorch/include/ATen/ops/avg_pool3d_meta.h:
-
-/usr/include/nlohmann/detail/conversions/from_json.hpp:
-
 /opt/libtorch/include/ATen/ops/square.h:
 
 /opt/libtorch/include/ATen/ops/set_ops.h:
@@ -27452,8 +27814,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/core/QuantizerBase.h:
 
 /opt/libtorch/include/ATen/ops/stft.h:
-
-/opt/libtorch/include/ATen/ops/new_empty_strided_native.h:
 
 /opt/libtorch/include/ATen/ops/cumprod_meta.h:
 
@@ -27569,13 +27929,15 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/trapz.h:
 
-/opt/libtorch/include/ATen/ops/linalg_svdvals.h:
-
-/opt/libtorch/include/ATen/ops/triangular_solve.h:
-
 /opt/libtorch/include/torch/csrc/autograd/graph_task.h:
 
 /opt/libtorch/include/ATen/ops/special_shifted_chebyshev_polynomial_v_meta.h:
+
+../src/nn/random_policy_network.cpp:
+
+/opt/libtorch/include/ATen/ops/slice_backward.h:
+
+/opt/libtorch/include/ATen/ops/tril.h:
 
 /opt/libtorch/include/ATen/ops/clamp_min_ops.h:
 
@@ -27594,6 +27956,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/unflatten.h:
 
 /opt/libtorch/include/ATen/ops/greater.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/tmmintrin.h:
 
 ../include/alphazero/core/game_factory.h:
 
@@ -27626,8 +27990,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/quantized_max_pool1d_ops.h:
 
 /opt/libtorch/include/ATen/ops/leaky_relu_native.h:
-
-/opt/libtorch/include/torch/script.h:
 
 /opt/libtorch/include/ATen/ops/unique_dim_consecutive.h:
 
@@ -27963,8 +28325,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/_fake_quantize_per_tensor_affine_cachemask_tensor_qparams_native.h:
 
-/usr/include/nlohmann/detail/string_escape.hpp:
-
 /opt/libtorch/include/ATen/ops/_fft_r2c_native.h:
 
 /opt/libtorch/include/ATen/ops/_fill_mem_eff_dropout_mask_native.h:
@@ -28093,6 +28453,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/randint_native.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/emmintrin.h:
+
 /opt/libtorch/include/ATen/ops/_linalg_eigh_meta.h:
 
 /opt/libtorch/include/ATen/ops/_linalg_eigvals_native.h:
@@ -28102,6 +28464,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/linalg_lu_solve_native.h:
 
 /opt/libtorch/include/ATen/ops/_linalg_solve_ex_native.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/xtestintrin.h:
 
 /opt/libtorch/include/ATen/ops/_linalg_solve_ex_meta.h:
 
@@ -28411,6 +28775,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/cumsum_native.h:
 
+/usr/include/spdlog/details/registry.h:
+
 /opt/libtorch/include/ATen/ops/_to_cpu_native.h:
 
 /opt/libtorch/include/ATen/ops/stft_ops.h:
@@ -28462,10 +28828,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/_upsample_bicubic2d_aa_meta.h:
 
 /opt/libtorch/include/ATen/ops/log_sigmoid_native.h:
-
-/opt/libtorch/include/ATen/ops/qr.h:
-
-/opt/libtorch/include/ATen/ops/_upsample_bilinear2d_aa_native.h:
 
 /opt/libtorch/include/ATen/ops/layer_norm_ops.h:
 
@@ -28559,6 +28921,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/adaptive_max_pool2d_native.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/serializeintrin.h:
+
 /opt/libtorch/include/ATen/ops/_test_optional_intlist.h:
 
 /opt/libtorch/include/ATen/ops/_to_dense.h:
@@ -28572,6 +28936,10 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/zeros_like.h:
 
 /opt/libtorch/include/ATen/ops/adaptive_max_pool3d_backward_native.h:
+
+/opt/libtorch/include/ATen/core/List.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vbmi2intrin.h:
 
 /opt/libtorch/include/ATen/ops/add_native.h:
 
@@ -28650,8 +29018,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/torch/csrc/api/include/torch/autograd.h:
 
 /opt/libtorch/include/ATen/ops/atan_meta.h:
-
-/opt/libtorch/include/torch/csrc/autograd/InferenceMode.h:
 
 /opt/libtorch/include/ATen/ops/upsample_linear1d_backward_ops.h:
 
@@ -28748,6 +29114,10 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/torch/csrc/api/include/torch/data/detail/sequencers.h:
 
 /opt/libtorch/include/ATen/ops/bmm_native.h:
+
+/opt/libtorch/include/torch/csrc/jit/frontend/tree.h:
+
+/opt/libtorch/include/ATen/ops/cartesian_prod_native.h:
 
 /opt/libtorch/include/ATen/ops/cat_native.h:
 
@@ -28849,8 +29219,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/crow_indices_copy_native.h:
 
-/usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h:
-
 /opt/libtorch/include/ATen/ops/cudnn_affine_grid_generator_native.h:
 
 /opt/libtorch/include/ATen/ops/slice_copy.h:
@@ -28948,8 +29316,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/embedding_dense_backward_native.h:
 
 /opt/libtorch/include/ATen/ops/embedding_renorm_native.h:
-
-/opt/libtorch/include/torch/csrc/jit/frontend/parser_constants.h:
 
 /opt/libtorch/include/ATen/ops/_sparse_mm_reduce_impl_backward_native.h:
 
@@ -29103,6 +29469,10 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/special_bessel_j0_native.h:
 
+/opt/libtorch/include/torch/csrc/jit/frontend/error_report.h:
+
+/opt/libtorch/include/ATen/ops/fractional_max_pool2d_meta.h:
+
 /opt/libtorch/include/ATen/ops/adaptive_avg_pool2d_native.h:
 
 /opt/libtorch/include/ATen/ops/relu_native.h:
@@ -29147,6 +29517,12 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/glu_meta.h:
 
+/opt/libtorch/include/ATen/ops/qr.h:
+
+/opt/libtorch/include/ATen/ops/_upsample_bilinear2d_aa_native.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx2intrin.h:
+
 /opt/libtorch/include/ATen/ops/glu_jvp_native.h:
 
 /opt/libtorch/include/ATen/ops/_nested_select_backward.h:
@@ -29166,8 +29542,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/transpose_native.h:
 
 /opt/libtorch/include/ATen/ops/hardshrink_meta.h:
-
-/opt/libtorch/include/c10/util/overloaded.h:
 
 /opt/libtorch/include/ATen/ops/hardshrink_backward_meta.h:
 
@@ -29319,6 +29693,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/linalg_eigvalsh_native.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512bf16vlintrin.h:
+
 /opt/libtorch/include/ATen/ops/conj_physical_native.h:
 
 /opt/libtorch/include/ATen/ops/linalg_householder_product_native.h:
@@ -29338,10 +29714,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/linalg_ldl_solve_meta.h:
 
 /opt/libtorch/include/ATen/ops/linalg_lu_factor_ex_meta.h:
-
-/opt/libtorch/include/ATen/ops/_nested_get_values_ops.h:
-
-../src/selfplay/dataset.cpp:
 
 /opt/libtorch/include/ATen/core/Generator.h:
 
@@ -29557,8 +29929,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/mse_loss_meta.h:
 
-/opt/libtorch/include/torch/csrc/jit/frontend/lexer.h:
-
 /opt/libtorch/include/ATen/ops/bitwise_not_native.h:
 
 /opt/libtorch/include/ATen/ops/msort_native.h:
@@ -29688,8 +30058,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /usr/include/nlohmann/detail/output/binary_writer.hpp:
 
 /opt/libtorch/include/ATen/ops/poisson_nll_loss_native.h:
-
-/opt/libtorch/include/torch/csrc/autograd/profiler_legacy.h:
 
 /opt/libtorch/include/ATen/ops/is_complex_ops.h:
 
@@ -29857,6 +30225,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/view_copy_native.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/x86gprintrin.h:
+
 /usr/include/c++/11/deque:
 
 /opt/libtorch/include/ATen/ops/sigmoid_backward_native.h:
@@ -29971,6 +30341,12 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/torch/csrc/jit/api/object.h:
 
+/opt/libtorch/include/ATen/ops/gradient.h:
+
+/opt/libtorch/include/ATen/ops/_foreach_sign_native.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/clzerointrin.h:
+
 /opt/libtorch/include/ATen/ops/special_erf_native.h:
 
 /opt/libtorch/include/ATen/ops/special_erfcx_native.h:
@@ -30061,6 +30437,10 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/ATen/ops/special_zeta_meta.h:
 
+/opt/libtorch/include/ATen/ops/special_hermite_polynomial_h_ops.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/mwaitxintrin.h:
+
 /opt/libtorch/include/ATen/ops/split_copy_native.h:
 
 /opt/libtorch/include/ATen/ops/sqrt_native.h:
@@ -30106,6 +30486,10 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/sym_storage_offset_native.h:
 
 /opt/libtorch/include/ATen/ops/take_native.h:
+
+/opt/libtorch/include/torch/csrc/autograd/profiler_legacy.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/wbnoinvdintrin.h:
 
 /opt/libtorch/include/ATen/ops/take_along_dim_native.h:
 
@@ -30224,10 +30608,6 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/var_native.h:
 
 /opt/libtorch/include/ATen/ops/var_mean_native.h:
-
-/opt/libtorch/include/ATen/ops/_copy_from_and_resize_native.h:
-
-/opt/libtorch/include/c10/util/FbcodeMaps.h:
 
 /opt/libtorch/include/ATen/ops/vdot_native.h:
 
@@ -30395,13 +30775,13 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 /opt/libtorch/include/torch/csrc/api/include/torch/nn/functional/embedding.h:
 
-/usr/include/nlohmann/detail/meta/call_std/begin.hpp:
-
 /opt/libtorch/include/torch/csrc/api/include/torch/nn/functional/fold.h:
 
 /opt/libtorch/include/ATen/ops/crow_indices_ops.h:
 
 /opt/libtorch/include/torch/csrc/api/include/torch/nn/functional/instancenorm.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx5124fmapsintrin.h:
 
 /opt/libtorch/include/ATen/ops/fbgemm_linear_fp16_weight.h:
 
@@ -30412,6 +30792,8 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 /opt/libtorch/include/ATen/ops/select_scatter_native.h:
 
 /opt/libtorch/include/torch/csrc/api/include/torch/nn/options/activation.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512ifmavlintrin.h:
 
 /opt/libtorch/include/torch/csrc/api/include/torch/nn/options/padding.h:
 
@@ -30491,60 +30873,82 @@ src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o: ../src/selfpl
 
 ../src/mcts/thread_pool.cpp:
 
-/opt/libtorch/include/ATen/ops/slice_backward.h:
+/opt/libtorch/include/ATen/ops/_unique2_ops.h:
 
-/opt/libtorch/include/ATen/ops/tril.h:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/x86intrin.h:
 
-../src/nn/random_policy_network.cpp:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/ia32intrin.h:
 
-/usr/include/c++/11/fstream:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/adxintrin.h:
 
-/usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h:
+/opt/libtorch/include/ATen/core/boxing/OperatorKernel.h:
 
-/usr/include/c++/11/new:
+/opt/libtorch/include/ATen/ops/bitwise_or_meta.h:
 
-/usr/include/c++/11/bits/fstream.tcc:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/bmiintrin.h:
 
-/opt/libtorch/include/ATen/ops/any_native.h:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/bmi2intrin.h:
 
-/opt/libtorch/include/torch/csrc/jit/serialization/import.h:
+/opt/libtorch/include/c10/util/overloaded.h:
 
-/opt/libtorch/include/caffe2/serialize/read_adapter_interface.h:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/clwbintrin.h:
 
-/opt/libtorch/include/ATen/ops/arctan_native.h:
+/opt/libtorch/include/ATen/ops/ceil_ops.h:
 
-/opt/libtorch/include/torch/csrc/jit/frontend/sugared_value.h:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/enqcmdintrin.h:
 
-/opt/libtorch/include/ATen/ops/fractional_max_pool2d_meta.h:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/fxsrintrin.h:
 
-/opt/libtorch/include/torch/csrc/jit/frontend/error_report.h:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/mwaitintrin.h:
 
-/opt/libtorch/include/ATen/ops/cartesian_prod_native.h:
+/opt/libtorch/include/ATen/ops/linalg_svdvals.h:
 
-/opt/libtorch/include/torch/csrc/jit/frontend/tree.h:
+/opt/libtorch/include/ATen/ops/triangular_solve.h:
 
-/opt/libtorch/include/ATen/ops/logsumexp.h:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/pkuintrin.h:
 
-/opt/libtorch/include/torch/csrc/jit/frontend/versioned_symbols.h:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/rdseedintrin.h:
 
-/usr/include/nlohmann/adl_serializer.hpp:
+/opt/libtorch/include/ATen/ops/special_modified_bessel_i1_ops.h:
 
-/opt/libtorch/include/ATen/ops/_upsample_nearest_exact1d.h:
+/opt/libtorch/include/ATen/ops/margin_ranking_loss_ops.h:
 
-/usr/include/c++/11/bits/forward_list.tcc:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/rtmintrin.h:
 
-/usr/include/c++/11/valarray:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/sgxintrin.h:
 
-/usr/include/c++/11/bits/gslice.h:
+/opt/libtorch/include/ATen/ops/new_empty_strided_native.h:
 
-/usr/include/c++/11/bits/mask_array.h:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/tbmintrin.h:
 
-/usr/include/nlohmann/detail/exceptions.hpp:
+/opt/libtorch/include/ATen/ops/align_as.h:
 
-/usr/include/nlohmann/detail/value_t.hpp:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/uintrintrin.h:
 
-/usr/include/nlohmann/detail/macro_scope.hpp:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/waitpkgintrin.h:
 
-/usr/include/nlohmann/detail/meta/cpp_future.hpp:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/xsaveoptintrin.h:
 
-/usr/include/nlohmann/detail/meta/type_traits.hpp:
+/usr/lib/gcc/x86_64-linux-gnu/11/include/pmmintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/smmintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avxintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512erintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512cdintrin.h:
+
+/opt/libtorch/include/ATen/core/op_registration/infer_schema.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vlintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512ifmaintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vbmivlintrin.h:
+
+/opt/libtorch/include/ATen/ops/cudnn_is_acceptable.h:
+
+/opt/libtorch/include/ATen/ops/view_ops.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx5124vnniwintrin.h:

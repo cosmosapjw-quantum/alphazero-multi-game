@@ -73,15 +73,15 @@ src/elo/CMakeFiles/alphazero_elo.dir/elo_tracker.cpp.o: src/elo/CMakeFiles/alpha
 src/elo/CMakeFiles/alphazero_elo.dir/elo_tracker.cpp.o: ../src/elo/elo_tracker.cpp
 src/elo/CMakeFiles/alphazero_elo.dir/elo_tracker.cpp.o: src/elo/CMakeFiles/alphazero_elo.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/elo/CMakeFiles/alphazero_elo.dir/elo_tracker.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/src/elo && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/elo/CMakeFiles/alphazero_elo.dir/elo_tracker.cpp.o -MF CMakeFiles/alphazero_elo.dir/elo_tracker.cpp.o.d -o CMakeFiles/alphazero_elo.dir/elo_tracker.cpp.o -c /home/cosmos/alphazero-multi-game/src/elo/elo_tracker.cpp
+	cd /home/cosmos/alphazero-multi-game/build/src/elo && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/elo/CMakeFiles/alphazero_elo.dir/elo_tracker.cpp.o -MF CMakeFiles/alphazero_elo.dir/elo_tracker.cpp.o.d -o CMakeFiles/alphazero_elo.dir/elo_tracker.cpp.o -c /home/cosmos/alphazero-multi-game/src/elo/elo_tracker.cpp
 
 src/elo/CMakeFiles/alphazero_elo.dir/elo_tracker.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_elo.dir/elo_tracker.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/src/elo && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/elo/elo_tracker.cpp > CMakeFiles/alphazero_elo.dir/elo_tracker.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/src/elo && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/elo/elo_tracker.cpp > CMakeFiles/alphazero_elo.dir/elo_tracker.cpp.i
 
 src/elo/CMakeFiles/alphazero_elo.dir/elo_tracker.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_elo.dir/elo_tracker.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/src/elo && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/elo/elo_tracker.cpp -o CMakeFiles/alphazero_elo.dir/elo_tracker.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/src/elo && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/elo/elo_tracker.cpp -o CMakeFiles/alphazero_elo.dir/elo_tracker.cpp.s
 
 # Object files for target alphazero_elo
 alphazero_elo_OBJECTS = \

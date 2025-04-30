@@ -302,6 +302,9 @@ src/cli/CMakeFiles/alphazero_cli.dir/cli_interface.cpp.o: ../src/cli/cli_interfa
   /usr/include/c++/11/algorithm \
   /usr/include/c++/11/pstl/glue_algorithm_defs.h \
   ../include/alphazero/mcts/transposition_table.h \
+  ../include/alphazero/nn/batch_queue.h \
+  /usr/include/c++/11/queue \
+  /usr/include/c++/11/bits/stl_queue.h \
   ../include/alphazero/nn/neural_network.h \
   ../include/alphazero/cli/command_parser.h \
   ../include/alphazero/elo/elo_tracker.h \
@@ -609,6 +612,9 @@ src/cli/CMakeFiles/alphazero_cli.dir/cli_main.cpp.o: ../src/cli/cli_main.cpp \
   /usr/include/c++/11/algorithm \
   /usr/include/c++/11/pstl/glue_algorithm_defs.h \
   ../include/alphazero/mcts/transposition_table.h \
+  ../include/alphazero/nn/batch_queue.h \
+  /usr/include/c++/11/queue \
+  /usr/include/c++/11/bits/stl_queue.h \
   ../include/alphazero/nn/neural_network.h
 
 src/cli/CMakeFiles/alphazero_cli.dir/command_parser.cpp.o: ../src/cli/command_parser.cpp \
@@ -994,6 +1000,8 @@ src/cli/CMakeFiles/alphazero_cli.dir/command_parser.cpp.o: ../src/cli/command_pa
 
 /usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
 
+../include/alphazero/nn/batch_queue.h:
+
 /usr/include/x86_64-linux-gnu/bits/types.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h:
@@ -1103,6 +1111,8 @@ src/cli/CMakeFiles/alphazero_cli.dir/command_parser.cpp.o: ../src/cli/command_pa
 /usr/include/c++/11/bits/exception.h:
 
 /usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/usr/include/c++/11/bits/stl_queue.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
 
@@ -1331,6 +1341,8 @@ src/cli/CMakeFiles/alphazero_cli.dir/command_parser.cpp.o: ../src/cli/command_pa
 /usr/include/c++/11/exception:
 
 /usr/include/c++/11/bits/nested_exception.h:
+
+/usr/include/c++/11/queue:
 
 /usr/include/c++/11/bits/shared_ptr_atomic.h:
 

@@ -396,6 +396,9 @@ tests/CMakeFiles/integration_tests.dir/integration/chess_integration_test.cpp.o:
   /usr/include/c++/11/algorithm \
   /usr/include/c++/11/pstl/glue_algorithm_defs.h \
   ../include/alphazero/mcts/transposition_table.h \
+  ../include/alphazero/nn/batch_queue.h \
+  /usr/include/c++/11/queue \
+  /usr/include/c++/11/bits/stl_queue.h \
   ../include/alphazero/nn/neural_network.h
 
 tests/CMakeFiles/integration_tests.dir/integration/go_integration_test.cpp.o: ../tests/integration/go_integration_test.cpp \
@@ -794,6 +797,9 @@ tests/CMakeFiles/integration_tests.dir/integration/go_integration_test.cpp.o: ..
   /usr/include/c++/11/algorithm \
   /usr/include/c++/11/pstl/glue_algorithm_defs.h \
   ../include/alphazero/mcts/transposition_table.h \
+  ../include/alphazero/nn/batch_queue.h \
+  /usr/include/c++/11/queue \
+  /usr/include/c++/11/bits/stl_queue.h \
   ../include/alphazero/nn/neural_network.h \
   ../include/alphazero/selfplay/game_record.h
 
@@ -1193,6 +1199,9 @@ tests/CMakeFiles/integration_tests.dir/integration/gomoku_integration_test.cpp.o
   /usr/include/c++/11/algorithm \
   /usr/include/c++/11/pstl/glue_algorithm_defs.h \
   ../include/alphazero/mcts/transposition_table.h \
+  ../include/alphazero/nn/batch_queue.h \
+  /usr/include/c++/11/queue \
+  /usr/include/c++/11/bits/stl_queue.h \
   ../include/alphazero/nn/neural_network.h \
   ../include/alphazero/selfplay/game_record.h
 
@@ -1624,6 +1633,8 @@ tests/CMakeFiles/integration_tests.dir/integration/multi_game_test.cpp.o: ../tes
 
 /usr/include/x86_64-linux-gnu/sys/select.h:
 
+/usr/include/c++/11/bits/stl_queue.h:
+
 /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
@@ -1651,6 +1662,8 @@ tests/CMakeFiles/integration_tests.dir/integration/multi_game_test.cpp.o: ../tes
 /usr/include/c++/11/bits/shared_ptr.h:
 
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
+
+../include/alphazero/nn/batch_queue.h:
 
 /usr/include/x86_64-linux-gnu/bits/types.h:
 
@@ -1767,6 +1780,8 @@ tests/CMakeFiles/integration_tests.dir/integration/multi_game_test.cpp.o: ../tes
 /usr/include/c++/11/ext/string_conversions.h:
 
 /usr/include/c++/11/bits/nested_exception.h:
+
+/usr/include/c++/11/queue:
 
 /usr/include/c++/11/bits/shared_ptr_atomic.h:
 

@@ -504,6 +504,9 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
   /usr/include/c++/11/bits/locale_conv.h \
   /usr/include/c++/11/bits/quoted_string.h \
   ../include/alphazero/mcts/transposition_table.h \
+  ../include/alphazero/nn/batch_queue.h \
+  /usr/include/c++/11/queue \
+  /usr/include/c++/11/bits/stl_queue.h \
   ../include/alphazero/nn/neural_network.h \
   ../include/alphazero/selfplay/self_play_manager.h \
   ../include/alphazero/selfplay/game_record.h \
@@ -685,6 +688,8 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
 /usr/include/c++/11/backward/auto_ptr.h:
 
 /usr/include/c++/11/bits/atomic_base.h:
+
+/usr/include/c++/11/queue:
 
 /usr/include/c++/11/bits/shared_ptr_atomic.h:
 
@@ -935,6 +940,8 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
 /usr/include/python3.10/pystrcmp.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
+
+../include/alphazero/nn/batch_queue.h:
 
 /usr/include/x86_64-linux-gnu/bits/types.h:
 
@@ -1221,6 +1228,8 @@ src/pybind/CMakeFiles/alphazero_py.dir/python_bindings.cpp.o: ../src/pybind/pyth
 /usr/include/c++/11/bits/stl_heap.h:
 
 /usr/include/c++/11/bits/std_abs.h:
+
+/usr/include/c++/11/bits/stl_queue.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
 

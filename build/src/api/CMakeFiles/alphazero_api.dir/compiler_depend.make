@@ -375,6 +375,7 @@ src/api/CMakeFiles/alphazero_api.dir/http_server.cpp.o: ../src/api/http_server.c
   /usr/include/c++/11/bits/atomic_futex.h \
   ../include/alphazero/mcts/mcts_node.h \
   ../include/alphazero/mcts/transposition_table.h \
+  ../include/alphazero/nn/batch_queue.h \
   ../include/alphazero/nn/neural_network.h \
   /usr/include/c++/11/iostream \
   /usr/include/c++/11/regex \
@@ -795,6 +796,9 @@ src/api/CMakeFiles/alphazero_api.dir/rest_api.cpp.o: ../src/api/rest_api.cpp \
   /usr/include/c++/11/bits/this_thread_sleep.h \
   ../include/alphazero/mcts/mcts_node.h \
   ../include/alphazero/mcts/transposition_table.h \
+  ../include/alphazero/nn/batch_queue.h \
+  /usr/include/c++/11/queue \
+  /usr/include/c++/11/bits/stl_queue.h \
   ../include/alphazero/nn/neural_network.h \
   /usr/include/c++/11/iostream \
   /usr/include/c++/11/regex \
@@ -1221,6 +1225,7 @@ src/api/CMakeFiles/alphazero_api.dir/server_main.cpp.o: ../src/api/server_main.c
   /usr/include/c++/11/bits/atomic_futex.h \
   ../include/alphazero/mcts/mcts_node.h \
   ../include/alphazero/mcts/transposition_table.h \
+  ../include/alphazero/nn/batch_queue.h \
   ../include/alphazero/nn/neural_network.h
 
 
@@ -1557,6 +1562,8 @@ src/api/CMakeFiles/alphazero_api.dir/server_main.cpp.o: ../src/api/server_main.c
 /usr/include/c++/11/unordered_map:
 
 /usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
+
+../include/alphazero/nn/batch_queue.h:
 
 /usr/include/x86_64-linux-gnu/bits/types.h:
 

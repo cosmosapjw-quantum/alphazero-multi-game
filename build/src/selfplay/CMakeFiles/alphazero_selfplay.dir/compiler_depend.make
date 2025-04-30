@@ -1016,6 +1016,9 @@ src/selfplay/CMakeFiles/alphazero_selfplay.dir/self_play_manager.cpp.o: ../src/s
   /usr/include/c++/11/algorithm \
   /usr/include/c++/11/pstl/glue_algorithm_defs.h \
   ../include/alphazero/mcts/transposition_table.h \
+  ../include/alphazero/nn/batch_queue.h \
+  /usr/include/c++/11/queue \
+  /usr/include/c++/11/bits/stl_queue.h \
   ../include/alphazero/nn/neural_network.h \
   ../include/alphazero/selfplay/game_record.h \
   /usr/include/c++/11/filesystem \
@@ -1239,6 +1242,8 @@ src/selfplay/CMakeFiles/alphazero_selfplay.dir/self_play_manager.cpp.o: ../src/s
 
 /usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
 
+../include/alphazero/nn/batch_queue.h:
+
 /usr/include/x86_64-linux-gnu/bits/types.h:
 
 /usr/include/x86_64-linux-gnu/bits/time64.h:
@@ -1396,6 +1401,8 @@ src/selfplay/CMakeFiles/alphazero_selfplay.dir/self_play_manager.cpp.o: ../src/s
 /usr/include/features-time64.h:
 
 /usr/include/c++/11/debug/debug.h:
+
+/usr/include/c++/11/bits/stl_queue.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
 
@@ -1662,6 +1669,8 @@ src/selfplay/CMakeFiles/alphazero_selfplay.dir/self_play_manager.cpp.o: ../src/s
 /usr/include/nlohmann/detail/input/lexer.hpp:
 
 /usr/include/c++/11/bits/nested_exception.h:
+
+/usr/include/c++/11/queue:
 
 /usr/include/c++/11/bits/shared_ptr_atomic.h:
 

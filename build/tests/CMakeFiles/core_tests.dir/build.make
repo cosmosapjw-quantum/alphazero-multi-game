@@ -73,43 +73,43 @@ tests/CMakeFiles/core_tests.dir/core/game_factory_test.cpp.o: tests/CMakeFiles/c
 tests/CMakeFiles/core_tests.dir/core/game_factory_test.cpp.o: ../tests/core/game_factory_test.cpp
 tests/CMakeFiles/core_tests.dir/core/game_factory_test.cpp.o: tests/CMakeFiles/core_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object tests/CMakeFiles/core_tests.dir/core/game_factory_test.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/core_tests.dir/core/game_factory_test.cpp.o -MF CMakeFiles/core_tests.dir/core/game_factory_test.cpp.o.d -o CMakeFiles/core_tests.dir/core/game_factory_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/core/game_factory_test.cpp
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/core_tests.dir/core/game_factory_test.cpp.o -MF CMakeFiles/core_tests.dir/core/game_factory_test.cpp.o.d -o CMakeFiles/core_tests.dir/core/game_factory_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/core/game_factory_test.cpp
 
 tests/CMakeFiles/core_tests.dir/core/game_factory_test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/core_tests.dir/core/game_factory_test.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/core/game_factory_test.cpp > CMakeFiles/core_tests.dir/core/game_factory_test.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/core/game_factory_test.cpp > CMakeFiles/core_tests.dir/core/game_factory_test.cpp.i
 
 tests/CMakeFiles/core_tests.dir/core/game_factory_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/core_tests.dir/core/game_factory_test.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/core/game_factory_test.cpp -o CMakeFiles/core_tests.dir/core/game_factory_test.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/core/game_factory_test.cpp -o CMakeFiles/core_tests.dir/core/game_factory_test.cpp.s
 
 tests/CMakeFiles/core_tests.dir/core/igamestate_test.cpp.o: tests/CMakeFiles/core_tests.dir/flags.make
 tests/CMakeFiles/core_tests.dir/core/igamestate_test.cpp.o: ../tests/core/igamestate_test.cpp
 tests/CMakeFiles/core_tests.dir/core/igamestate_test.cpp.o: tests/CMakeFiles/core_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object tests/CMakeFiles/core_tests.dir/core/igamestate_test.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/core_tests.dir/core/igamestate_test.cpp.o -MF CMakeFiles/core_tests.dir/core/igamestate_test.cpp.o.d -o CMakeFiles/core_tests.dir/core/igamestate_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/core/igamestate_test.cpp
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/core_tests.dir/core/igamestate_test.cpp.o -MF CMakeFiles/core_tests.dir/core/igamestate_test.cpp.o.d -o CMakeFiles/core_tests.dir/core/igamestate_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/core/igamestate_test.cpp
 
 tests/CMakeFiles/core_tests.dir/core/igamestate_test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/core_tests.dir/core/igamestate_test.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/core/igamestate_test.cpp > CMakeFiles/core_tests.dir/core/igamestate_test.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/core/igamestate_test.cpp > CMakeFiles/core_tests.dir/core/igamestate_test.cpp.i
 
 tests/CMakeFiles/core_tests.dir/core/igamestate_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/core_tests.dir/core/igamestate_test.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/core/igamestate_test.cpp -o CMakeFiles/core_tests.dir/core/igamestate_test.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/core/igamestate_test.cpp -o CMakeFiles/core_tests.dir/core/igamestate_test.cpp.s
 
 tests/CMakeFiles/core_tests.dir/core/zobrist_test.cpp.o: tests/CMakeFiles/core_tests.dir/flags.make
 tests/CMakeFiles/core_tests.dir/core/zobrist_test.cpp.o: ../tests/core/zobrist_test.cpp
 tests/CMakeFiles/core_tests.dir/core/zobrist_test.cpp.o: tests/CMakeFiles/core_tests.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object tests/CMakeFiles/core_tests.dir/core/zobrist_test.cpp.o"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/core_tests.dir/core/zobrist_test.cpp.o -MF CMakeFiles/core_tests.dir/core/zobrist_test.cpp.o.d -o CMakeFiles/core_tests.dir/core/zobrist_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/core/zobrist_test.cpp
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/core_tests.dir/core/zobrist_test.cpp.o -MF CMakeFiles/core_tests.dir/core/zobrist_test.cpp.o.d -o CMakeFiles/core_tests.dir/core/zobrist_test.cpp.o -c /home/cosmos/alphazero-multi-game/tests/core/zobrist_test.cpp
 
 tests/CMakeFiles/core_tests.dir/core/zobrist_test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/core_tests.dir/core/zobrist_test.cpp.i"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/core/zobrist_test.cpp > CMakeFiles/core_tests.dir/core/zobrist_test.cpp.i
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/tests/core/zobrist_test.cpp > CMakeFiles/core_tests.dir/core/zobrist_test.cpp.i
 
 tests/CMakeFiles/core_tests.dir/core/zobrist_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/core_tests.dir/core/zobrist_test.cpp.s"
-	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/core/zobrist_test.cpp -o CMakeFiles/core_tests.dir/core/zobrist_test.cpp.s
+	cd /home/cosmos/alphazero-multi-game/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/tests/core/zobrist_test.cpp -o CMakeFiles/core_tests.dir/core/zobrist_test.cpp.s
 
 # Object files for target core_tests
 core_tests_OBJECTS = \
@@ -136,6 +136,8 @@ tests/core_tests: /opt/libtorch/lib/libkineto.a
 tests/core_tests: /usr/local/cuda-12.4/lib64/libnvrtc.so
 tests/core_tests: /usr/local/cuda-12.4/lib64/libnvToolsExt.so
 tests/core_tests: /opt/libtorch/lib/libc10_cuda.so
+tests/core_tests: /usr/lib/x86_64-linux-gnu/libspdlog.so.1.9.2
+tests/core_tests: /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1
 tests/core_tests: /usr/lib/x86_64-linux-gnu/libgtest.a
 tests/core_tests: tests/CMakeFiles/core_tests.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable core_tests"

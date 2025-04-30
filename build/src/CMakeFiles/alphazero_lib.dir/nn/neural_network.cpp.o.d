@@ -61,7 +61,7 @@ src/CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
- /usr/include/c++/11/cstdint \
+ /usr/include/x86_64-linux-gnu/bits/wchar2.h /usr/include/c++/11/cstdint \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/types.h \
  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
@@ -119,16 +119,20 @@ src/CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.o: \
  /usr/include/x86_64-linux-gnu/sys/select.h \
  /usr/include/x86_64-linux-gnu/bits/select.h \
  /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
- /usr/include/alloca.h /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+ /usr/include/x86_64-linux-gnu/bits/select2.h /usr/include/alloca.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib.h \
  /usr/include/c++/11/bits/std_abs.h /usr/include/c++/11/cstdio \
  /usr/include/stdio.h /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
  /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
- /usr/include/c++/11/cerrno /usr/include/errno.h \
- /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
- /usr/include/x86_64-linux-gnu/asm/errno.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio2.h /usr/include/c++/11/cerrno \
+ /usr/include/errno.h /usr/include/x86_64-linux-gnu/bits/errno.h \
+ /usr/include/linux/errno.h /usr/include/x86_64-linux-gnu/asm/errno.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
  /usr/include/c++/11/bits/charconv.h \
@@ -220,6 +224,12 @@ src/CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.o: \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
  /home/cosmos/alphazero-multi-game/include/alphazero/nn/torch_neural_network.h \
+ /home/cosmos/alphazero-multi-game/include/alphazero/nn/batch_queue.h \
+ /usr/include/c++/11/queue /usr/include/c++/11/deque \
+ /usr/include/c++/11/bits/stl_deque.h /usr/include/c++/11/bits/deque.tcc \
+ /usr/include/c++/11/bits/stl_queue.h /usr/include/c++/11/thread \
+ /usr/include/c++/11/bits/this_thread_sleep.h /usr/include/c++/11/sstream \
+ /usr/include/c++/11/bits/sstream.tcc \
  /opt/libtorch/include/torch/csrc/api/include/torch/torch.h \
  /opt/libtorch/include/torch/csrc/api/include/torch/all.h \
  /opt/libtorch/include/torch/csrc/api/include/torch/autograd.h \
@@ -246,8 +256,9 @@ src/CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.o: \
  /usr/include/c++/11/algorithm \
  /usr/include/c++/11/pstl/glue_algorithm_defs.h \
  /usr/include/c++/11/cstring /usr/include/string.h /usr/include/strings.h \
+ /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+ /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
  /usr/include/c++/11/iterator /usr/include/c++/11/bits/stream_iterator.h \
- /usr/include/c++/11/sstream /usr/include/c++/11/bits/sstream.tcc \
  /usr/include/c++/11/variant /opt/libtorch/include/c10/core/Layout.h \
  /opt/libtorch/include/c10/core/Backend.h \
  /opt/libtorch/include/c10/core/DispatchKey.h \
@@ -346,8 +357,7 @@ src/CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.o: \
  /opt/libtorch/include/c10/core/DefaultDtype.h \
  /opt/libtorch/include/ATen/core/DeprecatedTypePropertiesRegistry.h \
  /opt/libtorch/include/ATen/core/DeprecatedTypeProperties.h \
- /opt/libtorch/include/ATen/core/Generator.h /usr/include/c++/11/deque \
- /usr/include/c++/11/bits/stl_deque.h /usr/include/c++/11/bits/deque.tcc \
+ /opt/libtorch/include/ATen/core/Generator.h \
  /opt/libtorch/include/c10/core/GeneratorImpl.h \
  /opt/libtorch/include/ATen/core/NamedTensor.h \
  /opt/libtorch/include/ATen/core/Dimname.h \
@@ -873,8 +883,7 @@ src/CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.o: \
  /usr/include/c++/11/bits/stl_list.h /usr/include/c++/11/bits/list.tcc \
  /opt/libtorch/include/ATen/record_function.h \
  /opt/libtorch/include/c10/util/LeftRight.h \
- /opt/libtorch/include/c10/util/Synchronized.h /usr/include/c++/11/thread \
- /usr/include/c++/11/bits/this_thread_sleep.h \
+ /opt/libtorch/include/c10/util/Synchronized.h \
  /opt/libtorch/include/ATen/core/grad_mode.h \
  /opt/libtorch/include/c10/core/GradMode.h \
  /opt/libtorch/include/torch/csrc/jit/frontend/function_schema_parser.h \
@@ -4724,7 +4733,6 @@ src/CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.o: \
  /opt/libtorch/include/torch/csrc/api/include/torch/detail/TensorDataContainer.h \
  /opt/libtorch/include/torch/csrc/api/include/torch/data/detail/data_shuttle.h \
  /opt/libtorch/include/torch/csrc/api/include/torch/data/detail/queue.h \
- /usr/include/c++/11/queue /usr/include/c++/11/bits/stl_queue.h \
  /opt/libtorch/include/torch/csrc/api/include/torch/data/detail/sequencers.h \
  /opt/libtorch/include/torch/csrc/api/include/torch/data/iterator.h \
  /opt/libtorch/include/torch/csrc/api/include/torch/data/samplers/random.h \

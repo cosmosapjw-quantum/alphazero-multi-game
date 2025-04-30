@@ -1,5 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/CMakeRelink.dir/standalone_cuda_test"
   "CMakeFiles/standalone_cuda_test.dir/standalone_cuda_test.cpp.o"
   "CMakeFiles/standalone_cuda_test.dir/standalone_cuda_test.cpp.o.d"
   "standalone_cuda_test"
