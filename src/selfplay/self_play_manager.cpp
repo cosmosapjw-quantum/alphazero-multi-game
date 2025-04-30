@@ -9,6 +9,9 @@
 #include <algorithm>
 #include <random>
 #include "alphazero/mcts/transposition_table.h"
+#if defined(PYBIND11_MODULE)
+#include <pybind11/pybind11.h>
+#endif
 
 namespace alphazero {
 namespace selfplay {
@@ -51,6 +54,10 @@ std::vector<GameRecord> SelfPlayManager::generateGames(
 
     running_ = true;
     abort_ = false;
+    
+    // Reset counters
+    completedGamesCount_.store(0, std::memory_order_relaxed);
+    totalMovesCount_.store(0, std::memory_order_relaxed);
 
     if (saveGames_) {
         std::filesystem::create_directories(outputDir_);
@@ -61,49 +68,50 @@ std::vector<GameRecord> SelfPlayManager::generateGames(
         gameRecords_.clear();
     }
 
-    // Throttle concurrency: at most (numThreads_ / min(numGames_,numThreads_)) games at once
-    int threadsPerGame = std::max(1, numThreads_ / std::min(numGames_, numThreads_));
+    // Create thread pool if not already created
+    if (!threadPool_) {
+        threadPool_ = std::make_unique<mcts::ThreadPool>(numThreads_);
+    }
+
+    // Launch tasks in the thread pool
     std::vector<std::future<GameRecord>> futures;
-    futures.reserve(threadsPerGame + 1);
+    futures.reserve(numGames_);
 
     for (int i = 0; i < numGames_; ++i) {
         if (abort_) break;
-        if ((int)futures.size() >= threadsPerGame) {
-            try {
-                GameRecord rec = futures.front().get();
-                {
-                    std::lock_guard<std::mutex> lock(gameRecordsMutex_);
-                    gameRecords_.push_back(std::move(rec));
-                }
-            } catch (const std::exception& e) {
-                std::cerr << "Error in self-play game: " << e.what() << std::endl;
-            }
-            futures.erase(futures.begin());
-        }
-        futures.push_back(std::async(
-            std::launch::async,
-            &SelfPlayManager::playSingleGame,
-            this,
-            i,
-            gameType,
-            boardSize,
+        
+        // Enqueue the task to the thread pool
+        futures.push_back(threadPool_->enqueue(
+            &SelfPlayManager::playSingleGame, 
+            this, 
+            i, 
+            gameType, 
+            boardSize, 
             useVariantRules
         ));
     }
 
-    // Drain remaining futures
+    // Collect results from futures
     for (auto& future : futures) {
         if (abort_) break;
+        
         try {
             GameRecord rec = future.get();
-            std::lock_guard<std::mutex> lock(gameRecordsMutex_);
-            gameRecords_.push_back(std::move(rec));
+            
+            // Store the game record
+            {
+                std::lock_guard<std::mutex> lock(gameRecordsMutex_);
+                gameRecords_.push_back(std::move(rec));
+            }
+            
         } catch (const std::exception& e) {
             std::cerr << "Error in self-play game: " << e.what() << std::endl;
         }
     }
 
     running_ = false;
+    
+    // Return a copy of the game records
     std::lock_guard<std::mutex> lock(gameRecordsMutex_);
     return gameRecords_;
 }
@@ -153,27 +161,40 @@ GameRecord SelfPlayManager::playSingleGame(
     GameRecord record(gameType, state->getBoardSize(), useVariantRules);
     mcts::TranspositionTable tt(1048576);
 
-    // Configure MCTS with batched inference
-    mcts::MCTSConfig mctsConfig;
-    mctsConfig.numThreads      = numThreads_;
-    mctsConfig.numSimulations  = numSimulations_;
+    // Configure MCTS with our stored config
+    mcts::MCTSConfig mctsConfig = mctsConfig_;
+    
+    // Apply some necessary overrides for this specific game
+    mctsConfig.numThreads = std::min(numThreads_, mctsConfig.numThreads);
+    mctsConfig.numSimulations = numSimulations_;
+    
+    // Ensure batch configuration is enabled
     mctsConfig.useBatchInference = true;
-    mctsConfig.useBatchedMCTS  = true;
-    mctsConfig.batchSize       = batchSize_;
-    mctsConfig.batchTimeoutMs  = batchTimeoutMs_;
-    mctsConfig.searchMode      = mcts::MCTSSearchMode::BATCHED;
+    mctsConfig.useBatchedMCTS = true;
+    mctsConfig.batchSize = batchSize_;
+    mctsConfig.batchTimeoutMs = batchTimeoutMs_;
+    mctsConfig.searchMode = mcts::MCTSSearchMode::BATCHED;
 
     mcts::ParallelMCTS mcts(*state, mctsConfig, neuralNetwork_, &tt);
-    mcts.setCPuct(1.5f);
-    mcts.setFpuReduction(0.1f);
-    mcts.setSelectionStrategy(mcts::MCTSNodeSelection::PUCT);
+    
+    // These settings will be used only if not already set in mctsConfig
+    if (mctsConfig.cPuct <= 0.0f) mcts.setCPuct(1.5f);
+    if (mctsConfig.fpuReduction < 0.0f) mcts.setFpuReduction(0.1f);
+    if (mctsConfig.selectionStrategy == mcts::MCTSNodeSelection::UCB) 
+        mcts.setSelectionStrategy(mcts::MCTSNodeSelection::PUCT);
+    
+    // Always add Dirichlet noise for root node to ensure exploration
     mcts.addDirichletNoise(dirichletAlpha_, dirichletEpsilon_);
 
     int moveNum = 0;
     while (!state->isTerminal() && !abort_) {
         if (progressCallback_) {
-            // gameId, moveNum, totalGames, totalMoves (we don't track totalMoves individually)
-            progressCallback_(gameId, moveNum, numGames_, 0);
+#if defined(PYBIND11_MODULE)
+            // Acquire GIL before calling Python callback
+            pybind11::gil_scoped_acquire acquire;
+#endif
+            // gameId, moveNum, totalGames, totalMoves
+            progressCallback_(gameId, moveNum, numGames_, totalMovesCount_.load());
         }
 
         auto start = std::chrono::high_resolution_clock::now();
@@ -196,6 +217,9 @@ GameRecord SelfPlayManager::playSingleGame(
             mcts.addDirichletNoise(dirichletAlpha_, dirichletEpsilon_);
         }
         ++moveNum;
+        
+        // Update total moves counter
+        totalMovesCount_.fetch_add(1, std::memory_order_relaxed);
     }
 
     record.setResult(state->getGameResult());
@@ -209,6 +233,10 @@ GameRecord SelfPlayManager::playSingleGame(
                  << std::put_time(&tm, "%Y%m%d_%H%M%S") << ".json";
         record.saveToFile(filename.str());
     }
+    
+    // Update completed games counter
+    completedGamesCount_.fetch_add(1, std::memory_order_relaxed);
+    
     return record;
 }
 
@@ -216,6 +244,16 @@ float SelfPlayManager::getTemperature(int moveNum) const {
     return (moveNum >= temperatureDropMove_)
         ? finalTemperature_
         : initialTemperature_;
+}
+
+void SelfPlayManager::setMctsConfig(const mcts::MCTSConfig& config) {
+    mctsConfig_ = config;
+    
+    // Update batch configuration to match MCTS config
+    if (config.useBatchedMCTS) {
+        batchSize_ = config.batchSize;
+        batchTimeoutMs_ = config.batchTimeoutMs;
+    }
 }
 
 } // namespace selfplay

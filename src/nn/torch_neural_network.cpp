@@ -224,113 +224,130 @@ std::pair<std::vector<float>, float> TorchNeuralNetwork::predict(const core::IGa
 void TorchNeuralNetwork::predictBatch(
     const std::vector<std::reference_wrapper<const core::IGameState>>& states,
     std::vector<std::vector<float>>& policies,
-    std::vector<float>& values
-) {
+    std::vector<float>& values) {
+#ifndef LIBTORCH_OFF
     if (states.empty()) {
-        policies.clear();
-        values.clear();
         return;
     }
     
-#ifndef LIBTORCH_OFF
-    // Prepare input tensors
-    std::vector<torch::Tensor> inputTensors;
-    inputTensors.reserve(states.size());
+    // Prepare output vectors
+    int batchSize = states.size();
+    policies.resize(batchSize);
+    values.resize(batchSize);
     
-    for (const auto& state : states) {
-        inputTensors.push_back(getCachedStateTensor(state.get()));
-    }
-    
-    // Stack tensors into a batch
-    torch::Tensor batchInput = torch::stack(inputTensors).to(device_);
-    
-    // Convert to FP16 if configured
-    if (config_.useFp16 && isGpu_) {
-        batchInput = batchInput.to(torch::kHalf);
-    }
-    
-    // Measure inference time
-    auto start = std::chrono::high_resolution_clock::now();
-    
-    // Forward pass
-    torch::NoGradGuard no_grad;
-    torch::jit::IValue output;
-    {
-        std::lock_guard<std::mutex> lock(mutex_);
-        output = model_.forward({batchInput});
-    }
-    
-    // Measure inference time
-    auto end = std::chrono::high_resolution_clock::now();
-    float inferenceTime = std::chrono::duration<float, std::milli>(end - start).count();
-    
-    // Update average inference time with exponential moving average
-    {
-        std::lock_guard<std::mutex> lock(mutex_);
-        avgInferenceTimeMs_ = (avgInferenceTimeMs_ * 0.95f) + (inferenceTime * 0.05f / states.size());
-    }
-    
-    // Process output
-    auto outputTuple = output.toTuple();
-    auto policyBatch = outputTuple->elements()[0].toTensor();
-    auto valueBatch = outputTuple->elements()[1].toTensor();
-    
-    // Convert from FP16 if needed
-    if (config_.useFp16 && isGpu_) {
-        policyBatch = policyBatch.to(torch::kFloat);
-        valueBatch = valueBatch.to(torch::kFloat);
-    }
-    
-    // Resize output vectors
-    policies.resize(states.size());
-    values.resize(states.size());
-    
-    // Convert tensors to vectors
-    policyBatch = policyBatch.to(torch::kCPU);
-    valueBatch = valueBatch.to(torch::kCPU);
-    
-    // Convert to std::vector
-    for (size_t i = 0; i < states.size(); ++i) {
-        auto policyTensor = policyBatch[i];
-        auto valueTensor = valueBatch[i];
+    try {
+        // Measure inference time
+        auto start = std::chrono::high_resolution_clock::now();
         
-        // Convert policy to vector
-        int actionSize = states[i].get().getActionSpaceSize();
-        policies[i].resize(actionSize);
+        // Create a batch tensor by stacking all state tensors
+        std::vector<torch::Tensor> stateTensors;
+        stateTensors.reserve(batchSize);
         
-        if (policyTensor.size(0) == actionSize) {
-            // Direct copy
-            std::memcpy(policies[i].data(), policyTensor.data_ptr<float>(), 
-                       actionSize * sizeof(float));
-        } else {
-            // Resize or truncate if needed
-            int copySize = std::min(actionSize, static_cast<int>(policyTensor.size(0)));
-            std::memcpy(policies[i].data(), policyTensor.data_ptr<float>(), 
-                       copySize * sizeof(float));
+        // Use thread-local batch tensor reuse to avoid constant allocations
+        for (const auto& stateRef : states) {
+            const auto& state = stateRef.get();
+            stateTensors.push_back(getCachedStateTensor(state));
+        }
+        
+        // Stack the tensors to form a batch
+        // Use non-blocking copy to overlap CPU-GPU transfer with computation
+        torch::Tensor batchTensor = torch::stack(stateTensors, 0).to(device_, torch::kFloat, true, true);
+        
+        // Convert to FP16 if configured (faster on GPU)
+        if (config_.useFp16 && isGpu_) {
+            batchTensor = batchTensor.to(torch::kHalf);
+        }
+        
+        // Forward pass (no need for lock here, model inference is thread-safe)
+        torch::NoGradGuard no_grad;
+        auto outputTuple = model_.forward({batchTensor}).toTuple();
+        
+        // Get policy and value tensors
+        torch::Tensor policyTensor = outputTuple->elements()[0].toTensor();
+        torch::Tensor valueTensor = outputTuple->elements()[1].toTensor();
+        
+        // Ensure CPU tensors for processing (non-blocking to overlap with next computation)
+        policyTensor = policyTensor.to(torch::kCPU, torch::kFloat, true, true);
+        valueTensor = valueTensor.to(torch::kCPU, torch::kFloat, true, true);
+        
+        // Wait for async transfers to complete
+        if (policyTensor.is_cuda() || valueTensor.is_cuda()) {
+            torch::cuda::synchronize();
+        }
+        
+        // Convert tensors to output vectors
+        auto policyAccessor = policyTensor.accessor<float, 2>();
+        auto valueAccessor = valueTensor.accessor<float, 1>();
+        
+        // Process each item in batch
+        for (int i = 0; i < batchSize; ++i) {
+            // Get action size for this state
+            int actionSize = states[i].get().getActionSpaceSize();
             
-            // Fill the rest with zeros
-            for (int j = copySize; j < actionSize; ++j) {
-                policies[i][j] = 0.0f;
+            // Convert policy tensor to vector
+            std::vector<float> policy(actionSize);
+            for (int j = 0; j < actionSize && j < policyAccessor.size(1); ++j) {
+                policy[j] = policyAccessor[i][j];
             }
+            
+            // Apply softmax if needed (some models output logits instead of probabilities)
+            float sum = 0.0f;
+            float maxVal = *std::max_element(policy.begin(), policy.end());
+            
+            for (auto& p : policy) {
+                p = std::exp(p - maxVal);
+                sum += p;
+            }
+            
+            if (sum > 0.0f) {
+                for (auto& p : policy) {
+                    p /= sum;
+                }
+            }
+            
+            // Store results
+            policies[i] = std::move(policy);
+            values[i] = valueAccessor[i];
         }
         
-        // Apply compression if configured
-        if (config_.useOutputCompression) {
-            policies[i] = decompressPolicy(compressPolicy(policies[i]), actionSize);
-        }
+        // Measure inference time
+        auto end = std::chrono::high_resolution_clock::now();
+        float inferenceTime = std::chrono::duration<float, std::milli>(end - start).count();
+        float timePerState = inferenceTime / batchSize;
         
-        // Convert value to float
-        values[i] = valueTensor.item<float>();
+        // Update average inference time with exponential moving average
+        {
+            std::lock_guard<std::mutex> lock(mutex_);
+            avgInferenceTimeMs_ = (avgInferenceTimeMs_ * 0.95f) + (timePerState * 0.05f);
+        }
+    } catch (const c10::Error& e) {
+        // Special handling for torch-specific errors
+        spdlog::error("TorchNeuralNetwork: Torch error in predictBatch: {}", e.what());
+        
+        // Return uniform policies and zero values as fallback
+        for (int i = 0; i < batchSize; ++i) {
+            int actionSize = states[i].get().getActionSpaceSize();
+            policies[i].assign(actionSize, 1.0f / actionSize);
+            values[i] = 0.0f;
+        }
+    } catch (const std::exception& e) {
+        // Handle other exceptions
+        spdlog::error("TorchNeuralNetwork: Exception in predictBatch: {}", e.what());
+        
+        // Return uniform policies and zero values as fallback
+        for (int i = 0; i < batchSize; ++i) {
+            int actionSize = states[i].get().getActionSpaceSize();
+            policies[i].assign(actionSize, 1.0f / actionSize);
+            values[i] = 0.0f;
+        }
     }
 #else
-    // LibTorch disabled - process each state individually
-    policies.resize(states.size());
-    values.resize(states.size());
-    
+    // LibTorch disabled fallback
     for (size_t i = 0; i < states.size(); ++i) {
-        auto result = predict(states[i]);
-        policies[i] = result.first;
-        values[i] = result.second;
+        const auto& state = states[i].get();
+        int actionSize = state.getActionSpaceSize();
+        policies[i].assign(actionSize, 1.0f / actionSize);
+        values[i] = 0.0f;
     }
 #endif
 }

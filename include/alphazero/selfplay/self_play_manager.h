@@ -15,6 +15,7 @@
 #include <future>
 #include "alphazero/core/igamestate.h"
 #include "alphazero/mcts/parallel_mcts.h"
+#include "alphazero/mcts/thread_pool.h"
 #include "alphazero/nn/neural_network.h"
 #include "alphazero/selfplay/game_record.h"
 
@@ -109,6 +110,27 @@ public:
      */
     bool isRunning() const;
     
+    /**
+     * @brief Set the MCTS configuration
+     * 
+     * @param config MCTS configuration
+     */
+    void setMctsConfig(const mcts::MCTSConfig& config);
+    
+    /**
+     * @brief Get the number of completed games
+     * 
+     * @return Number of completed games
+     */
+    int getCompletedGamesCount() const { return completedGamesCount_; }
+    
+    /**
+     * @brief Get the total number of moves played
+     * 
+     * @return Total number of moves
+     */
+    int getTotalMovesCount() const { return totalMovesCount_; }
+    
 private:
     nn::NeuralNetwork* neuralNetwork_;     // Neural network for evaluation
     int numGames_;                         // Number of games to generate
@@ -138,6 +160,16 @@ private:
     // MCTS batch inference parameters
     int batchSize_{16};
     int batchTimeoutMs_{5};
+    
+    // MCTS configuration
+    mcts::MCTSConfig mctsConfig_;
+    
+    // Performance counters
+    std::atomic<int> completedGamesCount_{0};
+    std::atomic<int> totalMovesCount_{0};
+    
+    // Thread pool for parallel game generation
+    std::unique_ptr<mcts::ThreadPool> threadPool_;
     
     /**
      * @brief Play a single game

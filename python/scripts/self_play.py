@@ -25,7 +25,7 @@ Options:
     --dirichlet-epsilon E Dirichlet noise weight (default: 0.25)
     --variant             Use variant rules (Renju, Chess960, Chinese)
     --batch-size SIZE     Batch size for neural network inference (default: 8)
-    --batch-timeout MS    Timeout for batch completion in milliseconds (default: 100)
+    --batch-timeout MS    Timeout for batch completion in milliseconds (default: 10)
     --no-gpu              Disable GPU acceleration
     --no-batched-search   Disable batched MCTS search
     --fp16                Use FP16 precision (faster but less accurate)
@@ -84,8 +84,8 @@ def parse_args():
                         help="Number of games to generate")
     parser.add_argument("--simulations", type=int, default=800,
                         help="Number of MCTS simulations per move")
-    parser.add_argument("--threads", type=int, default=12,
-                        help="Number of threads")
+    parser.add_argument("--threads", type=int, default=0,
+                        help="Number of threads (0 for auto-detect)")
     parser.add_argument("--output-dir", type=str, default="data/games",
                         help="Output directory for game records")
     parser.add_argument("--temperature", type=float, default=1.0,
@@ -104,10 +104,10 @@ def parse_args():
                         help="Random seed for reproducibility")
 
     # GPU and batching related arguments
-    parser.add_argument("--batch-size", type=int, default=64,
-                        help="Batch size for neural network inference")
-    parser.add_argument("--batch-timeout", type=int, default=100,
-                        help="Timeout for batch completion in milliseconds")
+    parser.add_argument("--batch-size", type=int, default=0,
+                        help="Batch size for neural network inference (0 for auto-detect)")
+    parser.add_argument("--batch-timeout", type=int, default=0,
+                        help="Timeout for batch completion in milliseconds (0 for auto-detect)")
     parser.add_argument("--no-gpu", action="store_true",
                         help="Disable GPU acceleration")
     parser.add_argument("--no-batched-search", action="store_true",
@@ -116,7 +116,23 @@ def parse_args():
                         help="Use FP16 precision (faster but less accurate)")
     parser.add_argument("--create-random-model", action="store_true",
                         help="Create and export a random model if no model is provided")
+    
+    # Advanced MCTS options
+    parser.add_argument("--fpu-reduction", type=float, default=0.1,
+                        help="First play urgency reduction")
+    parser.add_argument("--c-puct", type=float, default=1.5,
+                        help="Exploration constant")
+    parser.add_argument("--virtual-loss", type=int, default=3,
+                        help="Virtual loss amount")
+    parser.add_argument("--use-transposition-table", action="store_true", default=True,
+                        help="Use transposition table in MCTS")
+    parser.add_argument("--progressive-widening", action="store_true",
+                        help="Use progressive widening in MCTS")
 
+    # Performance optimization options
+    parser.add_argument("--profile", action="store_true",
+                        help="Enable Python profiling")
+    
     return parser.parse_args()
 
 
@@ -289,6 +305,35 @@ def run_self_play(args):
     print("Initializing Neural Network...")
     neural_network = create_neural_network(args, game_type, board_size)
 
+    # Calculate optimal batch size and thread count based on hardware
+    if args.batch_size <= 0:
+        # Auto-detect optimal batch size based on GPU memory
+        if use_gpu:
+            gpu_mem = torch.cuda.get_device_properties(0).total_memory
+            # Heuristic: 1GB of VRAM can handle ~32 positions for a typical model
+            optimal_batch = max(8, min(256, int(gpu_mem / (1024**3) * 32)))
+            args.batch_size = optimal_batch
+            print(f"Auto-detected batch size: {args.batch_size}")
+        else:
+            args.batch_size = 8  # Default for CPU
+    
+    # Calculate optimal thread count if not specified
+    if args.threads <= 0:
+        import multiprocessing
+        cpu_count = multiprocessing.cpu_count()
+        # Use 75% of available cores by default
+        args.threads = max(1, int(cpu_count * 0.75))
+        print(f"Auto-detected thread count: {args.threads}")
+    
+    # Adjust batch timeout based on hardware and batch size
+    if args.batch_timeout <= 0:
+        if use_gpu:
+            # Shorter timeout for GPU to keep it fed
+            args.batch_timeout = max(1, min(10, 100 // args.batch_size))
+        else:
+            # Longer timeout for CPU to amortize overhead
+            args.batch_timeout = max(5, min(50, 200 // args.batch_size))
+
     print("Initializing Self-Play Manager...")
     try:
         self_play = az.SelfPlayManager(
@@ -311,6 +356,26 @@ def run_self_play(args):
         args.final_temp
     )
     self_play.setSaveGames(True, args.output_dir)
+    
+    # Configure MCTS with additional parameters if available
+    try:
+        if hasattr(self_play, 'setMctsConfig'):
+            mcts_config = {
+                'useBatchedMCTS': not args.no_batched_search,
+                'batchSize': args.batch_size,
+                'batchTimeoutMs': args.batch_timeout,
+                'searchMode': 'BATCHED' if not args.no_batched_search else 'PARALLEL',
+                'fpuReduction': args.fpu_reduction,
+                'cPuct': args.c_puct,
+                'virtualLoss': args.virtual_loss,
+                'useFmapCache': args.use_transposition_table,
+                'useTemporalDifference': False, 
+                'useProgressiveWidening': args.progressive_widening
+            }
+            self_play.setMctsConfig(mcts_config)
+            print("Advanced MCTS configuration applied.")
+    except Exception as e:
+        print(f"Warning: Couldn't apply advanced MCTS config: {e}")
 
     print("Starting self-play generation...")
     print("-"*40)
@@ -324,6 +389,7 @@ def run_self_play(args):
     print(f"Using FP16:         {args.fp16 and use_gpu}")
     print(f"NN Batch Size:      {args.batch_size if neural_network else 'N/A'}")
     print(f"NN Batch Timeout:   {args.batch_timeout if neural_network else 'N/A'} ms")
+    print(f"Batched MCTS:       {not args.no_batched_search}")
     print(f"Output directory:   {args.output_dir}")
     print(f"Model path:         {args.model if args.model else 'Random (C++)'}")
     if neural_network:
@@ -344,7 +410,9 @@ def run_self_play(args):
             dg = game_id - completed_games_count
             if dt > 0 and dg > 0:
                 rate = dg / dt
-                print(f"Progress: {game_id}/{total_games} games | {total_moves} moves | {rate:.2f} games/sec")
+                moves_per_sec = (total_moves - total_moves_count) / dt if dt > 0 else 0
+                print(f"Progress: {game_id}/{total_games} games | {total_moves} moves | "
+                      f"{rate:.2f} games/sec | {moves_per_sec:.1f} moves/sec")
             else:
                 print(f"Progress: {game_id}/{total_games} games | {total_moves} moves")
             last_update_time = now
@@ -428,7 +496,12 @@ def run_self_play(args):
         "nn_device_info": (neural_network.getDeviceInfo() if neural_network else None),
         "nn_batch_size": (neural_network.getBatchSize() if neural_network else None),
         "nn_batch_timeout": args.batch_timeout,
-        "nn_fp16_enabled": args.fp16
+        "nn_fp16_enabled": args.fp16,
+        "fpu_reduction": args.fpu_reduction,
+        "c_puct": args.c_puct,
+        "virtual_loss": args.virtual_loss,
+        "use_transposition_table": args.use_transposition_table,
+        "progressive_widening": args.progressive_widening
     }
 
     metadata_path = os.path.join(args.output_dir,
@@ -447,5 +520,34 @@ if __name__ == "__main__":
          print("Fatal: C++ module (_alphazero_cpp) could not be loaded.")
          sys.exit(1)
     print("C++ module loaded successfully.")
-
-    run_self_play(args)
+    
+    # Enable profiling if requested
+    if args.profile:
+        import cProfile
+        import pstats
+        from io import StringIO
+        
+        profile_filename = f"selfplay_profile_{time.strftime('%Y%m%d_%H%M%S')}.prof"
+        print(f"Profiling enabled. Results will be saved to {profile_filename}")
+        
+        # Run with profiling
+        profiler = cProfile.Profile()
+        profiler.enable()
+        
+        # Run the self-play function
+        run_self_play(args)
+        
+        # Disable profiler and print stats
+        profiler.disable()
+        profiler.dump_stats(profile_filename)
+        
+        # Print sorted stats
+        s = StringIO()
+        ps = pstats.Stats(profiler, stream=s).sort_stats('cumulative')
+        ps.print_stats(30)  # top 30 functions by cumulative time
+        print(s.getvalue())
+        
+        print(f"Full profile saved to {profile_filename}")
+    else:
+        # Normal run without profiling
+        run_self_play(args)

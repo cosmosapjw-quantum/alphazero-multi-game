@@ -197,136 +197,79 @@ void BatchQueue::processingLoop() {
                 }
             }
             
-            // If queue is empty and not stopping, wait for new items
-            if (requestQueue_.empty() && !stopProcessing_) {
-                queueCondVar_.wait(lock, [this] { 
-                    return !requestQueue_.empty() || stopProcessing_; 
-                });
-            }
+            // Wait for minimum batch size or timeout
+            auto batchSize = std::min(currentBatchSize_, static_cast<int>(requestQueue_.size()));
             
-            // Exit if stopping and queue is empty
-            if (stopProcessing_ && requestQueue_.empty()) {
-                break;
-            }
-            
-            // If queue has enough items for a batch or we prioritize batch size
-            if (!requestQueue_.empty() && 
-                (requestQueue_.size() >= static_cast<size_t>(currentBatchSize_) || !config_.prioritizeBatchSize)) {
-                // Collect batch
-                int batchSize = std::min(static_cast<int>(requestQueue_.size()), currentBatchSize_);
+            // If queue is empty, wait for new items
+            if (requestQueue_.empty()) {
+                queueCondVar_.wait_for(lock, std::chrono::milliseconds(config_.timeoutMs),
+                    [this] { return !requestQueue_.empty() || stopProcessing_; });
                 
-                // Ensure minimum batch size
-                if (batchSize < config_.minBatchSize && requestQueue_.size() < static_cast<size_t>(config_.minBatchSize)) {
-                    // Wait for more items or timeout
-                    auto deadline = std::chrono::steady_clock::now() + 
-                                   std::chrono::milliseconds(config_.timeoutMs);
-                    
-                    bool timedOut = !queueCondVar_.wait_until(lock, deadline, [this] {
-                        return requestQueue_.size() >= static_cast<size_t>(config_.minBatchSize) || 
-                               stopProcessing_;
-                    });
-                    
-                    if (timedOut) {
-                        batchTimedOut = true;
-                    }
-                    
-                    // Recalculate batch size
-                    batchSize = std::min(static_cast<int>(requestQueue_.size()), currentBatchSize_);
+                // Check if we should exit
+                if (stopProcessing_) {
+                    break;
                 }
                 
-                // Skip if no items or stopping
-                if (batchSize <= 0 || stopProcessing_) {
+                // If still empty after waiting, continue waiting
+                if (requestQueue_.empty()) {
                     continue;
                 }
+            }
+            
+            // Collect items for batch
+            auto startTime = std::chrono::steady_clock::now();
+            
+            // Try to fill batch up to target size or timeout
+            while (batch.states.size() < static_cast<size_t>(currentBatchSize_) && !requestQueue_.empty()) {
+                // Check timeout - try to form the largest batch possible within timeout
+                auto now = std::chrono::steady_clock::now();
+                auto elapsedMs = std::chrono::duration_cast<std::chrono::milliseconds>(now - startTime).count();
                 
-                // Prepare batch vectors
-                batch.states.reserve(batchSize);
-                batch.promises.reserve(batchSize);
-                batch.enqueueTimes.reserve(batchSize);
-                
-                // Collect items into batch safely
-                for (int i = 0; i < batchSize && !requestQueue_.empty(); ++i) {
-                    auto item = std::move(const_cast<std::unique_ptr<Request>&>(requestQueue_.top()));
-                    requestQueue_.pop();
-                    
-                    if (item && item->state) {
-                        batch.states.push_back(std::cref(*item->state));
-                        batch.promises.push_back(std::move(item->promise));
-                        batch.enqueueTimes.push_back(item->enqueueTime);
-                    }
-                }
-                
-                // Update queue pressure
-                queuePressure_.store(static_cast<int>(requestQueue_.size()), std::memory_order_relaxed);
-            } else if (!requestQueue_.empty()) {
-                // Not enough items for a full batch, wait for more items or timeout
-                auto deadline = std::chrono::steady_clock::now() + 
-                               std::chrono::milliseconds(config_.timeoutMs);
-                
-                bool timedOut = !queueCondVar_.wait_until(lock, deadline, [this] {
-                    return requestQueue_.size() >= static_cast<size_t>(currentBatchSize_) || 
-                           stopProcessing_;
-                });
-                
-                if (timedOut) {
+                if (elapsedMs >= config_.timeoutMs && batch.states.size() >= static_cast<size_t>(config_.minBatchSize)) {
+                    // If we have at least minimum batch size and timeout has elapsed, process what we have
                     batchTimedOut = true;
+                    break;
+                }
+                
+                // No timeout yet, process more items if available
+                if (!requestQueue_.empty()) {
+                    // Get next request - properly handling unique_ptr
+                    // We need to get the top item, then pop it, then use it
+                    // We can't move directly from top() as it returns a const reference
+                    auto& topRequest = requestQueue_.top();
                     
-                    // Process what we have if prioritizing latency or have minimum batch size
-                    if (!config_.prioritizeBatchSize || 
-                        requestQueue_.size() >= static_cast<size_t>(config_.minBatchSize)) {
-                        int batchSize = std::min(static_cast<int>(requestQueue_.size()), currentBatchSize_);
-                        
-                        // Prepare batch vectors
-                        batch.states.reserve(batchSize);
-                        batch.promises.reserve(batchSize);
-                        batch.enqueueTimes.reserve(batchSize);
-                        
-                        // Collect items into batch safely
-                        for (int i = 0; i < batchSize && !requestQueue_.empty(); ++i) {
-                            auto item = std::move(const_cast<std::unique_ptr<Request>&>(requestQueue_.top()));
-                            requestQueue_.pop();
-                            
-                            if (item && item->state) {
-                                batch.states.push_back(std::cref(*item->state));
-                                batch.promises.push_back(std::move(item->promise));
-                                batch.enqueueTimes.push_back(item->enqueueTime);
-                            }
-                        }
-                        
-                        // Update queue pressure
-                        queuePressure_.store(static_cast<int>(requestQueue_.size()), std::memory_order_relaxed);
+                    // Add to batch
+                    batch.states.push_back(*topRequest->state);
+                    batch.promises.push_back(std::move(topRequest->promise));
+                    batch.enqueueTimes.push_back(topRequest->enqueueTime);
+                    
+                    // Now we can pop it from the queue
+                    requestQueue_.pop();
+                }
+                
+                // If queue becomes empty, check if we should wait more or process what we have
+                if (requestQueue_.empty() && batch.states.size() < static_cast<size_t>(config_.minBatchSize)) {
+                    // Wait a bit more to see if we get more items
+                    bool gotMore = queueCondVar_.wait_for(lock, 
+                        std::chrono::milliseconds(std::max(1, config_.timeoutMs / 4)),
+                        [this] { return !requestQueue_.empty() || stopProcessing_; });
+                    
+                    if (stopProcessing_) {
+                        break;
+                    }
+                    
+                    // If still empty and we have at least one item, just process what we have
+                    if (!gotMore && !batch.states.empty()) {
+                        batchTimedOut = true;
+                        break;
                     }
                 }
             }
-        } // End of mutex scope
+        }
         
-        // Process the batch if not empty
+        // Process the batch if it's not empty
         if (!batch.states.empty()) {
-            auto batchStartTime = std::chrono::steady_clock::now();
-            
-            // Calculate queue wait times for statistics
-            for (const auto& enqueueTime : batch.enqueueTimes) {
-                auto waitTime = std::chrono::duration_cast<std::chrono::milliseconds>(
-                    batchStartTime - enqueueTime).count();
-                stats_.avgQueueWaitTimeMs.fetch_add(waitTime, std::memory_order_relaxed);
-            }
-            
-            // Process the batch
             processBatch(batch);
-            
-            // Calculate processing time for statistics
-            auto batchEndTime = std::chrono::steady_clock::now();
-            auto processingTime = std::chrono::duration_cast<std::chrono::milliseconds>(
-                batchEndTime - batchStartTime).count();
-            
-            // Update statistics
-            stats_.totalBatches.fetch_add(1, std::memory_order_relaxed);
-            stats_.avgBatchSize.fetch_add(batch.states.size(), std::memory_order_relaxed);
-            stats_.avgProcessingTimeMs.fetch_add(processingTime, std::memory_order_relaxed);
-            
-            if (batchTimedOut) {
-                stats_.totalTimedOutBatches.fetch_add(1, std::memory_order_relaxed);
-            }
         }
     }
 }

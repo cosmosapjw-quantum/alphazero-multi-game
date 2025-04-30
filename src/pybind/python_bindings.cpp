@@ -300,32 +300,101 @@ PYBIND11_MODULE(_alphazero_cpp, m) {
     // Self-Play Manager
     py::class_<selfplay::SelfPlayManager>(m, "SelfPlayManager")
         .def(py::init<nn::NeuralNetwork*, int, int, int>(),
-             py::arg("neuralNetwork"),
-             py::arg("numGames") = 100,
-             py::arg("numSimulations") = 800,
-             py::arg("numThreads") = 4)
-        .def("generateGames", [](selfplay::SelfPlayManager &self,
-                                 core::GameType gameType,
-                                 int boardSize,
-                                 bool useVariantRules) {
+            py::arg("neuralNetwork"),
+            py::arg("numGames") = 100,
+            py::arg("numSimulations") = 800,
+            py::arg("numThreads") = 4)
+        .def("generateGames", [](selfplay::SelfPlayManager &self, 
+                               core::GameType gameType, 
+                               int boardSize, 
+                               bool useVariantRules) {
+            // Release GIL for the entire self-play process
             py::gil_scoped_release release;
             return self.generateGames(gameType, boardSize, useVariantRules);
-        }, py::arg("gameType"), py::arg("boardSize") = 0, py::arg("useVariantRules") = false)
-        .def("setBatchConfig", &selfplay::SelfPlayManager::setBatchConfig,
-             py::arg("batchSize"),
-             py::arg("batchTimeoutMs"))
+        })
         .def("setExplorationParams", &selfplay::SelfPlayManager::setExplorationParams,
-             py::arg("dirichletAlpha")     = 0.03f,
-             py::arg("dirichletEpsilon")   = 0.25f,
-             py::arg("initialTemperature") = 1.0f,
-             py::arg("temperatureDropMove")= 30,
-             py::arg("finalTemperature")   = 0.0f)
-        .def("setSaveGames", &selfplay::SelfPlayManager::setSaveGames,
-             py::arg("saveGames"),
-             py::arg("outputDir") = "games")
+            py::arg("dirichletAlpha") = 0.03f,
+            py::arg("dirichletEpsilon") = 0.25f,
+            py::arg("initialTemperature") = 1.0f,
+            py::arg("temperatureDropMove") = 30,
+            py::arg("finalTemperature") = 0.0f)
+        .def("setProgressCallback", [](selfplay::SelfPlayManager &self, 
+                                    std::function<void(int,int,int,int)> callback) {
+            self.setProgressCallback([callback](int gameId, int moveNum, int totalGames, int totalMoves) {
+                // Acquire GIL before calling Python callback
+                py::gil_scoped_acquire acquire;
+                callback(gameId, moveNum, totalGames, totalMoves);
+            });
+        })
+        .def("setBatchConfig", &selfplay::SelfPlayManager::setBatchConfig)
+        .def("setSaveGames", &selfplay::SelfPlayManager::setSaveGames)
         .def("setAbort", &selfplay::SelfPlayManager::setAbort)
-        .def("setProgressCallback", &selfplay::SelfPlayManager::setProgressCallback)
-        .def("isRunning", &selfplay::SelfPlayManager::isRunning);
+        .def("isRunning", &selfplay::SelfPlayManager::isRunning)
+        .def("setMctsConfig", [](selfplay::SelfPlayManager &self, py::dict config) {
+            // Convert Python dict to MCTSConfig
+            mcts::MCTSConfig mctsConfig;
+            
+            // Read values from dict with proper error handling
+            if (config.contains("numThreads") && py::isinstance<py::int_>(config["numThreads"]))
+                mctsConfig.numThreads = config["numThreads"].cast<int>();
+                
+            if (config.contains("numSimulations") && py::isinstance<py::int_>(config["numSimulations"]))
+                mctsConfig.numSimulations = config["numSimulations"].cast<int>();
+                
+            if (config.contains("cPuct") && py::isinstance<py::float_>(config["cPuct"]))
+                mctsConfig.cPuct = config["cPuct"].cast<float>();
+                
+            if (config.contains("fpuReduction") && py::isinstance<py::float_>(config["fpuReduction"]))
+                mctsConfig.fpuReduction = config["fpuReduction"].cast<float>();
+                
+            if (config.contains("virtualLoss") && py::isinstance<py::int_>(config["virtualLoss"]))
+                mctsConfig.virtualLoss = config["virtualLoss"].cast<int>();
+                
+            if (config.contains("useDirichletNoise") && py::isinstance<py::bool_>(config["useDirichletNoise"]))
+                mctsConfig.useDirichletNoise = config["useDirichletNoise"].cast<bool>();
+                
+            if (config.contains("dirichletAlpha") && py::isinstance<py::float_>(config["dirichletAlpha"]))
+                mctsConfig.dirichletAlpha = config["dirichletAlpha"].cast<float>();
+                
+            if (config.contains("dirichletEpsilon") && py::isinstance<py::float_>(config["dirichletEpsilon"]))
+                mctsConfig.dirichletEpsilon = config["dirichletEpsilon"].cast<float>();
+                
+            if (config.contains("useBatchInference") && py::isinstance<py::bool_>(config["useBatchInference"]))
+                mctsConfig.useBatchInference = config["useBatchInference"].cast<bool>();
+                
+            if (config.contains("useBatchedMCTS") && py::isinstance<py::bool_>(config["useBatchedMCTS"]))
+                mctsConfig.useBatchedMCTS = config["useBatchedMCTS"].cast<bool>();
+                
+            if (config.contains("batchSize") && py::isinstance<py::int_>(config["batchSize"]))
+                mctsConfig.batchSize = config["batchSize"].cast<int>();
+                
+            if (config.contains("batchTimeoutMs") && py::isinstance<py::int_>(config["batchTimeoutMs"]))
+                mctsConfig.batchTimeoutMs = config["batchTimeoutMs"].cast<int>();
+                
+            if (config.contains("searchMode") && py::isinstance<py::str>(config["searchMode"])) {
+                std::string searchModeStr = config["searchMode"].cast<std::string>();
+                if (searchModeStr == "SERIAL")
+                    mctsConfig.searchMode = mcts::MCTSSearchMode::SERIAL;
+                else if (searchModeStr == "PARALLEL")
+                    mctsConfig.searchMode = mcts::MCTSSearchMode::PARALLEL;
+                else if (searchModeStr == "BATCHED")
+                    mctsConfig.searchMode = mcts::MCTSSearchMode::BATCHED;
+            }
+            
+            if (config.contains("useTemporalDifference") && py::isinstance<py::bool_>(config["useTemporalDifference"]))
+                mctsConfig.useTemporalDifference = config["useTemporalDifference"].cast<bool>();
+                
+            if (config.contains("useProgressiveWidening") && py::isinstance<py::bool_>(config["useProgressiveWidening"]))
+                mctsConfig.useProgressiveWidening = config["useProgressiveWidening"].cast<bool>();
+                
+            if (config.contains("useFmapCache") && py::isinstance<py::bool_>(config["useFmapCache"]))
+                mctsConfig.useFmapCache = config["useFmapCache"].cast<bool>();
+            
+            // Apply the config
+            self.setMctsConfig(mctsConfig);
+        })
+        .def("getCompletedGamesCount", &selfplay::SelfPlayManager::getCompletedGamesCount)
+        .def("getTotalMovesCount", &selfplay::SelfPlayManager::getTotalMovesCount);
 }
 
 } // namespace python
