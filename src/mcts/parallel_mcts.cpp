@@ -2,6 +2,7 @@
 #include "alphazero/mcts/parallel_mcts.h"
 #include "alphazero/nn/neural_network.h"
 #include "alphazero/nn/batch_queue.h"
+#include "alphazero/mcts/thread_pool.h"
 #include <iostream>
 #include <algorithm>
 #include <cmath>
@@ -14,54 +15,6 @@
 
 namespace alphazero {
 namespace mcts {
-
-ThreadPool::ThreadPool(size_t numThreads) : stop(false) {
-    for (size_t i = 0; i < numThreads; ++i) {
-        workers.emplace_back([this] {
-            while (true) {
-                std::function<void()> task;
-                
-                {
-                    std::unique_lock<std::mutex> lock(this->queueMutex);
-                    
-                    // Wait for task or stop signal
-                    this->condition.wait(lock, [this] {
-                        return this->stop || !this->tasks.empty();
-                    });
-                    
-                    // Exit if stop signal and no tasks
-                    if (this->stop && this->tasks.empty()) {
-                        return;
-                    }
-                    
-                    // Get task from front
-                    task = std::move(this->tasks.front());
-                    this->tasks.pop_front();
-                }
-                
-                // Execute task
-                task();
-            }
-        });
-    }
-}
-
-ThreadPool::~ThreadPool() {
-    {
-        std::unique_lock<std::mutex> lock(queueMutex);
-        stop = true;
-    }
-    
-    // Wake up all threads
-    condition.notify_all();
-    
-    // Join all threads
-    for (std::thread& worker : workers) {
-        if (worker.joinable()) {
-            worker.join();
-        }
-    }
-}
 
 ParallelMCTS::ParallelMCTS(
     const core::IGameState& rootState,
@@ -115,7 +68,7 @@ void ParallelMCTS::initialize(const core::IGameState& rootState) {
     rootNode_ = std::make_unique<MCTSNode>(rootState_.get(), nullptr, 0.0f, -1);
     
     // Create thread pool
-    threadPool_ = std::make_unique<ThreadPool>(config_.numThreads);
+    threadPool_ = std::make_unique<alphazero::mcts::ThreadPool>(config_.numThreads);
     
     // Create batch queue if using batched inference
     if (config_.useBatchInference && nn_) {
@@ -222,7 +175,7 @@ void ParallelMCTS::search() {
 
 
     // Apply Dirichlet noise if in training mode
-    if (config_.useDirichletNoise && rootNode_->isExpanded) { // Only apply if expanded
+    if (config_.useDirichletNoise && rootNode_->isExpanded) {
         addDirichletNoise(config_.dirichletAlpha, config_.dirichletEpsilon);
     }
 
@@ -240,7 +193,6 @@ void ParallelMCTS::search() {
             while (searchInProgress_.load()) {
                 int currentCompleted = completedSimulations.fetch_add(1, std::memory_order_relaxed);
                 if (currentCompleted >= targetSimulations) {
-                    // Correct overshoot if multiple threads increment past the target
                     completedSimulations.fetch_sub(1, std::memory_order_relaxed);
                     break;
                 }
@@ -310,7 +262,7 @@ void ParallelMCTS::search() {
                         } else {
                             // Node is still not expanded, evaluate it
                             try {
-                                std::tie(policy, value) = evaluateState(*state); // Uses BatchQueue if configured
+                                std::tie(policy, value) = evaluateState(*state);
 
                                 // Store in transposition table if available
                                 if (tt_) {
@@ -382,7 +334,7 @@ void ParallelMCTS::runSingleSimulation() {
 
     // Skip if no more simulations needed (check against target directly)
     // This logic might be redundant now as the main search loop handles simulation count
-    // Keeping it as a fallback safeguard
+    // Keeping it, but noting its potential overlap with the main search loop logic.
     if (pendingSimulations_.load(std::memory_order_relaxed) <= 0) {
          return;
     }
@@ -410,6 +362,7 @@ void ParallelMCTS::runSingleSimulation() {
         }
         // Decrement simulation count as this one failed early
         pendingSimulations_.fetch_add(1, std::memory_order_relaxed); // Add back count
+        stats_.simulationCount.fetch_sub(1, std::memory_order_relaxed); // Decrement successful count
         return;
     }
 
@@ -432,7 +385,7 @@ void ParallelMCTS::runSingleSimulation() {
                      tt_->store(state->getHash(), state->getGameType(), policy, value);
                  }
 
-                 // Expand the node (still under lock)
+                 // Expand node with the policy (still under lock)
                  expandNodeWithPolicy(node, *state, policy);
 
              } catch (const std::exception& e) {
@@ -455,7 +408,7 @@ void ParallelMCTS::runSingleSimulation() {
     // Backpropagate the result along the path
     backpropagate(node, value, searchPath); // Use path version
 
-    // Progress reporting is now handled in the main search loop
+    // Progress reporting is now handled centrally in the main search loop
 }
 
 MCTSNode* ParallelMCTS::selectLeaf(core::IGameState& state) {
@@ -508,26 +461,8 @@ MCTSNode* ParallelMCTS::selectLeaf(core::IGameState& state) {
             break;
         }
         
-        // Add virtual loss to selected child
-        childNode->addVirtualLoss(config_.virtualLoss);
-        
-        // Find action index
-        int actionIdx = -1;
-        for (size_t i = 0; i < node->children.size(); ++i) {
-            if (node->children[i].get() == childNode) {
-                actionIdx = static_cast<int>(i);
-                break;
-            }
-        }
-        
-        if (actionIdx < 0 || actionIdx >= static_cast<int>(node->actions.size())) {
-            // Error finding action, break and remove virtual loss
-            node->removeVirtualLoss(config_.virtualLoss);
-            break;
-        }
-        
         // Make the move in the state
-        int action = node->actions[actionIdx];
+        int action = childNode->action;
         try {
             state.makeMove(action);
         } catch (const std::exception& e) {
@@ -603,27 +538,8 @@ MCTSNode* ParallelMCTS::selectLeafWithPath(core::IGameState& state, std::vector<
             break;
         }
         
-        // Add virtual loss to selected child
-        childNode->addVirtualLoss(config_.virtualLoss);
-        
-        // Find action index
-        int actionIdx = -1;
-        for (size_t i = 0; i < node->children.size(); ++i) {
-            if (node->children[i].get() == childNode) {
-                actionIdx = static_cast<int>(i);
-                break;
-            }
-        }
-        
-        if (actionIdx < 0 || actionIdx >= static_cast<int>(node->actions.size())) {
-            // Error finding action, break and remove virtual loss
-            node->removeVirtualLoss(config_.virtualLoss);
-            searchPath.pop_back();  // Remove from search path
-            break;
-        }
-        
         // Make the move in the state
-        int action = node->actions[actionIdx];
+        int action = childNode->action;
         try {
             state.makeMove(action);
         } catch (const std::exception& e) {
@@ -703,7 +619,7 @@ MCTSNode* ParallelMCTS::selectChildUcb(MCTSNode* node, const core::IGameState& s
     }
     
     // If all children are unvisited, pick one randomly
-    if (!bestChild && !node->children.empty()) {
+    if (!bestChild && maxChildren > 0) {
         size_t randomIdx = 0;
         if (config_.useBatchInference) {
             randomIdx = node->visitCount.load() % node->children.size();
@@ -873,14 +789,12 @@ void ParallelMCTS::backpropagate(MCTSNode* node, float value) {
         // For valueSum, use a compare-exchange loop since it's a float atomic
         float oldValue = current->valueSum.load(std::memory_order_relaxed);
         float nodeValue = value;
-        float newValue = oldValue + nodeValue;
-        
-        while (!current->valueSum.compare_exchange_weak(oldValue, newValue,
-                                                      std::memory_order_relaxed,
-                                                      std::memory_order_relaxed)) {
-            // If the exchange failed, oldValue has been updated with the current value
+        float newValue;
+        do {
             newValue = oldValue + nodeValue;
-        }
+        } while (!current->valueSum.compare_exchange_weak(oldValue, newValue,
+                                                      std::memory_order_relaxed,
+                                                      std::memory_order_relaxed));
         
         // Flip value sign for opponent's perspective
         value = -value;
@@ -930,14 +844,12 @@ void ParallelMCTS::backpropagate(MCTSNode* node, float value, const std::vector<
         // For valueSum, use a compare-exchange loop since it's a float atomic
         float oldValue = current->valueSum.load(std::memory_order_relaxed);
         float nodeValue = currentValue;
-        float newValue = oldValue + nodeValue;
-        
-        while (!current->valueSum.compare_exchange_weak(oldValue, newValue,
-                                                      std::memory_order_relaxed,
-                                                      std::memory_order_relaxed)) {
-            // If the exchange failed, oldValue has been updated with the current value
+        float newValue;
+        do {
             newValue = oldValue + nodeValue;
-        }
+        } while (!current->valueSum.compare_exchange_weak(oldValue, newValue,
+                                                      std::memory_order_relaxed,
+                                                      std::memory_order_relaxed));
         
         // Flip value sign for opponent's perspective
         currentValue = -currentValue;
@@ -1292,22 +1204,18 @@ void ParallelMCTS::addDirichletNoise(float alpha, float epsilon) {
 
 void ParallelMCTS::setNumThreads(int numThreads) {
     // Wait for any ongoing search to complete
-    while (searchInProgress_.load()) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(10));
-    }
-    
+    waitForSearchCompletion();
+
     config_.numThreads = numThreads;
     
     // Create new thread pool
-    threadPool_ = std::make_unique<ThreadPool>(numThreads);
+    threadPool_ = std::make_unique<alphazero::mcts::ThreadPool>(numThreads);
 }
 
 void ParallelMCTS::setNumSimulations(int numSimulations) {
     // Wait for any ongoing search to complete
-    while (searchInProgress_.load()) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(10));
-    }
-    
+    waitForSearchCompletion();
+
     config_.numSimulations = numSimulations;
 }
 
@@ -1348,15 +1256,13 @@ void ParallelMCTS::setTranspositionTable(TranspositionTable* tt) {
 
 void ParallelMCTS::setConfig(const MCTSConfig& config) {
     // Wait for any ongoing search to complete
-    while (searchInProgress_.load()) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(10));
-    }
-    
+    waitForSearchCompletion();
+
     config_ = config;
     
     // Update thread pool if needed
     if (threadPool_->size() != static_cast<size_t>(config.numThreads)) {
-        threadPool_ = std::make_unique<ThreadPool>(config.numThreads);
+        threadPool_ = std::make_unique<alphazero::mcts::ThreadPool>(config.numThreads);
     }
     
     // Update batch queue if needed
@@ -1376,7 +1282,7 @@ void ParallelMCTS::setConfig(const MCTSConfig& config) {
     
     // Update transposition table if needed
     if (tt_ && tt_->getSize() != static_cast<size_t>(config.transpositionTableSize)) {
-        if (!config_.useBatchInference) {
+        if (!config.useBatchInference) {
             delete tt_;
         }
         
@@ -1459,9 +1365,7 @@ std::string ParallelMCTS::getSearchInfo() const {
     if (config_.useBatchedMCTS) {
         ss << "  Batched evaluations: " << stats_.batchedEvaluations.load() << std::endl;
         ss << "  Batches: " << stats_.totalBatches.load() << std::endl;
-        float avgBatchSize = stats_.totalBatches.load() > 0 
-                       ? static_cast<float>(stats_.batchedEvaluations.load()) / stats_.totalBatches.load() 
-                       : 0.0f;
+        float avgBatchSize = stats_.totalBatches.load() > 0 ? static_cast<float>(stats_.batchedEvaluations.load()) / stats_.totalBatches.load() : 0.0f;
         ss << "  Average batch size: " << std::fixed << std::setprecision(2) << avgBatchSize << std::endl;
     }
     
@@ -1495,7 +1399,7 @@ std::string ParallelMCTS::getSearchInfo() const {
         auto [action, visits, value, prior] = visitCounts[i];
         
         float visitPercent = 100.0f * visits / rootNode_->visitCount.load();
-        ss << "    Action " << std::setw(3) << action 
+        ss << "    Action " << std::left << std::setw(3) << action 
            << ": visits=" << std::setw(5) << visits 
            << " (" << std::fixed << std::setprecision(1) << visitPercent << "%)"
            << ", value=" << std::fixed << std::setprecision(3) << value
@@ -1562,7 +1466,7 @@ void ParallelMCTS::printSearchPath(int action) const {
             auto [gcAction, visits, value, prior] = visitCounts[i];
             
             float visitPercent = 100.0f * visits / child->visitCount.load();
-            std::cout << "    Action " << std::setw(3) << gcAction 
+            std::cout << "    Action " << std::left << std::setw(3) << gcAction 
                      << ": visits=" << std::setw(5) << visits 
                      << " (" << std::fixed << std::setprecision(1) << visitPercent << "%)"
                      << ", value=" << std::fixed << std::setprecision(3) << value
@@ -1573,25 +1477,22 @@ void ParallelMCTS::printSearchPath(int action) const {
 }
 
 size_t ParallelMCTS::getMemoryUsage() const {
-    size_t totalSize = 0;
-    
-    // Size of this object
-    totalSize += sizeof(*this);
-    
-    // Size of root state
+    size_t totalSize = sizeof(*this);
+
+    // Add size of root state
     totalSize += sizeof(*rootState_);
-    
-    // Size of tree
+
+    // Add size of tree
     if (rootNode_) {
         totalSize += rootNode_->getTreeMemoryUsage();
     }
-    
-    // Size of transposition table
+
+    // Add size of transposition table
     if (tt_) {
         totalSize += tt_->getMemoryUsageBytes();
     }
-    
-    // Size of feature map cache
+
+    // Add size of feature map cache
     {
         std::lock_guard<std::mutex> lock(featureMapMutex_);
         totalSize += sizeof(decltype(featureMapCache_)) + featureMapCache_.size() * 
@@ -1605,7 +1506,7 @@ size_t ParallelMCTS::getMemoryUsage() const {
             }
         }
     }
-    
+
     return totalSize;
 }
 
@@ -1628,11 +1529,11 @@ size_t ParallelMCTS::releaseMemory(int visitThreshold) {
 
 std::vector<std::tuple<int, int, float, float>> ParallelMCTS::analyzePosition(int topN) const {
     std::vector<std::tuple<int, int, float, float>> result;
-    
+
     if (!rootNode_ || !rootNode_->isExpanded) {
         return result;
     }
-    
+
     // Sort children by visit count
     std::vector<std::tuple<int, int, float, float>> visitCounts;
     for (size_t i = 0; i < rootNode_->children.size(); ++i) {
@@ -1651,6 +1552,12 @@ std::vector<std::tuple<int, int, float, float>> ParallelMCTS::analyzePosition(in
     int numToReturn = std::min(topN, static_cast<int>(visitCounts.size()));
     return std::vector<std::tuple<int, int, float, float>>(
         visitCounts.begin(), visitCounts.begin() + numToReturn);
+}
+
+void ParallelMCTS::waitForSearchCompletion() {
+    while (searchInProgress_.load()) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
 }
 
 } // namespace mcts

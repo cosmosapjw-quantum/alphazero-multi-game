@@ -230,6 +230,7 @@ private:
     float getTemperatureVisitWeight(int visitCount, float temperature) const;
     int getProgressiveWideningCount(int parentVisits, int totalChildren) const;
     void initialize(const core::IGameState& rootState);
+    void waitForSearchCompletion();
     
     // FeatureMap cache
     std::vector<std::vector<std::vector<float>>> getCachedFeatureMap(const core::IGameState& state);
