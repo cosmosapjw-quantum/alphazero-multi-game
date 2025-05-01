@@ -18,7 +18,7 @@ GoState::GoState(int board_size, float komi, bool chinese_rules, bool enforce_su
       ko_point_(-1),
       consecutive_passes_(0),
       hash_dirty_(true),
-      zobrist_(core::GameType::GO, board_size, 3)  // 3 features: black stones, white stones, ko point
+      zobrist_(core::GameType::GO, board_size, 2)  // 2 piece types: black and white
 {
     // Validate board size
     if (board_size != 9 && board_size != 13 && board_size != 19) {
@@ -44,6 +44,11 @@ GoState::GoState(int board_size, float komi, bool chinese_rules, bool enforce_su
         [this](int pos) { return this->isInBounds(pos); },
         [this](int pos) { return this->getAdjacentPositions(pos); }
     );
+
+    // Add named features for hash calculation
+    zobrist_.addFeature("ko_point", board_size_ * board_size_ + 1);  // All positions + none
+    zobrist_.addFeature("rules", 2);          // Chinese or Japanese rules
+    zobrist_.addFeature("komi", 16);          // Discretized komi values
 }
 
 // Copy constructor
@@ -856,19 +861,19 @@ void GoState::updateHash() const {
     
     // Hash ko point
     if (ko_point_ >= 0) {
-        hash_ ^= zobrist_.getFeatureHash(0, ko_point_);
+        hash_ ^= zobrist_.getFeatureHash("ko_point", ko_point_);
     }
     
     // Hash the rule variant
     if (chinese_rules_) {
-        hash_ ^= zobrist_.getFeatureHash(1, 1);  // Chinese rules
+        hash_ ^= zobrist_.getFeatureHash("rules", 1);  // Chinese rules
     } else {
-        hash_ ^= zobrist_.getFeatureHash(1, 0);  // Japanese rules
+        hash_ ^= zobrist_.getFeatureHash("rules", 0);  // Japanese rules
     }
     
     // Hash komi value (discretized)
     int komi_int = static_cast<int>(komi_ * 2);  // Convert to half-points
-    hash_ ^= zobrist_.getFeatureHash(2, komi_int & 0xF);  // Use lower 4 bits
+    hash_ ^= zobrist_.getFeatureHash("komi", komi_int & 0xF);  // Use lower 4 bits
     
     hash_dirty_ = false;
 }

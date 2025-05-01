@@ -35,6 +35,11 @@ ChessState::ChessState(bool chess960, const std::string& fen, int position_numbe
     // Initialize rules object
     rules_ = std::make_shared<ChessRules>(*this, chess960_);
     
+    // Add named features for hash calculation
+    zobrist_.addFeature("castling", 16);      // 4 bits for castling rights
+    zobrist_.addFeature("en_passant", 65);    // 64 squares + 1 for no en passant
+    zobrist_.addFeature("chess960", 2);       // Boolean flag for Chess960 mode
+    
     // Setup the position based on inputs
     if (chess960_ && position_number >= 0 && position_number < 960) {
         // Use the specified Chess960 position number
@@ -1157,16 +1162,16 @@ void ChessState::updateHash() const {
     if (castling_rights_.white_queenside) castlingIdx |= 2;
     if (castling_rights_.black_kingside) castlingIdx |= 4;
     if (castling_rights_.black_queenside) castlingIdx |= 8;
-    hash_ ^= zobrist_.getFeatureHash(0, castlingIdx);
+    hash_ ^= zobrist_.getFeatureHash("castling", castlingIdx);
     
     // Hash en passant square
     if (en_passant_square_ >= 0 && en_passant_square_ < NUM_SQUARES) {
-        hash_ ^= zobrist_.getFeatureHash(1, en_passant_square_);
+        hash_ ^= zobrist_.getFeatureHash("en_passant", en_passant_square_);
     }
     
     // Hash Chess960 flag
     if (chess960_) {
-        hash_ ^= zobrist_.getFeatureHash(2, 1);
+        hash_ ^= zobrist_.getFeatureHash("chess960", 1);
     }
     
     hash_dirty_ = false;

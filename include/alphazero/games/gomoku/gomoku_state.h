@@ -12,6 +12,7 @@
 #include "alphazero/core/igamestate.h"
 #include "alphazero/core/utils/hash_specializations.h"
 #include "alphazero/games/gomoku/gomoku_rules.h"
+#include "alphazero/core/zobrist_hash.h"
 
 namespace alphazero {
 namespace gomoku {
@@ -139,6 +140,9 @@ private:
     
     // Directions array
     int dirs[8];
+    
+    // Zobrist hashing
+    core::ZobristHash zobrist_;
     
     // Invalidate caches after state changes
     void invalidate_caches();

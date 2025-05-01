@@ -65,6 +65,15 @@ public:
     uint64_t getFeatureHash(const std::string& featureName, int value) const;
     
     /**
+     * @brief Get feature hash value by index (legacy interface)
+     * 
+     * @param featureIndex Index of the feature (0-based, in order of addition)
+     * @param value Value of the feature
+     * @return 64-bit hash value
+     */
+    uint64_t getFeatureHash(int featureIndex, int value) const;
+    
+    /**
      * @brief Check if a feature exists
      * 
      * @param featureName Name of the feature

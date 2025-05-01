@@ -8,6 +8,7 @@
 #include <numeric>
 #include <string>
 #include <sstream>
+#include "alphazero/core/zobrist_hash.h"
 
 namespace alphazero {
 namespace gomoku {
@@ -27,7 +28,8 @@ GomokuState::GomokuState(int board_size, bool use_renju, bool use_omok, int seed
       winner_check_dirty(true),
       hash_signature(0),
       hash_dirty(true),
-      move_history() {
+      move_history(),
+      zobrist_(core::GameType::GOMOKU, board_size, 2) {
     
     int total_cells = board_size * board_size;
     num_words = (total_cells + 63) / 64;
@@ -56,6 +58,11 @@ GomokuState::GomokuState(int board_size, bool use_renju, bool use_omok, int seed
         [this](int x, int y) { return this->in_bounds(x, y); }
     );
     
+    // Initialize features for game rules
+    zobrist_.addFeature("renju", 2);        // Feature for Renju rules (0=off, 1=on)
+    zobrist_.addFeature("omok", 2);         // Feature for Omok rules (0=off, 1=on)
+    zobrist_.addFeature("pro_long", 2);     // Feature for pro-long opening (0=off, 1=on)
+    
     // Optional seed initialization
     if (seed != 0) {
         std::srand(seed);
@@ -82,7 +89,8 @@ GomokuState::GomokuState(const GomokuState& other)
       winner_check_dirty(other.winner_check_dirty),
       hash_signature(other.hash_signature),
       hash_dirty(other.hash_dirty),
-      move_history(other.move_history) {
+      move_history(other.move_history),
+      zobrist_(other.zobrist_) {
     
     // Copy the directions array
     for (int i = 0; i < 8; i++) {
@@ -120,6 +128,7 @@ GomokuState& GomokuState::operator=(const GomokuState& other) {
         hash_signature = other.hash_signature;
         hash_dirty = other.hash_dirty;
         move_history = other.move_history;
+        zobrist_ = other.zobrist_;
         
         // Copy the directions array
         for (int i = 0; i < 8; i++) {
@@ -249,7 +258,10 @@ std::vector<std::vector<std::vector<float>>> GomokuState::getEnhancedTensorRepre
 }
 
 uint64_t GomokuState::getHash() const {
-    return compute_hash_signature();  // Use existing method
+    if (hash_dirty) {
+        compute_hash_signature(); // This now uses Zobrist hashing
+    }
+    return hash_signature;
 }
 
 std::unique_ptr<core::IGameState> GomokuState::clone() const {
@@ -606,49 +618,34 @@ bool GomokuState::is_move_valid(int action) const {
 }
 
 uint64_t GomokuState::compute_hash_signature() const {
+    if (!hash_dirty) {
+        return hash_signature;
+    }
+    
     uint64_t hash = 0;
     const int cells = board_size * board_size;
     
-    // Use large prime multipliers for better distribution
-    const uint64_t black_prime = 73856093;
-    const uint64_t white_prime = 19349663;
-    
-    // Process in chunks of 64 bits
-    for (int w = 0; w < num_words; w++) {
-        uint64_t black_word = player_bitboards[0][w];
-        uint64_t white_word = player_bitboards[1][w];
-        
-        // Process all bits set to 1
-        for (int b = 0; b < 64; b++) {
-            uint64_t mask = static_cast<uint64_t>(1) << b;
-            int action = w * 64 + b;
-            
-            if (action >= cells) break;
-            
-            if (black_word & mask) {
-                hash ^= (static_cast<uint64_t>(action) * black_prime);
-            } else if (white_word & mask) {
-                hash ^= (static_cast<uint64_t>(action) * white_prime);
-            }
+    // Hash board position
+    for (int action = 0; action < cells; action++) {
+        if (is_bit_set(0, action)) {  // BLACK
+            hash ^= zobrist_.getPieceHash(0, action);
+        } else if (is_bit_set(1, action)) {  // WHITE
+            hash ^= zobrist_.getPieceHash(1, action);
         }
     }
     
-    // Include current player in hash
-    if (current_player == BLACK) {
-        hash ^= 0xABCDEF;
-    } else {
-        hash ^= 0x123456; // Add specific hash for White
-    }
+    // Hash current player
+    hash ^= zobrist_.getPlayerHash(current_player - 1);
     
-    // Include rule variants in hash
+    // Hash rule variants
     if (use_renju) {
-        hash ^= 0xFEDCBA;
+        hash ^= zobrist_.getFeatureHash("renju", 1);
     }
     if (use_omok) {
-        hash ^= 0x789ABC;
+        hash ^= zobrist_.getFeatureHash("omok", 1);
     }
     if (use_pro_long_opening) {
-        hash ^= 0x456DEF;
+        hash ^= zobrist_.getFeatureHash("pro_long", 1);
     }
     
     // Update cached hash

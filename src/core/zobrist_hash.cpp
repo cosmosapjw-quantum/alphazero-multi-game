@@ -84,6 +84,27 @@ uint64_t ZobristHash::getFeatureHash(const std::string& featureName, int value) 
     return values[safeValue];
 }
 
+uint64_t ZobristHash::getFeatureHash(int featureIndex, int value) const {
+    // Ensure we have features to index
+    if (features_.empty()) {
+        throw std::out_of_range("No features available");
+    }
+    
+    // Get the feature name at the given index
+    if (featureIndex < 0 || featureIndex >= static_cast<int>(features_.size())) {
+        throw std::out_of_range("Feature index out of range: " + std::to_string(featureIndex));
+    }
+    
+    // Convert index to name by iterating through the map
+    auto it = features_.begin();
+    std::advance(it, featureIndex);
+    
+    const std::string& featureName = it->first;
+    
+    // Call the named version
+    return getFeatureHash(featureName, value);
+}
+
 bool ZobristHash::hasFeature(const std::string& featureName) const {
     return features_.find(featureName) != features_.end();
 }
