@@ -3,12 +3,17 @@
 #include <pybind11/stl.h>
 #include <pybind11/functional.h>
 #include <pybind11/numpy.h>
+
+// Include torch/script.h BEFORE your headers that use torch::nn::Module
+#include <torch/script.h> 
+
 #include "alphazero/core/igamestate.h"
 #include "alphazero/games/gomoku/gomoku_state.h"
 #include "alphazero/mcts/parallel_mcts.h"
 #include "alphazero/nn/neural_network.h"
 #include "alphazero/nn/torch_neural_network.h"
 #include "alphazero/nn/random_policy_network.h"
+#include "alphazero/nn/ddw_randwire_resnet.h"
 #include "alphazero/selfplay/self_play_manager.h"
 #include "alphazero/selfplay/game_record.h"
 #include "alphazero/selfplay/dataset.h"
@@ -124,6 +129,61 @@ PYBIND11_MODULE(_alphazero_cpp, m) {
         py::arg("gameType"),
         py::arg("boardSize") = 0,
         py::arg("useGpu") = true);
+    
+    // Register the torch::nn::Module base class FIRST
+    // This is crucial for pybind11 to understand the inheritance chain
+    py::class_<torch::nn::Module, std::shared_ptr<torch::nn::Module>>(m, "TorchModule")
+        .def(py::init<>())
+        .def("train", &torch::nn::Module::train, py::arg("on") = true)
+        .def("eval", &torch::nn::Module::eval)
+        .def("is_training", &torch::nn::Module::is_training);
+    
+    // Now register all the derived classes    
+    // Add DDWRandWireResNet and components
+    py::class_<nn::SEBlock, std::shared_ptr<nn::SEBlock>, torch::nn::Module>(m, "SEBlock")
+        .def(py::init<int64_t, int64_t>(),
+             py::arg("channels"),
+             py::arg("reduction") = 16)
+        .def("forward", &nn::SEBlock::forward);
+    
+    py::class_<nn::ResidualBlock, std::shared_ptr<nn::ResidualBlock>, torch::nn::Module>(m, "ResidualBlock")
+        .def(py::init<int64_t>(),
+             py::arg("channels"))
+        .def("forward", &nn::ResidualBlock::forward);
+    
+    py::class_<nn::RouterModule, std::shared_ptr<nn::RouterModule>, torch::nn::Module>(m, "RouterModule")
+        .def(py::init<int64_t, int64_t>(),
+             py::arg("in_channels"),
+             py::arg("out_channels"))
+        .def("forward", &nn::RouterModule::forward);
+    
+    py::class_<nn::RandWireBlock, std::shared_ptr<nn::RandWireBlock>, torch::nn::Module>(m, "RandWireBlock")
+        .def(py::init<int64_t, int64_t, double, int64_t>(),
+             py::arg("channels"),
+             py::arg("num_nodes") = 32,
+             py::arg("p") = 0.75,
+             py::arg("seed") = -1)
+        .def("forward", &nn::RandWireBlock::forward);
+    
+    py::class_<nn::DDWRandWireResNet, std::shared_ptr<nn::DDWRandWireResNet>, torch::nn::Module>(m, "DDWRandWireResNetCpp")
+        .def(py::init<int64_t, int64_t, int64_t, int64_t>(),
+             py::arg("input_channels"),
+             py::arg("output_size"),
+             py::arg("channels") = 128,
+             py::arg("num_blocks") = 20)
+        .def("forward", &nn::DDWRandWireResNet::forward)
+        .def("save", &nn::DDWRandWireResNet::save)
+        .def("load", &nn::DDWRandWireResNet::load)
+        .def("export_to_torchscript", &nn::DDWRandWireResNet::export_to_torchscript,
+             py::arg("path"),
+             py::arg("input_shape") = std::vector<int64_t>{1, 0, 0, 0});
+    
+    // Factory function for DDWRandWireResNet
+    m.def("createDDWRandWireResNet", &nn::TorchNeuralNetwork::createDDWRandWireResNet,
+        py::arg("input_channels"),
+        py::arg("output_size"),
+        py::arg("channels") = 128,
+        py::arg("num_blocks") = 20);
     
     // MCTS Config struct
     py::class_<mcts::MCTSConfig>(m, "MCTSConfig")

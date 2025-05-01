@@ -1,26 +1,29 @@
 // src/games/chess/chess_state.cpp
 #include "alphazero/games/chess/chess_state.h"
 #include "alphazero/games/chess/chess_rules.h"
+#include "alphazero/games/chess/chess960.h"
 #include <sstream>
 #include <iomanip>
 #include <algorithm>
 #include <cctype>
-#include <unordered_map>
+#include <array>
 #include <cmath>
 
 namespace alphazero {
 namespace chess {
 
-// Board representation is defined in chess_rules.h
-
 // Constructor
-ChessState::ChessState(bool chess960, const std::string& fen)
+ChessState::ChessState(bool chess960, const std::string& fen, int position_number)
     : IGameState(core::GameType::CHESS),
       chess960_(chess960),
       current_player_(PieceColor::WHITE),
       en_passant_square_(-1),
       halfmove_clock_(0),
       fullmove_number_(1),
+      white_kingside_rook_file_(7),    // Default A/H files for standard chess
+      white_queenside_rook_file_(0),
+      black_kingside_rook_file_(7),
+      black_queenside_rook_file_(0),
       legal_moves_dirty_(true),
       hash_dirty_(true),
       terminal_check_dirty_(true),
@@ -30,25 +33,33 @@ ChessState::ChessState(bool chess960, const std::string& fen)
     initializeEmpty();
     
     // Initialize rules object
-    rules_ = std::make_shared<ChessRules>(chess960_);
+    rules_ = std::make_shared<ChessRules>(*this, chess960_);
     
-    // Set up board accessor functions for rules
-    rules_->setBoardAccessor(
-        [this](int square) { return this->getPiece(square); },
-        [this](int square) { return ChessState::isValidSquare(square); },
-        [this](PieceColor color) { return this->getKingSquare(color); }
-    );
-    
-    if (!fen.empty()) {
+    // Setup the position based on inputs
+    if (chess960_ && position_number >= 0 && position_number < 960) {
+        // Use the specified Chess960 position number
+        initializeChess960Position(position_number);
+    } else if (!fen.empty()) {
         // If FEN is provided, use it
         if (!setFromFEN(fen)) {
             // If FEN parsing fails, fall back to starting position
-            initializeStartingPosition();
+            if (chess960_) {
+                initializeChess960Position(518); // Standard chess initial position
+            } else {
+                initializeStartingPosition();
+            }
         }
     } else {
-        // Use standard starting position
-        initializeStartingPosition();
+        // Use standard starting position by default
+        if (chess960_) {
+            initializeChess960Position(518); // Standard chess initial position
+        } else {
+            initializeStartingPosition();
+        }
     }
+    
+    // Initialize position history map with current position
+    recordPosition();
 }
 
 // Copy constructor
@@ -61,7 +72,12 @@ ChessState::ChessState(const ChessState& other)
       halfmove_clock_(other.halfmove_clock_),
       fullmove_number_(other.fullmove_number_),
       chess960_(other.chess960_),
+      white_kingside_rook_file_(other.white_kingside_rook_file_),
+      white_queenside_rook_file_(other.white_queenside_rook_file_),
+      black_kingside_rook_file_(other.black_kingside_rook_file_),
+      black_queenside_rook_file_(other.black_queenside_rook_file_),
       move_history_(other.move_history_),
+      position_history_(other.position_history_),
       cached_legal_moves_(other.cached_legal_moves_),
       legal_moves_dirty_(other.legal_moves_dirty_),
       zobrist_(other.zobrist_),
@@ -72,14 +88,7 @@ ChessState::ChessState(const ChessState& other)
       terminal_check_dirty_(other.terminal_check_dirty_)
 {
     // Initialize rules object
-    rules_ = std::make_shared<ChessRules>(chess960_);
-    
-    // Set up board accessor functions for rules
-    rules_->setBoardAccessor(
-        [this](int square) { return this->getPiece(square); },
-        [this](int square) { return ChessState::isValidSquare(square); },
-        [this](PieceColor color) { return this->getKingSquare(color); }
-    );
+    rules_ = std::make_shared<ChessRules>(*this, chess960_);
 }
 
 // Assignment operator
@@ -92,7 +101,12 @@ ChessState& ChessState::operator=(const ChessState& other) {
         halfmove_clock_ = other.halfmove_clock_;
         fullmove_number_ = other.fullmove_number_;
         chess960_ = other.chess960_;
+        white_kingside_rook_file_ = other.white_kingside_rook_file_;
+        white_queenside_rook_file_ = other.white_queenside_rook_file_;
+        black_kingside_rook_file_ = other.black_kingside_rook_file_;
+        black_queenside_rook_file_ = other.black_queenside_rook_file_;
         move_history_ = other.move_history_;
+        position_history_ = other.position_history_;
         cached_legal_moves_ = other.cached_legal_moves_;
         legal_moves_dirty_ = other.legal_moves_dirty_;
         hash_ = other.hash_;
@@ -102,14 +116,7 @@ ChessState& ChessState::operator=(const ChessState& other) {
         terminal_check_dirty_ = other.terminal_check_dirty_;
         
         // Reinitialize rules object
-        rules_ = std::make_shared<ChessRules>(chess960_);
-        
-        // Set up board accessor functions for rules
-        rules_->setBoardAccessor(
-            [this](int square) { return this->getPiece(square); },
-            [this](int square) { return ChessState::isValidSquare(square); },
-            [this](PieceColor color) { return this->getKingSquare(color); }
-        );
+        rules_ = std::make_shared<ChessRules>(*this, chess960_);
     }
     return *this;
 }
@@ -128,8 +135,9 @@ void ChessState::initializeEmpty() {
     halfmove_clock_ = 0;
     fullmove_number_ = 1;
     
-    // Clear move history
+    // Clear move history and position history
     move_history_.clear();
+    position_history_.clear();
     
     // Mark caches as dirty
     invalidateCache();
@@ -180,6 +188,28 @@ void ChessState::initializeStartingPosition() {
     castling_rights_.black_kingside = true;
     castling_rights_.black_queenside = true;
     
+    // Initialize standard rook files
+    white_kingside_rook_file_ = 7;  // H file
+    white_queenside_rook_file_ = 0; // A file
+    black_kingside_rook_file_ = 7;  // H file
+    black_queenside_rook_file_ = 0; // A file
+    
+    // Update hash
+    updateHash();
+}
+
+// Initialize a Chess960 position
+void ChessState::initializeChess960Position(int position_number) {
+    // Use Chess960 utility to set up the position
+    Chess960::setupPosition(position_number, *this);
+    
+    // Get rook files for this position
+    auto rookFiles = Chess960::getRookFiles(position_number);
+    white_queenside_rook_file_ = rookFiles.first;
+    white_kingside_rook_file_ = rookFiles.second;
+    black_queenside_rook_file_ = rookFiles.first;
+    black_kingside_rook_file_ = rookFiles.second;
+    
     // Update hash
     updateHash();
 }
@@ -196,6 +226,12 @@ void ChessState::setPiece(int square, const Piece& piece) {
     if (square < 0 || square >= NUM_SQUARES) {
         return;
     }
+    
+    // Update hash incrementally if hash is valid
+    if (!hash_dirty_) {
+        updateHashIncrementally(square, board_[square], piece);
+    }
+    
     board_[square] = piece;
     invalidateCache();
 }
@@ -215,6 +251,14 @@ int ChessState::getHalfmoveClock() const {
 
 int ChessState::getFullmoveNumber() const {
     return fullmove_number_;
+}
+
+int ChessState::getOriginalRookFile(bool is_kingside, PieceColor color) const {
+    if (color == PieceColor::WHITE) {
+        return is_kingside ? white_kingside_rook_file_ : white_queenside_rook_file_;
+    } else {
+        return is_kingside ? black_kingside_rook_file_ : black_queenside_rook_file_;
+    }
 }
 
 // FEN string conversion
@@ -267,24 +311,46 @@ std::string ChessState::toFEN() const {
     // Active color
     ss << ' ' << (current_player_ == PieceColor::WHITE ? 'w' : 'b');
     
-    // Castling availability
+    // Castling availability - handle both standard and Chess960 notation
     ss << ' ';
     bool hasCastling = false;
-    if (castling_rights_.white_kingside) {
-        ss << 'K';
-        hasCastling = true;
-    }
-    if (castling_rights_.white_queenside) {
-        ss << 'Q';
-        hasCastling = true;
-    }
-    if (castling_rights_.black_kingside) {
-        ss << 'k';
-        hasCastling = true;
-    }
-    if (castling_rights_.black_queenside) {
-        ss << 'q';
-        hasCastling = true;
+    
+    if (chess960_) {
+        // Chess960 castling notation uses rook files
+        if (castling_rights_.white_kingside) {
+            ss << static_cast<char>('A' + white_kingside_rook_file_);
+            hasCastling = true;
+        }
+        if (castling_rights_.white_queenside) {
+            ss << static_cast<char>('A' + white_queenside_rook_file_);
+            hasCastling = true;
+        }
+        if (castling_rights_.black_kingside) {
+            ss << static_cast<char>('a' + black_kingside_rook_file_);
+            hasCastling = true;
+        }
+        if (castling_rights_.black_queenside) {
+            ss << static_cast<char>('a' + black_queenside_rook_file_);
+            hasCastling = true;
+        }
+    } else {
+        // Standard chess notation
+        if (castling_rights_.white_kingside) {
+            ss << 'K';
+            hasCastling = true;
+        }
+        if (castling_rights_.white_queenside) {
+            ss << 'Q';
+            hasCastling = true;
+        }
+        if (castling_rights_.black_kingside) {
+            ss << 'k';
+            hasCastling = true;
+        }
+        if (castling_rights_.black_queenside) {
+            ss << 'q';
+            hasCastling = true;
+        }
     }
     
     if (!hasCastling) {
@@ -352,10 +418,47 @@ bool ChessState::setFromFEN(const std::string& fen) {
     
     // Parse castling availability
     if (!(ss >> castlingAvailability)) return false;
-    castling_rights_.white_kingside = castlingAvailability.find('K') != std::string::npos;
-    castling_rights_.white_queenside = castlingAvailability.find('Q') != std::string::npos;
-    castling_rights_.black_kingside = castlingAvailability.find('k') != std::string::npos;
-    castling_rights_.black_queenside = castlingAvailability.find('q') != std::string::npos;
+    
+    // Reset castling rights
+    castling_rights_.white_kingside = false;
+    castling_rights_.white_queenside = false;
+    castling_rights_.black_kingside = false;
+    castling_rights_.black_queenside = false;
+    
+    if (castlingAvailability != "-") {
+        // Handle both standard and Chess960 castling notation
+        for (char c : castlingAvailability) {
+            if (c == 'K') {
+                castling_rights_.white_kingside = true;
+            } else if (c == 'Q') {
+                castling_rights_.white_queenside = true;
+            } else if (c == 'k') {
+                castling_rights_.black_kingside = true;
+            } else if (c == 'q') {
+                castling_rights_.black_queenside = true;
+            } else if (c >= 'A' && c <= 'H') {
+                // Chess960 white rook file
+                int rookFile = c - 'A';
+                if (rookFile > getFile(getKingSquare(PieceColor::WHITE))) {
+                    castling_rights_.white_kingside = true;
+                    white_kingside_rook_file_ = rookFile;
+                } else {
+                    castling_rights_.white_queenside = true;
+                    white_queenside_rook_file_ = rookFile;
+                }
+            } else if (c >= 'a' && c <= 'h') {
+                // Chess960 black rook file
+                int rookFile = c - 'a';
+                if (rookFile > getFile(getKingSquare(PieceColor::BLACK))) {
+                    castling_rights_.black_kingside = true;
+                    black_kingside_rook_file_ = rookFile;
+                } else {
+                    castling_rights_.black_queenside = true;
+                    black_queenside_rook_file_ = rookFile;
+                }
+            }
+        }
+    }
     
     // Parse en passant target square
     if (!(ss >> enPassantTarget)) return false;
@@ -379,6 +482,9 @@ bool ChessState::setFromFEN(const std::string& fen) {
     
     // Update hash and invalidate caches
     updateHash();
+    
+    // Record initial position for repetition detection
+    recordPosition();
     
     return true;
 }
@@ -430,13 +536,24 @@ bool ChessState::undoMove() {
     
     // Handle special moves
     if (moveInfo.was_castle) {
-        // Move the rook back
+        // Get the starting and ending files for this castling move
+        int rank = getRank(moveInfo.move.from_square);
         int kingFile = getFile(moveInfo.move.from_square);
-        int rookFromFile = (kingFile < 4) ? 0 : 7;
-        int rookToFile = (kingFile < 4) ? 3 : 5;
+        int newKingFile = getFile(moveInfo.move.to_square);
+        bool kingside = (newKingFile > kingFile);
         
-        int rookFromSquare = getSquare(getRank(moveInfo.move.from_square), rookFromFile);
-        int rookToSquare = getSquare(getRank(moveInfo.move.from_square), rookToFile);
+        // Get the correct rook file based on the color and side
+        int rookFile = getOriginalRookFile(kingside, piece.color);
+        int rookToFile = kingside ? 5 : 3;  // Standard squares for rook after castling
+        
+        if (chess960_) {
+            // In Chess960, we need to find where the rook ended up
+            // For kingside, the rook is on the king's left; for queenside, on the king's right
+            rookToFile = kingside ? newKingFile - 1 : newKingFile + 1;
+        }
+        
+        int rookFromSquare = getSquare(rank, rookFile);
+        int rookToSquare = getSquare(rank, rookToFile);
         
         Piece rook = getPiece(rookToSquare);
         setPiece(rookFromSquare, rook);
@@ -459,6 +576,14 @@ bool ChessState::undoMove() {
     
     // Remove the move from history
     move_history_.pop_back();
+    
+    // Update position history
+    if (position_history_.count(hash_) > 0 && position_history_[hash_] > 0) {
+        position_history_[hash_]--;
+        if (position_history_[hash_] == 0) {
+            position_history_.erase(hash_);
+        }
+    }
     
     // Invalidate caches
     invalidateCache();
@@ -506,27 +631,8 @@ bool ChessState::isTerminal() const {
         return true;
     }
     
-    // Create a vector of position hashes from move history
-    std::vector<uint64_t> position_history;
-    position_history.push_back(getHash());
-    
-    ChessState tempState(*this);
-    
-    for (int i = static_cast<int>(move_history_.size()) - 1; i >= 0; --i) {
-        // Undo move
-        tempState.undoMove();
-        
-        // Stop at irreversible moves
-        if (tempState.getHalfmoveClock() == 0) {
-            break;
-        }
-        
-        // Add position hash
-        position_history.push_back(tempState.getHash());
-    }
-    
     // Check for threefold repetition
-    if (rules_->isThreefoldRepetition(position_history)) {
+    if (isThreefoldRepetition()) {
         is_terminal_cached_ = true;
         cached_result_ = core::GameResult::DRAW;
         terminal_check_dirty_ = false;
@@ -635,6 +741,25 @@ std::vector<std::vector<std::vector<float>>> ChessState::getEnhancedTensorRepres
     tensor.push_back(std::vector<std::vector<float>>(8, 
                      std::vector<float>(8, normalizedHalfmove)));
     
+    // 17: Chess960 mode
+    tensor.push_back(std::vector<std::vector<float>>(8, 
+                     std::vector<float>(8, chess960_ ? 1.0f : 0.0f)));
+    
+    // 18: Repetition count (normalized)
+    std::vector<std::vector<float>> repetitionPlane(8, std::vector<float>(8, 0.0f));
+    if (!hash_dirty_) {
+        auto it = position_history_.find(hash_);
+        if (it != position_history_.end()) {
+            float repetitionCount = static_cast<float>(it->second) / 3.0f;  // Normalize to [0,1] with 3 as max
+            for (int rank = 0; rank < 8; ++rank) {
+                for (int file = 0; file < 8; ++file) {
+                    repetitionPlane[rank][file] = repetitionCount;
+                }
+            }
+        }
+    }
+    tensor.push_back(repetitionPlane);
+    
     return tensor;
 }
 
@@ -722,6 +847,15 @@ std::string ChessState::toString() const {
     ss << "Halfmove clock: " << halfmove_clock_ << std::endl;
     ss << "Fullmove number: " << fullmove_number_ << std::endl;
     
+    if (chess960_) {
+        ss << "Chess960 mode: Yes" << std::endl;
+        ss << "Original castling rook files (a=0, h=7):" << std::endl;
+        ss << "  White: queenside=" << white_queenside_rook_file_ 
+           << ", kingside=" << white_kingside_rook_file_ << std::endl;
+        ss << "  Black: queenside=" << black_queenside_rook_file_
+           << ", kingside=" << black_kingside_rook_file_ << std::endl;
+    }
+    
     ss << "FEN: " << toFEN() << std::endl;
     
     return ss.str();
@@ -750,7 +884,17 @@ bool ChessState::equals(const core::IGameState& other) const {
             castling_rights_.black_queenside != otherChess.castling_rights_.black_queenside ||
             en_passant_square_ != otherChess.en_passant_square_ ||
             halfmove_clock_ != otherChess.halfmove_clock_ ||
-            fullmove_number_ != otherChess.fullmove_number_) {
+            fullmove_number_ != otherChess.fullmove_number_ ||
+            chess960_ != otherChess.chess960_) {
+            return false;
+        }
+        
+        // For Chess960, also compare rook files
+        if (chess960_ && (
+            white_kingside_rook_file_ != otherChess.white_kingside_rook_file_ ||
+            white_queenside_rook_file_ != otherChess.white_queenside_rook_file_ ||
+            black_kingside_rook_file_ != otherChess.black_kingside_rook_file_ ||
+            black_queenside_rook_file_ != otherChess.black_queenside_rook_file_)) {
             return false;
         }
         
@@ -789,6 +933,16 @@ bool ChessState::validate() const {
     
     if (whiteKings != 1 || blackKings != 1) {
         return false;
+    }
+    
+    // Check that the rook files for Chess960 are valid
+    if (chess960_) {
+        if (white_kingside_rook_file_ < 0 || white_kingside_rook_file_ > 7 ||
+            white_queenside_rook_file_ < 0 || white_queenside_rook_file_ > 7 ||
+            black_kingside_rook_file_ < 0 || black_kingside_rook_file_ > 7 ||
+            black_queenside_rook_file_ < 0 || black_queenside_rook_file_ > 7) {
+            return false;
+        }
     }
     
     // Other validation checks could be added here
@@ -879,22 +1033,26 @@ void ChessState::makeMove(const ChessMove& move) {
         int rank = getRank(move.from_square);
         bool isKingside = getFile(move.to_square) > getFile(move.from_square);
         
-        // Move the rook too
-        if (isKingside) {
-            // Kingside castling
-            int rookFrom = getSquare(rank, 7);
-            int rookTo = getSquare(rank, 5);
-            Piece rook = getPiece(rookFrom);
-            setPiece(rookFrom, Piece());
-            setPiece(rookTo, rook);
+        // Get original rook position based on castling rights
+        int rookFile = getOriginalRookFile(isKingside, piece.color);
+        int rookFromSquare = getSquare(rank, rookFile);
+        
+        // Determine rook's target square (in Chess960, this depends on the king's final position)
+        int rookToFile;
+        if (chess960_) {
+            // In Chess960, the rook goes to the other side of the king
+            rookToFile = isKingside ? getFile(move.to_square) - 1 : getFile(move.to_square) + 1;
         } else {
-            // Queenside castling
-            int rookFrom = getSquare(rank, 0);
-            int rookTo = getSquare(rank, 3);
-            Piece rook = getPiece(rookFrom);
-            setPiece(rookFrom, Piece());
-            setPiece(rookTo, rook);
+            // In standard chess, rook goes to fixed position
+            rookToFile = isKingside ? 5 : 3;
         }
+        
+        int rookToSquare = getSquare(rank, rookToFile);
+        
+        // Move the rook
+        Piece rook = getPiece(rookFromSquare);
+        setPiece(rookFromSquare, Piece());
+        setPiece(rookToSquare, rook);
         
         moveInfo.was_castle = true;
     }
@@ -918,8 +1076,30 @@ void ChessState::makeMove(const ChessMove& move) {
     // Add to move history
     move_history_.push_back(moveInfo);
     
+    // Record position for repetition detection
+    recordPosition();
+    
     // Invalidate caches
     invalidateCache();
+}
+
+// Position handling for repetition detection
+void ChessState::recordPosition() {
+    uint64_t posHash = getHash();
+    position_history_[posHash]++;
+}
+
+bool ChessState::isThreefoldRepetition() const {
+    if (hash_dirty_) {
+        updateHash();
+    }
+    
+    auto it = position_history_.find(hash_);
+    if (it != position_history_.end() && it->second >= 3) {
+        return true;
+    }
+    
+    return false;
 }
 
 // Check and check detection
@@ -948,7 +1128,6 @@ int ChessState::getKingSquare(PieceColor color) const {
 
 void ChessState::invalidateCache() {
     legal_moves_dirty_ = true;
-    hash_dirty_ = true;
     terminal_check_dirty_ = true;
 }
 
@@ -985,7 +1164,30 @@ void ChessState::updateHash() const {
         hash_ ^= zobrist_.getFeatureHash(1, en_passant_square_);
     }
     
+    // Hash Chess960 flag
+    if (chess960_) {
+        hash_ ^= zobrist_.getFeatureHash(2, 1);
+    }
+    
     hash_dirty_ = false;
+}
+
+void ChessState::updateHashIncrementally(int square, const Piece& old_piece, const Piece& new_piece) {
+    if (!old_piece.is_empty()) {
+        int pieceIdx = static_cast<int>(old_piece.type) - 1;
+        if (old_piece.color == PieceColor::BLACK) {
+            pieceIdx += 6;  // Offset for black pieces
+        }
+        hash_ ^= zobrist_.getPieceHash(pieceIdx, square);
+    }
+    
+    if (!new_piece.is_empty()) {
+        int pieceIdx = static_cast<int>(new_piece.type) - 1;
+        if (new_piece.color == PieceColor::BLACK) {
+            pieceIdx += 6;  // Offset for black pieces
+        }
+        hash_ ^= zobrist_.getPieceHash(pieceIdx, square);
+    }
 }
 
 // Move <-> Action conversion
@@ -1020,6 +1222,12 @@ int ChessState::chessMoveToAction(const ChessMove& move) const {
     }
     
     return (promotionCode << 12) | (fromSquare << 6) | toSquare;
+}
+
+ChessState ChessState::cloneWithMove(const ChessMove& move) const {
+    ChessState newState(*this);
+    newState.makeMove(move);
+    return newState;
 }
 
 // String conversion utilities
@@ -1239,14 +1447,18 @@ std::optional<ChessMove> ChessState::fromSAN(const std::string& sanStr) const {
     if (sanStr == "O-O" || sanStr == "0-0") {
         // Kingside castling
         int rank = (current_player_ == PieceColor::WHITE) ? 7 : 0;
-        int kingSquare = getSquare(rank, 4);
-        int targetSquare = getSquare(rank, 6);
+        int kingFile = getFile(getKingSquare(current_player_));
+        int targetFile = kingFile + 2;
+        int kingSquare = getSquare(rank, kingFile);
+        int targetSquare = getSquare(rank, targetFile);
         return ChessMove{kingSquare, targetSquare};
     } else if (sanStr == "O-O-O" || sanStr == "0-0-0") {
         // Queenside castling
         int rank = (current_player_ == PieceColor::WHITE) ? 7 : 0;
-        int kingSquare = getSquare(rank, 4);
-        int targetSquare = getSquare(rank, 2);
+        int kingFile = getFile(getKingSquare(current_player_));
+        int targetFile = kingFile - 2;
+        int kingSquare = getSquare(rank, kingFile);
+        int targetSquare = getSquare(rank, targetFile);
         return ChessMove{kingSquare, targetSquare};
     }
     

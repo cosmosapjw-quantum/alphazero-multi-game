@@ -23,11 +23,6 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/cosmos/alphazero-multi-game/src/mcts/parallel_mcts.cpp" "src/CMakeFiles/alphazero_lib.dir/mcts/parallel_mcts.cpp.o" "gcc" "src/CMakeFiles/alphazero_lib.dir/mcts/parallel_mcts.cpp.o.d"
   "/home/cosmos/alphazero-multi-game/src/mcts/thread_pool.cpp" "src/CMakeFiles/alphazero_lib.dir/mcts/thread_pool.cpp.o" "gcc" "src/CMakeFiles/alphazero_lib.dir/mcts/thread_pool.cpp.o.d"
   "/home/cosmos/alphazero-multi-game/src/mcts/transposition_table.cpp" "src/CMakeFiles/alphazero_lib.dir/mcts/transposition_table.cpp.o" "gcc" "src/CMakeFiles/alphazero_lib.dir/mcts/transposition_table.cpp.o.d"
-  "/home/cosmos/alphazero-multi-game/src/nn/attack_defense_module.cpp" "src/CMakeFiles/alphazero_lib.dir/nn/attack_defense_module.cpp.o" "gcc" "src/CMakeFiles/alphazero_lib.dir/nn/attack_defense_module.cpp.o.d"
-  "/home/cosmos/alphazero-multi-game/src/nn/batch_queue.cpp" "src/CMakeFiles/alphazero_lib.dir/nn/batch_queue.cpp.o" "gcc" "src/CMakeFiles/alphazero_lib.dir/nn/batch_queue.cpp.o.d"
-  "/home/cosmos/alphazero-multi-game/src/nn/neural_network.cpp" "src/CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.o" "gcc" "src/CMakeFiles/alphazero_lib.dir/nn/neural_network.cpp.o.d"
-  "/home/cosmos/alphazero-multi-game/src/nn/random_policy_network.cpp" "src/CMakeFiles/alphazero_lib.dir/nn/random_policy_network.cpp.o" "gcc" "src/CMakeFiles/alphazero_lib.dir/nn/random_policy_network.cpp.o.d"
-  "/home/cosmos/alphazero-multi-game/src/nn/torch_neural_network.cpp" "src/CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.o" "gcc" "src/CMakeFiles/alphazero_lib.dir/nn/torch_neural_network.cpp.o.d"
   "/home/cosmos/alphazero-multi-game/src/selfplay/dataset.cpp" "src/CMakeFiles/alphazero_lib.dir/selfplay/dataset.cpp.o" "gcc" "src/CMakeFiles/alphazero_lib.dir/selfplay/dataset.cpp.o.d"
   "/home/cosmos/alphazero-multi-game/src/selfplay/game_record.cpp" "src/CMakeFiles/alphazero_lib.dir/selfplay/game_record.cpp.o" "gcc" "src/CMakeFiles/alphazero_lib.dir/selfplay/game_record.cpp.o.d"
   "/home/cosmos/alphazero-multi-game/src/selfplay/self_play_manager.cpp" "src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o" "gcc" "src/CMakeFiles/alphazero_lib.dir/selfplay/self_play_manager.cpp.o.d"
@@ -35,6 +30,12 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
+  "/home/cosmos/alphazero-multi-game/build/src/nn/CMakeFiles/alphazero_nn.dir/DependInfo.cmake"
+  "/home/cosmos/alphazero-multi-game/build/src/mcts/CMakeFiles/alphazero_mcts.dir/DependInfo.cmake"
+  "/home/cosmos/alphazero-multi-game/build/src/core/CMakeFiles/alphazero_core.dir/DependInfo.cmake"
+  "/home/cosmos/alphazero-multi-game/build/src/games/chess/CMakeFiles/alphazero_chess.dir/DependInfo.cmake"
+  "/home/cosmos/alphazero-multi-game/build/src/games/go/CMakeFiles/alphazero_go.dir/DependInfo.cmake"
+  "/home/cosmos/alphazero-multi-game/build/src/games/gomoku/CMakeFiles/alphazero_gomoku.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

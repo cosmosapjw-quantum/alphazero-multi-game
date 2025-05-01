@@ -1,2 +1,2 @@
-/usr/bin/ar qc libalphazero_nn.a CMakeFiles/alphazero_nn.dir/neural_network.cpp.o CMakeFiles/alphazero_nn.dir/torch_neural_network.cpp.o CMakeFiles/alphazero_nn.dir/batch_queue.cpp.o CMakeFiles/alphazero_nn.dir/attack_defense_module.cpp.o CMakeFiles/alphazero_nn.dir/random_policy_network.cpp.o
+/usr/bin/ar qc libalphazero_nn.a CMakeFiles/alphazero_nn.dir/neural_network.cpp.o CMakeFiles/alphazero_nn.dir/torch_neural_network.cpp.o CMakeFiles/alphazero_nn.dir/batch_queue.cpp.o CMakeFiles/alphazero_nn.dir/attack_defense_module.cpp.o CMakeFiles/alphazero_nn.dir/random_policy_network.cpp.o CMakeFiles/alphazero_nn.dir/ddw_randwire_resnet.cpp.o
 /usr/bin/ranlib libalphazero_nn.a

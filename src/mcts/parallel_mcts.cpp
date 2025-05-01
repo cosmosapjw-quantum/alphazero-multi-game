@@ -1529,270 +1529,101 @@ void ParallelMCTS::waitForSearchCompletion() {
 }
 
 void ParallelMCTS::runBatchedSearch() {
-    if (!nn_ || !searchInProgress_.load() || !config_.useBatchedMCTS) {
+    // Create a local thread pool if needed
+    if (!threadPool_) {
+        threadPool_ = std::make_unique<ThreadPool>(config_.numThreads);
+    }
+    
+    // Early exit if no simulations requested
+    if (config_.numSimulations <= 0) {
         return;
     }
-    
-    // Create batch processing collections
-    std::vector<PendingSimulation> pendingSimulations;
-    pendingSimulations.reserve(config_.batchSize * 2);  // Extra capacity to avoid reallocations
-    
-    std::mutex simulationsMutex;
-    std::atomic<int> completedSimulations{0};
-    int totalSimulations = config_.numSimulations;
-    
-    // State collection for batch evaluation
-    std::vector<std::reference_wrapper<const core::IGameState>> stateBatch;
-    stateBatch.reserve(config_.batchSize);
-    
-    // Main batch processing loop
-    while (searchInProgress_.load() && completedSimulations.load() < totalSimulations) {
-        // Get batch size - adapt based on queue pressure
-        int currentBatchSize = config_.batchSize;
-        
-        // Collect leaf nodes up to batch size
-        for (int i = 0; i < currentBatchSize && searchInProgress_.load(); ++i) {
-            // Clone root state for this simulation
-            std::unique_ptr<core::IGameState> state = rootState_->clone();
-            std::vector<MCTSNode*> searchPath;
-            
-            // Select leaf node
-            MCTSNode* leaf = selectLeafWithPath(*state, searchPath);
-            
-            if (!leaf) {
-                continue;
-            }
-            
-            // Add virtual loss
-            for (auto node : searchPath) {
-                node->addVirtualLoss(config_.virtualLoss);
-            }
-            
-            // Check if leaf is already terminal
-            if (leaf->isTerminal || state->isTerminal()) {
-                float value = leaf->isTerminal ? 
-                    leaf->getTerminalValue(state->getCurrentPlayer()) :
-                    convertToValue(state->getGameResult(), state->getCurrentPlayer());
-                
-                // Backpropagate immediately for terminal nodes
-                backpropagate(leaf, value, searchPath);
-                completedSimulations.fetch_add(1, std::memory_order_relaxed);
-                pendingSimulations_.fetch_sub(1, std::memory_order_relaxed);
-                continue;
-            }
-            
-            // Check transposition table for cached evaluations
-            bool foundInTT = false;
-            if (tt_) {
-                TranspositionTable::Entry entry;
-                if (tt_->lookup(state->getHash(), state->getGameType(), entry)) {
-                    // Use cached result
-                    {
-                        std::lock_guard<std::mutex> lock(leaf->expansionMutex);
-                        if (!leaf->isExpanded) {
-                            expandNodeWithPolicy(leaf, *state, entry.policy);
-                            stats_.cacheHits.fetch_add(1, std::memory_order_relaxed);
-                        }
-                    }
-                    
-                    // Backpropagate
-                    backpropagate(leaf, entry.value, searchPath);
-                    completedSimulations.fetch_add(1, std::memory_order_relaxed);
-                    pendingSimulations_.fetch_sub(1, std::memory_order_relaxed);
-                    foundInTT = true;
-                }
-            }
-            
-            // Add to pending simulations if not found in TT and not terminal
-            if (!foundInTT && !leaf->isExpanded) {
-                PendingSimulation pendingSim;
-                pendingSim.state = std::move(state);
-                pendingSim.node = leaf;
-                pendingSim.searchPath = std::move(searchPath);
-                pendingSim.virtualLossApplied = true;
-                
-                {
-                    std::lock_guard<std::mutex> lock(simulationsMutex);
-                    pendingSimulations.push_back(std::move(pendingSim));
-                }
-            }
-        }
-        
-        // Process any completed evaluations from previous batches
-        processCompletedEvaluations(pendingSimulations, simulationsMutex, completedSimulations);
-        
-        // Extract states for batch evaluation
-        stateBatch.clear();
-        {
-            std::lock_guard<std::mutex> lock(simulationsMutex);
-            
-            // Count how many need evaluation (not already complete)
-            int pendingCount = 0;
-            for (auto& sim : pendingSimulations) {
-                if (!sim.isComplete && !sim.evalFuture.valid()) {
-                    pendingCount++;
-                }
-            }
-            
-            // Only process if we have enough states or it's time to flush
-            if (pendingCount > 0 && 
-                (pendingCount >= config_.batchSize || 
-                 pendingCount >= pendingSimulations.size() / 2)) {
-                
-                // Extract states that need evaluation
-                for (auto& sim : pendingSimulations) {
-                    if (!sim.isComplete && !sim.evalFuture.valid()) {
-                        stateBatch.push_back(std::cref(*sim.state));
-                    }
-                    
-                    // If we've collected enough for this batch, stop
-                    if (stateBatch.size() >= static_cast<size_t>(config_.batchSize)) {
-                        break;
-                    }
-                }
-            }
-        }
-        
-        // Evaluate batch if not empty
-        if (!stateBatch.empty()) {
-            std::vector<std::vector<float>> policies;
-            std::vector<float> values;
-            
-            // Perform batch evaluation
-            try {
-                nn_->predictBatch(stateBatch, policies, values);
-                stats_.batchedEvaluations.fetch_add(stateBatch.size(), std::memory_order_relaxed);
-                stats_.totalBatches.fetch_add(1, std::memory_order_relaxed);
-                
-                // Update pending simulations with results
-                {
-                    std::lock_guard<std::mutex> lock(simulationsMutex);
-                    int resultIdx = 0;
-                    
-                    for (auto& sim : pendingSimulations) {
-                        if (!sim.isComplete && !sim.evalFuture.valid() && resultIdx < static_cast<int>(stateBatch.size())) {
-                            // Store results
-                            sim.policy = std::move(policies[resultIdx]);
-                            sim.value = values[resultIdx];
-                            sim.isComplete = true;
-                            resultIdx++;
-                        }
-                    }
-                }
-            } catch (const std::exception& e) {
-                if (debugMode_) {
-                    std::cerr << "Error in batch evaluation: " << e.what() << std::endl;
-                }
-                
-                // Mark all pending states as failed but complete
-                {
-                    std::lock_guard<std::mutex> lock(simulationsMutex);
-                    int resultIdx = 0;
-                    
-                    for (auto& sim : pendingSimulations) {
-                        if (!sim.isComplete && !sim.evalFuture.valid() && resultIdx < static_cast<int>(stateBatch.size())) {
-                            // Store default results
-                            sim.policy.assign(sim.state->getActionSpaceSize(), 1.0f / sim.state->getActionSpaceSize());
-                            sim.value = 0.0f;
-                            sim.isComplete = true;
-                            resultIdx++;
-                        }
-                    }
-                }
-            }
-        }
-        
-        // Process completed evaluations (again, after new batch results)
-        processCompletedEvaluations(pendingSimulations, simulationsMutex, completedSimulations, true);
-        
-        // Small sleep to avoid burning CPU
-        if (pendingSimulations.empty() && stateBatch.empty()) {
-            std::this_thread::sleep_for(std::chrono::milliseconds(1));
-        }
-    }
-}
 
-void ParallelMCTS::processCompletedEvaluations(
-    std::vector<PendingSimulation>& pendingSimulations,
-    std::mutex& simulationsMutex,
-    std::atomic<int>& completedSimulations,
-    bool processAll) {
+    // Wait for any ongoing search to complete
+    waitForSearchCompletion();
     
-    std::vector<PendingSimulation> completedSims;
+    // Set up search state
+    searchInProgress_.store(true);
+    pendingSimulations_.store(config_.numSimulations);
+
+    // Track completed simulations
+    std::atomic<int> completedSimulations(0);
     
-    // Extract completed simulations
-    {
-        std::lock_guard<std::mutex> lock(simulationsMutex);
-        
-        // Filter out completed simulations
-        auto it = std::partition(pendingSimulations.begin(), pendingSimulations.end(),
-            [processAll](const PendingSimulation& sim) {
-                return !sim.isComplete && !(processAll && sim.evalFuture.valid() && 
-                       sim.evalFuture.wait_for(std::chrono::milliseconds(0)) == std::future_status::ready);
-            });
-        
-        // Move completed simulations to the local vector
-        completedSims.insert(completedSims.end(), 
-                            std::make_move_iterator(it),
-                            std::make_move_iterator(pendingSimulations.end()));
-        
-        // Remove processed simulations from the pending list
-        pendingSimulations.erase(it, pendingSimulations.end());
-    }
+    // Create worker threads
+    std::vector<std::future<void>> futures;
+    int numThreads = threadPool_->size();
     
-    // Process each completed simulation outside the lock
-    for (auto& sim : completedSims) {
-        try {
-            // Get result
-            std::vector<float> policy;
-            float value;
-            
-            if (sim.isComplete) {
-                // Result already stored in the simulation
-                policy = std::move(sim.policy);
-                value = sim.value;
-            } else if (sim.evalFuture.valid()) {
-                // Get result from future
-                auto result = sim.evalFuture.get();
-                policy = std::move(result.first);
-                value = result.second;
-            } else {
-                // Should never happen, but just in case
-                policy.assign(sim.state->getActionSpaceSize(), 1.0f / sim.state->getActionSpaceSize());
-                value = 0.0f;
+    for (int i = 0; i < numThreads; ++i) {
+        futures.push_back(threadPool_->enqueue([this, i, &completedSimulations] {
+            // Pin thread to CPU core if requested
+            if (config_.pinThreads) {
+                pinThreadToCore(i);
             }
             
-            // Store in transposition table
-            if (tt_) {
-                tt_->store(sim.state->getHash(), sim.state->getGameType(), policy, value);
-            }
-            
-            // Expand node
-            {
-                std::lock_guard<std::mutex> lock(sim.node->expansionMutex);
-                if (!sim.node->isExpanded) {
-                    expandNodeWithPolicy(sim.node, *sim.state, policy);
+            // Process simulations until we've reached the target
+            while (searchInProgress_.load() && 
+                  completedSimulations.load() < config_.numSimulations) {
+                
+                // Get current completed count
+                int currentCompleted = completedSimulations.fetch_add(1, std::memory_order_relaxed);
+                if (currentCompleted >= config_.numSimulations) {
+                    completedSimulations.fetch_sub(1, std::memory_order_relaxed);
+                    break;
+                }
+                
+                // Update simulation counter
+                pendingSimulations_.fetch_sub(1, std::memory_order_relaxed);
+                
+                // Run a single simulation with batched MCTS approach
+                runSingleSimulation();
+                
+                // Call progress callback if set
+                if (progressCallback_ && (i == 0 || numThreads == 1)) {
+                    progressCallback_(completedSimulations.load(), config_.numSimulations);
                 }
             }
-            
-            // Backpropagate
-            backpropagate(sim.node, value, sim.searchPath);
-            
-            // Update counters
-            completedSimulations.fetch_add(1, std::memory_order_relaxed);
-            pendingSimulations_.fetch_sub(1, std::memory_order_relaxed);
-            
+        }));
+    }
+    
+    // Wait for all worker threads to complete
+    for (auto& future : futures) {
+        try {
+            future.get();
         } catch (const std::exception& e) {
             if (debugMode_) {
-                std::cerr << "Error processing simulation: " << e.what() << std::endl;
-            }
-            
-            // Remove virtual loss without updating statistics
-            for (auto node : sim.searchPath) {
-                node->removeVirtualLoss(config_.virtualLoss);
+                std::cerr << "Exception in worker thread: " << e.what() << std::endl;
             }
         }
     }
+    
+    // Update progress callback with final status
+    if (progressCallback_) {
+        progressCallback_(completedSimulations.load(), config_.numSimulations);
+    }
+    
+    // Mark search as complete
+    searchInProgress_.store(false);
+    pendingSimulations_.store(0);
+}
+
+void ParallelMCTS::pinThreadToCore(int threadId) {
+#ifdef _WIN32
+    // Windows implementation
+    SetThreadAffinityMask(GetCurrentThread(), 1ULL << (threadId % 64));
+#elif defined(__linux__) || defined(__APPLE__)
+    // Linux and macOS implementation
+    cpu_set_t cpuset;
+    CPU_ZERO(&cpuset);
+    
+    // Use modulus to ensure we don't exceed available cores
+    int numCores = std::thread::hardware_concurrency();
+    int targetCore = threadId % numCores;
+    
+    CPU_SET(targetCore, &cpuset);
+    
+    pthread_t currentThread = pthread_self();
+    pthread_setaffinity_np(currentThread, sizeof(cpu_set_t), &cpuset);
+#endif
 }
 
 } // namespace mcts

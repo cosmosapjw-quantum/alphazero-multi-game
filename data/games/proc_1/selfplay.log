@@ -1,0 +1,16 @@
+No model specified. Using random policy network.
+Starting self-play generation...
+----------------------------------------
+Game: gomoku
+Board size: 15x15
+Number of games: 100
+Simulations per move: 800
+Number of threads: 18
+Using GPU: yes
+Using FP16: yes
+Batch size: 8
+Batch timeout: 10 ms
+Batched MCTS: enabled
+Output directory: data/games
+Model path: Random policy
+----------------------------------------

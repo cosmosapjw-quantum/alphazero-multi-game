@@ -1,8 +1,9 @@
-// include/alphazero/core/game_factory.h
+// game_factory.h
 #ifndef GAME_FACTORY_H
 #define GAME_FACTORY_H
 
-#include "alphazero/core/igamestate.h"
+#include "igamestate.h"
+#include "registry.h"
 #include <memory>
 #include <string>
 
@@ -70,7 +71,37 @@ public:
      * @return Default board size
      */
     static int getDefaultBoardSize(GameType type);
+    
+    /**
+     * @brief Convert game type to string ID
+     * 
+     * @param type Game type
+     * @return Game ID string
+     */
+    static GameId gameTypeToId(GameType type);
+    
+    /**
+     * @brief Create a game state by ID
+     * 
+     * @param id Game identifier
+     * @param args Game creation arguments
+     * @return Unique pointer to game state
+     */
+    static std::unique_ptr<IGameState> createGame(
+        const GameId& id, const VariantArgs& args = {});
 };
+
+/**
+ * @brief Create a game state (legacy function)
+ * 
+ * @param type Game type
+ * @param boardSize Board size (0 for default)
+ * @param variantRules Whether to use variant rules
+ * @return Unique pointer to created game state
+ */
+std::unique_ptr<IGameState> createGameState(GameType type, 
+                                           int boardSize = 0, 
+                                           bool variantRules = false);
 
 } // namespace core
 } // namespace alphazero

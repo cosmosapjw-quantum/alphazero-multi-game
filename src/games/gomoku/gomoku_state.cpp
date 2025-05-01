@@ -606,10 +606,6 @@ bool GomokuState::is_move_valid(int action) const {
 }
 
 uint64_t GomokuState::compute_hash_signature() const {
-    if (!hash_dirty) {
-        return hash_signature;
-    }
-    
     uint64_t hash = 0;
     const int cells = board_size * board_size;
     
@@ -640,6 +636,19 @@ uint64_t GomokuState::compute_hash_signature() const {
     // Include current player in hash
     if (current_player == BLACK) {
         hash ^= 0xABCDEF;
+    } else {
+        hash ^= 0x123456; // Add specific hash for White
+    }
+    
+    // Include rule variants in hash
+    if (use_renju) {
+        hash ^= 0xFEDCBA;
+    }
+    if (use_omok) {
+        hash ^= 0x789ABC;
+    }
+    if (use_pro_long_opening) {
+        hash ^= 0x456DEF;
     }
     
     // Update cached hash

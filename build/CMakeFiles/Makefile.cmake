@@ -231,6 +231,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "src/games/go/CMakeFiles/alphazero_go.dir/DependInfo.cmake"
   "src/games/gomoku/CMakeFiles/alphazero_gomoku.dir/DependInfo.cmake"
   "src/selfplay/CMakeFiles/alphazero_selfplay.dir/DependInfo.cmake"
+  "src/selfplay/CMakeFiles/self_play.dir/DependInfo.cmake"
   "src/elo/CMakeFiles/alphazero_elo.dir/DependInfo.cmake"
   "src/ui/CMakeFiles/alphazero_ui.dir/DependInfo.cmake"
   "src/pybind/CMakeFiles/alphazero_py.dir/DependInfo.cmake"

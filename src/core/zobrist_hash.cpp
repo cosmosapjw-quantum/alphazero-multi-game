@@ -6,125 +6,99 @@
 namespace alphazero {
 namespace core {
 
-ZobristHash::ZobristHash(GameType gameType, int boardSize, int numPieces, unsigned seed)
-    : gameType_(gameType), boardSize_(boardSize), numPieces_(numPieces), numFeatures_(16) {
+ZobristHash::ZobristHash(int boardSize, int numPieceTypes, int numPlayers, unsigned seed)
+    : boardSize_(boardSize), numPieceTypes_(numPieceTypes), numPlayers_(numPlayers) {
     
-    // Initialize random number generator with seed or time
+    // Validate parameters
+    if (boardSize <= 0) throw std::invalid_argument("Board size must be positive");
+    if (numPieceTypes < 0) throw std::invalid_argument("Number of piece types must be non-negative");
+    if (numPlayers <= 0) throw std::invalid_argument("Number of players must be positive");
+    
+    // Use provided seed or generate from time
     unsigned actualSeed = seed != 0 ? seed : 
         static_cast<unsigned>(std::chrono::system_clock::now().time_since_epoch().count());
     std::mt19937_64 rng(actualSeed);
     
-    // Initialize hash values for pieces at positions
-    int totalPositions = boardSize * boardSize;
-    pieceHashes_.resize(numPieces);
-    for (int p = 0; p < numPieces; ++p) {
-        pieceHashes_[p].resize(totalPositions);
-        for (int pos = 0; pos < totalPositions; ++pos) {
+    // Initialize piece hashes
+    pieceHashes_.resize(numPieceTypes);
+    for (int p = 0; p < numPieceTypes; ++p) {
+        pieceHashes_[p].resize(boardSize * boardSize);
+        for (int pos = 0; pos < boardSize * boardSize; ++pos) {
             pieceHashes_[p][pos] = generateRandomHash(rng);
         }
     }
     
-    // Initialize hash values for player turns
-    playerHashes_.resize(numPieces);
-    for (int p = 0; p < numPieces; ++p) {
+    // Initialize player hashes
+    playerHashes_.resize(numPlayers);
+    for (int p = 0; p < numPlayers; ++p) {
         playerHashes_[p] = generateRandomHash(rng);
     }
-    
-    // Initialize game-specific features
-    initializeGameSpecificFeatures(rng);
 }
 
-uint64_t ZobristHash::getPieceHash(int piece, int position) const {
-    if (piece < 0 || piece >= numPieces_ || 
-        position < 0 || position >= boardSize_ * boardSize_) {
-        throw std::out_of_range("Piece or position index out of range");
+uint64_t ZobristHash::getPieceHash(int pieceType, int position) const {
+    if (pieceType < 0 || pieceType >= numPieceTypes_) {
+        throw std::out_of_range("Piece type index out of range");
     }
-    return pieceHashes_[piece][position];
+    if (position < 0 || position >= boardSize_ * boardSize_) {
+        throw std::out_of_range("Position index out of range");
+    }
+    return pieceHashes_[pieceType][position];
 }
 
 uint64_t ZobristHash::getPlayerHash(int player) const {
-    if (player < 0 || player >= numPieces_) {
+    if (player < 0 || player >= numPlayers_) {
         throw std::out_of_range("Player index out of range");
     }
     return playerHashes_[player];
 }
 
-uint64_t ZobristHash::getFeatureHash(int featureIndex, int value) const {
-    if (featureIndex < 0 || featureIndex >= numFeatures_) {
-        throw std::out_of_range("Feature index out of range");
+void ZobristHash::addFeature(const std::string& featureName, int numValues) {
+    if (numValues <= 0) {
+        throw std::invalid_argument("Number of feature values must be positive");
     }
     
-    // Ensure value is within bounds (use modulo for safety)
-    // Check if the feature vector has any elements before using modulo
-    if (featureHashes_[featureIndex].empty()) {
-        throw std::out_of_range("Feature vector is empty");
+    // Generate random hashes for each value
+    std::mt19937_64 rng(std::hash<std::string>{}(featureName));
+    
+    std::vector<uint64_t> valueHashes(numValues);
+    for (int i = 0; i < numValues; ++i) {
+        valueHashes[i] = generateRandomHash(rng);
     }
     
-    int safeValue = value % featureHashes_[featureIndex].size();
-    return featureHashes_[featureIndex][safeValue];
+    features_[featureName] = std::move(valueHashes);
+}
+
+uint64_t ZobristHash::getFeatureHash(const std::string& featureName, int value) const {
+    auto it = features_.find(featureName);
+    if (it == features_.end()) {
+        throw std::out_of_range("Feature not found: " + featureName);
+    }
+    
+    const auto& values = it->second;
+    if (values.empty()) {
+        throw std::logic_error("Feature has no values: " + featureName);
+    }
+    
+    // Handle negative values safely
+    int safeValue = safeModulo(value, values.size());
+    return values[safeValue];
+}
+
+bool ZobristHash::hasFeature(const std::string& featureName) const {
+    return features_.find(featureName) != features_.end();
+}
+
+int ZobristHash::getFeatureValueCount(const std::string& featureName) const {
+    auto it = features_.find(featureName);
+    return it != features_.end() ? static_cast<int>(it->second.size()) : 0;
 }
 
 uint64_t ZobristHash::generateRandomHash(std::mt19937_64& rng) {
     return rng();
 }
 
-void ZobristHash::initializeGameSpecificFeatures(std::mt19937_64& rng) {
-    // Initialize with default size of features
-    featureHashes_.resize(numFeatures_);
-    
-    // Initialize all feature vectors with at least one element by default
-    for (auto& feature : featureHashes_) {
-        feature.resize(1);
-        feature[0] = generateRandomHash(rng);
-    }
-    
-    // Different games have different special features that need hashing
-    switch (gameType_) {
-        case GameType::GOMOKU:
-            // Gomoku doesn't have many special features
-            // Can add ko position if using ko rule variant
-            featureHashes_[0].resize(boardSize_ * boardSize_ + 1);
-            for (size_t i = 0; i < featureHashes_[0].size(); ++i) {
-                featureHashes_[0][i] = generateRandomHash(rng);
-            }
-            break;
-            
-        case GameType::CHESS:
-            // Chess has castling rights, en passant, etc.
-            // Castling rights (4 possibilities: KQ for white, KQ for black)
-            featureHashes_[0].resize(16);  // 2^4 = 16 combinations
-            // En passant files (8 files + none)
-            featureHashes_[1].resize(9);
-            // Halfmove clock for 50-move rule
-            featureHashes_[2].resize(100);
-            
-            // Initialize all values
-            for (int i = 0; i < 3; ++i) {
-                for (size_t j = 0; j < featureHashes_[i].size(); ++j) {
-                    featureHashes_[i][j] = generateRandomHash(rng);
-                }
-            }
-            break;
-            
-        case GameType::GO:
-            // Go has ko positions, prisoner count
-            // Ko position
-            featureHashes_[0].resize(boardSize_ * boardSize_ + 1);
-            // Komi and rules variations
-            featureHashes_[1].resize(20);  // Different komi values
-            
-            // Initialize values for specific features
-            for (int i = 0; i < 2; ++i) {
-                for (size_t j = 0; j < featureHashes_[i].size(); ++j) {
-                    featureHashes_[i][j] = generateRandomHash(rng);
-                }
-            }
-            break;
-            
-        default:
-            // Default initialization already done above
-            break;
-    }
+int ZobristHash::safeModulo(int value, int modulus) {
+    return ((value % modulus) + modulus) % modulus;
 }
 
 } // namespace core

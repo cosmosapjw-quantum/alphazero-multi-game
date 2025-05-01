@@ -233,6 +233,30 @@ batch_queue.cpp.s:
 	cd /home/cosmos/alphazero-multi-game/build && $(MAKE) $(MAKESILENT) -f src/nn/CMakeFiles/alphazero_nn.dir/build.make src/nn/CMakeFiles/alphazero_nn.dir/batch_queue.cpp.s
 .PHONY : batch_queue.cpp.s
 
+ddw_randwire_resnet.o: ddw_randwire_resnet.cpp.o
+.PHONY : ddw_randwire_resnet.o
+
+# target to build an object file
+ddw_randwire_resnet.cpp.o:
+	cd /home/cosmos/alphazero-multi-game/build && $(MAKE) $(MAKESILENT) -f src/nn/CMakeFiles/alphazero_nn.dir/build.make src/nn/CMakeFiles/alphazero_nn.dir/ddw_randwire_resnet.cpp.o
+.PHONY : ddw_randwire_resnet.cpp.o
+
+ddw_randwire_resnet.i: ddw_randwire_resnet.cpp.i
+.PHONY : ddw_randwire_resnet.i
+
+# target to preprocess a source file
+ddw_randwire_resnet.cpp.i:
+	cd /home/cosmos/alphazero-multi-game/build && $(MAKE) $(MAKESILENT) -f src/nn/CMakeFiles/alphazero_nn.dir/build.make src/nn/CMakeFiles/alphazero_nn.dir/ddw_randwire_resnet.cpp.i
+.PHONY : ddw_randwire_resnet.cpp.i
+
+ddw_randwire_resnet.s: ddw_randwire_resnet.cpp.s
+.PHONY : ddw_randwire_resnet.s
+
+# target to generate assembly for a file
+ddw_randwire_resnet.cpp.s:
+	cd /home/cosmos/alphazero-multi-game/build && $(MAKE) $(MAKESILENT) -f src/nn/CMakeFiles/alphazero_nn.dir/build.make src/nn/CMakeFiles/alphazero_nn.dir/ddw_randwire_resnet.cpp.s
+.PHONY : ddw_randwire_resnet.cpp.s
+
 neural_network.o: neural_network.cpp.o
 .PHONY : neural_network.o
 
@@ -325,6 +349,9 @@ help:
 	@echo "... batch_queue.o"
 	@echo "... batch_queue.i"
 	@echo "... batch_queue.s"
+	@echo "... ddw_randwire_resnet.o"
+	@echo "... ddw_randwire_resnet.i"
+	@echo "... ddw_randwire_resnet.s"
 	@echo "... neural_network.o"
 	@echo "... neural_network.i"
 	@echo "... neural_network.s"

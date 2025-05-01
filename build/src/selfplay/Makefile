@@ -185,6 +185,20 @@ alphazero_selfplay/fast:
 	cd /home/cosmos/alphazero-multi-game/build && $(MAKE) $(MAKESILENT) -f src/selfplay/CMakeFiles/alphazero_selfplay.dir/build.make src/selfplay/CMakeFiles/alphazero_selfplay.dir/build
 .PHONY : alphazero_selfplay/fast
 
+# Convenience name for target.
+src/selfplay/CMakeFiles/self_play.dir/rule:
+	cd /home/cosmos/alphazero-multi-game/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/selfplay/CMakeFiles/self_play.dir/rule
+.PHONY : src/selfplay/CMakeFiles/self_play.dir/rule
+
+# Convenience name for target.
+self_play: src/selfplay/CMakeFiles/self_play.dir/rule
+.PHONY : self_play
+
+# fast build rule for target.
+self_play/fast:
+	cd /home/cosmos/alphazero-multi-game/build && $(MAKE) $(MAKESILENT) -f src/selfplay/CMakeFiles/self_play.dir/build.make src/selfplay/CMakeFiles/self_play.dir/build
+.PHONY : self_play/fast
+
 dataset.o: dataset.cpp.o
 .PHONY : dataset.o
 
@@ -257,6 +271,30 @@ self_play_manager.cpp.s:
 	cd /home/cosmos/alphazero-multi-game/build && $(MAKE) $(MAKESILENT) -f src/selfplay/CMakeFiles/alphazero_selfplay.dir/build.make src/selfplay/CMakeFiles/alphazero_selfplay.dir/self_play_manager.cpp.s
 .PHONY : self_play_manager.cpp.s
 
+selfplay_main.o: selfplay_main.cpp.o
+.PHONY : selfplay_main.o
+
+# target to build an object file
+selfplay_main.cpp.o:
+	cd /home/cosmos/alphazero-multi-game/build && $(MAKE) $(MAKESILENT) -f src/selfplay/CMakeFiles/self_play.dir/build.make src/selfplay/CMakeFiles/self_play.dir/selfplay_main.cpp.o
+.PHONY : selfplay_main.cpp.o
+
+selfplay_main.i: selfplay_main.cpp.i
+.PHONY : selfplay_main.i
+
+# target to preprocess a source file
+selfplay_main.cpp.i:
+	cd /home/cosmos/alphazero-multi-game/build && $(MAKE) $(MAKESILENT) -f src/selfplay/CMakeFiles/self_play.dir/build.make src/selfplay/CMakeFiles/self_play.dir/selfplay_main.cpp.i
+.PHONY : selfplay_main.cpp.i
+
+selfplay_main.s: selfplay_main.cpp.s
+.PHONY : selfplay_main.s
+
+# target to generate assembly for a file
+selfplay_main.cpp.s:
+	cd /home/cosmos/alphazero-multi-game/build && $(MAKE) $(MAKESILENT) -f src/selfplay/CMakeFiles/self_play.dir/build.make src/selfplay/CMakeFiles/self_play.dir/selfplay_main.cpp.s
+.PHONY : selfplay_main.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -271,6 +309,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... alphazero_selfplay"
+	@echo "... self_play"
 	@echo "... dataset.o"
 	@echo "... dataset.i"
 	@echo "... dataset.s"
@@ -280,6 +319,9 @@ help:
 	@echo "... self_play_manager.o"
 	@echo "... self_play_manager.i"
 	@echo "... self_play_manager.s"
+	@echo "... selfplay_main.o"
+	@echo "... selfplay_main.i"
+	@echo "... selfplay_main.s"
 .PHONY : help
 
 

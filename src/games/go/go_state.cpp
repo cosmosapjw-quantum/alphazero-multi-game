@@ -9,7 +9,7 @@ namespace alphazero {
 namespace go {
 
 // Constructor
-GoState::GoState(int board_size, float komi, bool chinese_rules)
+GoState::GoState(int board_size, float komi, bool chinese_rules, bool enforce_superko)
     : IGameState(core::GameType::GO),
       board_size_(board_size),
       current_player_(1),  // Black goes first
@@ -18,7 +18,7 @@ GoState::GoState(int board_size, float komi, bool chinese_rules)
       ko_point_(-1),
       consecutive_passes_(0),
       hash_dirty_(true),
-      zobrist_(core::GameType::GO, board_size, 2)  // 2 colors
+      zobrist_(core::GameType::GO, board_size, 3)  // 3 features: black stones, white stones, ko point
 {
     // Validate board size
     if (board_size != 9 && board_size != 13 && board_size != 19) {
@@ -36,7 +36,7 @@ GoState::GoState(int board_size, float komi, bool chinese_rules)
     hash_dirty_ = true;
     
     // Initialize rules
-    rules_ = std::make_shared<GoRules>(board_size_, chinese_rules_);
+    rules_ = std::make_shared<GoRules>(board_size_, chinese_rules_, enforce_superko);
     
     // Set up board accessor functions for rules
     rules_->setBoardAccessor(
@@ -59,12 +59,14 @@ GoState::GoState(const GoState& other)
       consecutive_passes_(other.consecutive_passes_),
       move_history_(other.move_history_),
       position_history_(other.position_history_),
+      full_move_history_(other.full_move_history_),
+      dead_stones_(other.dead_stones_),
       zobrist_(other.zobrist_),
       hash_(other.hash_),
       hash_dirty_(other.hash_dirty_)
 {
     // Initialize rules
-    rules_ = std::make_shared<GoRules>(board_size_, chinese_rules_);
+    rules_ = std::make_shared<GoRules>(board_size_, chinese_rules_, other.rules_->isSuperkoenforced());
     
     // Set up board accessor functions for rules
     rules_->setBoardAccessor(
@@ -87,11 +89,13 @@ GoState& GoState::operator=(const GoState& other) {
         consecutive_passes_ = other.consecutive_passes_;
         move_history_ = other.move_history_;
         position_history_ = other.position_history_;
+        full_move_history_ = other.full_move_history_;
+        dead_stones_ = other.dead_stones_;
         hash_ = other.hash_;
         hash_dirty_ = other.hash_dirty_;
         
         // Reinitialize rules
-        rules_ = std::make_shared<GoRules>(board_size_, chinese_rules_);
+        rules_ = std::make_shared<GoRules>(board_size_, chinese_rules_, other.rules_->isSuperkoenforced());
         
         // Set up board accessor functions for rules
         rules_->setBoardAccessor(
@@ -113,7 +117,31 @@ std::vector<int> GoState::getLegalMoves() const {
     // Check all board positions
     for (int pos = 0; pos < board_size_ * board_size_; ++pos) {
         if (isValidMove(pos)) {
-            legalMoves.push_back(pos);
+            // If we're enforcing superko, check that too
+            if (rules_->isSuperkoenforced()) {
+                // Create a temporary copy to test for superko
+                GoState tempState(*this);
+                
+                // Apply the move without updating history
+                tempState.setStone(pos, tempState.current_player_);
+                
+                // Process any captures
+                std::vector<StoneGroup> opponentGroups = tempState.rules_->findGroups(3 - tempState.current_player_);
+                for (const auto& group : opponentGroups) {
+                    if (group.liberties.empty()) {
+                        tempState.captureGroup(group);
+                    }
+                }
+                
+                // Check for superko
+                uint64_t newHash = tempState.getHash();
+                if (!checkForSuperko(newHash)) {
+                    legalMoves.push_back(pos);
+                }
+            } else {
+                // If superko is not enforced, add all valid moves
+                legalMoves.push_back(pos);
+            }
         }
     }
     
@@ -130,13 +158,18 @@ bool GoState::isLegalMove(int action) const {
         return false;
     }
     
-    // Create a temporary copy to test for superko (position repetition)
+    // If not enforcing superko, we're done
+    if (!rules_->isSuperkoenforced()) {
+        return true;
+    }
+    
+    // Create a temporary copy to test for superko
     GoState tempState(*this);
     
-    // Temporarily apply move
+    // Apply the move
     tempState.setStone(action, tempState.current_player_);
     
-    // Process any captures that would occur
+    // Process any captures
     std::vector<StoneGroup> opponentGroups = tempState.rules_->findGroups(3 - tempState.current_player_);
     for (const auto& group : opponentGroups) {
         if (group.liberties.empty()) {
@@ -144,21 +177,21 @@ bool GoState::isLegalMove(int action) const {
         }
     }
     
-    // Check if this position has appeared before (superko rule)
+    // Check for superko
     uint64_t newHash = tempState.getHash();
-    for (uint64_t hash : tempState.position_history_) {
-        if (hash == newHash) {
-            return false;  // Position repetition found, move is illegal
-        }
-    }
-    
-    return true;
+    return !checkForSuperko(newHash);
 }
 
 void GoState::makeMove(int action) {
     if (!isLegalMove(action)) {
         throw std::runtime_error("Illegal move attempted");
     }
+    
+    // Create a record for this move
+    MoveRecord record;
+    record.action = action;
+    record.ko_point = ko_point_;
+    record.consecutive_passes = consecutive_passes_;
     
     // Handle pass
     if (action == -1) {
@@ -167,15 +200,13 @@ void GoState::makeMove(int action) {
         
         // Record move
         move_history_.push_back(action);
+        full_move_history_.push_back(record);
     } else {
         // Reset consecutive passes
         consecutive_passes_ = 0;
         
         // Place stone
         setStone(action, current_player_);
-        
-        // Save current position before processing captures
-        uint64_t currentHash = getHash();
         
         // Check for captures
         std::vector<StoneGroup> opponentGroups = rules_->findGroups(3 - current_player_);
@@ -186,6 +217,10 @@ void GoState::makeMove(int action) {
             if (group.liberties.empty()) {
                 capturedGroups.push_back(group);
                 capturedStones += group.stones.size();
+                // Save captured positions for undo
+                for (int pos : group.stones) {
+                    record.captured_positions.push_back(pos);
+                }
             }
         }
         
@@ -206,13 +241,11 @@ void GoState::makeMove(int action) {
         
         // Record move
         move_history_.push_back(action);
+        full_move_history_.push_back(record);
         
-        // Get the updated hash after captures
+        // Record position for ko/superko detection
         invalidateHash();
-        uint64_t newHash = getHash();
-        
-        // Record position for ko detection
-        position_history_.push_back(newHash);
+        position_history_.push_back(getHash());
     }
     
     // Switch players
@@ -223,41 +256,55 @@ void GoState::makeMove(int action) {
 }
 
 bool GoState::undoMove() {
-    if (move_history_.empty()) {
+    if (full_move_history_.empty()) {
         return false;
     }
     
-    // Get last move
-    int lastMove = move_history_.back();
-    move_history_.pop_back();
+    // Get last move record
+    MoveRecord lastMove = full_move_history_.back();
+    full_move_history_.pop_back();
+    
+    // Remove from move history
+    if (!move_history_.empty()) {
+        move_history_.pop_back();
+    }
     
     // Remove last position from history
-    if (!position_history_.empty()) {
+    if (!position_history_.empty() && lastMove.action != -1) {
         position_history_.pop_back();
     }
     
     // Switch back to previous player
     current_player_ = 3 - current_player_;
     
-    // Handle pass
-    if (lastMove == -1) {
-        if (consecutive_passes_ > 0) {
-            consecutive_passes_--;
-        }
-        
-        // Restore ko point from history if available
-        ko_point_ = -1;
-        
+    // Restore ko point
+    ko_point_ = lastMove.ko_point;
+    
+    // Restore consecutive passes
+    consecutive_passes_ = lastMove.consecutive_passes;
+    
+    // If it was a pass, we're done
+    if (lastMove.action == -1) {
         // Invalidate hash
         invalidateHash();
         return true;
     }
     
-    // TODO: Implement full undo with stone restoration
-    // This would require storing more state information in move_history_
+    // Remove the stone
+    setStone(lastMove.action, 0);
     
-    // For now, just return false to indicate undo not fully supported
-    return false;
+    // Restore captured stones
+    for (int pos : lastMove.captured_positions) {
+        setStone(pos, 3 - current_player_);  // Opponent's color
+    }
+    
+    // Update captured stones count
+    captured_stones_[current_player_] -= lastMove.captured_positions.size();
+    
+    // Invalidate hash
+    invalidateHash();
+    
+    return true;
 }
 
 bool GoState::isTerminal() const {
@@ -271,7 +318,7 @@ core::GameResult GoState::getGameResult() const {
     }
     
     // Calculate scores
-    auto [blackScore, whiteScore] = rules_->calculateScores(captured_stones_, komi_);
+    auto [blackScore, whiteScore] = calculateScore();
     
     if (blackScore > whiteScore) {
         return core::GameResult::WIN_PLAYER1;  // Black wins
@@ -436,12 +483,18 @@ std::optional<int> GoState::stringToAction(const std::string& moveStr) const {
     
     char colChar = std::toupper(moveStr[0]);
     
-    // Adjust for 'I' being skipped in Go notation
-    if (colChar >= 'J') {
-        colChar--;
+    // Skip 'I' as it's not used in Go notation
+    if (colChar == 'I') {
+        return std::nullopt;
     }
     
-    int x = colChar - 'A';
+    // Adjust for 'I' being skipped
+    int x;
+    if (colChar >= 'J') {
+        x = colChar - 'A' - 1;
+    } else {
+        x = colChar - 'A';
+    }
     
     // Parse row
     int y;
@@ -477,18 +530,30 @@ std::string GoState::toString() const {
         ss << std::setw(2) << (board_size_ - y) << " ";
         
         for (int x = 0; x < board_size_; ++x) {
-            int stone = getStone(x, y);
+            int pos = y * board_size_ + x;
+            int stone = getStone(pos);
+            
             if (stone == 0) {
                 // Check if this is a ko point
-                if (coordToAction(x, y) == ko_point_) {
+                if (pos == ko_point_) {
                     ss << "k ";
+                } else if (dead_stones_.find(pos) != dead_stones_.end()) {
+                    ss << "d ";  // Mark dead stones
                 } else {
                     ss << ". ";
                 }
             } else if (stone == 1) {
-                ss << "X ";  // Black
+                if (dead_stones_.find(pos) != dead_stones_.end()) {
+                    ss << "x ";  // Dead black stone
+                } else {
+                    ss << "X ";  // Black
+                }
             } else if (stone == 2) {
-                ss << "O ";  // White
+                if (dead_stones_.find(pos) != dead_stones_.end()) {
+                    ss << "o ";  // Dead white stone
+                } else {
+                    ss << "O ";  // White
+                }
             }
         }
         
@@ -511,9 +576,10 @@ std::string GoState::toString() const {
     ss << "Captures - Black: " << captured_stones_[1] << ", White: " << captured_stones_[2] << std::endl;
     ss << "Komi: " << komi_ << std::endl;
     ss << "Rules: " << (chinese_rules_ ? "Chinese" : "Japanese") << std::endl;
+    ss << "Superko enforcement: " << (rules_->isSuperkoenforced() ? "Yes" : "No") << std::endl;
     
     if (isTerminal()) {
-        auto [blackScore, whiteScore] = rules_->calculateScores(captured_stones_, komi_);
+        auto [blackScore, whiteScore] = calculateScore();
         
         ss << "Game over!" << std::endl;
         ss << "Final score - Black: " << blackScore << ", White: " << whiteScore 
@@ -541,7 +607,12 @@ bool GoState::equals(const core::IGameState& other) const {
         
         if (board_size_ != otherGo.board_size_ || 
             current_player_ != otherGo.current_player_ ||
-            ko_point_ != otherGo.ko_point_) {
+            ko_point_ != otherGo.ko_point_ ||
+            komi_ != otherGo.komi_ ||
+            chinese_rules_ != otherGo.chinese_rules_ ||
+            consecutive_passes_ != otherGo.consecutive_passes_ ||
+            captured_stones_ != otherGo.captured_stones_ ||
+            dead_stones_ != otherGo.dead_stones_) {
             return false;
         }
         
@@ -569,6 +640,11 @@ bool GoState::validate() const {
     
     // Check ko point
     if (ko_point_ >= board_size_ * board_size_) {
+        return false;
+    }
+    
+    // Check captured stones
+    if (captured_stones_.size() != 3) {
         return false;
     }
     
@@ -621,6 +697,10 @@ bool GoState::isChineseRules() const {
     return chinese_rules_;
 }
 
+bool GoState::isEnforcingSuperko() const {
+    return rules_->isSuperkoenforced();
+}
+
 std::pair<int, int> GoState::actionToCoord(int action) const {
     if (action < 0 || action >= board_size_ * board_size_) {
         return {-1, -1};
@@ -644,16 +724,42 @@ int GoState::getKoPoint() const {
     return ko_point_;
 }
 
-std::vector<int> GoState::getTerritoryOwnership() const {
-    return rules_->getTerritoryOwnership();
+std::vector<int> GoState::getTerritoryOwnership(const std::unordered_set<int>& dead_stones) const {
+    // Combine local dead stones with any provided
+    std::unordered_set<int> all_dead_stones = dead_stones;
+    all_dead_stones.insert(dead_stones_.begin(), dead_stones_.end());
+    
+    return rules_->getTerritoryOwnership(all_dead_stones);
 }
 
-bool GoState::isInsideTerritory(int pos, int player) const {
-    std::vector<int> territory = getTerritoryOwnership();
+bool GoState::isInsideTerritory(int pos, int player, const std::unordered_set<int>& dead_stones) const {
+    // Combine local dead stones with any provided
+    std::unordered_set<int> all_dead_stones = dead_stones;
+    all_dead_stones.insert(dead_stones_.begin(), dead_stones_.end());
+    
+    std::vector<int> territory = rules_->getTerritoryOwnership(all_dead_stones);
     if (pos < 0 || pos >= static_cast<int>(territory.size())) {
         return false;
     }
     return territory[pos] == player;
+}
+
+void GoState::markDeadStones(const std::unordered_set<int>& positions) {
+    dead_stones_ = positions;
+    invalidateHash();
+}
+
+const std::unordered_set<int>& GoState::getDeadStones() const {
+    return dead_stones_;
+}
+
+void GoState::clearDeadStones() {
+    dead_stones_.clear();
+    invalidateHash();
+}
+
+std::pair<float, float> GoState::calculateScore() const {
+    return rules_->calculateScores(captured_stones_, komi_, dead_stones_);
 }
 
 // Helper methods
@@ -694,6 +800,12 @@ void GoState::captureGroup(const StoneGroup& group) {
     }
 }
 
+void GoState::captureStones(const std::unordered_set<int>& positions) {
+    for (int pos : positions) {
+        setStone(pos, 0);
+    }
+}
+
 bool GoState::isValidMove(int action) const {
     if (action < 0 || action >= board_size_ * board_size_) {
         return false;
@@ -717,11 +829,21 @@ bool GoState::isValidMove(int action) const {
     return true;
 }
 
+bool GoState::checkForSuperko(uint64_t new_hash) const {
+    // Check if this position has appeared before
+    for (uint64_t hash : position_history_) {
+        if (hash == new_hash) {
+            return true;  // Position repetition found
+        }
+    }
+    return false;
+}
+
 void GoState::updateHash() const {
     hash_ = 0;
     
     // Hash board position
-    for (int pos = 0; pos < board_size_ * board_size_; ++pos) {
+    for (int pos = 0; pos < board_size_ * board_size_; pos++) {
         int stone = getStone(pos);
         if (stone != 0) {
             int pieceIdx = stone - 1;  // Convert to 0-based index
@@ -736,6 +858,17 @@ void GoState::updateHash() const {
     if (ko_point_ >= 0) {
         hash_ ^= zobrist_.getFeatureHash(0, ko_point_);
     }
+    
+    // Hash the rule variant
+    if (chinese_rules_) {
+        hash_ ^= zobrist_.getFeatureHash(1, 1);  // Chinese rules
+    } else {
+        hash_ ^= zobrist_.getFeatureHash(1, 0);  // Japanese rules
+    }
+    
+    // Hash komi value (discretized)
+    int komi_int = static_cast<int>(komi_ * 2);  // Convert to half-points
+    hash_ ^= zobrist_.getFeatureHash(2, komi_int & 0xF);  // Use lower 4 bits
     
     hash_dirty_ = false;
 }

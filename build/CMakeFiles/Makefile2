@@ -301,6 +301,7 @@ src/pybind/clean: src/pybind/CMakeFiles/alphazero_py.dir/clean
 
 # Recursive "all" directory target.
 src/selfplay/all: src/selfplay/CMakeFiles/alphazero_selfplay.dir/all
+src/selfplay/all: src/selfplay/CMakeFiles/self_play.dir/all
 .PHONY : src/selfplay/all
 
 # Recursive "preinstall" directory target.
@@ -309,6 +310,7 @@ src/selfplay/preinstall:
 
 # Recursive "clean" directory target.
 src/selfplay/clean: src/selfplay/CMakeFiles/alphazero_selfplay.dir/clean
+src/selfplay/clean: src/selfplay/CMakeFiles/self_play.dir/clean
 .PHONY : src/selfplay/clean
 
 #=============================================================================
@@ -358,7 +360,7 @@ tests/clean: tests/CMakeFiles/performance_tests.dir/clean
 CMakeFiles/cuda_test_app.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cuda_test_app.dir/build.make CMakeFiles/cuda_test_app.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cuda_test_app.dir/build.make CMakeFiles/cuda_test_app.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=71,72 "Built target cuda_test_app"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=69,70 "Built target cuda_test_app"
 .PHONY : CMakeFiles/cuda_test_app.dir/all
 
 # Build rule for subdir invocation for target.
@@ -407,15 +409,18 @@ CMakeFiles/standalone_cuda_test.dir/clean:
 # Target rules for target src/CMakeFiles/alphazero_lib.dir
 
 # All Build rule for target.
-src/CMakeFiles/alphazero_lib.dir/all:
+src/CMakeFiles/alphazero_lib.dir/all: src/core/CMakeFiles/alphazero_core.dir/all
+src/CMakeFiles/alphazero_lib.dir/all: src/mcts/CMakeFiles/alphazero_mcts.dir/all
+src/CMakeFiles/alphazero_lib.dir/all: src/nn/CMakeFiles/alphazero_nn.dir/all
+src/CMakeFiles/alphazero_lib.dir/all: src/games/chess/CMakeFiles/alphazero_chess.dir/all
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/alphazero_lib.dir/build.make src/CMakeFiles/alphazero_lib.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/alphazero_lib.dir/build.make src/CMakeFiles/alphazero_lib.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47 "Built target alphazero_lib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43 "Built target alphazero_lib"
 .PHONY : src/CMakeFiles/alphazero_lib.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/alphazero_lib.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 23
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 46
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/alphazero_lib.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 0
 .PHONY : src/CMakeFiles/alphazero_lib.dir/rule
@@ -460,14 +465,15 @@ src/core/CMakeFiles/alphazero_core.dir/clean:
 
 # All Build rule for target.
 src/mcts/CMakeFiles/alphazero_mcts.dir/all: src/core/CMakeFiles/alphazero_core.dir/all
+src/mcts/CMakeFiles/alphazero_mcts.dir/all: src/games/chess/CMakeFiles/alphazero_chess.dir/all
 	$(MAKE) $(MAKESILENT) -f src/mcts/CMakeFiles/alphazero_mcts.dir/build.make src/mcts/CMakeFiles/alphazero_mcts.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/mcts/CMakeFiles/alphazero_mcts.dir/build.make src/mcts/CMakeFiles/alphazero_mcts.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=48,49,50,51,52 "Built target alphazero_mcts"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=44,45,46,47,48 "Built target alphazero_mcts"
 .PHONY : src/mcts/CMakeFiles/alphazero_mcts.dir/all
 
 # Build rule for subdir invocation for target.
 src/mcts/CMakeFiles/alphazero_mcts.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 20
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/mcts/CMakeFiles/alphazero_mcts.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 0
 .PHONY : src/mcts/CMakeFiles/alphazero_mcts.dir/rule
@@ -487,14 +493,15 @@ src/mcts/CMakeFiles/alphazero_mcts.dir/clean:
 # All Build rule for target.
 src/nn/CMakeFiles/alphazero_nn.dir/all: src/core/CMakeFiles/alphazero_core.dir/all
 src/nn/CMakeFiles/alphazero_nn.dir/all: src/mcts/CMakeFiles/alphazero_mcts.dir/all
+src/nn/CMakeFiles/alphazero_nn.dir/all: src/games/chess/CMakeFiles/alphazero_chess.dir/all
 	$(MAKE) $(MAKESILENT) -f src/nn/CMakeFiles/alphazero_nn.dir/build.make src/nn/CMakeFiles/alphazero_nn.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/nn/CMakeFiles/alphazero_nn.dir/build.make src/nn/CMakeFiles/alphazero_nn.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=53,54,55,56,57,58 "Built target alphazero_nn"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=49,50,51,52,53,54,55 "Built target alphazero_nn"
 .PHONY : src/nn/CMakeFiles/alphazero_nn.dir/all
 
 # Build rule for subdir invocation for target.
 src/nn/CMakeFiles/alphazero_nn.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 16
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 27
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/nn/CMakeFiles/alphazero_nn.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 0
 .PHONY : src/nn/CMakeFiles/alphazero_nn.dir/rule
@@ -512,7 +519,7 @@ src/nn/CMakeFiles/alphazero_nn.dir/clean:
 # Target rules for target src/games/chess/CMakeFiles/alphazero_chess.dir
 
 # All Build rule for target.
-src/games/chess/CMakeFiles/alphazero_chess.dir/all: src/core/CMakeFiles/alphazero_core.dir/all
+src/games/chess/CMakeFiles/alphazero_chess.dir/all: src/games/go/CMakeFiles/alphazero_go.dir/all
 	$(MAKE) $(MAKESILENT) -f src/games/chess/CMakeFiles/alphazero_chess.dir/build.make src/games/chess/CMakeFiles/alphazero_chess.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/games/chess/CMakeFiles/alphazero_chess.dir/build.make src/games/chess/CMakeFiles/alphazero_chess.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=4,5,6,7 "Built target alphazero_chess"
@@ -520,7 +527,7 @@ src/games/chess/CMakeFiles/alphazero_chess.dir/all: src/core/CMakeFiles/alphazer
 
 # Build rule for subdir invocation for target.
 src/games/chess/CMakeFiles/alphazero_chess.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 15
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/games/chess/CMakeFiles/alphazero_chess.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 0
 .PHONY : src/games/chess/CMakeFiles/alphazero_chess.dir/rule
@@ -538,7 +545,7 @@ src/games/chess/CMakeFiles/alphazero_chess.dir/clean:
 # Target rules for target src/games/go/CMakeFiles/alphazero_go.dir
 
 # All Build rule for target.
-src/games/go/CMakeFiles/alphazero_go.dir/all: src/core/CMakeFiles/alphazero_core.dir/all
+src/games/go/CMakeFiles/alphazero_go.dir/all: src/games/gomoku/CMakeFiles/alphazero_gomoku.dir/all
 	$(MAKE) $(MAKESILENT) -f src/games/go/CMakeFiles/alphazero_go.dir/build.make src/games/go/CMakeFiles/alphazero_go.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/games/go/CMakeFiles/alphazero_go.dir/build.make src/games/go/CMakeFiles/alphazero_go.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=19,20,21 "Built target alphazero_go"
@@ -546,7 +553,7 @@ src/games/go/CMakeFiles/alphazero_go.dir/all: src/core/CMakeFiles/alphazero_core
 
 # Build rule for subdir invocation for target.
 src/games/go/CMakeFiles/alphazero_go.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/games/go/CMakeFiles/alphazero_go.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 0
 .PHONY : src/games/go/CMakeFiles/alphazero_go.dir/rule
@@ -593,14 +600,15 @@ src/games/gomoku/CMakeFiles/alphazero_gomoku.dir/clean:
 src/selfplay/CMakeFiles/alphazero_selfplay.dir/all: src/core/CMakeFiles/alphazero_core.dir/all
 src/selfplay/CMakeFiles/alphazero_selfplay.dir/all: src/mcts/CMakeFiles/alphazero_mcts.dir/all
 src/selfplay/CMakeFiles/alphazero_selfplay.dir/all: src/nn/CMakeFiles/alphazero_nn.dir/all
+src/selfplay/CMakeFiles/alphazero_selfplay.dir/all: src/games/chess/CMakeFiles/alphazero_chess.dir/all
 	$(MAKE) $(MAKESILENT) -f src/selfplay/CMakeFiles/alphazero_selfplay.dir/build.make src/selfplay/CMakeFiles/alphazero_selfplay.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/selfplay/CMakeFiles/alphazero_selfplay.dir/build.make src/selfplay/CMakeFiles/alphazero_selfplay.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=61,62,63,64 "Built target alphazero_selfplay"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=58,59,60,61 "Built target alphazero_selfplay"
 .PHONY : src/selfplay/CMakeFiles/alphazero_selfplay.dir/all
 
 # Build rule for subdir invocation for target.
 src/selfplay/CMakeFiles/alphazero_selfplay.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 31
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/selfplay/CMakeFiles/alphazero_selfplay.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 0
 .PHONY : src/selfplay/CMakeFiles/alphazero_selfplay.dir/rule
@@ -615,10 +623,41 @@ src/selfplay/CMakeFiles/alphazero_selfplay.dir/clean:
 .PHONY : src/selfplay/CMakeFiles/alphazero_selfplay.dir/clean
 
 #=============================================================================
+# Target rules for target src/selfplay/CMakeFiles/self_play.dir
+
+# All Build rule for target.
+src/selfplay/CMakeFiles/self_play.dir/all: src/core/CMakeFiles/alphazero_core.dir/all
+src/selfplay/CMakeFiles/self_play.dir/all: src/mcts/CMakeFiles/alphazero_mcts.dir/all
+src/selfplay/CMakeFiles/self_play.dir/all: src/nn/CMakeFiles/alphazero_nn.dir/all
+src/selfplay/CMakeFiles/self_play.dir/all: src/games/chess/CMakeFiles/alphazero_chess.dir/all
+src/selfplay/CMakeFiles/self_play.dir/all: src/selfplay/CMakeFiles/alphazero_selfplay.dir/all
+	$(MAKE) $(MAKESILENT) -f src/selfplay/CMakeFiles/self_play.dir/build.make src/selfplay/CMakeFiles/self_play.dir/depend
+	$(MAKE) $(MAKESILENT) -f src/selfplay/CMakeFiles/self_play.dir/build.make src/selfplay/CMakeFiles/self_play.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=97,98 "Built target self_play"
+.PHONY : src/selfplay/CMakeFiles/self_play.dir/all
+
+# Build rule for subdir invocation for target.
+src/selfplay/CMakeFiles/self_play.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 33
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/selfplay/CMakeFiles/self_play.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 0
+.PHONY : src/selfplay/CMakeFiles/self_play.dir/rule
+
+# Convenience name for target.
+self_play: src/selfplay/CMakeFiles/self_play.dir/rule
+.PHONY : self_play
+
+# clean rule for target.
+src/selfplay/CMakeFiles/self_play.dir/clean:
+	$(MAKE) $(MAKESILENT) -f src/selfplay/CMakeFiles/self_play.dir/build.make src/selfplay/CMakeFiles/self_play.dir/clean
+.PHONY : src/selfplay/CMakeFiles/self_play.dir/clean
+
+#=============================================================================
 # Target rules for target src/elo/CMakeFiles/alphazero_elo.dir
 
 # All Build rule for target.
 src/elo/CMakeFiles/alphazero_elo.dir/all: src/core/CMakeFiles/alphazero_core.dir/all
+src/elo/CMakeFiles/alphazero_elo.dir/all: src/games/chess/CMakeFiles/alphazero_chess.dir/all
 	$(MAKE) $(MAKESILENT) -f src/elo/CMakeFiles/alphazero_elo.dir/build.make src/elo/CMakeFiles/alphazero_elo.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/elo/CMakeFiles/alphazero_elo.dir/build.make src/elo/CMakeFiles/alphazero_elo.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=17,18 "Built target alphazero_elo"
@@ -626,7 +665,7 @@ src/elo/CMakeFiles/alphazero_elo.dir/all: src/core/CMakeFiles/alphazero_core.dir
 
 # Build rule for subdir invocation for target.
 src/elo/CMakeFiles/alphazero_elo.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 17
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/elo/CMakeFiles/alphazero_elo.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 0
 .PHONY : src/elo/CMakeFiles/alphazero_elo.dir/rule
@@ -645,14 +684,15 @@ src/elo/CMakeFiles/alphazero_elo.dir/clean:
 
 # All Build rule for target.
 src/ui/CMakeFiles/alphazero_ui.dir/all: src/core/CMakeFiles/alphazero_core.dir/all
+src/ui/CMakeFiles/alphazero_ui.dir/all: src/games/chess/CMakeFiles/alphazero_chess.dir/all
 	$(MAKE) $(MAKESILENT) -f src/ui/CMakeFiles/alphazero_ui.dir/build.make src/ui/CMakeFiles/alphazero_ui.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/ui/CMakeFiles/alphazero_ui.dir/build.make src/ui/CMakeFiles/alphazero_ui.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=65,66 "Built target alphazero_ui"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=62,63,64 "Built target alphazero_ui"
 .PHONY : src/ui/CMakeFiles/alphazero_ui.dir/all
 
 # Build rule for subdir invocation for target.
 src/ui/CMakeFiles/alphazero_ui.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 18
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/ui/CMakeFiles/alphazero_ui.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 0
 .PHONY : src/ui/CMakeFiles/alphazero_ui.dir/rule
@@ -674,19 +714,17 @@ src/pybind/CMakeFiles/alphazero_py.dir/all: src/core/CMakeFiles/alphazero_core.d
 src/pybind/CMakeFiles/alphazero_py.dir/all: src/mcts/CMakeFiles/alphazero_mcts.dir/all
 src/pybind/CMakeFiles/alphazero_py.dir/all: src/nn/CMakeFiles/alphazero_nn.dir/all
 src/pybind/CMakeFiles/alphazero_py.dir/all: src/games/chess/CMakeFiles/alphazero_chess.dir/all
-src/pybind/CMakeFiles/alphazero_py.dir/all: src/games/go/CMakeFiles/alphazero_go.dir/all
-src/pybind/CMakeFiles/alphazero_py.dir/all: src/games/gomoku/CMakeFiles/alphazero_gomoku.dir/all
 src/pybind/CMakeFiles/alphazero_py.dir/all: src/selfplay/CMakeFiles/alphazero_selfplay.dir/all
 src/pybind/CMakeFiles/alphazero_py.dir/all: src/elo/CMakeFiles/alphazero_elo.dir/all
 src/pybind/CMakeFiles/alphazero_py.dir/all: src/ui/CMakeFiles/alphazero_ui.dir/all
 	$(MAKE) $(MAKESILENT) -f src/pybind/CMakeFiles/alphazero_py.dir/build.make src/pybind/CMakeFiles/alphazero_py.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/pybind/CMakeFiles/alphazero_py.dir/build.make src/pybind/CMakeFiles/alphazero_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=59,60 "Built target alphazero_py"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=56,57 "Built target alphazero_py"
 .PHONY : src/pybind/CMakeFiles/alphazero_py.dir/all
 
 # Build rule for subdir invocation for target.
 src/pybind/CMakeFiles/alphazero_py.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 36
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 38
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/pybind/CMakeFiles/alphazero_py.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 0
 .PHONY : src/pybind/CMakeFiles/alphazero_py.dir/rule
@@ -707,6 +745,7 @@ src/pybind/CMakeFiles/alphazero_py.dir/clean:
 src/api/CMakeFiles/alphazero_api.dir/all: src/core/CMakeFiles/alphazero_core.dir/all
 src/api/CMakeFiles/alphazero_api.dir/all: src/mcts/CMakeFiles/alphazero_mcts.dir/all
 src/api/CMakeFiles/alphazero_api.dir/all: src/nn/CMakeFiles/alphazero_nn.dir/all
+src/api/CMakeFiles/alphazero_api.dir/all: src/games/chess/CMakeFiles/alphazero_chess.dir/all
 	$(MAKE) $(MAKESILENT) -f src/api/CMakeFiles/alphazero_api.dir/build.make src/api/CMakeFiles/alphazero_api.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/api/CMakeFiles/alphazero_api.dir/build.make src/api/CMakeFiles/alphazero_api.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=1,2,3 "Built target alphazero_api"
@@ -714,7 +753,7 @@ src/api/CMakeFiles/alphazero_api.dir/all: src/nn/CMakeFiles/alphazero_nn.dir/all
 
 # Build rule for subdir invocation for target.
 src/api/CMakeFiles/alphazero_api.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 19
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 30
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/api/CMakeFiles/alphazero_api.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 0
 .PHONY : src/api/CMakeFiles/alphazero_api.dir/rule
@@ -735,6 +774,7 @@ src/api/CMakeFiles/alphazero_api.dir/clean:
 src/cli/CMakeFiles/alphazero_cli.dir/all: src/core/CMakeFiles/alphazero_core.dir/all
 src/cli/CMakeFiles/alphazero_cli.dir/all: src/mcts/CMakeFiles/alphazero_mcts.dir/all
 src/cli/CMakeFiles/alphazero_cli.dir/all: src/nn/CMakeFiles/alphazero_nn.dir/all
+src/cli/CMakeFiles/alphazero_cli.dir/all: src/games/chess/CMakeFiles/alphazero_chess.dir/all
 	$(MAKE) $(MAKESILENT) -f src/cli/CMakeFiles/alphazero_cli.dir/build.make src/cli/CMakeFiles/alphazero_cli.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/cli/CMakeFiles/alphazero_cli.dir/build.make src/cli/CMakeFiles/alphazero_cli.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=8,9,10,11 "Built target alphazero_cli"
@@ -742,7 +782,7 @@ src/cli/CMakeFiles/alphazero_cli.dir/all: src/nn/CMakeFiles/alphazero_nn.dir/all
 
 # Build rule for subdir invocation for target.
 src/cli/CMakeFiles/alphazero_cli.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 31
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/cli/CMakeFiles/alphazero_cli.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 0
 .PHONY : src/cli/CMakeFiles/alphazero_cli.dir/rule
@@ -761,14 +801,18 @@ src/cli/CMakeFiles/alphazero_cli.dir/clean:
 
 # All Build rule for target.
 tests/CMakeFiles/core_tests.dir/all: src/CMakeFiles/alphazero_lib.dir/all
+tests/CMakeFiles/core_tests.dir/all: src/core/CMakeFiles/alphazero_core.dir/all
+tests/CMakeFiles/core_tests.dir/all: src/mcts/CMakeFiles/alphazero_mcts.dir/all
+tests/CMakeFiles/core_tests.dir/all: src/nn/CMakeFiles/alphazero_nn.dir/all
+tests/CMakeFiles/core_tests.dir/all: src/games/chess/CMakeFiles/alphazero_chess.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/core_tests.dir/build.make tests/CMakeFiles/core_tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/core_tests.dir/build.make tests/CMakeFiles/core_tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=67,68,69,70 "Built target core_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=65,66,67,68 "Built target core_tests"
 .PHONY : tests/CMakeFiles/core_tests.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/core_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 27
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 50
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/core_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 0
 .PHONY : tests/CMakeFiles/core_tests.dir/rule
@@ -787,14 +831,18 @@ tests/CMakeFiles/core_tests.dir/clean:
 
 # All Build rule for target.
 tests/CMakeFiles/game_tests.dir/all: src/CMakeFiles/alphazero_lib.dir/all
+tests/CMakeFiles/game_tests.dir/all: src/core/CMakeFiles/alphazero_core.dir/all
+tests/CMakeFiles/game_tests.dir/all: src/mcts/CMakeFiles/alphazero_mcts.dir/all
+tests/CMakeFiles/game_tests.dir/all: src/nn/CMakeFiles/alphazero_nn.dir/all
+tests/CMakeFiles/game_tests.dir/all: src/games/chess/CMakeFiles/alphazero_chess.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/game_tests.dir/build.make tests/CMakeFiles/game_tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/game_tests.dir/build.make tests/CMakeFiles/game_tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=73,74,75,76,77,78,79 "Built target game_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=71,72,73,74,75,76,77 "Built target game_tests"
 .PHONY : tests/CMakeFiles/game_tests.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/game_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 30
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 53
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/game_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 0
 .PHONY : tests/CMakeFiles/game_tests.dir/rule
@@ -813,14 +861,18 @@ tests/CMakeFiles/game_tests.dir/clean:
 
 # All Build rule for target.
 tests/CMakeFiles/mcts_tests.dir/all: src/CMakeFiles/alphazero_lib.dir/all
+tests/CMakeFiles/mcts_tests.dir/all: src/core/CMakeFiles/alphazero_core.dir/all
+tests/CMakeFiles/mcts_tests.dir/all: src/mcts/CMakeFiles/alphazero_mcts.dir/all
+tests/CMakeFiles/mcts_tests.dir/all: src/nn/CMakeFiles/alphazero_nn.dir/all
+tests/CMakeFiles/mcts_tests.dir/all: src/games/chess/CMakeFiles/alphazero_chess.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/mcts_tests.dir/build.make tests/CMakeFiles/mcts_tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/mcts_tests.dir/build.make tests/CMakeFiles/mcts_tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=85,86,87,88 "Built target mcts_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=83,84,85,86 "Built target mcts_tests"
 .PHONY : tests/CMakeFiles/mcts_tests.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/mcts_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 27
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 50
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/mcts_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 0
 .PHONY : tests/CMakeFiles/mcts_tests.dir/rule
@@ -839,14 +891,18 @@ tests/CMakeFiles/mcts_tests.dir/clean:
 
 # All Build rule for target.
 tests/CMakeFiles/nn_tests.dir/all: src/CMakeFiles/alphazero_lib.dir/all
+tests/CMakeFiles/nn_tests.dir/all: src/core/CMakeFiles/alphazero_core.dir/all
+tests/CMakeFiles/nn_tests.dir/all: src/mcts/CMakeFiles/alphazero_mcts.dir/all
+tests/CMakeFiles/nn_tests.dir/all: src/nn/CMakeFiles/alphazero_nn.dir/all
+tests/CMakeFiles/nn_tests.dir/all: src/games/chess/CMakeFiles/alphazero_chess.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/nn_tests.dir/build.make tests/CMakeFiles/nn_tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/nn_tests.dir/build.make tests/CMakeFiles/nn_tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=89,90,91,92,93,94 "Built target nn_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=87,88,89,90,91,92 "Built target nn_tests"
 .PHONY : tests/CMakeFiles/nn_tests.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/nn_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 29
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 52
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/nn_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 0
 .PHONY : tests/CMakeFiles/nn_tests.dir/rule
@@ -865,14 +921,18 @@ tests/CMakeFiles/nn_tests.dir/clean:
 
 # All Build rule for target.
 tests/CMakeFiles/integration_tests.dir/all: src/CMakeFiles/alphazero_lib.dir/all
+tests/CMakeFiles/integration_tests.dir/all: src/core/CMakeFiles/alphazero_core.dir/all
+tests/CMakeFiles/integration_tests.dir/all: src/mcts/CMakeFiles/alphazero_mcts.dir/all
+tests/CMakeFiles/integration_tests.dir/all: src/nn/CMakeFiles/alphazero_nn.dir/all
+tests/CMakeFiles/integration_tests.dir/all: src/games/chess/CMakeFiles/alphazero_chess.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/integration_tests.dir/build.make tests/CMakeFiles/integration_tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/integration_tests.dir/build.make tests/CMakeFiles/integration_tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=80,81,82,83,84 "Built target integration_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=78,79,80,81,82 "Built target integration_tests"
 .PHONY : tests/CMakeFiles/integration_tests.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/integration_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 28
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 51
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/integration_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 0
 .PHONY : tests/CMakeFiles/integration_tests.dir/rule
@@ -891,14 +951,18 @@ tests/CMakeFiles/integration_tests.dir/clean:
 
 # All Build rule for target.
 tests/CMakeFiles/performance_tests.dir/all: src/CMakeFiles/alphazero_lib.dir/all
+tests/CMakeFiles/performance_tests.dir/all: src/core/CMakeFiles/alphazero_core.dir/all
+tests/CMakeFiles/performance_tests.dir/all: src/mcts/CMakeFiles/alphazero_mcts.dir/all
+tests/CMakeFiles/performance_tests.dir/all: src/nn/CMakeFiles/alphazero_nn.dir/all
+tests/CMakeFiles/performance_tests.dir/all: src/games/chess/CMakeFiles/alphazero_chess.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/performance_tests.dir/build.make tests/CMakeFiles/performance_tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/performance_tests.dir/build.make tests/CMakeFiles/performance_tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=95,96,97,98 "Built target performance_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=93,94,95,96 "Built target performance_tests"
 .PHONY : tests/CMakeFiles/performance_tests.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/performance_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 27
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 50
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/performance_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cosmos/alphazero-multi-game/build/CMakeFiles 0
 .PHONY : tests/CMakeFiles/performance_tests.dir/rule

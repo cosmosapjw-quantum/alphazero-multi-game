@@ -8,14 +8,11 @@
 #include <optional>
 #include <stdexcept>
 
-// Forward declarations
-class ZobristHash;
-
 namespace alphazero {
 namespace core {
 
 /**
- * @brief Game type identifiers
+ * @brief Game type identifiers - maintained for backward compatibility
  */
 enum class GameType {
     GOMOKU,
@@ -127,8 +124,6 @@ public:
      */
     virtual int getCurrentPlayer() const = 0;
     
-    // Board information
-    
     /**
      * @brief Get the board size
      * 
@@ -142,8 +137,6 @@ public:
      * @return Total number of possible actions
      */
     virtual int getActionSpaceSize() const = 0;
-    
-    // Neural network representation
     
     /**
      * @brief Get tensor representation for neural network
@@ -173,8 +166,6 @@ public:
      */
     virtual std::unique_ptr<IGameState> clone() const = 0;
     
-    // String conversion
-    
     /**
      * @brief Convert action to string representation
      * 
@@ -197,8 +188,6 @@ public:
      * @return String representation
      */
     virtual std::string toString() const = 0;
-    
-    // Additional methods
     
     /**
      * @brief Check equality with another game state
@@ -232,18 +221,6 @@ public:
 protected:
     GameType gameType_;  // Type of game this state represents
 };
-
-/**
- * @brief Factory function to create game states
- * 
- * @param type Game type to create
- * @param boardSize Board size (0 for default)
- * @param variantRules Whether to use variant rules
- * @return Unique pointer to created game state
- */
-std::unique_ptr<IGameState> createGameState(GameType type, 
-                                           int boardSize = 0, 
-                                           bool variantRules = false);
 
 } // namespace core
 } // namespace alphazero

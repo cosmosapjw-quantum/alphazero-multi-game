@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/alphazero_nn.dir/attack_defense_module.cpp.o.d"
   "CMakeFiles/alphazero_nn.dir/batch_queue.cpp.o"
   "CMakeFiles/alphazero_nn.dir/batch_queue.cpp.o.d"
+  "CMakeFiles/alphazero_nn.dir/ddw_randwire_resnet.cpp.o"
+  "CMakeFiles/alphazero_nn.dir/ddw_randwire_resnet.cpp.o.d"
   "CMakeFiles/alphazero_nn.dir/neural_network.cpp.o"
   "CMakeFiles/alphazero_nn.dir/neural_network.cpp.o.d"
   "CMakeFiles/alphazero_nn.dir/random_policy_network.cpp.o"

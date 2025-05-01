@@ -27,8 +27,9 @@ public:
      * 
      * @param board_size Board size
      * @param chinese_rules Whether to use Chinese rules
+     * @param enforce_superko Whether to enforce positional superko (true for Chinese, false for Japanese)
      */
-    GoRules(int board_size, bool chinese_rules = true);
+    GoRules(int board_size, bool chinese_rules = true, bool enforce_superko = true);
     
     /**
      * @brief Set board accessor functions
@@ -79,18 +80,23 @@ public:
     /**
      * @brief Calculate territory ownership
      * 
+     * @param dead_stones Set of positions containing dead stones
      * @return Vector of territory ownership (0 for neutral, 1 for black, 2 for white)
      */
-    std::vector<int> getTerritoryOwnership() const;
+    std::vector<int> getTerritoryOwnership(const std::unordered_set<int>& dead_stones = {}) const;
     
     /**
      * @brief Calculate scores based on the current board position
      * 
      * @param captured_stones Array of captured stones count
      * @param komi Komi value
+     * @param dead_stones Set of positions containing dead stones
      * @return Pair of (black_score, white_score)
      */
-    std::pair<float, float> calculateScores(const std::vector<int>& captured_stones, float komi) const;
+    std::pair<float, float> calculateScores(
+        const std::vector<int>& captured_stones, 
+        float komi,
+        const std::unordered_set<int>& dead_stones = {}) const;
     
     /**
      * @brief Flood fill to find territory
@@ -98,12 +104,32 @@ public:
      * @param territory Territory map to update
      * @param pos Start position
      * @param territory_color Output territory color
+     * @param dead_stones Set of positions containing dead stones
      */
-    void floodFillTerritory(std::vector<int>& territory, int pos, int& territory_color) const;
+    void floodFillTerritory(
+        std::vector<int>& territory, 
+        int pos, 
+        int& territory_color,
+        const std::unordered_set<int>& dead_stones = {}) const;
+    
+    /**
+     * @brief Get whether superko rule is enforced
+     * 
+     * @return true if superko is enforced, false otherwise
+     */
+    bool isSuperkoenforced() const { return enforce_superko_; }
+    
+    /**
+     * @brief Set whether superko rule is enforced
+     * 
+     * @param enforce_superko Whether to enforce superko
+     */
+    void setEnforceSuperko(bool enforce_superko) { enforce_superko_ = enforce_superko; }
     
 private:
     int board_size_;
     bool chinese_rules_;
+    bool enforce_superko_;
     
     // Board accessor functions
     std::function<int(int)> get_stone_;

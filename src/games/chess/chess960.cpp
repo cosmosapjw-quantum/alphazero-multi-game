@@ -153,13 +153,19 @@ void Chess960::setupPosition(int positionNumber, ChessState& state) {
         state.setPiece(ChessState::getSquare(1, file), {PieceType::PAWN, PieceColor::BLACK});
     }
     
-    // Reset game state (player, castling rights, etc.)
+    // Get rook files for this position
+    auto rookFiles = getRookFiles(positionNumber);
+    
+    // Reset game state (player, castling rights, etc.) using FEN
     std::string fen = getStartingFEN(positionNumber);
     state.setFromFEN(fen);
 }
 
 std::string Chess960::getStartingFEN(int positionNumber) {
     std::array<PieceType, 8> arrangement = generatePosition(positionNumber);
+    
+    // Get rook files for castling rights
+    auto rookFiles = getRookFiles(positionNumber);
     
     // Construct the FEN string
     std::stringstream ss;
@@ -197,8 +203,42 @@ std::string Chess960::getStartingFEN(int positionNumber) {
         ss << pieceChar;
     }
     
-    // White to move, full castling rights, no en passant, no halfmove clock, fullmove number 1
-    ss << " w KQkq - 0 1";
+    // Add additional FEN components
+    ss << " w ";
+    
+    // Castling rights in Chess960 notation (using files)
+    int kingFile = getKingFile(positionNumber);
+    int kingsideRookFile = rookFiles.second;  // Higher file
+    int queensideRookFile = rookFiles.first;  // Lower file
+    
+    bool hasCastling = false;
+    
+    // White castling rights
+    if (kingsideRookFile > kingFile) {
+        ss << static_cast<char>('A' + kingsideRookFile);
+        hasCastling = true;
+    }
+    if (queensideRookFile < kingFile) {
+        ss << static_cast<char>('A' + queensideRookFile);
+        hasCastling = true;
+    }
+    
+    // Black castling rights
+    if (kingsideRookFile > kingFile) {
+        ss << static_cast<char>('a' + kingsideRookFile);
+        hasCastling = true;
+    }
+    if (queensideRookFile < kingFile) {
+        ss << static_cast<char>('a' + queensideRookFile);
+        hasCastling = true;
+    }
+    
+    if (!hasCastling) {
+        ss << "-";
+    }
+    
+    // No en passant, halfmove clock at 0, fullmove number 1
+    ss << " - 0 1";
     
     return ss.str();
 }
@@ -237,38 +277,83 @@ std::string Chess960::convertToChess960FEN(const std::string& standardFEN) {
     // Find white rooks (in the 8th rank)
     std::string whiteRank = ranks[7];
     std::vector<int> whiteRookFiles;
-    for (int file = 0; file < static_cast<int>(whiteRank.length()); ++file) {
-        if (whiteRank[file] == 'R') {
-            whiteRookFiles.push_back(file);
-        } else if (std::isdigit(whiteRank[file])) {
-            file += whiteRank[file] - '1';  // Skip empty squares
+    int fileIndex = 0;
+    for (char c : whiteRank) {
+        if (c == 'R') {
+            whiteRookFiles.push_back(fileIndex);
+        }
+        if (std::isdigit(c)) {
+            fileIndex += c - '0';
+        } else {
+            fileIndex++;
         }
     }
     
     // Find black rooks (in the 1st rank)
     std::string blackRank = ranks[0];
     std::vector<int> blackRookFiles;
-    for (int file = 0; file < static_cast<int>(blackRank.length()); ++file) {
-        if (blackRank[file] == 'r') {
-            blackRookFiles.push_back(file);
-        } else if (std::isdigit(blackRank[file])) {
-            file += blackRank[file] - '1';  // Skip empty squares
+    fileIndex = 0;
+    for (char c : blackRank) {
+        if (c == 'r') {
+            blackRookFiles.push_back(fileIndex);
+        }
+        if (std::isdigit(c)) {
+            fileIndex += c - '0';
+        } else {
+            fileIndex++;
+        }
+    }
+    
+    // Find king positions
+    int whiteKingFile = -1;
+    fileIndex = 0;
+    for (char c : whiteRank) {
+        if (c == 'K') {
+            whiteKingFile = fileIndex;
+            break;
+        }
+        if (std::isdigit(c)) {
+            fileIndex += c - '0';
+        } else {
+            fileIndex++;
+        }
+    }
+    
+    int blackKingFile = -1;
+    fileIndex = 0;
+    for (char c : blackRank) {
+        if (c == 'k') {
+            blackKingFile = fileIndex;
+            break;
+        }
+        if (std::isdigit(c)) {
+            fileIndex += c - '0';
+        } else {
+            fileIndex++;
         }
     }
     
     // Convert castling rights to Chess960 notation
     std::string newCastlingRights;
-    if (castlingRights.find('K') != std::string::npos && whiteRookFiles.size() >= 2) {
-        newCastlingRights += static_cast<char>('A' + whiteRookFiles.back());
+    
+    for (int i = 0; i < static_cast<int>(whiteRookFiles.size()); ++i) {
+        int rookFile = whiteRookFiles[i];
+        if (castlingRights.find('K') != std::string::npos && rookFile > whiteKingFile) {
+            newCastlingRights += static_cast<char>('A' + rookFile);
+        }
+        if (castlingRights.find('Q') != std::string::npos && rookFile < whiteKingFile) {
+            newCastlingRights += static_cast<char>('A' + rookFile);
+        }
     }
-    if (castlingRights.find('Q') != std::string::npos && whiteRookFiles.size() >= 1) {
-        newCastlingRights += static_cast<char>('A' + whiteRookFiles.front());
-    }
-    if (castlingRights.find('k') != std::string::npos && blackRookFiles.size() >= 2) {
-        newCastlingRights += static_cast<char>('a' + blackRookFiles.back());
-    }
-    if (castlingRights.find('q') != std::string::npos && blackRookFiles.size() >= 1) {
-        newCastlingRights += static_cast<char>('a' + blackRookFiles.front());
+    
+    for (int i = 0; i < static_cast<int>(blackRookFiles.size()); ++i) {
+        int rookFile = blackRookFiles[i];
+        if (castlingRights.find('k') != std::string::npos && rookFile > blackKingFile) {
+            newCastlingRights += static_cast<char>('a' + rookFile);
+        }
+        if (castlingRights.find('q') != std::string::npos && rookFile < blackKingFile) {
+            newCastlingRights += static_cast<char>('a' + rookFile);
+        }
     }
     
     if (newCastlingRights.empty()) {
@@ -289,16 +374,46 @@ std::string Chess960::convertToChess960FEN(const std::string& standardFEN) {
     return result.str();
 }
 
-// Helper methods
+std::pair<int, int> Chess960::getRookFiles(int positionNumber) {
+    std::array<PieceType, 8> position = generatePosition(positionNumber);
+    std::vector<int> rookIndices = findPieceIndices(position, PieceType::ROOK);
+    
+    if (rookIndices.size() != 2) {
+        throw std::runtime_error("Invalid Chess960 position: expected 2 rooks");
+    }
+    
+    // Sort rook indices
+    std::sort(rookIndices.begin(), rookIndices.end());
+    
+    // Return (queenside rook file, kingside rook file)
+    return {rookIndices[0], rookIndices[1]};
+}
 
-bool Chess960::hasValidBishopPlacement(const std::array<PieceType, 8>& position) {
-    // Find indices of bishops
-    std::vector<int> bishopIndices;
+int Chess960::getKingFile(int positionNumber) {
+    std::array<PieceType, 8> position = generatePosition(positionNumber);
+    std::vector<int> kingIndex = findPieceIndices(position, PieceType::KING);
+    
+    if (kingIndex.size() != 1) {
+        throw std::runtime_error("Invalid Chess960 position: expected 1 king");
+    }
+    
+    return kingIndex[0];
+}
+
+std::vector<int> Chess960::findPieceIndices(const std::array<PieceType, 8>& position, PieceType pieceType) {
+    std::vector<int> indices;
     for (int i = 0; i < 8; ++i) {
-        if (position[i] == PieceType::BISHOP) {
-            bishopIndices.push_back(i);
+        if (position[i] == pieceType) {
+            indices.push_back(i);
         }
     }
+    return indices;
+}
+
+// Helper methods for position generation and validation
+bool Chess960::hasValidBishopPlacement(const std::array<PieceType, 8>& position) {
+    // Find indices of bishops
+    std::vector<int> bishopIndices = findPieceIndices(position, PieceType::BISHOP);
     
     if (bishopIndices.size() != 2) {
         return false;
@@ -310,24 +425,18 @@ bool Chess960::hasValidBishopPlacement(const std::array<PieceType, 8>& position)
 
 bool Chess960::hasKingBetweenRooks(const std::array<PieceType, 8>& position) {
     // Find indices of king and rooks
-    int kingIndex = -1;
-    std::vector<int> rookIndices;
+    std::vector<int> kingIndices = findPieceIndices(position, PieceType::KING);
+    std::vector<int> rookIndices = findPieceIndices(position, PieceType::ROOK);
     
-    for (int i = 0; i < 8; ++i) {
-        if (position[i] == PieceType::KING) {
-            kingIndex = i;
-        } else if (position[i] == PieceType::ROOK) {
-            rookIndices.push_back(i);
-        }
-    }
-    
-    if (kingIndex == -1 || rookIndices.size() != 2) {
+    if (kingIndices.size() != 1 || rookIndices.size() != 2) {
         return false;
     }
     
+    int kingIndex = kingIndices[0];
+    std::sort(rookIndices.begin(), rookIndices.end());
+    
     // King must be between two rooks
-    return (kingIndex > rookIndices[0] && kingIndex < rookIndices[1]) || 
-           (kingIndex > rookIndices[1] && kingIndex < rookIndices[0]);
+    return kingIndex > rookIndices[0] && kingIndex < rookIndices[1];
 }
 
 std::array<int, 8> Chess960::getPermutation(int n) {

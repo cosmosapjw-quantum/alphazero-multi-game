@@ -31,11 +31,6 @@ add_library(alphazero_lib STATIC
     mcts/parallel_mcts.cpp
     mcts/thread_pool.cpp
     mcts/transposition_table.cpp
-    nn/attack_defense_module.cpp
-    nn/batch_queue.cpp
-    nn/neural_network.cpp
-    nn/random_policy_network.cpp
-    nn/torch_neural_network.cpp
     selfplay/dataset.cpp
     selfplay/game_record.cpp
     selfplay/self_play_manager.cpp
@@ -58,6 +53,7 @@ target_link_libraries(alphazero_lib PUBLIC
     fmt::fmt
     spdlog::spdlog
     nlohmann_json::nlohmann_json
+    alphazero_nn
 )
 
 # Install the library

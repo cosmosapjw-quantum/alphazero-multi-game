@@ -10,6 +10,9 @@ if(ALPHAZERO_ENABLE_PYTHON AND pybind11_FOUND)
         ${TORCH_INCLUDE_DIRS}
     )
     
+    # Force C++11 ABI for compatibility with PyTorch
+    target_compile_definitions(alphazero_py PRIVATE _GLIBCXX_USE_CXX11_ABI=1)
+    
     # Find and explicitly link with the C10 library
     find_library(C10_LIBRARY c10 PATHS ${TORCH_INSTALL_PREFIX}/lib ${CMAKE_PREFIX_PATH}/lib)
     if(C10_LIBRARY)

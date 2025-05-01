@@ -2,7 +2,7 @@
 #include "alphazero/games/chess/chess_rules.h"
 #include "alphazero/games/chess/chess_state.h"
 #include <algorithm>
-#include <unordered_map>
+#include <array>
 
 namespace alphazero {
 namespace chess {
@@ -31,23 +31,8 @@ const std::vector<std::pair<int, int>> QUEEN_DIRECTIONS = {
 
 // Board representation constants are defined in chess_rules.h
 
-ChessRules::ChessRules(bool chess960) 
-    : chess960_(chess960) {
-    
-    // Default implementations (will be replaced by setBoardAccessor)
-    get_piece_ = [](int) { return Piece(); };
-    is_valid_square_ = [](int) { return false; };
-    get_king_square_ = [](PieceColor) { return -1; };
-}
-
-void ChessRules::setBoardAccessor(
-    std::function<Piece(int)> get_piece,
-    std::function<bool(int)> is_valid_square,
-    std::function<int(PieceColor)> get_king_square) {
-    
-    get_piece_ = get_piece;
-    is_valid_square_ = is_valid_square;
-    get_king_square_ = get_king_square;
+ChessRules::ChessRules(ChessState& state, bool chess960) 
+    : state_(state), chess960_(chess960) {
 }
 
 std::vector<ChessMove> ChessRules::generateLegalMoves(
@@ -61,105 +46,7 @@ std::vector<ChessMove> ChessRules::generateLegalMoves(
     
     // Filter out moves that leave the king in check
     for (const ChessMove& move : pseudoLegalMoves) {
-        // Create a temporary copy of the board to simulate the move
-        // This is a simplified check - in a real implementation, we would need
-        // to actually apply the move to a copy of the ChessState
-        
-        // Create a map for efficient lookup of pieces
-        std::unordered_map<int, Piece> board_copy;
-        for (int square = 0; square < 64; ++square) {
-            Piece piece = get_piece_(square);
-            if (!piece.is_empty()) {
-                board_copy[square] = piece;
-            }
-        }
-        
-        // Apply the move to our temporary board
-        Piece moving_piece = board_copy[move.from_square];
-        board_copy.erase(move.from_square);
-        
-        // Handle captures
-        board_copy.erase(move.to_square);
-        
-        // Handle en passant captures
-        if (moving_piece.type == PieceType::PAWN && move.to_square == en_passant_square) {
-            int captured_pawn_square = getSquare(getRank(move.from_square), getFile(move.to_square));
-            board_copy.erase(captured_pawn_square);
-        }
-        
-        // Handle promotion
-        if (move.promotion_piece != PieceType::NONE) {
-            moving_piece.type = move.promotion_piece;
-        }
-        
-        // Place the piece at the destination
-        board_copy[move.to_square] = moving_piece;
-        
-        // Handle castling (move the rook too)
-        if (moving_piece.type == PieceType::KING && 
-            std::abs(getFile(move.from_square) - getFile(move.to_square)) == 2) {
-            
-            int rank = getRank(move.from_square);
-            bool isKingside = getFile(move.to_square) > getFile(move.from_square);
-            
-            if (isKingside) {
-                // Kingside castling
-                int rookFrom = getSquare(rank, 7);
-                int rookTo = getSquare(rank, 5);
-                Piece rook = board_copy[rookFrom];
-                board_copy.erase(rookFrom);
-                board_copy[rookTo] = rook;
-            } else {
-                // Queenside castling
-                int rookFrom = getSquare(rank, 0);
-                int rookTo = getSquare(rank, 3);
-                Piece rook = board_copy[rookFrom];
-                board_copy.erase(rookFrom);
-                board_copy[rookTo] = rook;
-            }
-        }
-        
-        // Override our accessor to use the temporary board
-        auto temp_get_piece = [&board_copy](int square) -> Piece {
-            auto it = board_copy.find(square);
-            if (it != board_copy.end()) {
-                return it->second;
-            }
-            return Piece();
-        };
-        
-        auto temp_get_king_square = [&board_copy, current_player]() -> int {
-            for (const auto& [square, piece] : board_copy) {
-                if (piece.type == PieceType::KING && piece.color == current_player) {
-                    return square;
-                }
-            }
-            return -1;  // Should not happen
-        };
-        
-        // Store original accessors
-        auto original_get_piece = get_piece_;
-        auto original_get_king_square = get_king_square_;
-        
-        // Replace with temporary accessors
-        const_cast<ChessRules*>(this)->get_piece_ = temp_get_piece;
-        const_cast<ChessRules*>(this)->get_king_square_ = 
-            [temp_get_king_square, current_player](PieceColor color) -> int {
-                if (color == current_player) {
-                    return temp_get_king_square();
-                }
-                return -1;  // Not needed for this check
-            };
-        
-        // Check if the king is in check after the move
-        bool king_in_check = isInCheck(current_player);
-        
-        // Restore original accessors
-        const_cast<ChessRules*>(this)->get_piece_ = original_get_piece;
-        const_cast<ChessRules*>(this)->get_king_square_ = original_get_king_square;
-        
-        // If the king is not in check after the move, it's legal
-        if (!king_in_check) {
+        if (!moveExposesKing(move, current_player)) {
             legalMoves.push_back(move);
         }
     }
@@ -176,9 +63,7 @@ std::vector<ChessMove> ChessRules::generatePseudoLegalMoves(
     
     // Generate moves for each piece of the current player
     for (int square = 0; square < 64; ++square) {
-        if (!is_valid_square_(square)) continue;
-        
-        Piece piece = get_piece_(square);
+        Piece piece = state_.getPiece(square);
         
         if (piece.color == current_player) {
             switch (piece.type) {
@@ -218,16 +103,22 @@ bool ChessRules::isLegalMove(
     const CastlingRights& castling_rights,
     int en_passant_square) const {
     
-    // Check if the move is in the list of legal moves
-    const std::vector<ChessMove>& legalMoves = generateLegalMoves(
+    // Check if the move is in the list of pseudo-legal moves
+    const std::vector<ChessMove>& pseudoLegalMoves = generatePseudoLegalMoves(
         current_player, castling_rights, en_passant_square);
     
-    return std::find(legalMoves.begin(), legalMoves.end(), move) != legalMoves.end();
+    auto it = std::find(pseudoLegalMoves.begin(), pseudoLegalMoves.end(), move);
+    if (it == pseudoLegalMoves.end()) {
+        return false;
+    }
+    
+    // Check if the move would leave the king in check
+    return !moveExposesKing(move, current_player);
 }
 
 bool ChessRules::isInCheck(PieceColor color) const {
     // Find the king
-    int kingSquare = get_king_square_(color);
+    int kingSquare = state_.getKingSquare(color);
     if (kingSquare == -1) {
         return false;  // No king found
     }
@@ -248,7 +139,7 @@ bool ChessRules::isSquareAttacked(int square, PieceColor by_color) const {
         
         if (attackRank >= 0 && attackRank < 8 && attackFile >= 0 && attackFile < 8) {
             int attackSquare = getSquare(attackRank, attackFile);
-            Piece attacker = get_piece_(attackSquare);
+            Piece attacker = state_.getPiece(attackSquare);
             
             if (attacker.type == PieceType::PAWN && attacker.color == by_color) {
                 return true;
@@ -263,7 +154,7 @@ bool ChessRules::isSquareAttacked(int square, PieceColor by_color) const {
         
         if (attackRank >= 0 && attackRank < 8 && attackFile >= 0 && attackFile < 8) {
             int attackSquare = getSquare(attackRank, attackFile);
-            Piece attacker = get_piece_(attackSquare);
+            Piece attacker = state_.getPiece(attackSquare);
             
             if (attacker.type == PieceType::KNIGHT && attacker.color == by_color) {
                 return true;
@@ -278,7 +169,7 @@ bool ChessRules::isSquareAttacked(int square, PieceColor by_color) const {
         
         if (attackRank >= 0 && attackRank < 8 && attackFile >= 0 && attackFile < 8) {
             int attackSquare = getSquare(attackRank, attackFile);
-            Piece attacker = get_piece_(attackSquare);
+            Piece attacker = state_.getPiece(attackSquare);
             
             if (attacker.type == PieceType::KING && attacker.color == by_color) {
                 return true;
@@ -299,7 +190,7 @@ bool ChessRules::isSquareAttacked(int square, PieceColor by_color) const {
             }
             
             int attackSquare = getSquare(attackRank, attackFile);
-            Piece attacker = get_piece_(attackSquare);
+            Piece attacker = state_.getPiece(attackSquare);
             
             if (!attacker.is_empty()) {
                 if (attacker.color == by_color && 
@@ -322,7 +213,7 @@ bool ChessRules::isSquareAttacked(int square, PieceColor by_color) const {
             }
             
             int attackSquare = getSquare(attackRank, attackFile);
-            Piece attacker = get_piece_(attackSquare);
+            Piece attacker = state_.getPiece(attackSquare);
             
             if (!attacker.is_empty()) {
                 if (attacker.color == by_color && 
@@ -339,6 +230,7 @@ bool ChessRules::isSquareAttacked(int square, PieceColor by_color) const {
 
 bool ChessRules::hasInsufficientMaterial() const {
     // Count material on the board
+    int numPieces = 0;
     int numWhitePawns = 0;
     int numBlackPawns = 0;
     int numWhiteKnights = 0;
@@ -350,30 +242,67 @@ bool ChessRules::hasInsufficientMaterial() const {
     int numWhiteQueens = 0;
     int numBlackQueens = 0;
     
+    // Track bishop square colors
+    bool whiteHasLightSquareBishop = false;
+    bool whiteHasDarkSquareBishop = false;
+    bool blackHasLightSquareBishop = false;
+    bool blackHasDarkSquareBishop = false;
+    
     for (int square = 0; square < 64; ++square) {
-        if (!is_valid_square_(square)) continue;
-        
-        Piece piece = get_piece_(square);
+        Piece piece = state_.getPiece(square);
         
         if (piece.is_empty()) continue;
         
+        numPieces++;
+        
+        // Determine square color (light or dark)
+        int rank = getRank(square);
+        int file = getFile(square);
+        bool isLightSquare = ((rank + file) % 2 == 0);
+        
         if (piece.color == PieceColor::WHITE) {
             switch (piece.type) {
-                case PieceType::PAWN:   numWhitePawns++; break;
-                case PieceType::KNIGHT: numWhiteKnights++; break;
-                case PieceType::BISHOP: numWhiteBishops++; break;
-                case PieceType::ROOK:   numWhiteRooks++; break;
-                case PieceType::QUEEN:  numWhiteQueens++; break;
-                default: break;
+                case PieceType::PAWN:   
+                    numWhitePawns++; 
+                    break;
+                case PieceType::KNIGHT: 
+                    numWhiteKnights++; 
+                    break;
+                case PieceType::BISHOP: 
+                    numWhiteBishops++; 
+                    if (isLightSquare) whiteHasLightSquareBishop = true;
+                    else whiteHasDarkSquareBishop = true;
+                    break;
+                case PieceType::ROOK:   
+                    numWhiteRooks++; 
+                    break;
+                case PieceType::QUEEN:  
+                    numWhiteQueens++; 
+                    break;
+                default: 
+                    break;
             }
         } else {
             switch (piece.type) {
-                case PieceType::PAWN:   numBlackPawns++; break;
-                case PieceType::KNIGHT: numBlackKnights++; break;
-                case PieceType::BISHOP: numBlackBishops++; break;
-                case PieceType::ROOK:   numBlackRooks++; break;
-                case PieceType::QUEEN:  numBlackQueens++; break;
-                default: break;
+                case PieceType::PAWN:   
+                    numBlackPawns++; 
+                    break;
+                case PieceType::KNIGHT: 
+                    numBlackKnights++; 
+                    break;
+                case PieceType::BISHOP: 
+                    numBlackBishops++; 
+                    if (isLightSquare) blackHasLightSquareBishop = true;
+                    else blackHasDarkSquareBishop = true;
+                    break;
+                case PieceType::ROOK:   
+                    numBlackRooks++; 
+                    break;
+                case PieceType::QUEEN:  
+                    numBlackQueens++; 
+                    break;
+                default: 
+                    break;
             }
         }
     }
@@ -381,11 +310,7 @@ bool ChessRules::hasInsufficientMaterial() const {
     // Check for insufficient material scenarios
     
     // King vs King
-    if (numWhitePawns == 0 && numBlackPawns == 0 &&
-        numWhiteKnights == 0 && numBlackKnights == 0 &&
-        numWhiteBishops == 0 && numBlackBishops == 0 &&
-        numWhiteRooks == 0 && numBlackRooks == 0 &&
-        numWhiteQueens == 0 && numBlackQueens == 0) {
+    if (numPieces == 2) {
         return true;
     }
     
@@ -417,51 +342,50 @@ bool ChessRules::hasInsufficientMaterial() const {
         numWhiteQueens == 0 && numBlackQueens == 0) {
         
         // Check if bishops are on the same color
-        bool whiteBishopOnWhite = false;
-        bool blackBishopOnWhite = false;
-        
-        for (int square = 0; square < 64; ++square) {
-            if (!is_valid_square_(square)) continue;
-            
-            Piece piece = get_piece_(square);
-            
-            if (piece.type == PieceType::BISHOP) {
-                int rank = getRank(square);
-                int file = getFile(square);
-                bool squareIsWhite = (rank + file) % 2 == 0;
-                
-                if (piece.color == PieceColor::WHITE) {
-                    whiteBishopOnWhite = squareIsWhite;
-                } else {
-                    blackBishopOnWhite = squareIsWhite;
-                }
-            }
+        if ((whiteHasLightSquareBishop && blackHasLightSquareBishop) ||
+            (whiteHasDarkSquareBishop && blackHasDarkSquareBishop)) {
+            return true;
         }
-        
-        if (whiteBishopOnWhite == blackBishopOnWhite) {
+    }
+    
+    // King and two Knights vs King
+    if ((numWhiteKnights == 2 && numBlackKnights == 0) &&
+        numWhitePawns == 0 && numBlackPawns == 0 &&
+        numWhiteBishops == 0 && numBlackBishops == 0 &&
+        numWhiteRooks == 0 && numBlackRooks == 0 &&
+        numWhiteQueens == 0 && numBlackQueens == 0) {
+        return true;
+    }
+    
+    // King vs King and two Knights
+    if ((numWhiteKnights == 0 && numBlackKnights == 2) &&
+        numWhitePawns == 0 && numBlackPawns == 0 &&
+        numWhiteBishops == 0 && numBlackBishops == 0 &&
+        numWhiteRooks == 0 && numBlackRooks == 0 &&
+        numWhiteQueens == 0 && numBlackQueens == 0) {
+        return true;
+    }
+    
+    // King and Knight vs King and Knight
+    if (numWhiteKnights == 1 && numBlackKnights == 1 &&
+        numWhitePawns == 0 && numBlackPawns == 0 &&
+        numWhiteBishops == 0 && numBlackBishops == 0 &&
+        numWhiteRooks == 0 && numBlackRooks == 0 &&
+        numWhiteQueens == 0 && numBlackQueens == 0) {
+        return true;
+    }
+    
+    // King and Knight vs King and Bishop
+    if ((numWhiteKnights == 1 && numBlackBishops == 1 && numBlackKnights == 0 && numWhiteBishops == 0) ||
+        (numBlackKnights == 1 && numWhiteBishops == 1 && numWhiteKnights == 0 && numBlackBishops == 0)) {
+        if (numWhitePawns == 0 && numBlackPawns == 0 &&
+            numWhiteRooks == 0 && numBlackRooks == 0 &&
+            numWhiteQueens == 0 && numBlackQueens == 0) {
             return true;
         }
     }
     
     return false;
-}
-
-bool ChessRules::isThreefoldRepetition(const std::vector<uint64_t>& position_history) const {
-    if (position_history.empty()) {
-        return false;
-    }
-    
-    // Count current position
-    uint64_t current_hash = position_history.back();
-    int count = 0;
-    
-    for (uint64_t hash : position_history) {
-        if (hash == current_hash) {
-            count++;
-        }
-    }
-    
-    return count >= 3;
 }
 
 bool ChessRules::isFiftyMoveRule(int halfmove_clock) const {
@@ -489,40 +413,53 @@ CastlingRights ChessRules::getUpdatedCastlingRights(
     
     // Update based on rook movement
     if (piece.type == PieceType::ROOK) {
-        int file = getFile(move.from_square);
-        int rank = getRank(move.from_square);
-        
-        if (piece.color == PieceColor::WHITE && rank == 7) {
-            if (file == 0) {
-                updated_rights.white_queenside = false;
-            } else if (file == 7) {
+        if (piece.color == PieceColor::WHITE) {
+            // Check if this rook is in a castling position
+            int rookFile = getFile(move.from_square);
+            int kingsideRookFile = state_.getOriginalRookFile(true, PieceColor::WHITE);
+            int queensideRookFile = state_.getOriginalRookFile(false, PieceColor::WHITE);
+            
+            if (rookFile == kingsideRookFile && getRank(move.from_square) == 7) {
                 updated_rights.white_kingside = false;
+            } else if (rookFile == queensideRookFile && getRank(move.from_square) == 7) {
+                updated_rights.white_queenside = false;
             }
-        } else if (piece.color == PieceColor::BLACK && rank == 0) {
-            if (file == 0) {
-                updated_rights.black_queenside = false;
-            } else if (file == 7) {
+        } else {
+            // Black rook
+            int rookFile = getFile(move.from_square);
+            int kingsideRookFile = state_.getOriginalRookFile(true, PieceColor::BLACK);
+            int queensideRookFile = state_.getOriginalRookFile(false, PieceColor::BLACK);
+            
+            if (rookFile == kingsideRookFile && getRank(move.from_square) == 0) {
                 updated_rights.black_kingside = false;
+            } else if (rookFile == queensideRookFile && getRank(move.from_square) == 0) {
+                updated_rights.black_queenside = false;
             }
         }
     }
     
     // Update based on rook capture
     if (!captured.is_empty() && captured.type == PieceType::ROOK) {
-        int file = getFile(move.to_square);
-        int rank = getRank(move.to_square);
-        
-        if (captured.color == PieceColor::WHITE && rank == 7) {
-            if (file == 0) {
-                updated_rights.white_queenside = false;
-            } else if (file == 7) {
+        if (captured.color == PieceColor::WHITE) {
+            int rookFile = getFile(move.to_square);
+            int kingsideRookFile = state_.getOriginalRookFile(true, PieceColor::WHITE);
+            int queensideRookFile = state_.getOriginalRookFile(false, PieceColor::WHITE);
+            
+            if (rookFile == kingsideRookFile && getRank(move.to_square) == 7) {
                 updated_rights.white_kingside = false;
+            } else if (rookFile == queensideRookFile && getRank(move.to_square) == 7) {
+                updated_rights.white_queenside = false;
             }
-        } else if (captured.color == PieceColor::BLACK && rank == 0) {
-            if (file == 0) {
-                updated_rights.black_queenside = false;
-            } else if (file == 7) {
+        } else {
+            // Black rook captured
+            int rookFile = getFile(move.to_square);
+            int kingsideRookFile = state_.getOriginalRookFile(true, PieceColor::BLACK);
+            int queensideRookFile = state_.getOriginalRookFile(false, PieceColor::BLACK);
+            
+            if (rookFile == kingsideRookFile && getRank(move.to_square) == 0) {
                 updated_rights.black_kingside = false;
+            } else if (rookFile == queensideRookFile && getRank(move.to_square) == 0) {
+                updated_rights.black_queenside = false;
             }
         }
     }
@@ -539,7 +476,7 @@ void ChessRules::addPawnMoves(std::vector<ChessMove>& moves, int square, PieceCo
     int newRank = rank + direction;
     if (newRank >= 0 && newRank < 8) {
         int newSquare = getSquare(newRank, file);
-        if (get_piece_(newSquare).is_empty()) {
+        if (state_.getPiece(newSquare).is_empty()) {
             // Check if pawn is on the last rank (promotion)
             if (newRank == 0 || newRank == 7) {
                 // Add all promotion options
@@ -556,7 +493,7 @@ void ChessRules::addPawnMoves(std::vector<ChessMove>& moves, int square, PieceCo
                 (current_player == PieceColor::BLACK && rank == 1)) {
                 int twoSquaresForward = newRank + direction;
                 int twoSquareNewSquare = getSquare(twoSquaresForward, file);
-                if (get_piece_(twoSquareNewSquare).is_empty()) {
+                if (state_.getPiece(twoSquareNewSquare).is_empty()) {
                     moves.push_back({square, twoSquareNewSquare});
                 }
             }
@@ -566,22 +503,20 @@ void ChessRules::addPawnMoves(std::vector<ChessMove>& moves, int square, PieceCo
     // Captures (including en passant)
     for (int fileOffset : {-1, 1}) {
         int newFile = file + fileOffset;
-        if (newFile >= 0 && newFile < 8) {
+        if (newFile >= 0 && newFile < 8 && newRank >= 0 && newRank < 8) {
             int newSquare = getSquare(newRank, newFile);
             
             // Regular capture
-            if (is_valid_square_(newSquare)) {
-                Piece targetPiece = get_piece_(newSquare);
-                if (!targetPiece.is_empty() && targetPiece.color != current_player) {
-                    // Check for promotion
-                    if (newRank == 0 || newRank == 7) {
-                        moves.push_back({square, newSquare, PieceType::QUEEN});
-                        moves.push_back({square, newSquare, PieceType::ROOK});
-                        moves.push_back({square, newSquare, PieceType::BISHOP});
-                        moves.push_back({square, newSquare, PieceType::KNIGHT});
-                    } else {
-                        moves.push_back({square, newSquare});
-                    }
+            Piece targetPiece = state_.getPiece(newSquare);
+            if (!targetPiece.is_empty() && targetPiece.color != current_player) {
+                // Check for promotion
+                if (newRank == 0 || newRank == 7) {
+                    moves.push_back({square, newSquare, PieceType::QUEEN});
+                    moves.push_back({square, newSquare, PieceType::ROOK});
+                    moves.push_back({square, newSquare, PieceType::BISHOP});
+                    moves.push_back({square, newSquare, PieceType::KNIGHT});
+                } else {
+                    moves.push_back({square, newSquare});
                 }
             }
             
@@ -603,7 +538,7 @@ void ChessRules::addKnightMoves(std::vector<ChessMove>& moves, int square, Piece
         
         if (newRank >= 0 && newRank < 8 && newFile >= 0 && newFile < 8) {
             int newSquare = getSquare(newRank, newFile);
-            Piece targetPiece = get_piece_(newSquare);
+            Piece targetPiece = state_.getPiece(newSquare);
             
             if (targetPiece.is_empty() || targetPiece.color != current_player) {
                 moves.push_back({square, newSquare});
@@ -639,7 +574,7 @@ void ChessRules::addSlidingMoves(std::vector<ChessMove>& moves, int square, Piec
             }
             
             int newSquare = getSquare(newRank, newFile);
-            Piece targetPiece = get_piece_(newSquare);
+            Piece targetPiece = state_.getPiece(newSquare);
             
             if (targetPiece.is_empty()) {
                 // Empty square, can move here
@@ -666,7 +601,7 @@ void ChessRules::addKingMoves(std::vector<ChessMove>& moves, int square, PieceCo
         
         if (newRank >= 0 && newRank < 8 && newFile >= 0 && newFile < 8) {
             int newSquare = getSquare(newRank, newFile);
-            Piece targetPiece = get_piece_(newSquare);
+            Piece targetPiece = state_.getPiece(newSquare);
             
             if (targetPiece.is_empty() || targetPiece.color != current_player) {
                 moves.push_back({square, newSquare});
@@ -681,80 +616,138 @@ void ChessRules::addCastlingMoves(std::vector<ChessMove>& moves, PieceColor curr
         return;  // Cannot castle when in check
     }
     
+    // Get castling parameters based on current player
+    bool canCastleKingside = (current_player == PieceColor::WHITE) ? 
+                            castling_rights.white_kingside : castling_rights.black_kingside;
+    bool canCastleQueenside = (current_player == PieceColor::WHITE) ? 
+                             castling_rights.white_queenside : castling_rights.black_queenside;
+    
+    if (!canCastleKingside && !canCastleQueenside) {
+        return;  // No castling rights
+    }
+    
     // Find the king
-    int kingSquare = get_king_square_(current_player);
+    int kingSquare = state_.getKingSquare(current_player);
     if (kingSquare == -1) {
         return;  // No king found
     }
     
-    int rank = getRank(kingSquare);
-    int file = getFile(kingSquare);
+    int kingRank = getRank(kingSquare);
+    int kingFile = getFile(kingSquare);
     
-    // Kingside castling
-    if ((current_player == PieceColor::WHITE && castling_rights.white_kingside) ||
-        (current_player == PieceColor::BLACK && castling_rights.black_kingside)) {
+    // Handle kingside castling
+    if (canCastleKingside) {
+        std::pair<int, int> castlingSquares = getCastlingSquares(current_player, true);
+        int kingTarget = castlingSquares.first;
+        int rookTarget = castlingSquares.second;
         
-        bool pathClear = true;
-        for (int f = file + 1; f < 7; ++f) {
-            int square = getSquare(rank, f);
-            if (!get_piece_(square).is_empty()) {
-                pathClear = false;
-                break;
-            }
+        // In Chess960, the king's target is two files to the right of its starting position
+        int targetFile = kingFile + 2;
+        if (chess960_ && targetFile < 8) {
+            kingTarget = getSquare(kingRank, targetFile);
         }
         
-        if (pathClear) {
-            // Check if king passes through or ends up in check
-            bool safeToPass = true;
-            for (int f = file + 1; f <= file + 2; ++f) {
-                int square = getSquare(rank, f);
-                if (isSquareAttacked(square, oppositeColor(current_player))) {
-                    safeToPass = false;
-                    break;
-                }
-            }
-            
-            if (safeToPass) {
-                int kingTarget = getSquare(rank, file + 2);
-                moves.push_back({kingSquare, kingTarget});
-            }
+        // Check if the castling path is clear
+        if (isValidCastle(kingSquare, kingTarget, current_player, castling_rights)) {
+            moves.push_back({kingSquare, kingTarget});
         }
     }
     
-    // Queenside castling
-    if ((current_player == PieceColor::WHITE && castling_rights.white_queenside) ||
-        (current_player == PieceColor::BLACK && castling_rights.black_queenside)) {
+    // Handle queenside castling
+    if (canCastleQueenside) {
+        std::pair<int, int> castlingSquares = getCastlingSquares(current_player, false);
+        int kingTarget = castlingSquares.first;
+        int rookTarget = castlingSquares.second;
         
-        bool pathClear = true;
-        for (int f = file - 1; f > 0; --f) {
-            int square = getSquare(rank, f);
-            if (!get_piece_(square).is_empty()) {
-                pathClear = false;
-                break;
-            }
+        // In Chess960, the king's target is two files to the left of its starting position
+        int targetFile = kingFile - 2;
+        if (chess960_ && targetFile >= 0) {
+            kingTarget = getSquare(kingRank, targetFile);
         }
         
-        if (pathClear) {
-            // Check if king passes through or ends up in check
-            bool safeToPass = true;
-            for (int f = file - 1; f >= file - 2; --f) {
-                int square = getSquare(rank, f);
-                if (isSquareAttacked(square, oppositeColor(current_player))) {
-                    safeToPass = false;
-                    break;
-                }
-            }
-            
-            if (safeToPass) {
-                int kingTarget = getSquare(rank, file - 2);
-                moves.push_back({kingSquare, kingTarget});
-            }
+        // Check if the castling path is clear
+        if (isValidCastle(kingSquare, kingTarget, current_player, castling_rights)) {
+            moves.push_back({kingSquare, kingTarget});
         }
     }
 }
 
-PieceColor ChessRules::oppositeColor(PieceColor color) {
-    return color == PieceColor::WHITE ? PieceColor::BLACK : PieceColor::WHITE;
+bool ChessRules::isValidCastle(int from_square, int to_square, PieceColor current_player, const CastlingRights& castling_rights) const {
+    int fromRank = getRank(from_square);
+    int fromFile = getFile(from_square);
+    int toFile = getFile(to_square);
+    
+    // Determine castling direction
+    bool isKingside = (toFile > fromFile);
+    
+    // Get the original rook file
+    int rookFile = state_.getOriginalRookFile(isKingside, current_player);
+    int rookSquare = getSquare(fromRank, rookFile);
+    
+    // Check that rook is present
+    Piece rook = state_.getPiece(rookSquare);
+    if (rook.type != PieceType::ROOK || rook.color != current_player) {
+        return false;
+    }
+    
+    // Check that the path between king and rook is clear
+    int minFile = std::min(fromFile, rookFile);
+    int maxFile = std::max(fromFile, rookFile);
+    
+    for (int file = minFile + 1; file < maxFile; ++file) {
+        int square = getSquare(fromRank, file);
+        if (!state_.getPiece(square).is_empty()) {
+            return false;  // Path between king and rook is not clear
+        }
+    }
+    
+    // Check that the king's path is safe
+    int step = isKingside ? 1 : -1;
+    for (int file = fromFile; file != toFile + step; file += step) {
+        int square = getSquare(fromRank, file);
+        
+        // Skip the original king square check
+        if (square == from_square) continue;
+        
+        // Check if the square is attacked
+        if (isSquareAttacked(square, oppositeColor(current_player))) {
+            return false;  // Square in the king's path is attacked
+        }
+        
+        // For non-Chess960, all squares in the king's path must be empty
+        // For Chess960, squares between king and king's destination must be empty
+        if (!chess960_ || (file != rookFile)) {
+            if (square != rookSquare && !state_.getPiece(square).is_empty()) {
+                return false;  // Square in the king's path is not empty
+            }
+        }
+    }
+    
+    return true;
+}
+
+std::pair<int, int> ChessRules::getCastlingSquares(PieceColor color, bool kingside) const {
+    int rank = (color == PieceColor::WHITE) ? 7 : 0;
+    
+    // Determine king and rook positions after castling
+    int kingFile = chess960_ ? getFile(state_.getKingSquare(color)) : 4;
+    int rookFile = state_.getOriginalRookFile(kingside, color);
+    
+    int kingTargetFile = kingside ? kingFile + 2 : kingFile - 2;
+    int rookTargetFile = kingside ? kingTargetFile - 1 : kingTargetFile + 1;
+    
+    int kingTarget = getSquare(rank, kingTargetFile);
+    int rookTarget = getSquare(rank, rookTargetFile);
+    
+    return {kingTarget, rookTarget};
+}
+
+bool ChessRules::moveExposesKing(const ChessMove& move, PieceColor current_player) const {
+    // Create a temporary state to test the move
+    ChessState tempState = state_.cloneWithMove(move);
+    
+    // Check if the king is in check after the move
+    return tempState.isInCheck(current_player);
 }
 
 } // namespace chess

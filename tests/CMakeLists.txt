@@ -47,6 +47,11 @@ if(NN_TEST_SOURCES)
     target_link_libraries(nn_tests
         PRIVATE 
         alphazero_lib
+        alphazero_nn
+        alphazero_games
+        alphazero_chess
+        alphazero_go
+        alphazero_gomoku
         GTest::gtest
         GTest::gtest_main
         pthread
@@ -61,6 +66,7 @@ if(INTEGRATION_TEST_SOURCES)
     target_link_libraries(integration_tests
         PRIVATE 
         alphazero_lib
+        alphazero_nn
         GTest::gtest
         GTest::gtest_main
         pthread

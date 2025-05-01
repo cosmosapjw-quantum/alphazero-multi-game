@@ -3,9 +3,11 @@
 #define ZOBRIST_HASH_H
 
 #include <vector>
+#include <unordered_map>
+#include <string>
 #include <cstdint>
 #include <random>
-#include "alphazero/core/igamestate.h"
+#include "igamestate.h"
 
 namespace alphazero {
 namespace core {
@@ -21,38 +23,62 @@ public:
     /**
      * @brief Constructor for board games
      * 
-     * @param gameType Type of game
      * @param boardSize Size of the game board
-     * @param numPieces Number of different piece types
+     * @param numPieceTypes Number of different piece types
+     * @param numPlayers Number of players
      * @param seed Random seed for deterministic initialization
      */
-    ZobristHash(GameType gameType, int boardSize, int numPieces, unsigned seed = 0);
+    ZobristHash(int boardSize, int numPieceTypes, int numPlayers, unsigned seed = 0);
     
     /**
      * @brief Get hash value for a piece at a position
      * 
-     * @param piece The piece type (usually player 1 or 2)
+     * @param pieceType The piece type
      * @param position The board position
      * @return 64-bit hash value
      */
-    uint64_t getPieceHash(int piece, int position) const;
+    uint64_t getPieceHash(int pieceType, int position) const;
     
     /**
      * @brief Get player turn hash
      * 
-     * @param player Current player
+     * @param player Current player (0-based index)
      * @return 64-bit hash value for the player
      */
     uint64_t getPlayerHash(int player) const;
     
     /**
-     * @brief Get game-specific feature hash
+     * @brief Add a custom feature with specified values
      * 
-     * @param featureIndex Index of the feature
+     * @param featureName Name of the feature
+     * @param numValues Number of possible values
+     */
+    void addFeature(const std::string& featureName, int numValues);
+    
+    /**
+     * @brief Get feature hash value
+     * 
+     * @param featureName Name of the feature
      * @param value Value of the feature
      * @return 64-bit hash value
      */
-    uint64_t getFeatureHash(int featureIndex, int value) const;
+    uint64_t getFeatureHash(const std::string& featureName, int value) const;
+    
+    /**
+     * @brief Check if a feature exists
+     * 
+     * @param featureName Name of the feature
+     * @return true if feature exists, false otherwise
+     */
+    bool hasFeature(const std::string& featureName) const;
+    
+    /**
+     * @brief Get number of values for a feature
+     * 
+     * @param featureName Name of the feature
+     * @return Number of values, or 0 if feature not found
+     */
+    int getFeatureValueCount(const std::string& featureName) const;
     
     /**
      * @brief Get board size
@@ -62,21 +88,29 @@ public:
     int getBoardSize() const { return boardSize_; }
     
     /**
-     * @brief Get game type
+     * @brief Get number of piece types
      * 
-     * @return Game type
+     * @return Number of piece types
      */
-    GameType getGameType() const { return gameType_; }
+    int getNumPieceTypes() const { return numPieceTypes_; }
+    
+    /**
+     * @brief Get number of players
+     * 
+     * @return Number of players
+     */
+    int getNumPlayers() const { return numPlayers_; }
     
 private:
-    GameType gameType_;                   // Type of game
-    int boardSize_;                       // Board size
-    int numPieces_;                       // Number of piece types
-    int numFeatures_;                     // Number of game-specific features
+    int boardSize_;                                     // Board size
+    int numPieceTypes_;                                 // Number of piece types
+    int numPlayers_;                                    // Number of players
     
-    std::vector<std::vector<uint64_t>> pieceHashes_;   // Hash values for each piece at each position
-    std::vector<uint64_t> playerHashes_;               // Hash values for player turns
-    std::vector<std::vector<uint64_t>> featureHashes_; // Hash values for game-specific features
+    std::vector<std::vector<uint64_t>> pieceHashes_;    // [pieceType][position]
+    std::vector<uint64_t> playerHashes_;                // [player]
+    
+    // Named features for game-specific state
+    std::unordered_map<std::string, std::vector<uint64_t>> features_;
     
     /**
      * @brief Generate random 64-bit hash value
@@ -87,11 +121,13 @@ private:
     static uint64_t generateRandomHash(std::mt19937_64& rng);
     
     /**
-     * @brief Initialize the hash table for specific game features
+     * @brief Safe modulo operation (handles negative values)
      * 
-     * @param rng Random number generator
+     * @param value Value to take modulo of
+     * @param modulus Modulus value
+     * @return Safe modulo result
      */
-    void initializeGameSpecificFeatures(std::mt19937_64& rng);
+    static int safeModulo(int value, int modulus);
 };
 
 } // namespace core

@@ -7,6 +7,7 @@
 #include <array>
 #include <optional>
 #include <memory>
+#include <unordered_map>
 #include "alphazero/core/igamestate.h"
 #include "alphazero/core/zobrist_hash.h"
 
@@ -90,8 +91,9 @@ public:
      * 
      * @param chess960 Whether to use Chess960 rules
      * @param fen Optional FEN string for initial position
+     * @param position_number Chess960 position number (0-959) if applicable
      */
-    ChessState(bool chess960 = false, const std::string& fen = "");
+    ChessState(bool chess960 = false, const std::string& fen = "", int position_number = -1);
     
     /**
      * @brief Copy constructor
@@ -294,6 +296,30 @@ public:
      * @return Square index of the king, or -1 if not found
      */
     int getKingSquare(PieceColor color) const;
+    
+    /**
+     * @brief Check if the current game is using Chess960 rules
+     * 
+     * @return true if using Chess960 rules
+     */
+    bool isChess960() const { return chess960_; }
+    
+    /**
+     * @brief Get the original rook file (used for Chess960 castling)
+     * 
+     * @param is_kingside Whether to get kingside or queenside rook
+     * @param color Which player's rook
+     * @return File (0-7) of the original rook position
+     */
+    int getOriginalRookFile(bool is_kingside, PieceColor color) const;
+    
+    /**
+     * @brief Create a clone of this state with a move applied
+     * 
+     * @param move Move to apply
+     * @return New ChessState with the move applied
+     */
+    ChessState cloneWithMove(const ChessMove& move) const;
 
 private:
     static const int BOARD_SIZE = 8;
@@ -310,6 +336,12 @@ private:
     int fullmove_number_;
     bool chess960_;
     
+    // Original positions for Chess960 castling
+    int white_kingside_rook_file_;
+    int white_queenside_rook_file_;
+    int black_kingside_rook_file_;
+    int black_queenside_rook_file_;
+    
     // Move history for undoing moves
     struct MoveInfo {
         ChessMove move;
@@ -321,6 +353,9 @@ private:
         bool was_en_passant;
     };
     std::vector<MoveInfo> move_history_;
+    
+    // Position history for repetition detection
+    std::unordered_map<uint64_t, int> position_history_;
     
     // Cache for legal moves
     mutable std::vector<ChessMove> cached_legal_moves_;
@@ -341,11 +376,17 @@ private:
     
     // Helper methods
     void initializeStartingPosition();
+    void initializeChess960Position(int position_number);
     void initializeEmpty();
     void invalidateCache();
     
     // Update zobrist hash
     void updateHash() const;
+    void updateHashIncrementally(int square, const Piece& old_piece, const Piece& new_piece);
+    
+    // Position repetition handling
+    void recordPosition();
+    bool isThreefoldRepetition() const;
     
     // Utility functions
     static int getRank(int square) { return square / 8; }

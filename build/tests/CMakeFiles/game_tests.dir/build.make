@@ -175,6 +175,21 @@ tests/game_tests: tests/CMakeFiles/game_tests.dir/build.make
 tests/game_tests: src/libalphazero_lib.a
 tests/game_tests: /usr/lib/x86_64-linux-gnu/libgtest.a
 tests/game_tests: /usr/lib/x86_64-linux-gnu/libgtest_main.a
+tests/game_tests: /usr/lib/x86_64-linux-gnu/libspdlog.so.1.9.2
+tests/game_tests: /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1
+tests/game_tests: src/nn/libalphazero_nn.a
+tests/game_tests: src/mcts/libalphazero_mcts.a
+tests/game_tests: /home/cosmos/anaconda3/envs/alphazero_env/lib/libc10.so
+tests/game_tests: /usr/local/cuda-12.4/lib64/libnvrtc.so
+tests/game_tests: /home/cosmos/anaconda3/envs/alphazero_env/lib/libc10_cuda.so
+tests/game_tests: src/core/libalphazero_core.a
+tests/game_tests: src/games/chess/libalphazero_chess.a
+tests/game_tests: src/games/go/libalphazero_go.a
+tests/game_tests: src/games/gomoku/libalphazero_gomoku.a
+tests/game_tests: src/core/libalphazero_core.a
+tests/game_tests: src/games/chess/libalphazero_chess.a
+tests/game_tests: src/games/go/libalphazero_go.a
+tests/game_tests: src/games/gomoku/libalphazero_gomoku.a
 tests/game_tests: /home/cosmos/anaconda3/envs/alphazero_env/lib/libtorch.so
 tests/game_tests: /home/cosmos/anaconda3/envs/alphazero_env/lib/libprotobuf.so.28.2.0
 tests/game_tests: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_log_internal_check_op.so.2407.0.0
@@ -259,11 +274,7 @@ tests/game_tests: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_log_seve
 tests/game_tests: /home/cosmos/anaconda3/envs/alphazero_env/lib/libc10_cuda.so
 tests/game_tests: /home/cosmos/anaconda3/envs/alphazero_env/lib/libc10.so
 tests/game_tests: /usr/local/cuda-12.4/lib64/libcudart.so
-tests/game_tests: /home/cosmos/anaconda3/envs/alphazero_env/lib/libc10.so
-tests/game_tests: /usr/local/cuda-12.4/lib64/libnvrtc.so
-tests/game_tests: /home/cosmos/anaconda3/envs/alphazero_env/lib/libc10_cuda.so
-tests/game_tests: /usr/lib/x86_64-linux-gnu/libspdlog.so.1.9.2
-tests/game_tests: /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1
+tests/game_tests: /usr/lib/x86_64-linux-gnu/libcudnn.so
 tests/game_tests: /usr/lib/x86_64-linux-gnu/libgtest.a
 tests/game_tests: tests/CMakeFiles/game_tests.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable game_tests"

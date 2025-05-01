@@ -6,6 +6,7 @@
 #include <array>
 #include <random>
 #include <cstdint>
+#include <string>
 #include "alphazero/games/chess/chess_state.h"
 
 namespace alphazero {
@@ -84,11 +85,30 @@ public:
      */
     static constexpr int getNumberOfPositions() { return 960; }
     
+    /**
+     * @brief Find the files of the rooks in a Chess960 position
+     * 
+     * @param positionNumber Position number (0-959)
+     * @return Pair of file indices for the queenside and kingside rooks
+     */
+    static std::pair<int, int> getRookFiles(int positionNumber);
+    
+    /**
+     * @brief Get the position of the king in a Chess960 position
+     * 
+     * @param positionNumber Position number (0-959)
+     * @return File index of the king (0-7)
+     */
+    static int getKingFile(int positionNumber);
+    
 private:
     // Helper methods for position generation and validation
     static bool hasValidBishopPlacement(const std::array<PieceType, 8>& position);
     static bool hasKingBetweenRooks(const std::array<PieceType, 8>& position);
     static std::array<int, 8> getPermutation(int n);
+    
+    // Find piece positions in the arrangement
+    static std::vector<int> findPieceIndices(const std::array<PieceType, 8>& position, PieceType pieceType);
 };
 
 } // namespace chess

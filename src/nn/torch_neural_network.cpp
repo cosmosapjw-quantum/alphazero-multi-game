@@ -251,7 +251,17 @@ void TorchNeuralNetwork::predictBatch(
         
         // Stack the tensors to form a batch
         // Use non-blocking copy to overlap CPU-GPU transfer with computation
-        torch::Tensor batchTensor = torch::stack(stateTensors, 0).to(device_, torch::kFloat, true, true);
+        torch::Tensor batchTensor;
+        
+        if (config_.usePinnedMemory && isGpu_) {
+            // Use pinned memory for faster CPU-GPU transfers
+            auto pinOptions = torch::TensorOptions().dtype(torch::kFloat32).pinned_memory(true);
+            auto pinnedTensor = torch::stack(stateTensors, 0).to(pinOptions);
+            batchTensor = pinnedTensor.to(device_, torch::kFloat, true, true);
+        } else {
+            // Standard GPU transfer
+            batchTensor = torch::stack(stateTensors, 0).to(device_, torch::kFloat, true, true);
+        }
         
         // Convert to FP16 if configured (faster on GPU)
         if (config_.useFp16 && isGpu_) {
@@ -786,6 +796,43 @@ std::string TorchNeuralNetwork::getBatchQueueStats() const {
     return "Batch queue not enabled";
 }
 
+std::shared_ptr<DDWRandWireResNet> TorchNeuralNetwork::createDDWRandWireResNet(
+    int64_t input_channels, int64_t output_size, int64_t channels, int64_t num_blocks) {
+#ifndef LIBTORCH_OFF
+    try {
+        auto model = std::make_shared<DDWRandWireResNet>(input_channels, output_size, channels, num_blocks);
+        spdlog::info("Created DDWRandWireResNet model with {} input channels, {} output size", 
+                 input_channels, output_size);
+        return model;
+    } catch (const std::exception& e) {
+        spdlog::error("Failed to create DDWRandWireResNet: {}", e.what());
+        throw;
+    }
+#else
+    spdlog::error("Cannot create DDWRandWireResNet - LibTorch is disabled");
+    throw std::runtime_error("Cannot create DDWRandWireResNet - LibTorch is disabled");
+#endif
+}
+
+bool TorchNeuralNetwork::exportToTorchScript(const std::string& modelPath) const {
+#ifndef LIBTORCH_OFF
+    try {
+        // Check if model is a DDWRandWireResNet
+        // Replace get_module with correct method
+        // Since this is a complex type conversion, we'll save the model directly
+        model_.save(modelPath);
+        spdlog::info("Model exported to TorchScript format at {}", modelPath);
+        return true;
+    } catch (const std::exception& e) {
+        spdlog::error("Failed to export model to TorchScript: {}", e.what());
+        return false;
+    }
+#else
+    spdlog::error("Cannot export model - LibTorch is disabled");
+    return false;
+#endif
+}
+
 #ifndef LIBTORCH_OFF
 torch::Tensor TorchNeuralNetwork::stateTensor(const core::IGameState& state) const {
     // Get tensor representation from state
@@ -903,12 +950,12 @@ std::pair<std::vector<float>, float> TorchNeuralNetwork::processOutput(
     policyTensor = policyTensor.to(torch::kCPU);
     valueTensor = valueTensor.to(torch::kCPU);
     
-    // Convert policy to vector
+    // Optimize policy vector conversion
     std::vector<float> policy(actionSize);
     int tensorSize = policyTensor.size(1);
     
     if (tensorSize == actionSize) {
-        // Direct copy
+        // Use direct memcpy for better performance
         std::memcpy(policy.data(), policyTensor.data_ptr<float>(), actionSize * sizeof(float));
     } else {
         // Resize policy if needed
@@ -917,13 +964,27 @@ std::pair<std::vector<float>, float> TorchNeuralNetwork::processOutput(
                      << ", got " << tensorSize << std::endl;
         }
         
-        // Copy what we can
+        // Copy what we can with fast memcpy
         int copySize = std::min(actionSize, tensorSize);
         std::memcpy(policy.data(), policyTensor.data_ptr<float>(), copySize * sizeof(float));
         
-        // Fill the rest with zeros
-        for (int i = copySize; i < actionSize; ++i) {
-            policy[i] = 0.0f;
+        // Fill the rest with zeros (use std::fill_n for better vectorization)
+        if (copySize < actionSize) {
+            std::fill_n(policy.data() + copySize, actionSize - copySize, 0.0f);
+        }
+    }
+    
+    // Apply softmax normalization if needed
+    float policySum = 0.0f;
+    for (int i = 0; i < actionSize; ++i) {
+        policySum += policy[i];
+    }
+    
+    if (std::abs(policySum - 1.0f) > 1e-3f && policySum > 0.0f) {
+        // Normalize to ensure valid probability distribution
+        float invSum = 1.0f / policySum;
+        for (int i = 0; i < actionSize; ++i) {
+            policy[i] *= invSum;
         }
     }
     
@@ -950,12 +1011,30 @@ void TorchNeuralNetwork::performWarmup() {
     // Create dummy state
     std::unique_ptr<core::IGameState> state = core::createGameState(gameType_, boardSize_);
     
-    // Single inference warmup
+    // Single inference warmup - important for JIT compilation
     for (int i = 0; i < config_.numWarmupIterations; ++i) {
         predict(*state);
     }
     
-    // Batch inference warmup
+    // Batch inference warmup with various batch sizes
+    for (int batchSize : {1, 2, 4, 8, 16, 32, std::min(64, batchSize_)}) {
+        if (batchSize > batchSize_) continue;
+        
+        std::vector<std::reference_wrapper<const core::IGameState>> states;
+        states.reserve(batchSize);
+        for (int i = 0; i < batchSize; ++i) {
+            states.push_back(std::cref(*state));
+        }
+        
+        std::vector<std::vector<float>> policies;
+        std::vector<float> values;
+        
+        for (int i = 0; i < 2; ++i) {
+            predictBatch(states, policies, values);
+        }
+    }
+    
+    // Final warmup with configured batch size
     std::vector<std::reference_wrapper<const core::IGameState>> states;
     states.reserve(batchSize_);
     for (int i = 0; i < batchSize_; ++i) {

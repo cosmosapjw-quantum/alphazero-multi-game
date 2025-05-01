@@ -3,7 +3,8 @@
 Model export utility for AlphaZero models.
 
 This script exports trained PyTorch models to optimized formats (TorchScript, ONNX)
-for faster inference in production environments.
+for faster inference in production environments. It supports both Python models and 
+the new C++ DDWRandWireResNet implementation for maximum performance.
 
 Usage:
     python export_model.py [options]
@@ -12,11 +13,17 @@ Options:
     --model MODEL           Path to model file (.pt or .pth)
     --game {gomoku,chess,go}  Game type
     --size SIZE             Board size (default: depends on game)
-    --format {torchscript,onnx,both}  Export format (default: both)
+    --format {torchscript,onnx,both}  Export format (default: torchscript)
     --output-dir DIR        Output directory (default: exported_models)
     --quantize              Apply quantization to reduce model size
     --test                  Test exported model against original
     --variant               Use variant rules
+    --create-random         Create a random model if no model provided
+    --use-cpp               Try to use C++ implementation for better performance
+    --channels CHANNELS     Number of model channels (default: 64)
+    --blocks BLOCKS         Number of random wire blocks (default: 8)
+    --device DEVICE         Device to use (default: auto-detect)
+    --timeout TIMEOUT       Timeout in seconds for model creation (default: 60)
 """
 
 import os
@@ -25,16 +32,41 @@ import argparse
 import time
 import torch
 import numpy as np
-import _alphazero_cpp as az
-from alphazero.models import DDWRandWireResNet
+import json
 
-# Add project root to path for imports
+# Add parent directory to path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+# Add the build directory for the C++ extension
+build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'build', 'src', 'pybind'))
+sys.path.insert(0, build_dir)
+# Add the root directory where the .so might also be copied
+root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+sys.path.insert(0, root_dir)
+
+import torch  # Import torch first
+import _alphazero_cpp as az
+
+# Try to import the models
+try:
+    # First try to import both Python and C++ implementations
+    from alphazero.models import DDWRandWireResNet, DDWRandWireResNetWrapper, create_model
+    CPP_MODEL_AVAILABLE = True
+except ImportError:
+    try:
+        # If C++ implementation not available, try just the Python one
+        from alphazero.models import DDWRandWireResNet, create_model
+        CPP_MODEL_AVAILABLE = False
+        print("C++ DDWRandWireResNet wrapper not available. Using Python implementation only.")
+    except ImportError:
+        # If even the Python implementation fails, we'll need to handle it in main()
+        print("Warning: Failed to import model classes. Will attempt to create models directly when needed.")
+        # Ensure CPP_MODEL_AVAILABLE is defined
+        CPP_MODEL_AVAILABLE = False
 
 
 def parse_args():
     parser = argparse.ArgumentParser(description="AlphaZero Model Export")
-    parser.add_argument("--model", type=str, required=True,
+    parser.add_argument("--model", type=str,
                         help="Path to model file")
     parser.add_argument("--game", type=str, required=True,
                         choices=["gomoku", "chess", "go"],
@@ -52,16 +84,163 @@ def parse_args():
                         help="Test exported model against original")
     parser.add_argument("--variant", action="store_true",
                         help="Use variant rules")
+    parser.add_argument("--create-random", action="store_true",
+                        help="Create a random model if no model provided")
+    parser.add_argument("--use-cpp", action="store_true",
+                        help="Try to use C++ implementation for better performance")
+    parser.add_argument("--channels", type=int, default=64,
+                        help="Number of model channels (default: 64)")
+    parser.add_argument("--blocks", type=int, default=8,
+                        help="Number of random wire blocks (default: 8)")
+    parser.add_argument("--device", type=str, default="",
+                        help="Device to use (default: auto-detect)")
+    parser.add_argument("--timeout", type=int, default=60,
+                        help="Timeout in seconds for model creation (default: 60)")
     return parser.parse_args()
 
 
-def load_model(model_path, input_channels, action_size, device):
-    """Load a PyTorch model."""
-    model = DDWRandWireResNet(input_channels, action_size)
-    model.load_state_dict(torch.load(model_path, map_location=device))
-    model.to(device)
-    model.eval()
-    return model
+def create_random_model(input_channels, action_size, channels=64, blocks=8, use_cpp=False, device="cpu", timeout_secs=60):
+    """Create a random model with specified parameters."""
+    print(f"Creating random model with {channels} channels and {blocks} blocks")
+    
+    # Add a timeout mechanism to prevent hangs
+    import threading
+    import signal
+    
+    # Flag to check if model creation is done
+    creation_done = threading.Event()
+    
+    # Setup timeout handler
+    def timeout_handler():
+        if not creation_done.is_set():
+            print(f"\nWARNING: Model creation taking longer than {timeout_secs} seconds!")
+            print("You can:")
+            print("  1. Keep waiting (model creation will continue)")
+            print("  2. Ctrl+C to cancel and try again with smaller model (--channels and --blocks)")
+            print("  3. Try with CPU instead of GPU (--device cpu)")
+    
+    # Start timeout timer
+    timer = threading.Timer(timeout_secs, timeout_handler)
+    timer.daemon = True
+    timer.start()
+    
+    try:
+        if use_cpp:
+            try:
+                print("Attempting to use C++ implementation...")
+                if CPP_MODEL_AVAILABLE:
+                    print("Using DDWRandWireResNetWrapper")
+                    model = DDWRandWireResNetWrapper(input_channels, action_size, channels, blocks)
+                else:
+                    # Use C++ implementation directly
+                    print("Using az.DDWRandWireResNetCpp directly")
+                    model = az.DDWRandWireResNetCpp(input_channels, action_size, channels, blocks)
+                print("C++ model initialized successfully")
+                print("Using C++ DDWRandWireResNet implementation")
+            except Exception as e:
+                print(f"Error creating C++ model: {e}")
+                # Fall back to Python implementation
+                model = DDWRandWireResNet(input_channels, action_size, channels, blocks)
+                print("Using Python DDWRandWireResNet implementation (fallback)")
+        else:
+            # Try Python implementation
+            try:
+                model = DDWRandWireResNet(input_channels, action_size, channels, blocks)
+                print("Using Python DDWRandWireResNet implementation")
+            except NameError:
+                # Python implementation not available, use C++
+                print("Python implementation not found, attempting C++ fallback...")
+                model = az.DDWRandWireResNetCpp(input_channels, action_size, channels, blocks)
+                print("Using C++ DDWRandWireResNet implementation (fallback)")
+        
+        # Cancel timer since model creation succeeded
+        creation_done.set()
+        timer.cancel()
+        
+        print(f"Moving model to device: {device}")
+        model.to(device)
+        print("Setting model to eval mode")
+        model.eval()
+        return model
+    except Exception as e:
+        creation_done.set()
+        timer.cancel()
+        if 'CUDA out of memory' in str(e):
+            print(f"\nERROR: GPU out of memory. Try reducing model size (--channels and --blocks) or use CPU.")
+        raise e
+
+
+def load_model(model_path, input_channels, action_size, device, channels=64, blocks=8, use_cpp=False, create_random=False, timeout_secs=60):
+    """Load a PyTorch model or create a random one if requested."""
+    if model_path is None:
+        if not create_random:
+            raise ValueError("No model path provided and --create-random not specified")
+        return create_random_model(input_channels, action_size, channels, blocks, use_cpp, device, timeout_secs)
+    
+    print(f"Loading model from {model_path}")
+    
+    # Add a timeout mechanism to prevent hangs
+    import threading
+    
+    # Flag to check if model creation is done
+    creation_done = threading.Event()
+    
+    # Setup timeout handler
+    def timeout_handler():
+        if not creation_done.is_set():
+            print(f"\nWARNING: Model loading taking longer than {timeout_secs} seconds!")
+            print("You can:")
+            print("  1. Keep waiting (model loading will continue)")
+            print("  2. Ctrl+C to cancel and try again with smaller model (--channels and --blocks)")
+            print("  3. Try with CPU instead of GPU (--device cpu)")
+    
+    # Start timeout timer
+    timer = threading.Timer(timeout_secs, timeout_handler)
+    timer.daemon = True
+    timer.start()
+    
+    try:
+        if use_cpp:
+            try:
+                if CPP_MODEL_AVAILABLE:
+                    model = DDWRandWireResNetWrapper(input_channels, action_size)
+                else:
+                    # Use C++ implementation directly
+                    model = az.DDWRandWireResNetCpp(input_channels, action_size)
+                print("Using C++ DDWRandWireResNet implementation")
+            except Exception as e:
+                print(f"Error creating C++ model: {e}")
+                # Fall back to Python implementation
+                model = DDWRandWireResNet(input_channels, action_size)
+                print("Using Python DDWRandWireResNet implementation (fallback)")
+        else:
+            # Try Python implementation
+            try:
+                model = DDWRandWireResNet(input_channels, action_size)
+                print("Using Python DDWRandWireResNet implementation")
+            except NameError:
+                # Python implementation not available, use C++
+                model = az.DDWRandWireResNetCpp(input_channels, action_size)
+                print("Using C++ DDWRandWireResNet implementation (fallback)")
+        
+        print(f"Loading state dict from {model_path}")
+        model.load_state_dict(torch.load(model_path, map_location=device))
+        
+        # Cancel timer since model loading succeeded
+        creation_done.set()
+        timer.cancel()
+        
+        print(f"Moving model to device: {device}")
+        model.to(device)
+        print("Setting model to eval mode")
+        model.eval()
+        return model
+    except Exception as e:
+        creation_done.set()
+        timer.cancel()
+        if 'CUDA out of memory' in str(e):
+            print(f"\nERROR: GPU out of memory. Try reducing model size or use CPU.")
+        raise e
 
 
 def export_to_torchscript(model, model_path, output_dir, quantize=False):
@@ -298,15 +477,66 @@ def main():
     print(f"Action space size: {action_size}")
     
     # Determine device
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = args.device
+    if not device:
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
+    
+    # Adjust model size based on game and device
+    if args.channels == 64 and args.blocks == 8:
+        # Only apply automatic adjustment for default values
+        is_large_game = args.game == "go" and board_size >= 19
+        is_gpu = str(device).startswith("cuda")
+        
+        if is_large_game and not is_gpu:
+            print("Large game detected on CPU. Reducing model size for faster creation.")
+            args.channels = 32
+            args.blocks = 4
+        elif is_large_game and is_gpu:
+            print("Large game detected on GPU. Using moderate model size.")
+            args.channels = 48
+            args.blocks = 6
+        elif not is_gpu:
+            print("Using CPU. Reducing model size for faster creation.")
+            args.channels = 48
+            args.blocks = 6
+    
+    # Generate a model name if creating a random model and no model path provided
+    model_path = args.model
+    if model_path is None and args.create_random:
+        # Create a default filename for the random model
+        model_path = f"random_model_{args.game}_{board_size}x{board_size}.pt"
+        print(f"Will create random model and save to {model_path}")
     
     # Load the model
     try:
-        model = load_model(args.model, input_channels, action_size, device)
-        print(f"Loaded model from {args.model}")
+        start_time = time.time()
+        model = load_model(
+            model_path, 
+            input_channels, 
+            action_size, 
+            device,
+            channels=args.channels,
+            blocks=args.blocks,
+            use_cpp=args.use_cpp,
+            create_random=args.create_random,
+            timeout_secs=args.timeout
+        )
+        
+        if args.model:
+            print(f"Loaded model from {args.model}")
+        else:
+            # Save the randomly created model
+            if args.create_random:
+                os.makedirs(os.path.dirname(model_path) if os.path.dirname(model_path) else '.', exist_ok=True)
+                print(f"Saving random model to {model_path}")
+                torch.save(model.state_dict(), model_path)
+                print(f"Saved random model to {model_path}")
+        
+        load_time = time.time() - start_time
+        print(f"Model loading/creation took {load_time:.2f} seconds")
     except Exception as e:
-        print(f"Error loading model: {e}")
+        print(f"Error loading/creating model: {e}")
         return
     
     # Export model based on requested format
@@ -316,14 +546,22 @@ def main():
     onnx_quant_path = None
     
     if args.format in ["torchscript", "both"]:
+        print("\nExporting to TorchScript format...")
+        start_time = time.time()
         torchscript_path, torchscript_quant_path = export_to_torchscript(
-            model, args.model, args.output_dir, args.quantize
+            model, model_path, args.output_dir, args.quantize
         )
+        export_time = time.time() - start_time
+        print(f"TorchScript export took {export_time:.2f} seconds")
     
     if args.format in ["onnx", "both"]:
+        print("\nExporting to ONNX format...")
+        start_time = time.time()
         onnx_path, onnx_quant_path = export_to_onnx(
-            model, args.model, args.output_dir, args.quantize
+            model, model_path, args.output_dir, args.quantize
         )
+        export_time = time.time() - start_time
+        print(f"ONNX export took {export_time:.2f} seconds")
     
     # Test exported models if requested
     if args.test:

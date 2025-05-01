@@ -8,6 +8,7 @@
 // Only include torch headers if LibTorch is enabled
 #ifndef LIBTORCH_OFF
 #include <torch/torch.h>
+#include "alphazero/nn/ddw_randwire_resnet.h"
 #endif
 
 #include <mutex>
@@ -27,16 +28,20 @@ struct TorchNeuralNetworkConfig {
     bool useGpu = true;                    // Use GPU if available
     bool useFp16 = false;                  // Use half precision (FP16)
     int batchSize = 16;                    // Default batch size
+    int batchTimeoutMs = 10;               // Maximum time to wait for a batch (milliseconds)
     bool useTensorCaching = true;          // Cache tensors to avoid repeated conversions
     bool useJitScripting = true;           // Use JIT scripting for model optimization
     bool useAsyncExecution = true;         // Use asynchronous execution
     bool useOutputCompression = false;     // Apply output compression for less memory usage
-    int maxCacheSize = 1024;               // Maximum tensor cache size
-    int maxQueueSize = 256;                // Maximum queue size for async execution
+    int maxCacheSize = 2048;               // Maximum tensor cache size
+    int maxQueueSize = 512;                // Maximum queue size for async execution
     std::string modelBackend = "default";  // Model backend
     bool useNhwcFormat = false;            // Use NHWC format instead of NCHW
     bool useWarmup = true;                 // Perform warmup inferences at startup
-    int numWarmupIterations = 5;           // Number of warmup iterations
+    int numWarmupIterations = 10;          // Number of warmup iterations
+    bool usePinnedMemory = true;           // Use pinned memory for better CPU-GPU transfers
+    bool useThreadedInference = true;      // Use threaded inference for CPU backend
+    int numThreads = 4;                    // Number of threads for CPU backend inference
 };
 
 /**
@@ -132,6 +137,29 @@ public:
      * @return String with batch queue stats
      */
     std::string getBatchQueueStats() const;
+    
+    /**
+     * @brief Create a new DDWRandWireResNet model
+     * 
+     * @param input_channels Number of input channels
+     * @param output_size Size of policy output
+     * @param channels Number of channels in the network (default: 128)
+     * @param num_blocks Number of random wire blocks (default: 20)
+     * @return Shared pointer to the created model
+     */
+    static std::shared_ptr<DDWRandWireResNet> createDDWRandWireResNet(
+        int64_t input_channels, 
+        int64_t output_size, 
+        int64_t channels = 128, 
+        int64_t num_blocks = 20);
+    
+    /**
+     * @brief Export model in TorchScript format for CPU/GPU inference
+     * 
+     * @param modelPath Path to export the model
+     * @return True if successful, false otherwise
+     */
+    bool exportToTorchScript(const std::string& modelPath) const;
     
 private:
     // Game and board information

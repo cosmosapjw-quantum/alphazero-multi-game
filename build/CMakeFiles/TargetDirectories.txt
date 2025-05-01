@@ -71,6 +71,7 @@
 /home/cosmos/alphazero-multi-game/build/src/games/gomoku/CMakeFiles/install/local.dir
 /home/cosmos/alphazero-multi-game/build/src/games/gomoku/CMakeFiles/install/strip.dir
 /home/cosmos/alphazero-multi-game/build/src/selfplay/CMakeFiles/alphazero_selfplay.dir
+/home/cosmos/alphazero-multi-game/build/src/selfplay/CMakeFiles/self_play.dir
 /home/cosmos/alphazero-multi-game/build/src/selfplay/CMakeFiles/test.dir
 /home/cosmos/alphazero-multi-game/build/src/selfplay/CMakeFiles/edit_cache.dir
 /home/cosmos/alphazero-multi-game/build/src/selfplay/CMakeFiles/rebuild_cache.dir

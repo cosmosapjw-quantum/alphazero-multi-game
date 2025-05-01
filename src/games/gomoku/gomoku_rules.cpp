@@ -156,7 +156,7 @@ bool GomokuRules::renju_is_overline(int action) const {
             case 0: dx = 0; dy = 1; break;  // Vertical
             case 1: dx = 1; dy = 0; break;  // Horizontal
             case 2: dx = 1; dy = 1; break;  // Diagonal down
-            case 3: dx = 1; dy = -1; break; // Diagonal up
+            case 3: dx = -1; dy = 1; break; // Diagonal up
             default: dx = 0; dy = 0; break;
         }
         
@@ -196,7 +196,26 @@ bool GomokuRules::renju_is_overline(int action) const {
 }
 
 bool GomokuRules::renju_double_four_or_more(int action) const {
+    // Temporarily consider the current action as a black stone
+    auto is_bit_set_temp = [this, action](int p_idx, int a) {
+        if (a == action && p_idx == 0) { // Black is trying to place here
+            return true;
+        }
+        return is_bit_set(p_idx, a);
+    };
+    
+    // Store original accessor
+    auto original_is_bit_set = is_bit_set;
+    
+    // Replace with temporary accessor to include hypothetical stone
+    const_cast<GomokuRules*>(this)->is_bit_set = is_bit_set_temp;
+    
+    // Count fours with hypothetical stone
     int c4 = renju_count_all_fours();
+    
+    // Restore original accessor
+    const_cast<GomokuRules*>(this)->is_bit_set = original_is_bit_set;
+    
     return (c4 >= 2);
 }
 
@@ -347,13 +366,25 @@ bool GomokuRules::omok_check_double_three_strict(int action) const {
         return is_bit_set(p_idx, a);
     };
     
+    // Store original accessor
+    auto original_is_bit_set = is_bit_set;
+    
+    // Replace with temporary accessor
+    const_cast<GomokuRules*>(this)->is_bit_set = is_bit_set_temp;
+    
+    // Get the global three patterns after placing the stone
     std::vector<std::set<int>> patterns = get_open_three_patterns_globally();
+    
+    // Restore original accessor
+    const_cast<GomokuRules*>(this)->is_bit_set = original_is_bit_set;
+    
     int n = patterns.size();
     
     if (n < 2) {
         return false;
     }
     
+    // Check if any two patterns are connected (Omok-specific rule)
     for (int i = 0; i < n; i++) {
         for (int j = i + 1; j < n; j++) {
             if (are_patterns_connected(patterns[i], patterns[j])) {
@@ -927,8 +958,17 @@ bool GomokuRules::is_allowed_double_three(int action) const {
         return is_bit_set(p_idx, a);
     };
     
+    // Store original accessor
+    auto original_is_bit_set = is_bit_set;
+    
+    // Replace with temporary accessor
+    const_cast<GomokuRules*>(this)->is_bit_set = is_bit_set_temp;
+    
     // Step 1: Get all three patterns that include this action
     std::vector<std::set<int>> three_patterns = get_three_patterns_for_action(action);
+    
+    // Restore original accessor
+    const_cast<GomokuRules*>(this)->is_bit_set = original_is_bit_set;
     
     // If there's fewer than 2 three patterns, it's not a double-three
     if (three_patterns.size() < 2) {
@@ -1157,8 +1197,18 @@ bool GomokuRules::is_double_three_allowed_recursive(const std::vector<std::set<i
                 return is_bit_set(p_idx, a);
             };
             
+            // Store original accessor
+            auto original_is_bit_set = is_bit_set;
+            
+            // Replace with temporary accessor
+            const_cast<GomokuRules*>(this)->is_bit_set = is_bit_set_temp;
+            
             // Check if this creates a new double-three
             std::vector<std::set<int>> new_three_patterns = get_three_patterns_for_action(placement);
+            
+            // Restore original accessor
+            const_cast<GomokuRules*>(this)->is_bit_set = original_is_bit_set;
+            
             if (new_three_patterns.size() >= 2) {
                 // Recursively check if this new double-three is allowed
                 if (is_double_three_allowed_recursive(new_three_patterns, depth + 1, max_depth)) {

@@ -5,7 +5,7 @@
 #include <vector>
 #include <functional>
 #include <optional>
-#include <unordered_map>
+#include <unordered_set>
 #include <cstdint>
 
 namespace alphazero {
@@ -17,6 +17,7 @@ struct CastlingRights;
 struct ChessMove;
 enum class PieceType;
 enum class PieceColor;
+class ChessState;
 
 // Square constants using little-endian rank-file mapping (0-63)
 // A1 is the bottom-left of the board (white's queenside corner)
@@ -37,22 +38,11 @@ public:
     /**
      * @brief Constructor
      * 
+     * @param state Reference to the chess state
      * @param chess960 Whether to use Chess960 rules
      */
-    ChessRules(bool chess960 = false);
+    ChessRules(ChessState& state, bool chess960 = false);
     
-    /**
-     * @brief Set board accessor functions
-     * 
-     * @param get_piece Function to get piece at square
-     * @param is_valid_square Function to check if square is valid
-     * @param get_king_square Function to find king's square
-     */
-    void setBoardAccessor(
-        std::function<Piece(int)> get_piece,
-        std::function<bool(int)> is_valid_square,
-        std::function<int(PieceColor)> get_king_square);
-        
     /**
      * @brief Generate all legal moves
      * 
@@ -119,15 +109,7 @@ public:
     bool hasInsufficientMaterial() const;
     
     /**
-     * @brief Check for threefold repetition (requires position history)
-     * 
-     * @param position_history Vector of position hashes
-     * @return true if threefold repetition occurred
-     */
-    bool isThreefoldRepetition(const std::vector<uint64_t>& position_history) const;
-    
-    /**
-     * @brief Check for 50-move rule
+     * @brief Check for fifty-move rule
      * 
      * @param halfmove_clock Current halfmove clock value
      * @return true if 50-move rule applies
@@ -150,12 +132,8 @@ public:
         const CastlingRights& current_rights) const;
         
 private:
+    ChessState& state_;
     bool chess960_;
-    
-    // Board accessor functions
-    std::function<Piece(int)> get_piece_;
-    std::function<bool(int)> is_valid_square_;
-    std::function<int(PieceColor)> get_king_square_;
     
     // Move generation helpers
     void addPawnMoves(std::vector<ChessMove>& moves, int square, PieceColor current_player, int en_passant_square) const;
@@ -166,15 +144,26 @@ private:
     void addKingMoves(std::vector<ChessMove>& moves, int square, PieceColor current_player) const;
     void addCastlingMoves(std::vector<ChessMove>& moves, PieceColor current_player, const CastlingRights& castling_rights) const;
     
+    // Check if a move is a valid castle
+    bool isValidCastle(int from_square, int to_square, PieceColor current_player, const CastlingRights& castling_rights) const;
+    
     // Sliding piece movement
     void addSlidingMoves(std::vector<ChessMove>& moves, int square, PieceColor current_player, 
                          const std::vector<std::pair<int, int>>& directions) const;
+    
+    // Get pieces involved in castling for Chess960
+    std::pair<int, int> getCastlingSquares(PieceColor color, bool kingside) const;
+    
+    // Move legality checking
+    bool moveExposesKing(const ChessMove& move, PieceColor current_player) const;
     
     // Utility functions
     static int getRank(int square) { return square / 8; }
     static int getFile(int square) { return square % 8; }
     static int getSquare(int rank, int file) { return rank * 8 + file; }
-    static PieceColor oppositeColor(PieceColor color);
+    static PieceColor oppositeColor(PieceColor color) {
+        return color == PieceColor::WHITE ? PieceColor::BLACK : PieceColor::WHITE;
+    }
 };
 
 } // namespace chess

@@ -127,6 +127,21 @@ tests/performance_tests: tests/CMakeFiles/performance_tests.dir/build.make
 tests/performance_tests: src/libalphazero_lib.a
 tests/performance_tests: /usr/lib/x86_64-linux-gnu/libgtest.a
 tests/performance_tests: /usr/lib/x86_64-linux-gnu/libgtest_main.a
+tests/performance_tests: /usr/lib/x86_64-linux-gnu/libspdlog.so.1.9.2
+tests/performance_tests: /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1
+tests/performance_tests: src/nn/libalphazero_nn.a
+tests/performance_tests: src/mcts/libalphazero_mcts.a
+tests/performance_tests: /home/cosmos/anaconda3/envs/alphazero_env/lib/libc10.so
+tests/performance_tests: /usr/local/cuda-12.4/lib64/libnvrtc.so
+tests/performance_tests: /home/cosmos/anaconda3/envs/alphazero_env/lib/libc10_cuda.so
+tests/performance_tests: src/core/libalphazero_core.a
+tests/performance_tests: src/games/chess/libalphazero_chess.a
+tests/performance_tests: src/games/go/libalphazero_go.a
+tests/performance_tests: src/games/gomoku/libalphazero_gomoku.a
+tests/performance_tests: src/core/libalphazero_core.a
+tests/performance_tests: src/games/chess/libalphazero_chess.a
+tests/performance_tests: src/games/go/libalphazero_go.a
+tests/performance_tests: src/games/gomoku/libalphazero_gomoku.a
 tests/performance_tests: /home/cosmos/anaconda3/envs/alphazero_env/lib/libtorch.so
 tests/performance_tests: /home/cosmos/anaconda3/envs/alphazero_env/lib/libprotobuf.so.28.2.0
 tests/performance_tests: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_log_internal_check_op.so.2407.0.0
@@ -211,11 +226,7 @@ tests/performance_tests: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_l
 tests/performance_tests: /home/cosmos/anaconda3/envs/alphazero_env/lib/libc10_cuda.so
 tests/performance_tests: /home/cosmos/anaconda3/envs/alphazero_env/lib/libc10.so
 tests/performance_tests: /usr/local/cuda-12.4/lib64/libcudart.so
-tests/performance_tests: /home/cosmos/anaconda3/envs/alphazero_env/lib/libc10.so
-tests/performance_tests: /usr/local/cuda-12.4/lib64/libnvrtc.so
-tests/performance_tests: /home/cosmos/anaconda3/envs/alphazero_env/lib/libc10_cuda.so
-tests/performance_tests: /usr/lib/x86_64-linux-gnu/libspdlog.so.1.9.2
-tests/performance_tests: /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1
+tests/performance_tests: /usr/lib/x86_64-linux-gnu/libcudnn.so
 tests/performance_tests: /usr/lib/x86_64-linux-gnu/libgtest.a
 tests/performance_tests: tests/CMakeFiles/performance_tests.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable performance_tests"

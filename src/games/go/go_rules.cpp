@@ -5,9 +5,10 @@
 namespace alphazero {
 namespace go {
 
-GoRules::GoRules(int board_size, bool chinese_rules)
+GoRules::GoRules(int board_size, bool chinese_rules, bool enforce_superko)
     : board_size_(board_size),
-      chinese_rules_(chinese_rules) {
+      chinese_rules_(chinese_rules),
+      enforce_superko_(enforce_superko) {
     
     // Default implementations (will be replaced by setBoardAccessor)
     get_stone_ = [](int) { return 0; };
@@ -43,7 +44,7 @@ bool GoRules::isSuicidalMove(int action, int player) const {
     // Place the stone
     temp_board[action] = player;
     
-    // Define temporary accessor functions for the simulated board
+    // Define temporary accessor function for the simulated board
     auto temp_get_stone = [&temp_board](int pos) { return temp_board[pos]; };
     
     // Check if any opponent group would be captured
@@ -192,34 +193,56 @@ void GoRules::findLiberties(std::unordered_set<int>& stones, std::unordered_set<
     }
 }
 
-std::vector<int> GoRules::getTerritoryOwnership() const {
+std::vector<int> GoRules::getTerritoryOwnership(const std::unordered_set<int>& dead_stones) const {
     std::vector<int> territory(board_size_ * board_size_, 0);
     
-    // Mark existing stones as territory
+    // Create a temporary board with dead stones removed
+    std::vector<int> temp_board(board_size_ * board_size_, 0);
     for (int pos = 0; pos < board_size_ * board_size_; pos++) {
-        if (!is_in_bounds_(pos)) continue;
-        
-        int stone = get_stone_(pos);
-        if (stone != 0) {
-            territory[pos] = stone;  // Owned by the player with a stone here
+        if (is_in_bounds_(pos)) {
+            if (dead_stones.find(pos) == dead_stones.end()) {
+                temp_board[pos] = get_stone_(pos);
+            } else {
+                temp_board[pos] = 0; // Remove dead stone
+            }
         }
     }
+    
+    // Define temporary accessor function
+    auto temp_get_stone = [&temp_board](int pos) { return temp_board[pos]; };
     
     // Find empty regions and determine ownership
     for (int pos = 0; pos < board_size_ * board_size_; pos++) {
         if (!is_in_bounds_(pos)) continue;
         
-        if (get_stone_(pos) == 0 && territory[pos] == 0) {
+        if (temp_get_stone(pos) == 0 && territory[pos] == 0) {
             // Unmarked empty intersection, flood fill to find territory
             int territory_color = 0;
-            floodFillTerritory(territory, pos, territory_color);
+            floodFillTerritory(territory, pos, territory_color, dead_stones);
+        }
+    }
+    
+    // Mark stones with their respective owners (for Chinese rules)
+    if (chinese_rules_) {
+        for (int pos = 0; pos < board_size_ * board_size_; pos++) {
+            if (is_in_bounds_(pos)) {
+                int stone = temp_get_stone(pos);
+                if (stone != 0) {
+                    territory[pos] = stone;  // Owned by the player with a stone here
+                }
+            }
         }
     }
     
     return territory;
 }
 
-void GoRules::floodFillTerritory(std::vector<int>& territory, int pos, int& territory_color) const {
+void GoRules::floodFillTerritory(
+    std::vector<int>& territory, 
+    int pos, 
+    int& territory_color,
+    const std::unordered_set<int>& dead_stones) const {
+    
     // Start with neutral territory
     territory_color = 0;
     
@@ -234,15 +257,27 @@ void GoRules::floodFillTerritory(std::vector<int>& territory, int pos, int& terr
     bool touches_black = false;
     bool touches_white = false;
     
+    // Create a temporary board with dead stones removed
+    std::vector<int> temp_board(board_size_ * board_size_, 0);
+    for (int p = 0; p < board_size_ * board_size_; p++) {
+        if (is_in_bounds_(p)) {
+            if (dead_stones.find(p) == dead_stones.end()) {
+                temp_board[p] = get_stone_(p);
+            } else {
+                temp_board[p] = 0; // Remove dead stone
+            }
+        }
+    }
+    
+    // Define temporary accessor function
+    auto temp_get_stone = [&temp_board](int p) { return temp_board[p]; };
+    
     while (!queue.empty()) {
         int current = queue.front();
         queue.pop();
         
-        // Mark as part of this territory
-        territory[current] = territory_color;
-        
         for (int adj : get_adjacent_positions_(current)) {
-            int stone = get_stone_(adj);
+            int stone = temp_get_stone(adj);
             
             if (stone == 0) {
                 // Empty intersection, add to flood fill if not visited
@@ -275,42 +310,46 @@ void GoRules::floodFillTerritory(std::vector<int>& territory, int pos, int& terr
     }
 }
 
-std::pair<float, float> GoRules::calculateScores(const std::vector<int>& captured_stones, float komi) const {
+std::pair<float, float> GoRules::calculateScores(
+    const std::vector<int>& captured_stones, 
+    float komi,
+    const std::unordered_set<int>& dead_stones) const {
+    
     float black_score = 0.0f;
     float white_score = 0.0f;
     
-    // Count stones for Chinese rules
-    if (chinese_rules_) {
-        for (int pos = 0; pos < board_size_ * board_size_; pos++) {
-            if (!is_in_bounds_(pos)) continue;
-            
-            int stone = get_stone_(pos);
-            if (stone == 1) {
-                black_score += 1.0f;
-            } else if (stone == 2) {
-                white_score += 1.0f;
-            }
-        }
-    }
-    
     // Count territory
-    std::vector<int> territory = getTerritoryOwnership();
+    std::vector<int> territory = getTerritoryOwnership(dead_stones);
     
+    // Count stones and territory according to the rules
     for (int pos = 0; pos < board_size_ * board_size_; pos++) {
         if (!is_in_bounds_(pos)) continue;
         
         int owner = territory[pos];
         if (owner == 1) {
-            black_score += 1.0f;
+            black_score += 1.0f;  // Black territory
         } else if (owner == 2) {
-            white_score += 1.0f;
+            white_score += 1.0f;  // White territory
         }
     }
     
-    // Add captures for Japanese rules
     if (!chinese_rules_) {
-        black_score += static_cast<float>(captured_stones[1]);
-        white_score += static_cast<float>(captured_stones[2]);
+        // For Japanese rules, add prisoners (captured stones + dead stones)
+        int black_prisoners = captured_stones[1];
+        int white_prisoners = captured_stones[2];
+        
+        // Count dead stones as prisoners
+        for (int pos : dead_stones) {
+            int stone = get_stone_(pos);
+            if (stone == 1) {
+                white_prisoners++;  // Dead black stone is a prisoner for white
+            } else if (stone == 2) {
+                black_prisoners++;  // Dead white stone is a prisoner for black
+            }
+        }
+        
+        black_score += static_cast<float>(white_prisoners);
+        white_score += static_cast<float>(black_prisoners);
     }
     
     // Add komi

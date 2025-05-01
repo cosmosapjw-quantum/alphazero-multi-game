@@ -4,6 +4,7 @@ add_library(alphazero_nn
     batch_queue.cpp
     attack_defense_module.cpp
     random_policy_network.cpp
+    ddw_randwire_resnet.cpp
 )
 
 target_include_directories(alphazero_nn PUBLIC

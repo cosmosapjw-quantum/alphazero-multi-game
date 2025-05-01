@@ -10,4 +10,4 @@ include("/home/cosmos/alphazero-multi-game/build/tests/mcts_tests[1]_include.cma
 include("/home/cosmos/alphazero-multi-game/build/tests/nn_tests[1]_include.cmake")
 include("/home/cosmos/alphazero-multi-game/build/tests/integration_tests[1]_include.cmake")
 add_test(performance_tests "/home/cosmos/alphazero-multi-game/build/tests/performance_tests")
-set_tests_properties(performance_tests PROPERTIES  _BACKTRACE_TRIPLES "/home/cosmos/alphazero-multi-game/tests/CMakeLists.txt;83;add_test;/home/cosmos/alphazero-multi-game/tests/CMakeLists.txt;0;")
+set_tests_properties(performance_tests PROPERTIES  _BACKTRACE_TRIPLES "/home/cosmos/alphazero-multi-game/tests/CMakeLists.txt;89;add_test;/home/cosmos/alphazero-multi-game/tests/CMakeLists.txt;0;")

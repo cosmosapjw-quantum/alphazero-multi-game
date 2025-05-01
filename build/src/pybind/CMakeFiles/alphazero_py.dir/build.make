@@ -108,7 +108,17 @@ src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda
 src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /usr/lib/x86_64-linux-gnu/libspdlog.so.1.9.2
 src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: src/nn/libalphazero_nn.a
 src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: src/mcts/libalphazero_mcts.a
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libc10.so
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /usr/local/cuda-12.4/lib64/libnvrtc.so
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libc10_cuda.so
 src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: src/core/libalphazero_core.a
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: src/games/gomoku/libalphazero_gomoku.a
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: src/games/chess/libalphazero_chess.a
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: src/games/go/libalphazero_go.a
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: src/core/libalphazero_core.a
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: src/games/gomoku/libalphazero_gomoku.a
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: src/games/chess/libalphazero_chess.a
+src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: src/games/go/libalphazero_go.a
 src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libtorch.so
 src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libprotobuf.so.28.2.0
 src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libabsl_log_internal_check_op.so.2407.0.0
@@ -193,9 +203,6 @@ src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda
 src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libc10_cuda.so
 src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libc10.so
 src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /usr/local/cuda-12.4/lib64/libcudart.so
-src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libc10.so
-src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /usr/local/cuda-12.4/lib64/libnvrtc.so
-src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /home/cosmos/anaconda3/envs/alphazero_env/lib/libc10_cuda.so
 src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /usr/lib/x86_64-linux-gnu/libcudnn.so
 src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: /usr/lib/x86_64-linux-gnu/libfmt.so.8.1.1
 src/pybind/_alphazero_cpp.cpython-311-x86_64-linux-gnu.so: src/pybind/CMakeFiles/alphazero_py.dir/link.txt

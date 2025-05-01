@@ -9,9 +9,6 @@
 #include <algorithm>
 #include <random>
 #include "alphazero/mcts/transposition_table.h"
-#if defined(PYBIND11_MODULE)
-#include <pybind11/pybind11.h>
-#endif
 
 namespace alphazero {
 namespace selfplay {
@@ -189,10 +186,6 @@ GameRecord SelfPlayManager::playSingleGame(
     int moveNum = 0;
     while (!state->isTerminal() && !abort_) {
         if (progressCallback_) {
-#if defined(PYBIND11_MODULE)
-            // Acquire GIL before calling Python callback
-            pybind11::gil_scoped_acquire acquire;
-#endif
             // gameId, moveNum, totalGames, totalMoves
             progressCallback_(gameId, moveNum, numGames_, totalMovesCount_.load());
         }

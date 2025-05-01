@@ -283,10 +283,7 @@ void BatchQueue::processBatch(StateBatch& batch) {
     std::vector<std::vector<float>> policies;
     std::vector<float> values;
     
-#ifdef PYBIND11_MODULE
-    // Release GIL during batch processing if this is being called from Python
-    pybind11::gil_scoped_release release;
-#endif
+    // No Python GIL management required in C++ standalone implementation
     
     // Process batch
     try {

@@ -302,6 +302,19 @@ alphazero_selfplay/fast:
 .PHONY : alphazero_selfplay/fast
 
 #=============================================================================
+# Target rules for targets named self_play
+
+# Build rule for target.
+self_play: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 self_play
+.PHONY : self_play
+
+# fast build rule for target.
+self_play/fast:
+	$(MAKE) $(MAKESILENT) -f src/selfplay/CMakeFiles/self_play.dir/build.make src/selfplay/CMakeFiles/self_play.dir/build
+.PHONY : self_play/fast
+
+#=============================================================================
 # Target rules for targets named alphazero_elo
 
 # Build rule for target.
@@ -525,6 +538,7 @@ help:
 	@echo "... mcts_tests"
 	@echo "... nn_tests"
 	@echo "... performance_tests"
+	@echo "... self_play"
 	@echo "... standalone_cuda_test"
 	@echo "... cuda_test.o"
 	@echo "... cuda_test.i"

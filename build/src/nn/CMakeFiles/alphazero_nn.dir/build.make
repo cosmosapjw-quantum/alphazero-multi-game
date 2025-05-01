@@ -139,13 +139,28 @@ src/nn/CMakeFiles/alphazero_nn.dir/random_policy_network.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_nn.dir/random_policy_network.cpp.s"
 	cd /home/cosmos/alphazero-multi-game/build/src/nn && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/nn/random_policy_network.cpp -o CMakeFiles/alphazero_nn.dir/random_policy_network.cpp.s
 
+src/nn/CMakeFiles/alphazero_nn.dir/ddw_randwire_resnet.cpp.o: src/nn/CMakeFiles/alphazero_nn.dir/flags.make
+src/nn/CMakeFiles/alphazero_nn.dir/ddw_randwire_resnet.cpp.o: ../src/nn/ddw_randwire_resnet.cpp
+src/nn/CMakeFiles/alphazero_nn.dir/ddw_randwire_resnet.cpp.o: src/nn/CMakeFiles/alphazero_nn.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/nn/CMakeFiles/alphazero_nn.dir/ddw_randwire_resnet.cpp.o"
+	cd /home/cosmos/alphazero-multi-game/build/src/nn && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/nn/CMakeFiles/alphazero_nn.dir/ddw_randwire_resnet.cpp.o -MF CMakeFiles/alphazero_nn.dir/ddw_randwire_resnet.cpp.o.d -o CMakeFiles/alphazero_nn.dir/ddw_randwire_resnet.cpp.o -c /home/cosmos/alphazero-multi-game/src/nn/ddw_randwire_resnet.cpp
+
+src/nn/CMakeFiles/alphazero_nn.dir/ddw_randwire_resnet.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/alphazero_nn.dir/ddw_randwire_resnet.cpp.i"
+	cd /home/cosmos/alphazero-multi-game/build/src/nn && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cosmos/alphazero-multi-game/src/nn/ddw_randwire_resnet.cpp > CMakeFiles/alphazero_nn.dir/ddw_randwire_resnet.cpp.i
+
+src/nn/CMakeFiles/alphazero_nn.dir/ddw_randwire_resnet.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/alphazero_nn.dir/ddw_randwire_resnet.cpp.s"
+	cd /home/cosmos/alphazero-multi-game/build/src/nn && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cosmos/alphazero-multi-game/src/nn/ddw_randwire_resnet.cpp -o CMakeFiles/alphazero_nn.dir/ddw_randwire_resnet.cpp.s
+
 # Object files for target alphazero_nn
 alphazero_nn_OBJECTS = \
 "CMakeFiles/alphazero_nn.dir/neural_network.cpp.o" \
 "CMakeFiles/alphazero_nn.dir/torch_neural_network.cpp.o" \
 "CMakeFiles/alphazero_nn.dir/batch_queue.cpp.o" \
 "CMakeFiles/alphazero_nn.dir/attack_defense_module.cpp.o" \
-"CMakeFiles/alphazero_nn.dir/random_policy_network.cpp.o"
+"CMakeFiles/alphazero_nn.dir/random_policy_network.cpp.o" \
+"CMakeFiles/alphazero_nn.dir/ddw_randwire_resnet.cpp.o"
 
 # External object files for target alphazero_nn
 alphazero_nn_EXTERNAL_OBJECTS =
@@ -155,9 +170,10 @@ src/nn/libalphazero_nn.a: src/nn/CMakeFiles/alphazero_nn.dir/torch_neural_networ
 src/nn/libalphazero_nn.a: src/nn/CMakeFiles/alphazero_nn.dir/batch_queue.cpp.o
 src/nn/libalphazero_nn.a: src/nn/CMakeFiles/alphazero_nn.dir/attack_defense_module.cpp.o
 src/nn/libalphazero_nn.a: src/nn/CMakeFiles/alphazero_nn.dir/random_policy_network.cpp.o
+src/nn/libalphazero_nn.a: src/nn/CMakeFiles/alphazero_nn.dir/ddw_randwire_resnet.cpp.o
 src/nn/libalphazero_nn.a: src/nn/CMakeFiles/alphazero_nn.dir/build.make
 src/nn/libalphazero_nn.a: src/nn/CMakeFiles/alphazero_nn.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX static library libalphazero_nn.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/cosmos/alphazero-multi-game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX static library libalphazero_nn.a"
 	cd /home/cosmos/alphazero-multi-game/build/src/nn && $(CMAKE_COMMAND) -P CMakeFiles/alphazero_nn.dir/cmake_clean_target.cmake
 	cd /home/cosmos/alphazero-multi-game/build/src/nn && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/alphazero_nn.dir/link.txt --verbose=$(VERBOSE)
 

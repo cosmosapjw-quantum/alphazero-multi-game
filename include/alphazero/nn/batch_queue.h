@@ -17,10 +17,7 @@
 #include "alphazero/core/igamestate.h"
 #include "alphazero/nn/neural_network.h"
 
-// Include pybind11 headers if we're building with Python bindings
-#ifdef PYBIND11_MODULE
-#include <pybind11/pybind11.h>
-#endif
+// Remove pybind11 dependency
 
 namespace alphazero {
 namespace nn {

@@ -66,6 +66,11 @@ struct MCTSConfig {
     bool useBatchedMCTS = false;
     int batchTimeoutMs = 5;
     MCTSSearchMode searchMode = MCTSSearchMode::PARALLEL;
+    
+    // Performance optimizations
+    bool pinThreads = false;               // Whether to pin threads to specific CPU cores
+    bool deterministic = false;            // Use deterministic mode for reproducibility
+    int cacheSize = 2097152;               // Cache size for feature maps
 };
 
 // Statistics for MCTS
@@ -223,6 +228,9 @@ private:
         std::mutex& simulationsMutex,
         std::atomic<int>& completedSimulations,
         bool processAll = false);
+    
+    // Thread affinity
+    void pinThreadToCore(int threadId);
     
     // Helper methods
     float convertToValue(core::GameResult result, int currentPlayer);

@@ -14,6 +14,14 @@
 namespace alphazero {
 namespace go {
 
+// Define move history structure to support undo
+struct MoveRecord {
+    int action;                            // The action that was taken
+    int ko_point;                          // Ko point before this move
+    std::vector<int> captured_positions;   // Positions of stones captured by this move
+    int consecutive_passes;                // Consecutive passes before this move
+};
+
 /**
  * @brief Implementation of Go game state
  */
@@ -25,8 +33,9 @@ public:
      * @param board_size Board size (9, 13, or 19)
      * @param komi Komi value
      * @param chinese_rules Whether to use Chinese rules
+     * @param enforce_superko Whether to enforce positional superko (true for Chinese, false for Japanese)
      */
-    GoState(int board_size = 19, float komi = 7.5f, bool chinese_rules = true);
+    GoState(int board_size = 19, float komi = 7.5f, bool chinese_rules = true, bool enforce_superko = true);
     
     /**
      * @brief Copy constructor
@@ -117,6 +126,13 @@ public:
     bool isChineseRules() const;
     
     /**
+     * @brief Check if enforcing superko rule
+     * 
+     * @return true if enforcing superko, false otherwise
+     */
+    bool isEnforcingSuperko() const;
+    
+    /**
      * @brief Convert action to coordinates
      * 
      * @param action Action index
@@ -143,18 +159,46 @@ public:
     /**
      * @brief Get territory ownership
      * 
+     * @param dead_stones Set of positions containing dead stones to remove before scoring
      * @return Vector of territory ownership (0 for neutral, 1 for black, 2 for white)
      */
-    std::vector<int> getTerritoryOwnership() const;
+    std::vector<int> getTerritoryOwnership(const std::unordered_set<int>& dead_stones = {}) const;
     
     /**
      * @brief Check if a point is inside territory
      * 
      * @param pos Position index
      * @param player Player (1 for black, 2 for white)
+     * @param dead_stones Set of positions containing dead stones
      * @return true if position is inside player's territory
      */
-    bool isInsideTerritory(int pos, int player) const;
+    bool isInsideTerritory(int pos, int player, const std::unordered_set<int>& dead_stones = {}) const;
+    
+    /**
+     * @brief Mark stones as dead for scoring
+     * 
+     * @param positions Set of positions to mark as dead
+     */
+    void markDeadStones(const std::unordered_set<int>& positions);
+    
+    /**
+     * @brief Get the set of currently marked dead stones
+     * 
+     * @return Set of positions of dead stones
+     */
+    const std::unordered_set<int>& getDeadStones() const;
+    
+    /**
+     * @brief Clear the set of marked dead stones
+     */
+    void clearDeadStones();
+    
+    /**
+     * @brief Calculate final score with current dead stones
+     * 
+     * @return Pair of (black_score, white_score)
+     */
+    std::pair<float, float> calculateScore() const;
     
 private:
     int board_size_;
@@ -169,6 +213,10 @@ private:
     int consecutive_passes_;
     std::vector<int> move_history_;
     std::vector<uint64_t> position_history_;
+    std::vector<MoveRecord> full_move_history_; // Detailed history for undo
+    
+    // Dead stones for scoring
+    std::unordered_set<int> dead_stones_;
     
     // Zobrist hashing
     core::ZobristHash zobrist_;
@@ -184,12 +232,14 @@ private:
     bool isInBounds(int pos) const;
     void invalidateHash();
     void captureGroup(const StoneGroup& group);
-    
-    // Hash calculation
-    void updateHash() const;
+    void captureStones(const std::unordered_set<int>& positions);
     
     // Check if a move is valid
     bool isValidMove(int action) const;
+    bool checkForSuperko(uint64_t new_hash) const;
+    
+    // Hash calculation
+    void updateHash() const;
 };
 
 } // namespace go
